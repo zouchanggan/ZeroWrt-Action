@@ -99,6 +99,7 @@ sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 # Theme
 git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
+git clone https://github.com/sirpdboy/luci-app-advancedplus
 cp -f $GITHUB_WORKSPACE/images/bg.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg.jpg
 
 # Lucky
