@@ -41,9 +41,6 @@ function git_sparse_clone() {
 #git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
-# Kucat主题
-https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
-
 # SSRP & Passwall
 git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
 
@@ -99,12 +96,10 @@ sed -i 's/\("admin"\), *\("netwizard"\)/\1, "system", \2/g' package/luci-app-net
 # 修改名称
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
-# default settings
-git clone https://git.kejizero.online/zhao/default-settings package/new/default-settings -b openwrt-24.10
-
 # Theme
-git clone https://git.kejizero.online/zhao/luci-theme-argon.git package/new/luci-theme-argon
-cp -f $GITHUB_WORKSPACE/images/bg.webp package/new/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp
+git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
+cp -f $GITHUB_WORKSPACE/images/bg.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg.jpg
 
 # Lucky
 git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
