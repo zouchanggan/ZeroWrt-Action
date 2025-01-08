@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Set default theme to luci-theme-argon
+uci set luci.main.mediaurlbase='/luci-static/argon'
+uci commit luci
+
 # 默认wan口防火墙打开
 uci set firewall.@zone[1].input='ACCEPT'
 uci commit firewall
