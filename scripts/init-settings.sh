@@ -1,11 +1,5 @@
 #!/bin/sh
 
-# PPPoE 配置
-uci set network.wan.proto=pppoe
-uci set network.wan.username='xxxxx'  # 替换为实际的用户名
-uci set network.wan.password='xxxxx'  # 替换为实际的密码
-uci commit network
-
 # 默认wan口防火墙打开
 uci set firewall.@zone[1].input='ACCEPT'
 uci commit firewall
