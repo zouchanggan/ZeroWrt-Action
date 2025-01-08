@@ -103,6 +103,9 @@ git clone https://git.kejizero.online/zhao/default-settings package/new/default-
 git clone https://git.kejizero.online/zhao/luci-theme-argon.git package/new/luci-theme-argon
 cp -f $GITHUB_WORKSPACE/images/bg.webp package/new/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp
 
+# Lucky
+git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
+
 # 更换背景
 curl -L -o package/new/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp https://git.kejizero.online/zhao/files/raw/branch/main/%20background/bg.webp
 
