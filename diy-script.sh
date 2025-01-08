@@ -41,6 +41,9 @@ function git_sparse_clone() {
 #git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
+# Kucat主题
+https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
+
 # SSRP & Passwall
 git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
 
