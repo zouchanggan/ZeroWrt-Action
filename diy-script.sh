@@ -146,9 +146,8 @@ mkdir -p files/root
 curl -L -o files/root/version.txt https://git.kejizero.online/zhao/files/raw/branch/main/bin/version.txt
 chmod +x files/root/version.txt
 
-# 换源
-mkdir -p files/etc/opkg
 # 设置新的源地址
+mkdir -p files/etc/opkg
 NEW_SOURCES="
 src/gz openwrt_base https://downloads.openwrt.org/releases/24.10.0-rc5/packages/x86_64/base
 src/gz openwrt_luci https://downloads.openwrt.org/releases/24.10.0-rc5/packages/x86_64/luci
