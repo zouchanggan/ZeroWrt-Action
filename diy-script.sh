@@ -139,7 +139,6 @@ sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/f
 
 # ZeroWrt选项菜单
 mkdir -p files/bin
-# cp -f $GITHUB_WORKSPACE/Diy/ZeroWrt files/bin/ZeroWrt
 curl -L -o files/bin/ZeroWrt https://git.kejizero.online/zhao/files/raw/branch/main/bin/ZeroWrt
 chmod +x files/bin/ZeroWrt
 mkdir -p files/root
@@ -147,18 +146,7 @@ curl -L -o files/root/version.txt https://git.kejizero.online/zhao/files/raw/bra
 chmod +x files/root/version.txt
 
 # 设置新的源地址
-mkdir -p files/etc/opkg
-NEW_SOURCES="
-src/gz openwrt_base https://downloads.openwrt.org/releases/24.10.0-rc5/packages/x86_64/base
-src/gz openwrt_luci https://downloads.openwrt.org/releases/24.10.0-rc5/packages/x86_64/luci
-src/gz openwrt_packages https://downloads.openwrt.org/releases/24.10.0-rc5/packages/x86_64/packages
-src/gz openwrt_routing https://downloads.openwrt.org/releases/24.10.0-rc5/packages/x86_64/routing
-src/gz openwrt_telephony https://downloads.openwrt.org/releases/24.10.0-rc5/packages/x86_64/telephony
-"
-# 创建 opkg 配置文件并写入源地址
-echo "$NEW_SOURCES" > files/etc/opkg/distfeeds.conf
-
-chmod +x files/etc/opkg/distfeeds.conf
+sed -i 's,downloads.openwrt.org,mirrors.pku.edu.cn/openwrt,g' /etc/opkg/distfeeds.conf
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
