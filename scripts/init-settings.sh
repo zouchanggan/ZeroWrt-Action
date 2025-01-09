@@ -246,7 +246,7 @@ uci set dhcp.@dnsmasq[0].cachesize='0'
 uci commit dhcp
 /etc/init.d/dnsmasq restart
 
-# Adguardhome设置
+### Adguardhome设置
 uci set AdGuardHome.AdGuardHome.enabled='1'
 uci set AdGuardHome.AdGuardHome.redirect='dnsmasq-upstream'
 uci commit AdGuardHome
@@ -255,4 +255,9 @@ uci commit AdGuardHome
 # 设置Adguardhome上游服务器
 sed -i 's|- 223.5.5.5|- 127.0.0.1:6053|' /etc/AdGuardHome.yaml
 sed -i '/upstream_dns:/a\    - 127.0.0.1:5335' /etc/AdGuardHome.yaml
+# 并行请求
+sed -i 's/upstream_mode: .*/upstream_mode: parallel/' /etc/AdGuardHome.yaml
+# 设置缓存
+sed -i 's/cache_size: .*/cache_size: 0/' /etc/AdGuardHome.yaml
+# 重启服务
 /etc/init.d/AdGuardHome restart
