@@ -253,5 +253,6 @@ uci commit AdGuardHome
 /etc/init.d/AdGuardHome restart
 
 # 设置Adguardhome上游服务器
-sed -i 's|223.5.5.5|127.0.0.1:6053|' /etc/AdGuardHome.yaml
-sed -i '/upstream_dns:/a\  - 127.0.0.1:5335' /etc/AdGuardHome.yaml
+sed -i 's|- 223.5.5.5|- 127.0.0.1:6053|' /etc/AdGuardHome.yaml
+sed -i '/upstream_dns:/a\    - 127.0.0.1:5335' /etc/AdGuardHome.yaml
+
