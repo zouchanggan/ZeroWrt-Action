@@ -9,12 +9,12 @@
 |----------|------|----------|------|
 | PassWall | ✅ | Docker | ✅ |
 | HomeProxy | ✅ | TTY 终端 | ✅ |
-| FileBrowser | ✅ | NetData 监控 | ✅ |
+| OpenClash | ✅ | NetData 监控 | ✅ |
 | Mihomo TProxy | ✅ | DiskMan 磁盘管理 | ✅ |
 | MosDNS | ✅ | UPnP | ✅ |
 | Lucky | ✅ | Socat | ✅ |
 | 应用过滤 | ✅ | SmartDns | ✅ |
 | 网络共享（Samba） | ✅ | WireGuard | ✅ |
-| WebDav | ✅ | OpenClash | ✅ |
+| WebDav | ✅ | FileBrowser | ✅ |
 | uHTTPd | ✅ | 进阶设置 | ✅ |
 | 设置向导 | ✅ | 一键分区 | ✅ |
