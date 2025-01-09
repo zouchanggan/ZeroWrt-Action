@@ -261,7 +261,6 @@ uci set passwall.@global[0].dns_shunt='dnsmasq'
 uci set passwall.@global[0].remote_dns='127.0.0.1:5553'
 uci set passwall.@global[0].dns_mode='udp'
 uci commit passwall
-/etc/init.d/passwall restart
 
 ### OpenClash设置
 # 禁用默认DNS配置
