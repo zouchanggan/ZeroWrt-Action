@@ -145,8 +145,5 @@ mkdir -p files/root
 curl -L -o files/root/version.txt https://git.kejizero.online/zhao/files/raw/branch/main/bin/version.txt
 chmod +x files/root/version.txt
 
-# 设置新的源地址
-sed -i 's,downloads.openwrt.org,mirrors.pku.edu.cn/openwrt,g' /etc/opkg/distfeeds.conf
-
 ./scripts/feeds update -a
 ./scripts/feeds install -a
