@@ -246,8 +246,9 @@ uci commit AdGuardHome
 /etc/init.d/AdGuardHome restart
 
 # 设置Adguardhome上游服务器
-sed -i 's|- 223.5.5.5|- 127.0.0.1:6053|' /etc/AdGuardHome.yaml
-sed -i '/upstream_dns:/a\    - 127.0.0.1:5335' /etc/AdGuardHome.yaml
+# sed -i 's|- 223.5.5.5|- 127.0.0.1:6053|' /etc/AdGuardHome.yaml
+# sed -i '/upstream_dns:/a\    - 127.0.0.1:5335' /etc/AdGuardHome.yaml
+sed -i 's|upstream_dns_file: ""|upstream_dns_file: "/etc/AdGuardHome-dnslist.yaml"|' /etc/AdGuardHome.yaml
 # 并行请求
 sed -i 's/upstream_mode: .*/upstream_mode: parallel/' /etc/AdGuardHome.yaml
 # 设置缓存
