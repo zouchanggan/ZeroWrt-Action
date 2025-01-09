@@ -21,7 +21,7 @@ uci delete ttyd.@ttyd[0].interface
 uci set dropbear.@dropbear[0].Interface=''
 uci commit
 
-# docker mirror
+# Docker换源
 if [ -f /etc/config/dockerd ] && [ $(grep -c daocloud.io /etc/config/dockerd) -eq '0' ]; then
     uci add_list dockerd.globals.registry_mirrors="https://docker.m.daocloud.io"
     uci commit dockerd
