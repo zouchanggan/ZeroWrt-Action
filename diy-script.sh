@@ -151,6 +151,7 @@ chmod +x files/root/version.txt
 # Adguardhome设置
 mkdir -p files/etc
 curl -L -o files/etc/AdGuardHome-dnslist https://git.kejizero.online/zhao/files/raw/branch/main/etc/AdGuardHome-dnslist
+chmod +x files/etc/AdGuardHome-dnslist
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
