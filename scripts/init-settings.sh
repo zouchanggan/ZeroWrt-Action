@@ -267,6 +267,12 @@ uci commit passwall
 /etc/init.d/passwall restart
 
 ### OpenClash设置
+# 禁用默认DNS配置
+n=0
+while [ "$n" -lt $(uci show openclash|grep -c "^openclash.@dns_servers\[[0-9]\{1,10\}\]=dns_servers") ]; do
+  uci set openclash.@dns_servers[$n].enabled='0'
+  n=$((n + 1))
+done
 # OPenClash DNS设置
 uci add openclash dns_servers
 uci set openclash.@dns_servers[-1].enabled='1'
