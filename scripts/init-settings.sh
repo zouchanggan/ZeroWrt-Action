@@ -1,9 +1,5 @@
 #!/bin/sh
 
-# 自定义密码
-uci set system.@system[0].password='password'
-uci commit system
-
 # 设置默认主题为kucat
 uci set luci.main.mediaurlbase='/luci-static/kucat'
 uci commit luci
