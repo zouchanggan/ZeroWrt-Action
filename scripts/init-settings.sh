@@ -33,10 +33,10 @@ until [ "$( opkg list-installed 2>/dev/null| grep -c "^kernel")" -ne '0' ]; do
   sleep 1
 done
 # Smartdns相关设置
+uci set smartdns.@smartdns[0].auto_set_dnsmasq='1'
 uci set smartdns.@smartdns[0].prefetch_domain='1'
 uci set smartdns.@smartdns[0].port='6053'
 uci set smartdns.@smartdns[0].seconddns_port='5335'
-uci set smartdns.@smartdns[0].auto_set_dnsmasq='1'
 uci set smartdns.@smartdns[0].seconddns_no_rule_addr='0'
 uci set smartdns.@smartdns[0].seconddns_no_rule_nameserver='0'
 uci set smartdns.@smartdns[0].seconddns_no_rule_ipuci set='0'
