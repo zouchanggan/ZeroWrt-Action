@@ -300,4 +300,20 @@ uci set openclash.config.custom_fakeip_filter='1'
 uci set openclash.config.bypass_gateway_compatible='1'
 # 禁用本地 DNS 劫持
 uci set openclash.config.enable_redirect_dns='0'
+# 开启 GeoIP MMDB 自动更新
+uci set openclash.config.geoip_auto_update='1'
+uci set openclash.config.geoip_update_week_time='*'  # 每周更新
+uci set openclash.config.geoip_update_day_time='3'  # 每周的第 3 天（可以根据需求修改）
+# 开启 GeoIP Dat 自动更新
+uci set openclash.config.geo_auto_update='1'
+uci set openclash.config.geo_update_week_time='*'  # 每周更新
+uci set openclash.config.geo_update_day_time='1'  # 每周的第 1 天（可以根据需求修改）
+# 开启 GeoSite 数据库自动更新
+uci set openclash.config.geosite_auto_update='1'
+uci set openclash.config.geosite_update_week_time='*'  # 每周更新
+uci set openclash.config.geosite_update_day_time='4'  # 每周的第 4 天（可以根据需求修改）
+# 启用大陆白名单订阅自动更新
+uci set openclash.config.chnr_auto_update='1'  # 开启大陆白名单订阅自动更新
+uci set openclash.config.chnr_update_week_time='*'  # 每周更新
+uci set openclash.config.chnr_update_day_time='5'  # 每周的第 5 天（可以根据需求修改）
 uci commit openclash
