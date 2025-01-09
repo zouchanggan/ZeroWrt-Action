@@ -253,6 +253,6 @@ uci set AdGuardHome.AdGuardHome.waitonboot='1'
 uci set AdGuardHome.AdGuardHome.redirect='dnsmasq-upstream'
 uci set AdGuardHome.AdGuardHome.ucitracktest='1'
 uci set AdGuardHome.AdGuardHome.old_redirect='dnsmasq-upstream'
-uci set AdGuardHome.AdGuardHome.old_port='1745'
+uci set AdGuardHome.AdGuardHome.old_port='5553'
 uci set AdGuardHome.AdGuardHome.old_enabled='1'
 uci commit AdGuardHome
