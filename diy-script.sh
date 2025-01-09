@@ -99,7 +99,6 @@ sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 # Theme
 git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
-git clone https://github.com/sirpdboy/luci-app-advancedplus
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
 # Lucky
@@ -112,7 +111,7 @@ git clone https://git.kejizero.online/zhao/OpenAppFilter --depth=1 package/OpenA
 git clone --depth=1 https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # 进阶设置
-git clone https://github.com/sirpdboy/luci-app-advancedplus
+git clone https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
 
 # luci-app-webdav
 git clone https://git.kejizero.online/zhao/luci-app-webdav package/new/luci-app-webdav
