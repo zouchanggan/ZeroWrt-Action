@@ -100,13 +100,10 @@ sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
 git clone https://github.com/sirpdboy/luci-app-advancedplus
-cp -f $GITHUB_WORKSPACE/images/bg.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg.jpg
+cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
 # Lucky
 git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
-
-# 更换背景
-curl -L -o package/new/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp https://git.kejizero.online/zhao/files/raw/branch/main/%20background/bg.webp
 
 # OpenAppFilter
 git clone https://git.kejizero.online/zhao/OpenAppFilter --depth=1 package/OpenAppFilter
