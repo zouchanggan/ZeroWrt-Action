@@ -273,7 +273,7 @@ while [ "$n" -lt $(uci show openclash|grep -c "^openclash.@dns_servers\[[0-9]\{1
   uci set openclash.@dns_servers[$n].enabled='0'
   n=$((n + 1))
 done
-# OPenClash DNS设置
+# 自定义DNS
 uci add openclash dns_servers
 uci set openclash.@dns_servers[-1].enabled='1'
 uci set openclash.@dns_servers[-1].group='nameserver'
