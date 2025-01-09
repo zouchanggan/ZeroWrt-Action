@@ -22,16 +22,9 @@ uci set dropbear.@dropbear[0].Interface=''
 uci commit
 
 # Docker换源
-if [ -f /etc/config/dockerd ] && [ $(grep -c daocloud.io /etc/config/dockerd) -eq '0' ]; then
-    uci add_list dockerd.globals.registry_mirrors="https://docker.m.daocloud.io"
-    uci commit dockerd
-fi
+uci add_list dockerd.globals.registry_mirrors="https://docker.m.daocloud.io"
+uci commit dockerd
 
-[ -d "/etc/init.d" ] && chmod +x /etc/init.d/*
-[ -e "/usr/bin/AdGuardHome/AdGuardHome" ] && chmod 755 /usr/bin/AdGuardHome/AdGuardHome
-until [ "$( opkg list-installed 2>/dev/null| grep -c "^kernel")" -ne '0' ]; do
-  sleep 1
-done
 # Smartdns相关设置
 uci set smartdns.@smartdns[0].prefetch_domain='1'
 uci set smartdns.@smartdns[0].port='6053'
