@@ -21,6 +21,12 @@ uci delete ttyd.@ttyd[0].interface
 uci set dropbear.@dropbear[0].Interface=''
 uci commit
 
+# docker mirror
+if [ -f /etc/config/dockerd ] && [ $(grep -c daocloud.io /etc/config/dockerd) -eq '0' ]; then
+    uci add_list dockerd.globals.registry_mirrors="https://docker.m.daocloud.io"
+    uci commit dockerd
+fi
+
 # Smartdns相关设置
 if [ "$( opkg list-installed 2>/dev/null| grep -c "^smartdns")" -ne '0' ] && [ ! "$(uci -q get smartdns.@server[0].name)" = "清华大学TUNA协会" ];then
   uci set smartdns.@smartdns[0].prefetch_domain='1'
