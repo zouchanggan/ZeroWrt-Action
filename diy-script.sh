@@ -111,6 +111,9 @@ git clone https://git.kejizero.online/zhao/OpenAppFilter --depth=1 package/OpenA
 # luci-app-partexp
 git clone --depth=1 https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
+# 进阶设置
+git clone https://github.com/sirpdboy/luci-app-advancedplus
+
 # luci-app-webdav
 git clone https://git.kejizero.online/zhao/luci-app-webdav package/new/luci-app-webdav
 
