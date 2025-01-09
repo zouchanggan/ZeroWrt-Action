@@ -255,3 +255,8 @@ sed -i 's/upstream_mode: .*/upstream_mode: parallel/' /etc/AdGuardHome.yaml
 sed -i 's/cache_size: .*/cache_size: 0/' /etc/AdGuardHome.yaml
 # 重启服务
 /etc/init.d/AdGuardHome restart
+
+### Passwall设置
+uci set passwall.@global[0].dns_shunt='dnsmasq'
+uci set passwall.@global[0].remote_dns='127.0.0.1:5553'
+
