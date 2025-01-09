@@ -283,4 +283,4 @@ uci set openclash.@dns_servers[-1].port='5553'
 uci set openclash.config.enable_custom_dns='1'
 
 uci set openclash.config.en_mode='tun'  # 设置为混合模式
-uci set openclash.config.ipv6_enable='0'  # 禁用 IPv6（如果不需要）
+uci set openclash.config.operation_mode='fake-ip'  # 启用 Fake-IP 模式
