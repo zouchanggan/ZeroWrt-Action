@@ -237,6 +237,7 @@ uci set smartdns.@server[19].blacklist_ip='0'
 uci commit smartdns
 /etc/init.d/smartdns restart
 
+# 自动设置 Dnsmasq
 uci set smartdns.@smartdns[0].auto_set_dnsmasq='1'
 /etc/init.d/smartdns restart
 
