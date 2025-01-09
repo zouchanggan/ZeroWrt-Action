@@ -292,3 +292,12 @@ uci set openclash.config.en_mode='tun'  # 设置为混合模式
 uci set openclash.config.operation_mode='fake-ip'  # 启用 Fake-IP 模式
 # 自定义上游DNS服务器
 uci set openclash.config.enable_custom_dns='1'
+# Fake-IP持久化
+uci set openclash.config.store_fakeip='1'
+# 启用Fake-IP 过滤器
+uci set openclash.config.custom_fakeip_filter='1'
+# 开启绕过服务器地址
+uci set openclash.config.bypass_gateway_compatible='1'
+# 禁用本地 DNS 劫持
+uci set openclash.config.enable_redirect_dns='0'
+uci commit openclash
