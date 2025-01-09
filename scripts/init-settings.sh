@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# 设置默认主题为Argon
+# 设置默认主题为kucat
 uci set luci.main.mediaurlbase='/luci-static/kucat'
 uci commit luci
 
