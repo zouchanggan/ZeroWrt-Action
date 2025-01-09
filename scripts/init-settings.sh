@@ -248,12 +248,6 @@ uci commit dhcp
 
 # Adguardhome设置
 uci set AdGuardHome.AdGuardHome.enabled='1'
-uci set AdGuardHome.AdGuardHome.httpport='3000'
-uci set AdGuardHome.AdGuardHome.binpath='/usr/bin/AdGuardHome/AdGuardHome'
-uci set AdGuardHome.AdGuardHome.waitonboot='1'
 uci set AdGuardHome.AdGuardHome.redirect='dnsmasq-upstream'
-uci set AdGuardHome.AdGuardHome.ucitracktest='1'
-uci set AdGuardHome.AdGuardHome.old_redirect='dnsmasq-upstream'
-uci set AdGuardHome.AdGuardHome.old_port='5553'
-uci set AdGuardHome.AdGuardHome.old_enabled='1'
 uci commit AdGuardHome
+/etc/init.d/AdGuardHome restart
