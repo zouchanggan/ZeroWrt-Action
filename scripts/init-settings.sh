@@ -267,3 +267,20 @@ uci commit passwall
 /etc/init.d/passwall restart
 
 ### OpenClash设置
+# OPenClash DNS设置
+uci add openclash dns_servers
+uci set openclash.@dns_servers[-1].enabled='1'
+uci set openclash.@dns_servers[-1].group='nameserver'
+uci set openclash.@dns_servers[-1].type='udp'
+uci set openclash.@dns_servers[-1].ip='127.0.0.1'
+uci set openclash.@dns_servers[-1].port='5553'
+uci add openclash dns_servers
+uci set openclash.@dns_servers[-1].enabled='1'
+uci set openclash.@dns_servers[-1].group='fallback'
+uci set openclash.@dns_servers[-1].type='udp'
+uci set openclash.@dns_servers[-1].ip='127.0.0.1'
+uci set openclash.@dns_servers[-1].port='5553'
+uci set openclash.config.enable_custom_dns='1'
+
+uci set openclash.config.en_mode='tun'  # 设置为混合模式
+uci set openclash.config.ipv6_enable='0'  # 禁用 IPv6（如果不需要）
