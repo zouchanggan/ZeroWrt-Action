@@ -27,6 +27,11 @@ if [ -f /etc/config/dockerd ] && [ $(grep -c daocloud.io /etc/config/dockerd) -e
     uci commit dockerd
 fi
 
+[ -d "/etc/init.d" ] && chmod +x /etc/init.d/*
+[ -e "/usr/bin/AdGuardHome/AdGuardHome" ] && chmod 755 /usr/bin/AdGuardHome/AdGuardHome
+until [ "$( opkg list-installed 2>/dev/null| grep -c "^kernel")" -ne '0' ]; do
+  sleep 1
+done
 # Smartdns相关设置
 uci set smartdns.@smartdns[0].prefetch_domain='1'
 uci set smartdns.@smartdns[0].port='6053'
@@ -232,3 +237,20 @@ uci set smartdns.@server[19].server_group='smartdns-Overseas'
 uci set smartdns.@server[19].blacklist_ip='0'
 uci commit smartdns
 /etc/init.d/smartdns restart
+
+# Dnsmasq设置
+uci set dhcp.@dnsmasq[0].cachesize='0'
+uci commit dhcp
+/etc/init.d/dnsmasq restart
+
+# Adguardhome设置
+uci set AdGuardHome.AdGuardHome.enabled='1'
+uci set AdGuardHome.AdGuardHome.httpport='3000'
+uci set AdGuardHome.AdGuardHome.binpath='/usr/bin/AdGuardHome/AdGuardHome'
+uci set AdGuardHome.AdGuardHome.waitonboot='1'
+uci set AdGuardHome.AdGuardHome.redirect='dnsmasq-upstream'
+uci set AdGuardHome.AdGuardHome.ucitracktest='1'
+uci set AdGuardHome.AdGuardHome.old_redirect='dnsmasq-upstream'
+uci set AdGuardHome.AdGuardHome.old_port='1745'
+uci set AdGuardHome.AdGuardHome.old_enabled='1'
+uci commit AdGuardHome
