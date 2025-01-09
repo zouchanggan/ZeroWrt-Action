@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Set default theme to luci-theme-argon
+# 设置默认主题为Argon
 uci set luci.main.mediaurlbase='/luci-static/kucat'
 uci commit luci
 
