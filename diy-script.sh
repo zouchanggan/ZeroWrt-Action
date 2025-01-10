@@ -156,8 +156,8 @@ chmod +x files/etc/AdGuardHome-dnslist.yaml
 
 # 自启动设置
 mkdir -p files/etc/uci-defaults
-cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/init-settings
-chmod +x files/etc/uci-defaults/init-settings
+cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/init-settings.sh
+chmod +x files/etc/uci-defaults/init-settings.sh
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
