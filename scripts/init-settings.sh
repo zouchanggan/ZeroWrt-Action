@@ -263,7 +263,7 @@ sed -i 's/cache_size: .*/cache_size: 0/' /etc/AdGuardHome.yaml
 /etc/init.d/AdGuardHome restart
 
 ### Passwall设置
-sleep 5
+chmod 777 /etc/config/passwall
 uci set passwall.@global[0].dns_shunt='dnsmasq'
 uci set passwall.@global[0].remote_dns='127.0.0.1:5553'
 uci set passwall.@global[0].dns_mode='udp'
