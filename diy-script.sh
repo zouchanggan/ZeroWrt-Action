@@ -154,10 +154,10 @@ mkdir -p files/etc
 curl -L -o files/etc/AdGuardHome-dnslist.yaml https://git.kejizero.online/zhao/files/raw/branch/main/etc/AdGuardHome-dnslist.yaml
 chmod +x files/etc/AdGuardHome-dnslist.yaml
 
-# 自启动设置
+# init-settings
 mkdir -p files/etc/uci-defaults
-cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
-chmod +x files/etc/uci-defaults/99-init-settings
+cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/init-settings
+chmod +x files/etc/uci-defaults/init-settings
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
