@@ -4,6 +4,10 @@
 uci set luci.main.mediaurlbase='/luci-static/kucat'
 uci commit luci
 
+# 设置LAN口DNS
+uci set network.lan.dns='127.0.0.1'
+uci commit network
+
 # 默认wan口防火墙打开
 uci set firewall.@zone[1].input='ACCEPT'
 uci commit firewall
