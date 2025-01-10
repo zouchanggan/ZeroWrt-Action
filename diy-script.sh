@@ -125,6 +125,12 @@ sed -i 's,发送,Transmission,g' feeds/luci/applications/luci-app-transmission/p
 sed -i 's,frp 服务器,FRP 服务器,g' feeds/luci/applications/luci-app-frps/po/zh_Hans/frps.po
 sed -i 's,frp 客户端,FRP 客户端,g' feeds/luci/applications/luci-app-frpc/po/zh_Hans/frpc.po
 
+# 修改版本为编译日期
+date_version=$(date +"%y.%m.%d")
+package/base-files/files/etc/openwrt_release
+orig_version=$(cat "package/base-files/files/etc/openwrt_release" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
+sed -i "s/${orig_version}/R${date_version} by OPPEN321/g" package/base-files/files/etc/openwrt_release
+
 # 必要的补丁
 pushd feeds/luci
     curl -s https://raw.githubusercontent.com/oppen321/path/refs/heads/main/Firewall/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
