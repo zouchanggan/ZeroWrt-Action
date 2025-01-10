@@ -97,7 +97,7 @@ sed -i 's/\("admin"\), *\("netwizard"\)/\1, "system", \2/g' package/luci-app-net
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
 # Theme
-git clone --depth 1 https://$github/sbwml/luci-theme-argon package/luci-theme-argon
+git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/luci-theme-argon
 git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
 curl -L -o package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp https://git.kejizero.online/zhao/files/raw/branch/main/%20background/bg.webp
 
