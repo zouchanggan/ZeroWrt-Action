@@ -7,6 +7,7 @@ uci commit luci
 # 设置LAN口DNS
 uci set network.lan.dns='127.0.0.1'
 uci commit network
+/etc/init.d/network restart
 
 # 默认wan口防火墙打开
 uci set firewall.@zone[1].input='ACCEPT'
