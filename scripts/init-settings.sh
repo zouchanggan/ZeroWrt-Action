@@ -320,3 +320,5 @@ uci set openclash.config.chnr_auto_update='1'  # 开启大陆白名单订阅自�
 uci set openclash.config.chnr_update_week_time='*'  # 每周更新
 uci set openclash.config.chnr_update_day_time='5'  # 每周的第 5 天（可以根据需求修改）
 uci commit openclash
+
+exit 0
