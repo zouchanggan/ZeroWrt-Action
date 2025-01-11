@@ -33,7 +33,6 @@ rm -rf lede
 wget -N https://github.com/openwrt/openwrt/raw/refs/heads/openwrt-24.10/target/linux/rockchip/Makefile -P target/linux/rockchip/
 wget -N https://github.com/coolsnowwolf/lede/raw/master/include/kernel-6.6 -P include/
 wget -N https://github.com/coolsnowwolf/lede/raw/refs/heads/master/include/trusted-firmware-a.mk -P include/
-sed -i "/KernelPackage,ptp/d" package/kernel/linux/modules/other.mk
 
 # 移除无用文件
 sed -i -e 's,kmod-r8168,kmod-r8169,g' target/linux/rockchip/image/armv8.mk
