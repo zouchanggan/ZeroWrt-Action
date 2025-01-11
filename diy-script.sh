@@ -25,7 +25,7 @@ curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/ma
 git clone -b openwrt-24.10 --single-branch --filter=blob:none https://github.com/immortalwrt/immortalwrt immortalwrt
 rm -rf ./target/linux/rockchip
 cp -rf immortalwrt/target/linux/rockchip target/linux/rockchip
-cp -f $GITHUB_WORKSPACE/PATCH/kernel/rockchip/* target/linux/rockchip/patches-6.6/
+cp -rf $GITHUB_WORKSPACE/PATCH/kernel/rockchip/* target/linux/rockchip/patches-6.6/
 wget https://github.com/immortalwrt/immortalwrt/raw/refs/heads/openwrt-23.05/target/linux/rockchip/patches-5.15/991-arm64-dts-rockchip-add-more-cpu-operating-points-for.patch -O target/linux/rockchip/patches-6.6/991-arm64-dts-rockchip-add-more-cpu-operating-points-for.patch
 rm -rf package/boot/{rkbin,uboot-rockchip,arm-trusted-firmware-rockchip}
 cp -rf immortalwrt/package/boot/uboot-rockchip package/boot/uboot-rockchip
