@@ -30,7 +30,6 @@ cp -Rf lede/target/linux/generic target/linux/generic
 rm -rf lede
 
 # 加载补丁
-wget -N https://github.com/istoreos/istoreos/raw/istoreos-22.03/target/linux/rockchip/patches-5.10/305-r2s-pwm-fan.patch -P target/linux/rockchip/patches-6.6/
 wget -N https://github.com/openwrt/openwrt/raw/refs/heads/openwrt-24.10/target/linux/rockchip/Makefile -P target/linux/rockchip/
 wget -N https://github.com/coolsnowwolf/lede/raw/master/include/kernel-6.6 -P include/
 wget -N https://github.com/coolsnowwolf/lede/raw/refs/heads/master/include/trusted-firmware-a.mk -P include/
