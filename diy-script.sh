@@ -1,5 +1,8 @@
 #!/bin/bash
 
+shopt -s extglob
+SHELL_FOLDER=$(dirname $(readlink -f "$0"))
+
 # 修改默认IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
