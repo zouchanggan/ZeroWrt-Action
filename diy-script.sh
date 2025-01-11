@@ -23,7 +23,11 @@ curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/ma
 
 # 切换linux
 rm -rf package/boot target/linux/rockchip target/linux/generic
-git_clone_path master https://github.com/coolsnowwolf/lede target/linux/rockchip target/linux/generic package/boot
+git clone https://github.com/coolsnowwolf/lede
+cp -Rf lede/package/boot package/
+cp -Rf lede/target/linux/rockchip target/linux/
+cp -Rf lede/target/linux/generic target/linux/generic
+rm -rf lede
 
 # 加载补丁
 wget -N https://github.com/istoreos/istoreos/raw/istoreos-22.03/target/linux/rockchip/patches-5.10/305-r2s-pwm-fan.patch -P target/linux/rockchip/patches-6.6/
@@ -31,19 +35,12 @@ wget -N https://github.com/openwrt/openwrt/raw/refs/heads/openwrt-24.10/target/l
 wget -N https://github.com/coolsnowwolf/lede/raw/master/include/kernel-6.6 -P include/
 wget -N https://github.com/coolsnowwolf/lede/raw/refs/heads/master/include/trusted-firmware-a.mk -P include/
 sed -i "/KernelPackage,ptp/d" package/kernel/linux/modules/other.mk
-wget -N https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/16414.patch -P devices/common/patches/
 
 # 移除无用文件
-mv -f tmp/r8125 feeds/oppen321/
-rm -rf target/linux/rockchip/armv8/base-files/etc/uci-defaults/13_opkg_update package/feeds/oppen321/pcat-manager
 sed -i -e 's,kmod-r8168,kmod-r8169,g' target/linux/rockchip/image/armv8.mk
 sed -i -e 's,wpad-openssl,wpad-basic-mbedtls,g' target/linux/rockchip/image/armv8.mk
 sed -i 's/DEFAULT_PACKAGES +=/DEFAULT_PACKAGES += fdisk lsblk kmod-drm-rockchip/' target/linux/rockchip/Makefile
-wget -N https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/patch/target/linux/rockchip/patches-6.6%20/304-r4s-pwm-fan.patch
 sed -i 's/Ariaboard/光影猫/' target/linux/rockchip/image/armv8.mk
-echo '
-CONFIG_SENSORS_PWM_FAN=y
-' >> ./target/linux/rockchip/armv8/config-6.6
 
 # 移除要替换的包
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome,socat}
