@@ -1,8 +1,5 @@
 #!/bin/bash
 
-shopt -s extglob
-SHELL_FOLDER=$(dirname $(readlink -f "$0"))
-
 # 修改默认IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
@@ -42,7 +39,7 @@ rm -rf target/linux/rockchip/armv8/base-files/etc/uci-defaults/13_opkg_update pa
 sed -i -e 's,kmod-r8168,kmod-r8169,g' target/linux/rockchip/image/armv8.mk
 sed -i -e 's,wpad-openssl,wpad-basic-mbedtls,g' target/linux/rockchip/image/armv8.mk
 sed -i 's/DEFAULT_PACKAGES +=/DEFAULT_PACKAGES += fdisk lsblk kmod-drm-rockchip/' target/linux/rockchip/Makefile
-cp -Rf $SHELL_FOLDER/diy/* ./
+wget -N https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/patch/target/linux/rockchip/patches-6.6%20/304-r4s-pwm-fan.patch
 sed -i 's/Ariaboard/光影猫/' target/linux/rockchip/image/armv8.mk
 echo '
 CONFIG_SENSORS_PWM_FAN=y
