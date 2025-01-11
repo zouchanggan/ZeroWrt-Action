@@ -125,6 +125,7 @@ jobs:
       id: compile
       run: |
         cd $OPENWRT_PATH
+        wget -qO - https://github.com/openwrt/openwrt/commit/c21a3570.patch | patch -p1
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
