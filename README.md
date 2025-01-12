@@ -4,27 +4,6 @@
 
 | [Rockchip](https://github.com/oppen321/OpenWrt-Action/releases) | [MediaTek](https://github.com/oppen321/OpenWrt-Action/releases) | [X86_64](https://github.com/oppen321/OpenWrt-Action/releases) | [Qualcomm](https://github.com/oppen321/OpenWrt-Action/releases) | 
 
-### 内置插件
-| 内置插件 | 状态 | 内置插件 | 状态 |
-|----------|------|----------|------|
-| PassWall | ✅ | Docker | ✅ |
-| HomeProxy | ✅ | TTY 终端 | ✅ |
-| OpenClash | ✅ | NetData 监控 | ✅ |
-| Mihomo TProxy | ✅ | DiskMan 磁盘管理 | ✅ |
-| MosDNS | ✅ | UPnP | ✅ |
-| Lucky | ✅ | Socat | ✅ |
-| 应用过滤 | ✅ | SmartDns | ✅ |
-| 网络共享（Samba） | ✅ | WireGuard | ✅ |
-| WebDav | ✅ | FileBrowser | ✅ |
-| uHTTPd | ✅ | 进阶设置 | ✅ |
-| 设置向导 | ✅ | 一键分区 | ✅ |
-| 网络加速 | ✅ | USB打印服务器 | ✅ |
-
-### 图例说明
-- ✅ 可用
-- ❌ 不可用
-- ⏳ 计划中
-
 ## 固件说明
 - 基于原生 OpenWrt 24.10 编译，默认管理地址 10.0.0.1
 - X86固件分为普通版和Mini版，普通版默认开启PassWall/OpenClash-SmartDNS-AdguardHome无需任何设置即可体验完美国内外分流，Mini版本内置Bypass，只加入必要的插件
