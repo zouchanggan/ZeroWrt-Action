@@ -166,10 +166,5 @@ mkdir -p files/root
 curl -L -o files/root/version.txt https://git.kejizero.online/zhao/files/raw/branch/main/bin/version.txt
 chmod +x files/root/version.txt
 
-# Adguardhome设置
-mkdir -p files/etc
-curl -L -o files/etc/AdGuardHome-dnslist.yaml https://git.kejizero.online/zhao/files/raw/branch/main/etc/AdGuardHome-dnslist.yaml
-chmod +x files/etc/AdGuardHome-dnslist.yaml
-
 ./scripts/feeds update -a
 ./scripts/feeds install -a
