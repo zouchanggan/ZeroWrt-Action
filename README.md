@@ -25,6 +25,11 @@
 - ❌ 不可用
 - ⏳ 计划中
 
+## 固件说明
+- 基于原生 OpenWrt 24.10 编译，默认管理地址 10.0.0.1
+- R2C/R2S 核心频率 1.6（交换了 LAN WAN），R4S 核心频率 2.2/1.8（建议使用带有线损补偿的电源，死机大多数情况下，都是因为<b>你用的电源过于垃圾</b>，另外，你也可以选择使用<b>自带的 app 限制最大频率</b>，茄子 🍆）- O2 编译，CFLAG 优化
+
+
 ## 定制固件 [![](https://img.shields.io/badge/-项目基本编译教程-FFFFFF.svg)](#定制固件-)
 1. 首先要登录 Gihub 账号，然后 Fork 此项目到你自己的 Github 仓库
 2. 修改 `configs` 目录对应文件添加或删除插件，或者上传自己的 `xx.config` 配置文件
@@ -76,13 +81,6 @@
    **如果看不懂编译界面可以参考 YouTube 视频：[软路由固件 OpenWrt 编译界面设置](https://www.youtube.com/watch?v=jEE_J6-4E3Y&list=WL&index=7)**
 </details>
 
-
-
-## 固件说明
-
-- 默认 IP：10.0.0.1
-- 默认用户名：root
-- 默认密码：password
 
 ## 问题反馈
 
