@@ -58,9 +58,6 @@ git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/pa
 # SSRP & Passwall
 git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
 
-# bypass
-git clone https://github.com/siropboy/luci-app-bypass package/luci-app-bypass
-
 # Alist
 git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
 
