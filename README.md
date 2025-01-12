@@ -1,21 +1,3 @@
-from PIL import Image, ImageDraw, ImageFont
-
-# 创建一个新的白色图片
-img = Image.new('RGB', (800, 400), color='white')
-d = ImageDraw.Draw(img)
-
-# 使用自定义字体
-try:
-    font = ImageFont.truetype("/path/to/your/font.ttf", 100)
-except IOError:
-    font = ImageFont.load_default()
-
-# 在图片上添加文本
-d.text((10, 150), "ZeroWrt", font=font, fill="black")
-
-# 保存图片
-img.save("ZeroWrt.png")
-
 ## 支持设备
 
 | [Rockchip](https://github.com/oppen321/OpenWrt-Action/releases) | [MediaTek](https://github.com/oppen321/OpenWrt-Action/releases) | [X86_64](https://github.com/oppen321/OpenWrt-Action/releases) | [Qualcomm](https://github.com/oppen321/OpenWrt-Action/releases) | 
