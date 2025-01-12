@@ -27,8 +27,9 @@
 
 ## 固件说明
 - 基于原生 OpenWrt 24.10 编译，默认管理地址 10.0.0.1
-- R2C/R2S 核心频率 1.6（交换了 LAN WAN），R4S 核心频率 2.2/1.8（建议使用带有线损补偿的电源，死机大多数情况下，都是因为<b>你用的电源过于垃圾</b>，另外，你也可以选择使用<b>自带的 app 限制最大频率</b>，茄子 🍆）- O2 编译，CFLAG 优化
-
+- X86固件分为普通版和Mini版，普通版默认开启PassWall/OpenClash-SmartDNS-AdguardHome无需任何设置即可体验完美国内外分流，Mini版本内置Bypass，只加入必要的插件
+- R2C/R2S 核心频率 1.6（交换了 LAN WAN），R4S 核心频率 2.2/1.8
+- 插件包含：PassWall，OpenClash，Adguardhome，Homeproxy，Mosdns，Lucky，动态DNS，FRP客户端，Mihomo Tproxy，Samba4，SmartDNS，Dockerman，Alist，USB打印机服务，Webdav，应用过滤，Socat
 
 ## 定制固件 [![](https://img.shields.io/badge/-项目基本编译教程-FFFFFF.svg)](#定制固件-)
 1. 首先要登录 Gihub 账号，然后 Fork 此项目到你自己的 Github 仓库
@@ -87,3 +88,23 @@
 如果在使用过程中遇到任何问题，欢迎：
 1. [提交 Issue](https://github.com/oppen321/ZeroWrt/issues)
 2. [加入讨论](https://github.com/oppen321/ZeroWrt/discussions)
+
+## 特别感谢
+
+<table>
+<tr>
+<td width="200"><a href="https://www.friendlyarm.com" target="_blank">友善电子科技</a></td>
+<td width="200"><a href="https://github.com/openwrt/openwrt" target="_blank">OpenWrt</a></td>
+<td width="200"><a href="https://github.com/immortalwrt/immortalwrt" target="_blank">ImmortalWrt</a></td>
+</tr>
+<tr>
+<td width="200"><a href="https://github.com/jerrykuku" target="_blank">jerrykuku</a></td>
+<td width="200"><a href="https://github.com/QiuSimons" target="_blank">QiuSimons</a></td>
+<td width="200"><a href="https://github.com/xiaorouji" target="_blank">xiaorouji</a></td>
+</tr>
+<tr>
+<td width="200"><a href="https://github.com/IrineSistiana" target="_blank">IrineSistiana</a></td>
+<td width="200"><a href="https://github.com/sirpdboy" target="_blank">sirpdboy</a></td>
+<td width="200"><a href="https://github.com/fw876" target="_blank">fw876</a></td>
+</tr>
+</table>
