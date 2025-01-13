@@ -3,7 +3,7 @@
 | [Rockchip](https://github.com/oppen321/OpenWrt-Action/releases) | [MediaTek](https://github.com/oppen321/OpenWrt-Action/releases) | [X86_64](https://github.com/oppen321/OpenWrt-Action/releases) | [Qualcomm](https://github.com/oppen321/OpenWrt-Action/releases) | 
 
 ## 固件说明
-- 基于原生 OpenWrt 24.10 编译，默认管理地址 10.0.0.1
+- 基于原生 OpenWrt 24.10 编译，默认管理地址 10.0.0.1   默认密码：password
 - 切换Uhttpd为Nignx
 - 内置ZeroWrt选项菜单方便用户设置OprnWrt
 - 默认打开了wan口防火墙
