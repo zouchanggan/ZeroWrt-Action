@@ -192,5 +192,9 @@ mkdir -p files/etc
 curl -L -o files/etc/AdGuardHome-dnslist.yaml https://git.kejizero.online/zhao/files/raw/branch/main/etc/AdGuardHome-dnslist.yaml
 chmod +x files/etc/AdGuardHome-dnslist.yaml
 
+# Nginx
+mkdir -p files/etc/config
+curl -L -o files/etc/config/nginx https://git.kejizero.online/zhao/files/raw/branch/main/etc/nginx/nginx
+
 ./scripts/feeds update -a
 ./scripts/feeds install -a
