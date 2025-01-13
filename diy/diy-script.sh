@@ -158,6 +158,9 @@ git clone https://git.kejizero.online/zhao/luci-app-webdav package/new/luci-app-
 rm -rf feeds/packages/utils/unzip
 git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
 
+# luci-app-modemband
+git clone https://github.com/4IceG/luci-app-modemband package/luci-app-modemband
+
 # frpc名称
 sed -i 's,发送,Transmission,g' feeds/luci/applications/luci-app-transmission/po/zh_Hans/transmission.po
 sed -i 's,frp 服务器,FRP 服务器,g' feeds/luci/applications/luci-app-frps/po/zh_Hans/frps.po
