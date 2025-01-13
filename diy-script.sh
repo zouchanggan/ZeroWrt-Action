@@ -72,7 +72,7 @@ CONFIG_KERNEL_BPF_EVENTS=y
 CONFIG_BPF_TOOLCHAIN_HOST=y
 CONFIG_KERNEL_XDP_SOCKETS=y
 CONFIG_PACKAGE_kmod-xdp-sockets-diag=y
-' >>./target/linux/generic/config-6.6
+' >>.config
 
 # Alist
 git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
