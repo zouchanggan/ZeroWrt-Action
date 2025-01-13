@@ -21,20 +21,6 @@ mkdir -p files/root
 curl -so files/root/.bash_profile https://git.kejizero.online/zhao/files/raw/branch/main/root/.bash_profile
 curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/main/root/.bashrc
 
-# 更换为 ImmortalWrt Uboot 以及 Target
-git clone -b openwrt-24.10 --single-branch --filter=blob:none https://github.com/immortalwrt/immortalwrt immortalwrt
-rm -rf ./target/linux/rockchip
-cp -rf immortalwrt/target/linux/rockchip target/linux/rockchip
-curl -L -o target/linux/rockchip/patches-6.6/014-rockchip-add-pwm-fan-controller-for-nanopi-r2s-r4s.patch https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/PATCH/kernel/rockchip%20/014-rockchip-add-pwm-fan-controller-for-nanopi-r2s-r4s.patch
-curl -L -o target/linux/rockchip/patches-6.6/702-general-rk3328-dtsi-trb-ent-quirk.patch https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/PATCH/kernel/rockchip%20/702-general-rk3328-dtsi-trb-ent-quirk.patch
-curl -L -o target/linux/rockchip/patches-6.6/703-rk3399-enable-dwc3-xhci-usb-trb-quirk.patch https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/PATCH/kernel/rockchip%20/703-rk3399-enable-dwc3-xhci-usb-trb-quirk.patch
-curl -L -o target/linux/rockchip/patches-6.6/991-arm64-dts-rockchip-add-more-cpu-operating-points-for.patch https://github.com/immortalwrt/immortalwrt/raw/refs/heads/openwrt-23.05/target/linux/rockchip/patches-5.15/991-arm64-dts-rockchip-add-more-cpu-operating-points-for.patch
-rm -rf package/boot/{rkbin,uboot-rockchip,arm-trusted-firmware-rockchip}
-cp -rf immortalwrt/package/boot/uboot-rockchip package/boot/uboot-rockchip
-cp -rf immortalwrt/package/boot/arm-trusted-firmware-rockchip package/boot/arm-trusted-firmware-rockchip
-sed -i '/REQUIRE_IMAGE_METADATA/d' target/linux/rockchip/armv8/base-files/lib/upgrade/platform.sh
-rm -rf immortalwrt
-
 # 移除要替换的包
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome,socat}
 rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
