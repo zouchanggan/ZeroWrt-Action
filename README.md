@@ -2,6 +2,13 @@
 
 | [Rockchip](https://github.com/oppen321/OpenWrt-Action/releases) | [MediaTek](https://github.com/oppen321/OpenWrt-Action/releases) | [X86_64](https://github.com/oppen321/OpenWrt-Action/releases) | [Qualcomm](https://github.com/oppen321/OpenWrt-Action/releases) | 
 
+## 官方讨论群
+
+如有技术问题需要讨论或者交流，欢迎加入以下群：
+
+1. QQ 讨论群：路由器交流群，号码 579896728，加群链接：[点击加入](https://qm.qq.com/q/oe4EAtvPIO "路由器交流群")
+2. TG 讨论群：路由器交流群，加群链接：[点击加入](https://t.me/kejizero "路由器交流群")
+
 ## 固件说明
 - 基于原生 OpenWrt 24.10 编译，默认管理地址 10.0.0.1   默认密码：password
 - 切换Uhttpd为Nignx
