@@ -60,7 +60,7 @@ git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/hellow
 
 # daed
 git clone https://github.com/QiuSimons/luci-app-daed package/dae
-mkdir -p package/libcron && wget -O Package/libcron/Makefile https://raw.githubusercontent.com/immortalwrt/packages/refs/heads/master/libs/libcron/Makefile
+mkdir -p Package/libcron && wget -O Package/libcron/Makefile https://raw.githubusercontent.com/immortalwrt/packages/refs/heads/master/libs/libcron/Makefile
 echo '
 CONFIG_DEVEL=y
 CONFIG_KERNEL_DEBUG_INFO=y
