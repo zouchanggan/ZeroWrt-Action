@@ -22,9 +22,11 @@
 - R2C/R2S 核心频率 1.6（交换了 LAN WAN），R4S 核心频率 2.2/1.8
 - 插件包含：PassWall，OpenClash，Adguardhome，Homeproxy，Mosdns，Lucky，动态DNS，FRP客户端，Mihomo Tproxy，Samba4，SmartDNS，Dockerman，Alist，USB打印机服务，Webdav，应用过滤，Socat
 
-## ZeroWrt脚本菜单
+## ZeroWrt选项菜单
  ![脚本菜单](images/01.png)
-说明
+- ZeroWrt选项菜单是一个方便用户配置OpenWrt
+- 默认连接SSH连接或者终端输入ZeroWrt弹出ZeroWrt选项菜单
+- 目前脚本支持一键更换LAN口ip、一键设置默认主题、一键修改密码、恢复出厂设置、一键部署 、IPv6 开关 (仅适用于主路由)、iStoreOS风格化和检测更新
 
 
 ## 定制固件 [![](https://img.shields.io/badge/-项目基本编译教程-FFFFFF.svg)](#定制固件-)
