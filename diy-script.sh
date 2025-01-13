@@ -58,6 +58,11 @@ git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/pa
 # SSRP & Passwall
 git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
 
+# daed
+git clone https://github.com/QiuSimons/luci-app-daed package/dae
+mkdir -p Package/libcron && wget -O Package/libcron/Makefile https://raw.githubusercontent.com/immortalwrt/packages/refs/heads/master/libs/libcron/Makefile
+
+
 # Alist
 git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
 
