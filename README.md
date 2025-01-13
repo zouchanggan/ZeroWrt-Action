@@ -4,6 +4,13 @@
 
 ## 固件说明
 - 基于原生 OpenWrt 24.10 编译，默认管理地址 10.0.0.1
+- 切换Uhttpd为Nignx
+- 内置ZeroWrt选项菜单方便用户设置OprnWrt
+- 默认打开了wan口防火墙
+- 默认所有网口可访问网页终端
+- 默认设置所有网口可连接 SSH
+- 默认已经切换了docker源，国内网络即可拉取镜像
+- Rockchip切换ImmortalWrt Uboot 以及 Target支持更多的设备
 - X86固件分为普通版和Mini版，普通版默认开启PassWall/OpenClash-SmartDNS-AdguardHome无需任何设置即可体验完美国内外分流，Mini版本内置Bypass，只加入必要的插件
 - R2C/R2S 核心频率 1.6（交换了 LAN WAN），R4S 核心频率 2.2/1.8
 - 插件包含：PassWall，OpenClash，Adguardhome，Homeproxy，Mosdns，Lucky，动态DNS，FRP客户端，Mihomo Tproxy，Samba4，SmartDNS，Dockerman，Alist，USB打印机服务，Webdav，应用过滤，Socat
