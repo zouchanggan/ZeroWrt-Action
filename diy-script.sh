@@ -79,6 +79,7 @@ git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/pa
 
 # SSRP & Passwall
 git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
+rm -rf package/helloworld/luci-app-daed daed
 
 # daed
 git clone https://github.com/QiuSimons/luci-app-daed package/dae
