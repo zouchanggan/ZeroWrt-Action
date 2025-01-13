@@ -79,23 +79,6 @@ git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/pa
 
 # SSRP & Passwall
 git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
-rm -rf package/helloworld/{luci-app-daed,daed}
-
-# daed
-git clone https://github.com/QiuSimons/luci-app-daed package/dae
-mkdir -p Package/libcron && wget -O Package/libcron/Makefile https://raw.githubusercontent.com/immortalwrt/packages/refs/heads/master/libs/libcron/Makefile
-echo '
-CONFIG_DEVEL=y
-CONFIG_KERNEL_DEBUG_INFO=y
-CONFIG_KERNEL_DEBUG_INFO_REDUCED=n
-CONFIG_KERNEL_DEBUG_INFO_BTF=y
-CONFIG_KERNEL_CGROUPS=y
-CONFIG_KERNEL_CGROUP_BPF=y
-CONFIG_KERNEL_BPF_EVENTS=y
-CONFIG_BPF_TOOLCHAIN_HOST=y
-CONFIG_KERNEL_XDP_SOCKETS=y
-CONFIG_PACKAGE_kmod-xdp-sockets-diag=y
-' >>.config
 
 # Alist
 git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
