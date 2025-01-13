@@ -6,8 +6,8 @@ on:
     - cron: 0 18 * * *
 
 env:
-  REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: openwrt-24.10
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
   CONFIG_FILE: configs/mt798x.config
   DIY_SCRIPT: diy-mini.sh
   CACHE_TOOLCHAIN: true
