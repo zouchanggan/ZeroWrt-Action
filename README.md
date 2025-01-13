@@ -2,6 +2,8 @@
 
 | [Rockchip](https://github.com/oppen321/OpenWrt-Action/releases) | [MediaTek](https://github.com/oppen321/OpenWrt-Action/releases) | [X86_64](https://github.com/oppen321/OpenWrt-Action/releases) | [Qualcomm](https://github.com/oppen321/OpenWrt-Action/releases) | 
 
+I18N: [English](README_EN.md) | [简体中文](README.md) |
+
 ## 官方讨论群
 
 如有技术问题需要讨论或者交流，欢迎加入以下群：
