@@ -55,45 +55,12 @@ function git_sparse_clone() {
 #git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
-# SSRP & Passwall
-git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
-
 # Alist
 git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
-
-# Mosdns
-git clone https://git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
-git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geodata
-
-# Realtek 网卡 - R8168 & R8125 & R8126 & R8152 & R8101
-rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
-git clone https://git.kejizero.online/zhao/package_kernel_r8168 package/kernel/r8168
-git clone https://git.kejizero.online/zhao/package_kernel_r8152 package/kernel/r8152
-git clone https://git.kejizero.online/zhao/package_kernel_r8101 package/kernel/r8101
-git clone https://git.kejizero.online/zhao/package_kernel_r8125 package/kernel/r8125
-git clone https://git.kejizero.online/zhao/package_kernel_r8126 package/kernel/r8126
-
-# Adguardhome
-git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
 
 # iStore
 git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
 git_sparse_clone main https://github.com/linkease/istore luci
-
-# Docker
-rm -rf feeds/luci/applications/luci-app-dockerman
-git clone https://git.kejizero.online/zhao/luci-app-dockerman -b 24.10 feeds/luci/applications/luci-app-dockerman
-rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
-git clone https://git.kejizero.online/zhao/packages_utils_docker feeds/packages/utils/docker
-git clone https://git.kejizero.online/zhao/packages_utils_dockerd feeds/packages/utils/dockerd
-git clone https://git.kejizero.online/zhao/packages_utils_containerd feeds/packages/utils/containerd
-git clone https://git.kejizero.online/zhao/packages_utils_runc feeds/packages/utils/runc
-sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
-pushd feeds/packages
-    curl -s https://init.cooluc.com/openwrt/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
-    curl -s https://init.cooluc.com/openwrt/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
-    curl -s https://init.cooluc.com/openwrt/patch/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
-popd
 
 # UPnP
 rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
@@ -110,9 +77,7 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
 # Theme
-git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/luci-theme-argon
 git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
-curl -L -o package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp https://git.kejizero.online/zhao/files/raw/branch/main/%20background/bg.webp
 
 # default-settings
 git clone --depth=1 -b main https://github.com/oppen321/default-settings package/default-settings
