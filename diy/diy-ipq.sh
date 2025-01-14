@@ -4,6 +4,9 @@
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
 # 更换golang版本
+rm -rf feeds/packages/lang/golang
+#git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
+git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
 # 更改 Argon 主题背景
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg feeds/theme/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
