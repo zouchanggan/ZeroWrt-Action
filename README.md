@@ -32,9 +32,17 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
 - 目前脚本支持一键更换LAN口ip、一键设置默认主题、一键修改密码、恢复出厂设置、一键部署 、IPv6 开关 (仅适用于主路由)、iStoreOS风格化和检测更新
 
 ## Mediatek_filogic-Uboot设置
-- 前往这里下载对应设备的uboot | [U-Boot-mt798x](https://github.com/oppen321/ZeroWrt/releases/tag/U-Boot-mt798x)| 
+1. 根据 hanwckf 的源码编译：https://github.com/hanwckf/bl-mt798x编译的mt798x-uboot，并对其进行了汉化
+2. 前往这里下载对应设备的uboot | [U-Boot-mt798x](https://github.com/oppen321/ZeroWrt/releases/tag/U-Boot-mt798x) |
+3. winscp进入路由器tmp文件夹，上传uboot：mt7981_cetron_ct3003-fip-fixed-parts.bin（这里替换成你设备相对于的 uboot）
+4. 逐条运行以下命令刷入大分区uboot
 
-
+   ```bash
+   cd /tmp
+   md5sum mt7981_cetron_ct3003-fip-fixed-parts.bin
+   mtd write mt7981_cetron_ct3003-fip-fixed-parts.bin FIP
+   mtd verify mt7981_cetron_ct3003-fip-fixed-parts.bin FIP
+   ```
 
 ## 定制固件 [![](https://img.shields.io/badge/-项目基本编译教程-FFFFFF.svg)](#定制固件-)
 1. 首先要登录 Gihub 账号，然后 Fork 此项目到你自己的 Github 仓库
