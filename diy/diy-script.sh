@@ -87,6 +87,9 @@ git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
 git clone https://git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
 git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geodata
 
+# 5G-Modem-Support
+git clone https://github.com/oppen321/5G-Modem-Support package/5G-Modem
+
 # Realtek 网卡 - R8168 & R8125 & R8126 & R8152 & R8101
 rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
 git clone https://git.kejizero.online/zhao/package_kernel_r8168 package/kernel/r8168
