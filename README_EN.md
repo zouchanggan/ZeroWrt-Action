@@ -43,7 +43,6 @@ If you have any technical issues that you need to discuss or communicate with, y
    mtd verify mt7981_cetron_ct3003-fip-fixed-parts.bin FIP
    ```
 ![Uboot example](images/02.png)
-
 ## Custom firmware [![](https://img.shields.io/badge/-Basic project compilation tutorial-FFFFFF.svg)](#Custom firmware-)
 1. First log in to your Gihub account, then Fork this project to your own Github repository
 2. Modify the corresponding files in the `configs` directory to add or delete plug-ins, or upload your own `xx.config` configuration file
