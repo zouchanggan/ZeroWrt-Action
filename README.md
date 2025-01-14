@@ -31,6 +31,10 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
 - 默认连接SSH连接或者终端输入ZeroWrt弹出ZeroWrt选项菜单
 - 目前脚本支持一键更换LAN口ip、一键设置默认主题、一键修改密码、恢复出厂设置、一键部署 、IPv6 开关 (仅适用于主路由)、iStoreOS风格化和检测更新
 
+## Mediatek_filogic-Uboot设置
+- 前往[U-Boot-mt798x](https://github.com/oppen321/ZeroWrt/releases/tag/U-Boot-mt798x)**
+</details>
+
 
 ## 定制固件 [![](https://img.shields.io/badge/-项目基本编译教程-FFFFFF.svg)](#定制固件-)
 1. 首先要登录 Gihub 账号，然后 Fork 此项目到你自己的 Github 仓库
