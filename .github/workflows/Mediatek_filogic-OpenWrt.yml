@@ -9,7 +9,7 @@ env:
   REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
   REPO_BRANCH: openwrt-21.02
   CONFIG_FILE: configs/mt798x.config
-  DIY_SCRIPT: diy/diy-mini.sh
+  DIY_SCRIPT: diy/diy-mtk.sh
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
@@ -99,7 +99,6 @@ jobs:
     - name: Install Feeds
       run: |
         cd $OPENWRT_PATH
-        echo -e "\nsrc-git extraipk https://github.com/xiangfeidexiaohuo/extra-ipk" >> feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
