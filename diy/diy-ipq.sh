@@ -93,3 +93,10 @@ git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat 
 # 设置向导
 git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-app-netwizard
 
+# ZeroWrt选项菜单
+mkdir -p files/bin
+curl -L -o files/bin/ZeroWrt https://git.kejizero.online/zhao/files/raw/branch/main/bin/ZeroWrt
+chmod +x files/bin/ZeroWrt
+mkdir -p files/root
+curl -L -o files/root/version.txt https://git.kejizero.online/zhao/files/raw/branch/main/bin/version.txt
+chmod +x files/root/version.txt
