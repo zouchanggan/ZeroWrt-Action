@@ -34,7 +34,7 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
 ## Mediatek_filogic-Uboot设置
 1. 根据 hanwckf 的源码编译：| [bl-mt798x](https://github.com/hanwckf/bl-mt798x) |编译的mt798x-uboot，并对其进行了汉化
 2. 前往这里下载对应设备的uboot | [U-Boot-mt798x](https://github.com/oppen321/ZeroWrt/releases/tag/U-Boot-mt798x) |
-3. winscp进入路由器tmp文件夹，上传uboot：mt7981_cetron_ct3003-fip-fixed-parts.bin（这里替换成你设备相对于的 uboot）
+3. winscp进入路由器tmp文件夹，上传uboot：mt7981_cetron_ct3003-fip-fixed-parts.bin（这里替换成你设备相对应的 uboot）
 4. 逐条运行以下命令刷入大分区uboot
 
    ```bash
@@ -43,7 +43,7 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
    mtd write mt7981_cetron_ct3003-fip-fixed-parts.bin FIP
    mtd verify mt7981_cetron_ct3003-fip-fixed-parts.bin FIP
    ```
-
+![Uboot示例](images/02.png)
 ## 定制固件 [![](https://img.shields.io/badge/-项目基本编译教程-FFFFFF.svg)](#定制固件-)
 1. 首先要登录 Gihub 账号，然后 Fork 此项目到你自己的 Github 仓库
 2. 修改 `configs` 目录对应文件添加或删除插件，或者上传自己的 `xx.config` 配置文件
