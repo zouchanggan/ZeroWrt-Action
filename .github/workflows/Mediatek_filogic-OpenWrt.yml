@@ -6,8 +6,8 @@ on:
 #    - cron: 0 18 * * *
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
+  REPO_BRANCH: openwrt-21.02
   CONFIG_FILE: configs/mt798x.config
   DIY_SCRIPT: diy/diy-mini.sh
   CACHE_TOOLCHAIN: true
