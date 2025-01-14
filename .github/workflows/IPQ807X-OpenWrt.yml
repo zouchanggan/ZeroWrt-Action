@@ -99,7 +99,6 @@ jobs:
     - name: Install Feeds
       run: |
         cd $OPENWRT_PATH
-        echo -e "\nsrc-git extraipk https://github.com/xiangfeidexiaohuo/extra-ipk" >> feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
