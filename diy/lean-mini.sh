@@ -142,5 +142,13 @@ sed -i 's|admin\\|admin\\/services\\|g' feeds/luci/applications/luci-app-dockerm
 # 取消对 samba4 的菜单调整
 # sed -i '/samba4/s/^/#/' package/lean/default-settings/files/zzz-default-settings
 
+# ZeroWrt选项菜单
+mkdir -p files/bin
+curl -L -o files/bin/ZeroWrt https://git.kejizero.online/zhao/files/raw/branch/main/bin/ZeroWrt
+chmod +x files/bin/ZeroWrt
+mkdir -p files/root
+curl -L -o files/root/version.txt https://git.kejizero.online/zhao/files/raw/branch/main/bin/version.txt
+chmod +x files/root/version.txt
+
 ./scripts/feeds update -a
 ./scripts/feeds install -a
