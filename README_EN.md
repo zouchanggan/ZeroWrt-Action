@@ -30,6 +30,20 @@ If you have any technical issues that you need to discuss or communicate with, y
 - The default connection is SSH connection or the terminal enters ZeroWrt to pop up the ZeroWrt option menu
 - Currently, the script supports one-click replacement of LAN port IP, one-click setting of default theme, one-click password modification, one-click restoration of factory settings, one-click deployment, IPv6 switch (only applicable to main router), iStoreOS stylization and detection of updates
 
+## Mediatek_filogic-Uboot settings
+1. Compile based on the source code of hanwckf：| [bl-mt798x](https://github.com/hanwckf/bl-mt798x) |Compiled mt798x-uboot and Chineseized it
+2. Go here to download uboot for the corresponding device | [U-Boot-mt798x](https://github.com/oppen321/ZeroWrt/releases/tag/U-Boot-mt798x) |
+3. winscp enter the router tmp folder and upload uboot：mt7981_cetron_ct3003-fip-fixed-parts.bin（Replace here with the one corresponding to your device uboot）
+4. Run the following commands one by one to flash the large partition uboot
+
+   ```bash
+   cd /tmp
+   md5sum mt7981_cetron_ct3003-fip-fixed-parts.bin
+   mtd write mt7981_cetron_ct3003-fip-fixed-parts.bin FIP
+   mtd verify mt7981_cetron_ct3003-fip-fixed-parts.bin FIP
+   ```
+![Uboot example](images/02.png)
+
 - ## Custom firmware [![](https://img.shields.io/badge/-Basic project compilation tutorial-FFFFFF.svg)](#Custom firmware-)
 1. First log in to your Gihub account, then Fork this project to your own Github repository
 2. Modify the corresponding files in the `configs` directory to add or delete plug-ins, or upload your own `xx.config` configuration file
