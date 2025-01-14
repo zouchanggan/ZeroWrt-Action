@@ -20,7 +20,7 @@ jobs:
 
     - name: Clone U-Boot source
       run: |
-        git clone https://github.com/hanwckf/bl-mt798x.git
+        git clone https://github.com/oppen321/U-Boot-mt798x
 
     - name: Build U-Boot for MT798x
       run: |
