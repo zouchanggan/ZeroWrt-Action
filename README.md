@@ -32,7 +32,7 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
 - 目前脚本支持一键更换LAN口ip、一键设置默认主题、一键修改密码、恢复出厂设置、一键部署 、IPv6 开关 (仅适用于主路由)、iStoreOS风格化和检测更新
 
 ## Mediatek_filogic-Uboot设置
-- 前往这里下载对应设备的uboot[U-Boot-mt798x](https://github.com/oppen321/ZeroWrt/releases/tag/U-Boot-mt798x)
+- 前往这里下载对应设备的uboot| [U-Boot-mt798x](https://github.com/oppen321/ZeroWrt/releases/tag/U-Boot-mt798x)| 
 </details>
 
 
