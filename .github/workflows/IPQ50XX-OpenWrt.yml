@@ -3,12 +3,12 @@ name: IPQ50XX-OpenWrt
 on:
   workflow_dispatch:
   schedule:
-    - cron: 0 20 * * *
+    - cron: 36 21 * * 4
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  CONFIG_FILE: configs/ipq807x.config
+  CONFIG_FILE: configs/ipq50xx.config
   DIY_SCRIPT: diy/diy-ipq.sh
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
