@@ -8,13 +8,6 @@ rm -rf feeds/packages/lang/golang
 #git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
-# 更换Socat
-rm -rf feeds/luci/applications/luci-app-socat
-rm -rf feeds/packages/net/socat
-
-# Zero软件包
-git clone https://github.com/oppen321/Zero-package package/Zero
-
 # 更改 Argon 主题背景
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg feeds/theme/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 sed -i "s/option online_wallpaper 'bing'/option online_wallpaper 'none'/g" feeds/luci/applications/luci-app-argon-config/root/etc/config/argon
