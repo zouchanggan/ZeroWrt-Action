@@ -48,8 +48,6 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
 ## Arm Docker项目
 默认地址：10.0.0.1 默认用户：root 默认密码：password
 
-## 项目地址：https://github.com/oppen321/OpenWrt-armvirt
-
 ## 使用方法
 1、创建 macvlan 网络
 ```bash
