@@ -31,7 +31,7 @@ If you have any technical issues that you need to discuss or communicate with, y
 - Currently, the script supports one-click replacement of LAN port IP, one-click setting of default theme, one-click password modification, one-click restoration of factory settings, one-click deployment, IPv6 switch (only applicable to main router), iStoreOS stylization and detection of updates
 
 ## Mediatek_filogic-Uboot settings
-1. Compile based on the source code of hanwckf：| [bl-mt798x](https://github.com/hanwckf/bl-mt798x) |Compiled mt798x-uboot and Chineseized it
+1. Compile based on the source code of hanwckf：| [bl-mt798x](https://github.com/hanwckf/bl-mt798x) | Compiled mt798x-uboot and Chineseized it
 2. Go here to download uboot for the corresponding device | [U-Boot-mt798x](https://github.com/oppen321/ZeroWrt/releases/tag/U-Boot-mt798x) |
 3. winscp enter the router tmp folder and upload uboot：mt7981_cetron_ct3003-fip-fixed-parts.bin（Replace here with the one corresponding to your device uboot）
 4. Run the following commands one by one to flash the large partition uboot
