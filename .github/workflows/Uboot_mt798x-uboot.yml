@@ -57,3 +57,15 @@ jobs:
         SOC=mt7986 BOARD=ruijie_rg-x60 MULTI_LAYOUT=1 ./build.sh
         SOC=mt7986 BOARD=zyxel_ex5700 MULTI_LAYOUT=1 ./build.sh
         SOC=mt7986 BOARD=tplink_tl-xdr608x MULTI_LAYOUT=1 ./build.sh
+
+    - name: Create release
+      uses: ncipollo/release-action@v1.14.0
+      with:
+        name: U-Boot-mt798x
+        allowUpdates: true
+        tag: U-Boot-mt798x
+        commit: master
+        replacesArtifacts: true
+        token: ${{ secrets.GITHUB_TOKEN }}
+        artifacts: |
+          bl-mt798x/output/*
