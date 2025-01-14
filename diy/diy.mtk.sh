@@ -35,7 +35,7 @@ sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
 
 # default-settings
-git clone --depth=1 -b main https://github.com/oppen321/default-settings package/default-settings
+git clone --depth=1 -b mtk https://github.com/oppen321/default-settings package/default-settings
 
 # 进阶设置
 git clone https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
