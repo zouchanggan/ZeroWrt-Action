@@ -27,3 +27,11 @@ curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/ma
 
 # 修改名称
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
+
+# ZeroWrt选项菜单
+mkdir -p files/bin
+curl -L -o files/bin/ZeroWrt https://git.kejizero.online/zhao/files/raw/branch/main/bin/ZeroWrt
+chmod +x files/bin/ZeroWrt
+mkdir -p files/root
+curl -L -o files/root/version.txt https://git.kejizero.online/zhao/files/raw/branch/main/bin/version.txt
+chmod +x files/root/version.txt
