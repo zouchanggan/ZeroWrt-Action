@@ -99,6 +99,7 @@ jobs:
     - name: Install Feeds
       run: |
         cd $OPENWRT_PATH
+        sed -i "1isrc-git 2305ipk https://github.com/xiangfeidexiaohuo/2305-ipk\n" feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
