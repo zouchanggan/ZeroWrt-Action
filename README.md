@@ -44,6 +44,44 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
    mtd verify mt7981_cetron_ct3003-fip-fixed-parts.bin FIP
    ```
 ![Uboot示例](images/02.png)
+
+## Arm Docker项目
+默认地址：10.0.0.1 默认用户：root 默认密码：password
+
+## 项目地址：https://github.com/oppen321/OpenWrt-armvirt
+
+## 使用方法
+1、创建 macvlan 网络
+```bash
+docker network create -d macvlan --subnet=192.168.xx.0/24 --gateway=192.168.xx.yy -o parent=eth0 macnet
+```
+
+如果正在使用的不是 eth0 接口，请将其更改为正在使用的接口，若网络是桥接模式请使用下方命令创建
+
+```bash
+docker network create -d macvlan --subnet=192.168.xx.0/24 --gateway=192.168.xx.yy -o parent=br-lan macnet
+```
+注意：macnet 为名称，macvlan 为模式，将 IP 更改为主路由网段与 IP 地址
+
+2、拉取镜像并创建容器
+```bash
+docker run -d --name=openwrt --network=macnet --privileged=true --restart=always --ulimit nofile=16384:65536 -v /lib/modules/$(uname -r):/lib/modules/$(uname -r) zhaoweiwen123/openwrt-aarch64:plus
+```
+
+如需使用 Mini稳定版 固件，将后面的 plus 更改为 mini 即可
+
+3、更改固件默认 IP 地址
+
+```bash
+docker exec openwrt sed -e 's/192.168.1.1/192.168.xx.zz/' -i /etc/config/network
+```
+
+容器创建成功后稍等几分钟执行命令，将 IP 更改为与主路由同一网段的 IP 地址，更改完成后重启容器生效
+```bash
+docker restart openwrt
+```
+好了部署完成，接下来登录更改后的 IP 地址进行其他设置吧
+
 ## 定制固件 [![](https://img.shields.io/badge/-项目基本编译教程-FFFFFF.svg)](#定制固件-)
 1. 首先要登录 Gihub 账号，然后 Fork 此项目到你自己的 Github 仓库
 2. 修改 `configs` 目录对应文件添加或删除插件，或者上传自己的 `xx.config` 配置文件
