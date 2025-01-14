@@ -20,11 +20,11 @@ jobs:
 
     - name: Clone U-Boot source
       run: |
-        git clone https://github.com/oppen321/U-Boot-mt798x
+        git clone https://github.com/oppen321/U-Boot-mt798x U-Boot
 
     - name: Build U-Boot for MT798x
       run: |
-        cd bl-mt798x
+        cd U-Boot
         SOC=mt7981 BOARD=360t7 ./build.sh
         SOC=mt7981 BOARD=wr30u ./build.sh
         SOC=mt7981 BOARD=livinet_zr-3020 ./build.sh
