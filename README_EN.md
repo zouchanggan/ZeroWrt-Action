@@ -21,7 +21,6 @@ If you have any technical issues that you need to discuss or communicate with, y
 - By default, all network ports can connect to SSH
 - The docker source has been switched by default, and the image can be pulled from the domestic network
 - Rockchip switches ImmortalWrt Uboot and Target to support more devices
-- X86 firmware is divided into regular version and Mini version. The regular version turns on PassWall/OpenClash-SmartDNS-AdguardHome by default and can experience perfect domestic and foreign distribution without any settings. The Mini version has built-in Bypass and only adds necessary plug-ins
 - R2C/R2S core frequency 1.6 (LAN WAN swapped), R4S core frequency 2.2/1.8
 - Plugins included: PassWall, OpenClash, Adguardhome, Homeproxy, Mosdns, Lucky, Dynamic DNS, FRP Client, Mihomo Tproxy, Samba4, SmartDNS, Dockerman, Alist, USB Printer Service, Webdav, Application Filtering, Socat
 
