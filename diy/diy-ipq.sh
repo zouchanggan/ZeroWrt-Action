@@ -84,6 +84,12 @@ rm -rf ./package/lean/k3screenctrl
 ## rockchip
 cp -af feeds/2305ipk/patch/rockchip/*  target/linux/rockchip/armv8/base-files/
 
-## golang 为 1.23.x
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
+# 进阶设置
+git clone https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
+
+# theme
+git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
+
+# 设置向导
+git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-app-netwizard
+
