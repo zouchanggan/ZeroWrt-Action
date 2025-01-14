@@ -2,8 +2,8 @@ name: U-Boot for MT798x
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: 0 3 * * *
+#  schedule:
+#    - cron: 0 3 * * *
 
 jobs:
   Cleaning:
