@@ -1,4 +1,4 @@
-name: Compile U-Boot for MT798x
+name: U-Boot for MT798x
 
 on:
   workflow_dispatch:
