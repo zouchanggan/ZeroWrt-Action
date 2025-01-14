@@ -25,31 +25,30 @@ jobs:
     - name: Build U-Boot for MT798x
       run: |
         cd bl-mt798x
-        SOC=mt7981 BOARD=360t7 MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=wr30u MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7986 BOARD=redmi_ax6000 MULTI_LAYOUT=1 ./build.sh 
-        SOC=mt7981 BOARD=livinet_zr-3020 MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=cetron_ct3003 MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=jcg_q30 MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=konka_komi-a31 MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=wr30u MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=imou_lc-hx3001 MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=clt_r30b1 MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=abt_asr3000 MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=cmcc_a10 MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=cmcc_rax3000m MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=cmcc_rax3000m-emmc MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=cmcc_xr30 MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=cmcc_xr30-emmc MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=newland_nl-wr8103 MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=newland_nl-wr9103 MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=h3c_magic-nx30-pro MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=nokia_ea0326gmp MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=ruijie_rg-x30e MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=ruijie_rg-x30e-pro MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=honor_fur-602 MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=ax3000t MULTI_LAYOUT=1 ./build.sh
-        SOC=mt7981 BOARD=ax3000t_an8855 MULTI_LAYOUT=1 ./build.sh
+        SOC=mt7981 BOARD=360t7 ./build.sh
+        SOC=mt7981 BOARD=wr30u ./build.sh
+        SOC=mt7981 BOARD=livinet_zr-3020 ./build.sh
+        SOC=mt7981 BOARD=cetron_ct3003 ./build.sh
+        SOC=mt7981 BOARD=jcg_q30 ./build.sh
+        SOC=mt7981 BOARD=konka_komi-a31 ./build.sh
+        SOC=mt7981 BOARD=wr30u ./build.sh
+        SOC=mt7981 BOARD=imou_lc-hx3001 ./build.sh
+        SOC=mt7981 BOARD=clt_r30b1 ./build.sh
+        SOC=mt7981 BOARD=abt_asr3000 ./build.sh
+        SOC=mt7981 BOARD=cmcc_a10 ./build.sh
+        SOC=mt7981 BOARD=cmcc_rax3000m ./build.sh
+        SOC=mt7981 BOARD=cmcc_rax3000m-emmc ./build.sh
+        SOC=mt7981 BOARD=cmcc_xr30 ./build.sh
+        SOC=mt7981 BOARD=cmcc_xr30-emmc ./build.sh
+        SOC=mt7981 BOARD=newland_nl-wr8103 ./build.sh
+        SOC=mt7981 BOARD=newland_nl-wr9103 ./build.sh
+        SOC=mt7981 BOARD=h3c_magic-nx30-pro ./build.sh
+        SOC=mt7981 BOARD=nokia_ea0326gmp ./build.sh
+        SOC=mt7981 BOARD=ruijie_rg-x30e ./build.sh
+        SOC=mt7981 BOARD=ruijie_rg-x30e-pro ./build.sh
+        SOC=mt7981 BOARD=honor_fur-602 ./build.sh
+        SOC=mt7981 BOARD=ax3000t ./build.sh
+        SOC=mt7981 BOARD=ax3000t_an8855 ./build.sh
         SOC=mt7986 BOARD=redmi_ax6000 MULTI_LAYOUT=1 ./build.sh
         SOC=mt7986 BOARD=glinet_gl-mt6000 MULTI_LAYOUT=1 ./build.sh
         SOC=mt7986 BOARD=jdcloud_re-cp-03 MULTI_LAYOUT=1 ./build.sh
