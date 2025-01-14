@@ -28,6 +28,15 @@ curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/ma
 # 修改名称
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
+# 进阶设置
+git clone https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
+
+# theme
+git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
+
+# 设置向导
+git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-app-netwizard
+
 # ZeroWrt选项菜单
 mkdir -p files/bin
 curl -L -o files/bin/ZeroWrt https://git.kejizero.online/zhao/files/raw/branch/main/bin/ZeroWrt
