@@ -1,8 +1,18 @@
 #!/bin/sh
 
-# 设置默认主题为kucat
-uci set luci.main.mediaurlbase='/luci-static/kucat'
+. /etc/os-release
+. /lib/functions/uci-defaults.sh
+
+# 设置默认密码
+sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
+sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
+
+# 设置默认主题为argon
+uci set luci.main.mediaurlbase='/luci-static/argon'
 uci commit luci
+
+# 切换opkg源
+sed -i 's,downloads.openwrt.org,mirrors.pku.edu.cn/openwrt,g' /etc/opkg/distfeeds.conf
 
 # 设置LAN口DNS
 uci set network.lan.dns='127.0.0.1'
@@ -251,7 +261,7 @@ uci commit AdGuardHome
 /etc/init.d/AdGuardHome restart
 
 # 设置Adguardhome上游服务器
-chmod 644 /etc/AdGuardHome.yaml
+chmod +x /etc/AdGuardHome.yaml
 # sed -i 's|- 223.5.5.5|- 127.0.0.1:6053|' /etc/AdGuardHome.yaml
 # sed -i '/upstream_dns:/a\    - 127.0.0.1:5335' /etc/AdGuardHome.yaml
 sed -i 's|upstream_dns_file: ""|upstream_dns_file: "/etc/AdGuardHome-dnslist.yaml"|' /etc/AdGuardHome.yaml
@@ -263,7 +273,6 @@ sed -i 's/cache_size: .*/cache_size: 0/' /etc/AdGuardHome.yaml
 /etc/init.d/AdGuardHome restart
 
 ### Passwall设置
-chmod 777 /etc/config/passwall
 uci set passwall.@global[0].dns_shunt='dnsmasq'
 uci set passwall.@global[0].remote_dns='127.0.0.1:5553'
 uci set passwall.@global[0].dns_mode='udp'
@@ -320,5 +329,47 @@ uci set openclash.config.chnr_auto_update='1'  # 开启大陆白名单订阅自�
 uci set openclash.config.chnr_update_week_time='*'  # 每周更新
 uci set openclash.config.chnr_update_day_time='5'  # 每周的第 5 天（可以根据需求修改）
 uci commit openclash
+
+### 无线设置
+# 删除现有无线配置
+uci -q del wireless.default_radio2
+uci -q del wireless.default_radio1
+uci -q del wireless.default_radio0
+uci -q del wireless.wifinet0
+uci -q del wireless.wifinet1
+uci -q del wireless.wifinet2
+
+# 配置 5GHz 无线接口 (wifinet0)
+uci -q set wireless.wifinet0=wifi-iface
+uci -q set wireless.wifinet0.device='radio0'
+uci -q set wireless.wifinet0.mode='ap'
+uci -q set wireless.wifinet0.ssid='ZeroWrt_5G'
+uci -q set wireless.wifinet0.encryption='none'
+uci -q set wireless.wifinet0.network='lan'
+
+# 配置 5GHz 无线电 (radio0)
+uci -q set wireless.radio0.htmode='VHT80'
+uci -q set wireless.radio0.channel='36'   # 你可以选择合适的频道
+uci -q set wireless.radio0.country='AU'   # 根据需要更改国家
+uci -q set wireless.radio0.cell_density='3'
+uci -q set wireless.radio0.disabled=0     # 启用 radio0
+
+# 配置 2.4GHz 无线接口 (wifinet1)
+uci -q set wireless.wifinet1=wifi-iface
+uci -q set wireless.wifinet1.device='radio1'
+uci -q set wireless.wifinet1.mode='ap'
+uci -q set wireless.wifinet1.ssid='ZeroWrt_2.4G'
+uci -q set wireless.wifinet1.encryption='none'
+uci -q set wireless.wifinet1.network='lan'
+
+# 配置 2.4GHz 无线电 (radio1)
+uci -q set wireless.radio1.htmode='HT40'
+uci -q set wireless.radio1.channel='1'    # 你可以选择合适的频道
+uci -q set wireless.radio1.country='AU'   # 根据需要更改国家
+uci -q set wireless.radio1.cell_density='3'
+uci -q set wireless.radio1.disabled=0     # 启用 radio1
+
+# 提交更改并应用
+uci commit wireless
 
 exit 0
