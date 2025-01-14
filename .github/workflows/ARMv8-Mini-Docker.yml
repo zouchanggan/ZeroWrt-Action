@@ -230,7 +230,7 @@ jobs:
         curl -fsSL https://get.docker.com | bash -s docker
         
         # 设置下载 URL 和文件名
-        DOWNLOAD_URL="openwrt-armvirt-64-generic-rootfs.tar.gz https://github.com/oppen321/OpenWrt-armvirt/releases/download/DOCKER_MINI/openwrt-armvirt-64-generic-rootfs.tar.gz"
+        DOWNLOAD_URL="openwrt-armvirt-64-generic-rootfs.tar.gz https://github.com/oppen321/ZeroWrt/releases/download/DOCKER_MINI/openwrt-armvirt-64-generic-rootfs.tar.gz"
 
         
         # 下载固件文件
