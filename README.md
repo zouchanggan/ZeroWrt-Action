@@ -26,6 +26,10 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
 - R2C/R2S 核心频率 1.6（交换了 LAN WAN），R4S 核心频率 2.2/1.8
 - 插件包含：师夷长技以制夷，Open克拉斯，Adguardhome，Homeproxy，Mosdns，Lucky，动态DNS，FRP客户端，Mihomo Tproxy，Samba4，SmartDNS，Dockerman，Alist，USB打印机服务，Webdav，应用过滤，Socat
 
+## 本地编译ZeroWrt
+        ```bash
+        curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/ZeroWrt_Build.sh && chmod +x ZeroWrt_Build.sh && ./ZeroWrt_Build.sh
+        ```
 ## ZeroWrt选项菜单
  ![脚本菜单](images/01.png)
 - ZeroWrt选项菜单是一个方便用户配置OpenWrt
