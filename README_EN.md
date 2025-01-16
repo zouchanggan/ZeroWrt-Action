@@ -44,6 +44,40 @@ If you have any technical issues that you need to discuss or communicate with, y
    ```
 ![Uboot example](images/02.png)
 
+## Arm Docker project
+Default address：10.0.0.1 Default user：root default password：password
+
+## How to use
+1、Create macvlan network
+```bash
+docker network create -d macvlan --subnet=192.168.xx.0/24 --gateway=192.168.xx.yy -o parent=eth0 macnet
+```
+
+If the interface you are using is not eth0, please change it to the interface you are using. If the network is in bridge mode, please use the following command to create it
+
+```bash
+docker network create -d macvlan --subnet=192.168.xx.0/24 --gateway=192.168.xx.yy -o parent=br-lan macnet
+```
+Note: macnet is the name, macvlan is the mode, change the IP to the main routing network segment and IP address
+
+2、Pull the image and create the container
+```bash
+docker run -d --name=openwrt --network=macnet --privileged=true --restart=always --ulimit nofile=16384:65536 -v /lib/modules/$(uname -r):/lib/modules/$(uname -r) zhaoweiwen123/openwrt-aarch64:plus
+```
+If you want to use Mini stable version firmware, change the following plus to mini
+
+3、Change firmware default IP address
+
+```bash
+docker exec openwrt sed -e 's/192.168.1.1/192.168.xx.zz/' -i /etc/config/network
+```
+
+After the container is successfully created, wait a few minutes and execute the command to change the IP to an IP address on the same network segment as the main route. After the change is completed, restart the container to take effect
+```bash
+docker restart openwrt
+```
+Okay, the deployment is complete. Next, log in to the changed IP address and make other settings
+
 ## Custom firmware
 1. First log in to your Gihub account, then Fork this project to your own Github repository
 2. Modify the corresponding files in the `configs` directory to add or delete plug-ins, or upload your own `xx.config` configuration file
