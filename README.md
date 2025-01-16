@@ -33,7 +33,15 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
    ```shell
    curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/ZeroWrt_Build.sh && chmod +x ZeroWrt_Build.sh && ./ZeroWrt_Build.sh
    ```
-        
+### Rockchip
+   ```shell
+   curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/ZeroWrt_Build.sh && chmod +x ZeroWrt_Build.sh && ./ZeroWrt_Build.sh
+   ```
+### IPQ807x
+   ```shell
+   curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/ZeroWrt_Build.sh && chmod +x ZeroWrt_Build.sh && ./ZeroWrt_Build.sh
+   ```
+
 ## ZeroWrt选项菜单
  ![脚本菜单](images/01.png)
 - ZeroWrt选项菜单是一个方便用户配置OpenWrt
