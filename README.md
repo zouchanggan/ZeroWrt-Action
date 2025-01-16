@@ -28,9 +28,9 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
 
 ## 本地编译ZeroWrt
 
-        ```bash
-        curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/ZeroWrt_Build.sh && chmod +x ZeroWrt_Build.sh && ./ZeroWrt_Build.sh
-        ```
+   ```bash
+   curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/ZeroWrt_Build.sh && chmod +x ZeroWrt_Build.sh && ./ZeroWrt_Build.sh
+   ```
         
 ## ZeroWrt选项菜单
  ![脚本菜单](images/01.png)
