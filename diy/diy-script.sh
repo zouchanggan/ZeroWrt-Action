@@ -67,7 +67,6 @@ rm -rf immortalwrt
 # Patch arm64 型号名称
 curl -L -o target/linux/generic/hack-6.6/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/PATCH/kernel/arm/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
 
-https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/PATCH/kernel/arm/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
 # 移除要替换的包
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome,socat}
 rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
