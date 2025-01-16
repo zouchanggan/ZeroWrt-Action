@@ -25,6 +25,22 @@ If you have any technical issues that you need to discuss or communicate with, y
 - R2C/R2S core frequency 1.6 (LAN WAN swapped), R4S core frequency 2.2/1.8
 - Plugins included: PassWall, OpenClash, Adguardhome, Homeproxy, Mosdns, Lucky, Dynamic DNS, FRP Client, Mihomo Tproxy, Samba4, SmartDNS, Dockerman, Alist, USB Printer Service, Webdav, Application Filtering, Socat
 
+## Local compilation environment installation (based on Ubuntu24.04)
+
+Build OpenWrt 24.10 latest ZeroWrt
+### x86_64
+   ```shell
+   curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/x86.sh && chmod +x x86.sh && ./x86.sh
+   ```
+### Rockchip
+   ```shell
+   curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/Rockchip.sh && chmod +x Rockchip.sh && ./Rockchip.sh
+   ```
+### IPQ807x
+   ```shell
+   curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/IPQ807x.sh && chmod +x IPQ807x.sh && ./IPQ807x.sh
+   ```
+
 ## ZeroWrt options menu
  ![Script menu](images/01.png)
 - The ZeroWrt options menu is a convenient way for users to configure OpenWrt
