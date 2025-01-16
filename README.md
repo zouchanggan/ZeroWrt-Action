@@ -39,7 +39,7 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
    ```
 ### IPQ807x
    ```shell
-   curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/ZeroWrt_Build.sh && chmod +x ZeroWrt_Build.sh && ./ZeroWrt_Build.sh
+   curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/IPQ807x.sh && chmod +x IPQ807x.sh && ./IPQ807x.sh
    ```
 
 ## ZeroWrt选项菜单
