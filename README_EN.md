@@ -14,6 +14,7 @@ If you have any technical issues that you need to discuss or communicate with, y
 
 ## Firmware instructions
 - Compiled based on native OpenWrt 24.10, default management address 10.0.0.1 Default password: password
+- Passswall/Openclash-SmartDNS-AdguardHome is enabled by default and you can experience perfect domestic and international traffic distribution without any settings. You can log in to the terminal and enter ZeroWrt to pop up the ZeroWrt option menu. Enter 6. One-click settings to switch between SmartDNS or MosDNS.
 - Switch Uhttpd to Nginx
 - The built-in ZeroWrt option menu facilitates users to set OprnWrt
 - The wan port firewall is turned on by default
