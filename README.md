@@ -31,7 +31,7 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
 构建 OpenWrt 24.10 最新 ZeroWrt
 ### x86_64
    ```shell
-   curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/ZeroWrt_Build.sh && chmod +x ZeroWrt_Build.sh && ./ZeroWrt_Build.sh
+   curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/x86.sh && chmod +x x86.sh && ./x86.sh
    ```
 ### Rockchip
    ```shell
