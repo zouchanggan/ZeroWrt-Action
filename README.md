@@ -35,7 +35,7 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
    ```
 ### Rockchip
    ```shell
-   curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/ZeroWrt_Build.sh && chmod +x ZeroWrt_Build.sh && ./ZeroWrt_Build.sh
+   curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/Rockchip.sh && chmod +x Rockchip.sh && ./Rockchip.sh
    ```
 ### IPQ807x
    ```shell
