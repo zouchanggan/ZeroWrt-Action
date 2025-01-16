@@ -107,7 +107,7 @@ git clone https://git.kejizero.online/zhao/miniupnpd feeds/packages/net/miniupnp
 git clone https://git.kejizero.online/zhao/luci-app-upnp feeds/luci/applications/luci-app-upnp -b master
 
 # 修改名称
-sed -i 's/iStoreOS/ZeroWrt/' package/base-files/files/bin/config_generate
+sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
 # default-settings
 git clone --depth=1 -b main https://github.com/oppen321/default-settings package/default-settings
