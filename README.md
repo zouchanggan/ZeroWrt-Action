@@ -15,6 +15,7 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
 
 ## 固件说明
 - 基于原生 OpenWrt 24.10 编译，默认管理地址 10.0.0.1   默认密码：password
+- 默认开启“师夷长技以制夷”/Open克拉斯-SmartDNS-AdguardHome无需任何设置即可体验完美国内外分流,可以登录终端输入ZeroWrt弹出ZeroWrt选项菜单输入6一键设置切换SmartDNS或者MosDNS
 - 切换Uhttpd为Nignx
 - 内置ZeroWrt选项菜单方便用户设置OprnWrt
 - 默认打开了wan口防火墙
@@ -23,7 +24,7 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
 - 默认已经切换了docker源，国内网络即可拉取镜像
 - Rockchip切换ImmortalWrt Uboot 以及 Target支持更多的设备
 - R2C/R2S 核心频率 1.6（交换了 LAN WAN），R4S 核心频率 2.2/1.8
-- 插件包含：PassWall，OpenClash，Adguardhome，Homeproxy，Mosdns，Lucky，动态DNS，FRP客户端，Mihomo Tproxy，Samba4，SmartDNS，Dockerman，Alist，USB打印机服务，Webdav，应用过滤，Socat
+- 插件包含：师夷长技以制夷，Open克拉斯，Adguardhome，Homeproxy，Mosdns，Lucky，动态DNS，FRP客户端，Mihomo Tproxy，Samba4，SmartDNS，Dockerman，Alist，USB打印机服务，Webdav，应用过滤，Socat
 
 ## ZeroWrt选项菜单
  ![脚本菜单](images/01.png)
