@@ -23,6 +23,13 @@ cat /home/build/immortalwrt/files/etc/config/pppoe-settings
 # 输出调试信息
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Starting build process..."
 
+# 修改默认IP地址
+echo "$(date '+%Y-%m-%d %H:%M:%S') - Modifying default IP address..."
+sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
+
+# 修改默认名称
+echo "$(date '+%Y-%m-%d %H:%M:%S') - Modifying default system name..."
+sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
 # 定义所需安装的包列表 下列插件你都可以自行删减
 PACKAGES=""
