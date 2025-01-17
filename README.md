@@ -17,7 +17,7 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
 - 基于原生 OpenWrt 24.10 编译，默认管理地址 10.0.0.1   默认密码：password
 - 默认开启“师夷长技以制夷”/Open克拉斯-SmartDNS-AdguardHome无需任何设置即可体验完美国内外分流,可以登录终端输入ZeroWrt弹出ZeroWrt选项菜单输入 6 一键设置切换SmartDNS或者MosDNS
 - 切换Uhttpd为Nignx
-- 内置ZeroWrt选项菜单方便用户设置OprnWrt
+- 内置ZeroWrt选项菜单方便用户设置OpenWrt
 - 默认打开了wan口防火墙
 - 默认所有网口可访问网页终端
 - 默认设置所有网口可连接 SSH
