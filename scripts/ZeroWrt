@@ -584,13 +584,25 @@ istore_style() {
     clear
     color_output "\e[34m[开始安装 iStoreOS 风格化]\e[0m"
     
+    # 安装 Argon 主题
+    color_output "\e[34m[1/3] 正在安装 Argon 主题...\e[0m"
+    opkg update
+    opkg install luci-compat
+    opkg install luci-lib-ipkg
+    wget --no-check-certificate https://git.kejizero.online/zhao/files/releases/download/v2.3.1/luci-theme-argon_2.3.1_all.ipk
+    opkg install luci-theme-argon*.ipk
+    wget --no-check-certificate https://git.kejizero.online/zhao/files/releases/download/v0.9/luci-app-argon-config_0.9_all.ipk
+    opkg install luci-app-argon-config*.ipk
+    uci set luci.main.mediaurlbase='/luci-static/argon'
+    uci commit luci
+
     # 安装 iStore 商店
-    color_output "\e[34m[1/2] 正在安装 iStore 商店...\e[0m"
+    color_output "\e[34m[2/3] 正在安装 iStore 商店...\e[0m"
     wget -qO install.sh https://git.kejizero.online/zhao/files/raw/branch/main/%20Script/iStoreOS/install.sh && chmod +x install.sh && ./install.sh
     color_output "\e[32miStore 商店安装完成\e[0m"
     
     # 安装网络向导和首页
-    color_output "\e[34m[2/2] 正在安装网络向导和首页...\e[0m"
+    color_output "\e[34m[3/3] 正在安装网络向导和首页...\e[0m"
     is-opkg install luci-i18n-quickstart-zh-cn
     color_output "\e[32m网络向导和首页安装完成\e[0m"
     
