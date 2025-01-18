@@ -48,7 +48,7 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
 - 默认连接SSH连接或者终端输入ZeroWrt弹出ZeroWrt选项菜单
 - 目前脚本支持一键更换LAN口ip、一键设置默认主题、一键修改密码、恢复出厂设置、一键部署 、IPv6 开关 (仅适用于主路由)、iStoreOS风格化和检测更新
 
-## Mediatek_filogic-Uboot设置（不支持本仓库的Mediatek_filogic固件，请加交流群获取基于hanwckf-mt798x项目编译的闭源固件）
+## Mediatek_filogic-Uboot设置（请使用本仓库Mediatek_filogic_hanwckf固件）
 1. 根据 hanwckf 的源码编译：| [bl-mt798x](https://github.com/hanwckf/bl-mt798x) |编译的mt798x-uboot，并对其进行了汉化
 2. 前往这里下载对应设备的uboot | [U-Boot-mt798x](https://github.com/oppen321/ZeroWrt/releases/tag/U-Boot-mt798x) |
 3. winscp进入路由器tmp文件夹，上传uboot：mt7981_cetron_ct3003-fip-fixed-parts.bin（这里替换成你设备相对应的 uboot）
