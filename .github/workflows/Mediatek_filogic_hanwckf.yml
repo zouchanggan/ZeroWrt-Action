@@ -37,14 +37,14 @@ jobs:
       id: compile
       continue-on-error: true
       run: |    
-        curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/test.sh && chmod +x x86.sh && ./x86.sh
+        curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/test.sh && chmod +x test.sh && ./test.sh
 
     - name: Save Cached
       continue-on-error: true
       uses: actions/cache/save@v4
       with:
         path: /builder/.ccache
-        key: openwrt-24.10-${{ github.event.inputs.device }}-ccache
+        key: immortalwrt-Mediatek_filogic_hanwckf-ccache
 
     - name: Upload Cached (releases - ccache)
       continue-on-error: true
