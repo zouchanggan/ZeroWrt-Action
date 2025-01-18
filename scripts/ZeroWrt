@@ -283,6 +283,10 @@ one_click_setup() {
                 uci add_list mosdns.config.local_dns='h3://dns.alidns.com/dns-query'  # HTTP3 协议
                 uci add_list mosdns.config.local_dns='https://dns.alidns.com/dns-query'  # DoH 服务器
                 uci add_list mosdns.config.local_dns='https://doh.360.cn/dns-query'  # 360 DoH
+                uci set mosdns.config.remote_dns='tls://8.8.8.8'
+                uci add_list mosdns.config.remote_dns='tls://1.1.1.1'
+                uci add_list mosdns.config.remote_dns='tls://dns.google'
+                uci add_list mosdns.config.remote_dns='tls://cloudflare-dns.com'
                 uci set mosdns.config.cache='1'
                 uci set mosdns.config.dns_leak='1'
                 uci set mosdns.config.concurrent='2'
