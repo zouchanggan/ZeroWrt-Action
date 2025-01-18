@@ -37,7 +37,7 @@ jobs:
       id: compile
       continue-on-error: true
       run: |    
-        curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/test.sh && chmod +x test.sh && ./test.sh
+        curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/hanwckf_mt798x.sh && chmod +x hanwckf_mt798x.sh && ./hanwckf_mt798x.sh
 
     - name: Save Cached
       continue-on-error: true
@@ -60,4 +60,26 @@ jobs:
         artifacts: |
           ${{ env.build_dir }}/ccache/* 
 
-          
+    - name: Prepare Firmware Files
+      working-directory: /builder
+      run: |
+        mkdir -p rom
+          cp -a immortalwrt-mt798x/bin/targets/mediatek/mt7981/*/*.img.gz rom/
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: hanwckf_mt798x
+        path: ${{ env.build_dir }}/rom/*
+
+    - name: Create release
+      continue-on-error: true
+      uses: ncipollo/release-action@v1
+      with:
+        name: Mediatek_filogic_hanwckf
+        allowUpdates: true
+        tag: Mediatek_filogic_hanwckf
+        commit: master
+        replacesArtifacts: true
+        token: ${{ secrets.GITHUB_TOKEN }}
+        artifacts: ${{ env.build_dir }}/rom/*
