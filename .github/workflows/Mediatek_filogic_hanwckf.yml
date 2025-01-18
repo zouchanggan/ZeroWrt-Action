@@ -22,3 +22,42 @@ jobs:
         sudo timedatectl set-timezone 'Asia/Shanghai'
         git config --global user.name 'actions'
         git config --global user.email 'action@github.com'        
+        echo build_dir="/builder" >> "$GITHUB_ENV"
+        
+    - name: Free disk space
+      uses: oppen321/actions@free-disk
+      with:
+        build-mount-path: /builder
+        
+    - name: Build System Setup
+      uses: oppen321/actions@openwrt-build-setup 
+
+    - name: Compile OpenWrt
+      working-directory: /builder
+      id: compile
+      continue-on-error: true
+      run: |    
+        curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/test.sh && chmod +x x86.sh && ./x86.sh
+
+    - name: Save Cached
+      continue-on-error: true
+      uses: actions/cache/save@v4
+      with:
+        path: /builder/.ccache
+        key: openwrt-24.10-${{ github.event.inputs.device }}-ccache
+
+    - name: Upload Cached (releases - ccache)
+      continue-on-error: true
+      uses: ncipollo/release-action@v1.14.0
+      with:
+        name: ccache
+        allowUpdates: true
+        tag: ccache
+        commit: master
+        replacesArtifacts: true
+        prerelease: true
+        token: ${{ secrets.GITHUB_TOKEN }}
+        artifacts: |
+          ${{ env.build_dir }}/ccache/* 
+
+          
