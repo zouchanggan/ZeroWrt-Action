@@ -39,27 +39,6 @@ jobs:
       run: |    
         curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/hanwckf_mt798x.sh && chmod +x hanwckf_mt798x.sh && ./hanwckf_mt798x.sh
 
-    - name: Save Cached
-      continue-on-error: true
-      uses: actions/cache/save@v4
-      with:
-        path: /builder/.ccache
-        key: immortalwrt-Mediatek_filogic_hanwckf-ccache
-
-    - name: Upload Cached (releases - ccache)
-      continue-on-error: true
-      uses: ncipollo/release-action@v1.14.0
-      with:
-        name: ccache
-        allowUpdates: true
-        tag: ccache
-        commit: master
-        replacesArtifacts: true
-        prerelease: true
-        token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: |
-          ${{ env.build_dir }}/ccache/* 
-
     - name: Prepare Firmware Files
       working-directory: /builder
       run: |
