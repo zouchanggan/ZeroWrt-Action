@@ -2,8 +2,8 @@ name: IPQ40XX-OpenWrt
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: 8 20 * * 5
+#  schedule:
+#    - cron: 8 20 * * 5
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
