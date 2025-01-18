@@ -1,3 +1,24 @@
 name: Mediatek_filogic_hanwckf
 
+on:
+  workflow_dispatch:
+      
+jobs:
+  Build:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        shell: bash
 
+    steps:
+    - name: Checkout
+      continue-on-error: true
+      uses: actions/checkout@main
+      with:
+        path: ZeroWrt
+
+    - name: Setup variables
+      run: |
+        sudo timedatectl set-timezone 'Asia/Shanghai'
+        git config --global user.name 'actions'
+        git config --global user.email 'action@github.com'        
