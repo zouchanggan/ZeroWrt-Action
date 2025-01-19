@@ -40,7 +40,7 @@ sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/files/bin/confi
 
 ##WiFi
 mkdir -p files/etc/config
-curl -L -o files/etc/config/wireless 
+curl -L -o files/etc/config/wireless https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/wireless
 
 # 进阶设置
 git clone https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
