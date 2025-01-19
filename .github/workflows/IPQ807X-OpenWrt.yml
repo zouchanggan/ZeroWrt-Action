@@ -6,8 +6,8 @@ on:
     - cron: 8 18 * * 5
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/LiBwrt-op/openwrt-6.x
+  REPO_BRANCH: kernel-12
   CONFIG_FILE: configs/ipq807x.config
   DIY_SCRIPT: diy/diy-ipq.sh
   CACHE_TOOLCHAIN: true
@@ -99,7 +99,6 @@ jobs:
     - name: Install Feeds
       run: |
         cd $OPENWRT_PATH
-        sed -i "1isrc-git 2305ipk https://github.com/xiangfeidexiaohuo/2305-ipk\n" feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
