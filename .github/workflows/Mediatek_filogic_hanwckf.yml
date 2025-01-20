@@ -43,6 +43,7 @@ jobs:
       continue-on-error: true
       run: |    
         curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/hanwckf_mt798x.sh && chmod +x hanwckf_mt798x.sh && ./hanwckf_mt798x.sh
+        echo "DATE=$(date +"%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
 
     - name: Prepare Firmware Files
       working-directory: /builder
@@ -61,9 +62,9 @@ jobs:
       continue-on-error: true
       uses: ncipollo/release-action@v1
       with:
-        name: Mediatek_filogic_hanwckf
+        name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
         allowUpdates: true
-        tag: Mediatek_filogic_hanwckf
+        tag: ${{ env.FIRMWARE_TAG }}
         commit: master
         replacesArtifacts: true
         token: ${{ secrets.GITHUB_TOKEN }}
