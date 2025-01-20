@@ -1,4 +1,4 @@
-name: X86_64 OpenWrt
+name: X86_64-Bypass
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: X86_64
+  FIRMWARE_TAG: X86_64-Bypass
   TZ: Asia/Shanghai
 
 jobs:
