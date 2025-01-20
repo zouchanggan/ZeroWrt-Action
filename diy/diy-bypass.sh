@@ -40,6 +40,16 @@ sed -i "3iuci commit istore" package/lean/default-settings/files/zzz-default-set
 ##WiFi
 sed -i "s/LEDE/ZeroWrt/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
+# Git稀疏克隆，只克隆指定目录到本地
+function git_sparse_clone() {
+  branch="$1" repourl="$2" && shift 2
+  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
+  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
+  cd $repodir && git sparse-checkout set $@
+  mv -f $@ ../package
+  cd .. && rm -rf $repodir
+}
+
 ## golang 为 1.23.x
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
@@ -53,6 +63,25 @@ git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat 
 # 设置向导
 git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-app-netwizard
 
+# iStore
+git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
+git_sparse_clone main https://github.com/linkease/istore luci
+
+# Docker
+rm -rf feeds/luci/applications/luci-app-dockerman
+git clone https://git.kejizero.online/zhao/luci-app-dockerman -b 24.10 feeds/luci/applications/luci-app-dockerman
+rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+git clone https://git.kejizero.online/zhao/packages_utils_docker feeds/packages/utils/docker
+git clone https://git.kejizero.online/zhao/packages_utils_dockerd feeds/packages/utils/dockerd
+git clone https://git.kejizero.online/zhao/packages_utils_containerd feeds/packages/utils/containerd
+git clone https://git.kejizero.online/zhao/packages_utils_runc feeds/packages/utils/runc
+sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
+pushd feeds/packages
+    curl -s https://init.cooluc.com/openwrt/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+    curl -s https://init.cooluc.com/openwrt/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
+    curl -s https://init.cooluc.com/openwrt/patch/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
+popd
+
 # ZeroWrt选项菜单
 mkdir -p files/bin
 curl -L -o files/bin/ZeroWrt https://git.kejizero.online/zhao/files/raw/branch/main/bin/ZeroWrt
@@ -63,3 +92,4 @@ chmod +x files/root/version.txt
 
 # bypass
 git clone https://github.com/siropboy/luci-app-bypass package/luci-app-bypass
+
