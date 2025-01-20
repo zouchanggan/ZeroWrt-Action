@@ -17,3 +17,8 @@ sed -i '\#export ENV=/etc/shinit#a export HISTCONTROL=ignoredups' package/base-f
 mkdir -p files/root
 curl -so files/root/.bash_profile https://git.kejizero.online/zhao/files/raw/branch/main/root/.bash_profile
 curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/main/root/.bashrc
+
+##配置ip等
+sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/luci2/bin/config_generate
+
