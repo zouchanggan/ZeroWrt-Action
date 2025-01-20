@@ -1,4 +1,4 @@
-name: Mediatek_filogic_hanwckf
+name: Mediatek_filogic_hanwckf_mt7981
 
 on:
   workflow_dispatch:
