@@ -160,5 +160,17 @@ chmod +x files/etc/AdGuardHome-mosdns.yaml
 mkdir -p files/etc/config
 curl -L -o files/etc/config/nginx https://git.kejizero.online/zhao/files/raw/branch/main/etc/nginx/nginx
 
+# usbreset
+mkdir -p files/etc/hotplug.d/block
+curl -L -o files/etc/hotplug.d/block/20-usbreset https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/20-usbreset
+chmod +x files/etc/hotplug.d/block/20-usbreset
+
+# swapp
+mkdir -p files/etc/sysctl.d
+curl -L -o files/etc/sysctl.d/15-vm-swappiness.conf https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/15-vm-swappiness.conf
+curl -L -o files/etc/sysctl.d/16-udp-buffer-size.conf https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/16-udp-buffer-size.conf
+chmod +x files/etc/sysctl.d/15-vm-swappiness.conf
+chmod +x files/etc/sysctl.d/16-udp-buffer-size.conf
+
 ./scripts/feeds update -a
 ./scripts/feeds install -a
