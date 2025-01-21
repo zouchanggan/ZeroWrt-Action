@@ -69,6 +69,8 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-
 git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
 git_sparse_clone main https://github.com/linkease/istore luci
 
+# openwrt_helloworld
+git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/openwrt_helloworld
 # bypass
 git clone https://github.com/siropboy/luci-app-bypass package/luci-app-bypass
 
