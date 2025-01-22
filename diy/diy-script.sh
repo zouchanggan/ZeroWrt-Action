@@ -140,6 +140,7 @@ git clone --depth=1 https://github.com/oppen321/Zero-package package/Zero-packag
 
 # 一键配置拨号
 git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-app-netwizard
+sed -i 's/\("admin"\), *\("netwizard"\)/\1, "system", \2/g' package/luci-app-netwizard/luasrc/controller/*.lua
 
 # 修改名称
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
