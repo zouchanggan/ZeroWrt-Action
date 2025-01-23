@@ -112,9 +112,6 @@ git clone https://git.kejizero.online/zhao/luci-app-upnp feeds/luci/applications
 # 修改名称
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
-# default-settings
-git clone --depth=1 -b main https://github.com/oppen321/default-settings package/default-settings
-
 # Lucky
 git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
 
@@ -148,13 +145,6 @@ chmod +x files/bin/ZeroWrt
 mkdir -p files/root
 curl -L -o files/root/version.txt https://git.kejizero.online/zhao/files/raw/branch/main/bin/version.txt
 chmod +x files/root/version.txt
-
-# Adguardhome设置
-mkdir -p files/etc
-curl -L -o files/etc/AdGuardHome-dnslist.yaml https://git.kejizero.online/zhao/files/raw/branch/main/etc/AdGuardHome-dnslist.yaml
-chmod +x files/etc/AdGuardHome-dnslist.yaml
-curl -L -o files/etc/AdGuardHome-mosdns.yaml https://git.kejizero.online/zhao/files/raw/branch/main/etc/AdGuardHome-mosdns.yaml
-chmod +x files/etc/AdGuardHome-mosdns.yaml
 
 # Nginx
 mkdir -p files/etc/config
