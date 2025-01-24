@@ -89,6 +89,9 @@ git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
 # Adguardhome
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
 
+# default-settings
+git clone --depth=1 -b dev https://github.com/oppen321/default-settings package/default-settings
+
 # Docker
 rm -rf feeds/luci/applications/luci-app-dockerman
 git clone https://git.kejizero.online/zhao/luci-app-dockerman -b 24.10 feeds/luci/applications/luci-app-dockerman
