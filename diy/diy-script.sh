@@ -223,5 +223,12 @@ curl -L -o files/etc/sysctl.d/16-udp-buffer-size.conf https://raw.githubusercont
 chmod +x files/etc/sysctl.d/15-vm-swappiness.conf
 chmod +x files/etc/sysctl.d/16-udp-buffer-size.conf
 
+# default_mosdns
+mkdir -p files/etc/config
+curl -L -o files/etc/config/default_mosdns https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/default_mosdns
+curl -L -o files/etc/config/default_smartdns https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/default_smartdns
+chmod +x files/etc/config/default_mosdns
+chmod +x files/etc/config/default_smartdns
+
 ./scripts/feeds update -a
 ./scripts/feeds install -a
