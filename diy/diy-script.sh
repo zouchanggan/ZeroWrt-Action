@@ -229,9 +229,12 @@ curl -L -o files/etc/config/default_mosdns https://raw.githubusercontent.com/opp
 curl -L -o files/etc/config/default_smartdns https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/default_smartdns
 curl -L -o files/etc/config/default_AdGuardHome https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/default_AdGuardHome
 curl -L -o files/etc/config/default_passwall https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/default_passwall
-curl -L -o files/etc/config/default_openclash
+curl -L -o files/etc/config/default_openclash https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/default_openclash
 chmod +x files/etc/config/default_mosdns
 chmod +x files/etc/config/default_smartdns
+chmod +x files/etc/config/default_AdGuardHome
+chmod +x files/etc/config/default_passwall
+chmod +x files/etc/config/default_openclash
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
