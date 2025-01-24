@@ -146,9 +146,11 @@ sed -i 's/\("admin"\), *\("netwizard"\)/\1, "system", \2/g' package/luci-app-net
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
 # Theme
-git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/luci-theme-argon
-git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
-curl -L -o package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp https://git.kejizero.online/zhao/files/raw/branch/main/%20background/bg.webp
+# git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/luci-theme-argon
+# git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
+# curl -L -o package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp https://git.kejizero.online/zhao/files/raw/branch/main/%20background/bg.webp
+git clone --depth 1 https://github.com/oppen321/luci-theme-argon package/luci-theme-argon
+git clone --depth 1 https://github.com/oppen321/luci-app-argon-config package/luci-app-argon-config
 
 # default-settings
 git clone --depth=1 -b dev https://github.com/oppen321/default-settings package/default-settings
@@ -160,10 +162,10 @@ git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
 git clone https://git.kejizero.online/zhao/OpenAppFilter --depth=1 package/OpenAppFilter
 
 # luci-app-partexp
-git clone --depth=1 https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
+# git clone --depth=1 https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # 进阶设置
-git clone https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
+# git clone https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
 
 # luci-app-webdav
 git clone https://git.kejizero.online/zhao/luci-app-webdav package/new/luci-app-webdav
