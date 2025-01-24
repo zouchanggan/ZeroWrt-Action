@@ -100,6 +100,9 @@ git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geoda
 # 锐捷认证
 git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
 
+# istoreos-files
+git clone ttps://github.com/oppen321/istoreos-files package/istoreos-files
+
 # Realtek 网卡 - R8168 & R8125 & R8126 & R8152 & R8101
 rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
 git clone https://git.kejizero.online/zhao/package_kernel_r8168 package/kernel/r8168
