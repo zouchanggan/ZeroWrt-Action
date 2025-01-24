@@ -110,7 +110,7 @@ git clone https://git.kejizero.online/zhao/miniupnpd feeds/packages/net/miniupnp
 git clone https://git.kejizero.online/zhao/luci-app-upnp feeds/luci/applications/luci-app-upnp -b master
 
 # 修改名称
-sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
+sed -i 's/iStoreOS/ZeroWrt/' package/base-files/files/bin/config_generate
 
 # Lucky
 git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
