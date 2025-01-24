@@ -151,7 +151,7 @@ git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat 
 curl -L -o package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp https://git.kejizero.online/zhao/files/raw/branch/main/%20background/bg.webp
 
 # default-settings
-git clone --depth=1 -b main https://github.com/oppen321/default-settings package/default-settings
+git clone --depth=1 -b dev https://github.com/oppen321/default-settings package/default-settings
 
 # Lucky
 git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
