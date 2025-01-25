@@ -210,6 +210,8 @@ curl -L -o files/etc/AdGuardHome-dnslist.yaml https://git.kejizero.online/zhao/f
 chmod +x files/etc/AdGuardHome-dnslist.yaml
 curl -L -o files/etc/AdGuardHome-mosdns.yaml https://git.kejizero.online/zhao/files/raw/branch/main/etc/AdGuardHome-mosdns.yaml
 chmod +x files/etc/AdGuardHome-mosdns.yaml
+curl -L -o files/etc/AdGuardHome-dns.yaml https://git.kejizero.online/zhao/files/raw/branch/main/etc/AdGuardHome-dns.yaml
+chmod +x files/etc/AdGuardHome-dns.yaml
 
 # Nginx
 mkdir -p files/etc/config
