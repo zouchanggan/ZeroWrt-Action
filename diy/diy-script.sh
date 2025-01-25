@@ -154,7 +154,7 @@ sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 # curl -L -o package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp https://git.kejizero.online/zhao/files/raw/branch/main/%20background/bg.webp
 git clone --depth 1 https://github.com/oppen321/luci-theme-argon package/luci-theme-argon
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
-git clone --depth 1 https://github.com/oppen321/luci-app-argon-config package/luci-app-argon-config
+git clone --depth 1 https://git.kejizero.online/zhao/luci-app-argon-config package/luci-app-argon-config
 
 # default-settings
 git clone --depth=1 -b dev https://github.com/oppen321/default-settings package/default-settings
