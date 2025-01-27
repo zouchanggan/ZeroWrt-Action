@@ -231,11 +231,6 @@ chmod +x files/etc/AdGuardHome-mosdns.yaml
 curl -L -o files/etc/AdGuardHome-dns.yaml https://git.kejizero.online/zhao/files/raw/branch/main/etc/AdGuardHome-dns.yaml
 chmod +x files/etc/AdGuardHome-dns.yaml
 
-# usbreset
-mkdir -p files/etc/hotplug.d/block
-curl -L -o files/etc/hotplug.d/block/20-usbreset https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/20-usbreset
-chmod +x files/etc/hotplug.d/block/20-usbreset
-
 # swapp
 mkdir -p files/etc/sysctl.d
 curl -L -o files/etc/sysctl.d/15-vm-swappiness.conf https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/15-vm-swappiness.conf
