@@ -94,6 +94,9 @@ git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/hellow
 rm -rf feeds/packages/net/nginx
 git clone https://github.com/sbwml/feeds_packages_net_nginx -b openwrt-24.10 feeds/packages/net/nginx
 
+# IPv6 NAT
+git clone https://github.com/sbwml/packages_new_nat6 package/nat6
+
 # nginx - config
 curl -s https://init2.cooluc.com/openwrt/nginx/luci.locations > feeds/packages/net/nginx/files-luci-support/luci.locations
 curl -s https://init2.cooluc.com/openwrt/nginx/uci.conf.template > feeds/packages/net/nginx-util/files/uci.conf.template
