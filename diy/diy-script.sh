@@ -231,11 +231,6 @@ chmod +x files/etc/AdGuardHome-mosdns.yaml
 curl -L -o files/etc/AdGuardHome-dns.yaml https://git.kejizero.online/zhao/files/raw/branch/main/etc/AdGuardHome-dns.yaml
 chmod +x files/etc/AdGuardHome-dns.yaml
 
-# Nginx
-mkdir -p files/etc/config
-curl -L -o files/etc/config/nginx https://git.kejizero.online/zhao/files/raw/branch/main/etc/nginx/nginx
-chmod +x files/etc/config/nginx
-
 # usbreset
 mkdir -p files/etc/hotplug.d/block
 curl -L -o files/etc/hotplug.d/block/20-usbreset https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/20-usbreset
