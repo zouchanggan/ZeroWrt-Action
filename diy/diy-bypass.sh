@@ -20,6 +20,7 @@ curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/ma
 
 # 切换kernel 6.12
 sed -i 's/6.6/6.12/g'  ./target/linux/x86/Makefile
+
 ##配置ip等
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/luci2/bin/config_generate
@@ -62,32 +63,16 @@ git clone https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-adv
 # theme
 git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
 
-# 设置向导
-git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-app-netwizard
-
 # iStore
 git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
 git_sparse_clone main https://github.com/linkease/istore luci
 
-# openwrt_helloworld
-git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/openwrt_helloworld
-# bypass
-git clone https://github.com/siropboy/luci-app-bypass package/luci-app-bypass
-
-# Docker
-rm -rf feeds/luci/applications/luci-app-dockerman
-git clone https://git.kejizero.online/zhao/luci-app-dockerman -b 24.10 feeds/luci/applications/luci-app-dockerman
-rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
-git clone https://git.kejizero.online/zhao/packages_utils_docker feeds/packages/utils/docker
-git clone https://git.kejizero.online/zhao/packages_utils_dockerd feeds/packages/utils/dockerd
-git clone https://git.kejizero.online/zhao/packages_utils_containerd feeds/packages/utils/containerd
-git clone https://git.kejizero.online/zhao/packages_utils_runc feeds/packages/utils/runc
-sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
-pushd feeds/packages
-    curl -s https://init.cooluc.com/openwrt/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
-    curl -s https://init.cooluc.com/openwrt/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
-    curl -s https://init.cooluc.com/openwrt/patch/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
-popd
+# 科学插件
+git clone --depth=1 -b master https://github.com/fw876/helloworld package/luci-app-ssr-plus
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
+git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
 
 # ZeroWrt选项菜单
 mkdir -p files/bin
