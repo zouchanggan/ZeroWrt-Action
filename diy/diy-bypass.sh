@@ -71,6 +71,7 @@ rm -rf feeds/packages/net/mosdns
 rm -rf feeds/packages/net/sing-box
 rm -rf feeds/packages/net/xray-core
 rm -rf feeds/packages/net/trojan
+rm -rf feeds/packages/utils/v2dat
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
