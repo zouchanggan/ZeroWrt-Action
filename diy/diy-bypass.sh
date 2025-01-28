@@ -50,6 +50,22 @@ sed -i 's,frp 客户端,FRP 客户端,g' feeds/luci/applications/luci-app-frpc/p
 ##WiFi
 sed -i "s/LEDE/ZeroWrt/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
+rm -rf feeds/luci/themes/luci-theme-argon
+rm -rf feeds/luci/applications/luci-app-argon-config
+rm -rf feeds/luci/applications/luci-app-passwall
+rm -rf feeds/luci/applications/luci-app-ssr-plus
+rm -rf feeds/luci/applications/luci-app-openclash
+rm -rf feeds/luci/applications/luci-app-lucky
+rm -rf feeds/luci/applications/luci-app-mosdns
+rm -rf feeds/luci/applications/luci-app-passwall2
+rm -rf feeds/packages/net/alist
+rm -rf feeds/packages/net/chinadns-ng
+rm -rf feeds/packages/net/lucky
+rm -rf feeds/packages/net/mosdns
+rm -rf feeds/packages/net/sing-box
+rm -rf feeds/packages/net/xray-core
+rm -rf feeds/packages/net/trojan
+
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
   branch="$1" repourl="$2" && shift 2
