@@ -104,6 +104,7 @@ git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
 # istoreos-files
 git clone https://github.com/oppen321/istoreos-files package/istoreos-files
 
+# 主题
 git clone --depth 1 https://github.com/oppen321/luci-theme-argon package/luci-theme-argon
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 git clone --depth 1 https://git.kejizero.online/zhao/luci-app-argon-config package/luci-app-argon-config
