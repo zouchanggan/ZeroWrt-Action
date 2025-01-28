@@ -33,3 +33,4 @@ chmod +x files/etc/config/default_passwall
 chmod +x files/etc/config/default_openclash
 
 # 更新default-settings
+cp -f $GITHUB_WORKSPACE/files/zzz-default-settings package/lean/default-settings/files/zzz-default-settings
