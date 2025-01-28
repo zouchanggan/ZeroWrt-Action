@@ -14,6 +14,9 @@ sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/ut
 # alist
 sed -i 's/services/nas/g' feeds/luci/applications/luci-app-alist/htdocs/luci-static/resources/view/alist/config.js
 
+# aria2
+sed -i 's/services/nas/g' feeds/luci/applications/luci-app-aria2/htdocs/luci-static/resources/view/aria2/config.js
+
 # bash
 sed -i 's#ash#bash#g' package/base-files/files/etc/passwd
 sed -i '\#export ENV=/etc/shinit#a export HISTCONTROL=ignoredups' package/base-files/files/etc/profile
