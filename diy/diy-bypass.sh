@@ -25,10 +25,6 @@ sed -i 's/6.6/6.12/g'  ./target/linux/x86/Makefile
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/luci2/bin/config_generate
 
-sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
-sed -i 's/luci-theme-bootstrap/luci-theme-kucat/g' feeds/luci/collections/luci/Makefile
-sed -i 's/luci-theme-bootstrap/luci-theme-kucat/g' feeds/luci/collections/luci-nginx/Makefile
-
 ##更改主机名
 sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/files/bin/config_generate
 sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/luci2/bin/config_generate
@@ -39,6 +35,14 @@ sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By OPPEN321'/g" package/lean
 
 sed -i "2iuci set istore.istore.channel='ZeroWrt_OPPEN321'" package/lean/default-settings/files/zzz-default-settings
 sed -i "3iuci commit istore" package/lean/default-settings/files/zzz-default-settings
+
+# mwan3
+sed -i 's/MultiWAN 管理器/负载均衡/g' feeds/luci/applications/luci-app-mwan3/po/zh_Hans/mwan3.po
+
+# frpc名称
+sed -i 's,发送,Transmission,g' feeds/luci/applications/luci-app-transmission/po/zh_Hans/transmission.po
+sed -i 's,frp 服务器,FRP 服务器,g' feeds/luci/applications/luci-app-frps/po/zh_Hans/frps.po
+sed -i 's,frp 客户端,FRP 客户端,g' feeds/luci/applications/luci-app-frpc/po/zh_Hans/frpc.po
 
 ##WiFi
 sed -i "s/LEDE/ZeroWrt/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
@@ -57,15 +61,32 @@ function git_sparse_clone() {
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
-# 进阶设置
-git clone https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
+# Alist
+git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
 
-# theme
-git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
+# Mosdns
+git clone https://git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
+git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geodata
 
 # iStore
 git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
 git_sparse_clone main https://github.com/linkease/istore luci
+
+# 锐捷认证
+git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
+
+# istoreos-files
+git clone https://github.com/oppen321/istoreos-files package/istoreos-files
+
+git clone --depth 1 https://github.com/oppen321/luci-theme-argon package/luci-theme-argon
+cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+git clone --depth 1 https://git.kejizero.online/zhao/luci-app-argon-config package/luci-app-argon-config
+
+# Lucky
+git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
+
+# OpenAppFilter
+git clone https://git.kejizero.online/zhao/OpenAppFilter --depth=1 package/OpenAppFilter
 
 # 科学插件
 git clone --depth=1 -b master https://github.com/fw876/helloworld package/luci-app-ssr-plus
@@ -73,31 +94,3 @@ git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages packa
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
-
-# ZeroWrt选项菜单
-mkdir -p files/bin
-curl -L -o files/bin/ZeroWrt https://git.kejizero.online/zhao/files/raw/branch/main/bin/ZeroWrt
-chmod +x files/bin/ZeroWrt
-mkdir -p files/root
-curl -L -o files/root/version.txt https://git.kejizero.online/zhao/files/raw/branch/main/bin/version.txt
-chmod +x files/root/version.txt
-
-# Nginx
-mkdir -p files/etc/config
-curl -L -o files/etc/config/nginx https://git.kejizero.online/zhao/files/raw/branch/main/etc/nginx/nginx
-chmod +x files/etc/config/nginx
-
-# usbreset
-mkdir -p files/etc/hotplug.d/block
-curl -L -o files/etc/hotplug.d/block/20-usbreset https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/20-usbreset
-chmod +x files/etc/hotplug.d/block/20-usbreset
-
-# swapp
-mkdir -p files/etc/sysctl.d
-curl -L -o files/etc/sysctl.d/15-vm-swappiness.conf https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/15-vm-swappiness.conf
-curl -L -o files/etc/sysctl.d/16-udp-buffer-size.conf https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/16-udp-buffer-size.conf
-chmod +x files/etc/sysctl.d/15-vm-swappiness.conf
-chmod +x files/etc/sysctl.d/16-udp-buffer-size.conf
-
-./scripts/feeds update -a
-./scripts/feeds install -a
