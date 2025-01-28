@@ -232,16 +232,4 @@ uci set smartdns.@server[19].server_group='smartdns-Overseas'\n\
 uci set smartdns.@server[19].blacklist_ip='0'\n\
 uci commit smartdns\n\
 /etc/init.d/smartdns restart\n\
-# Smartdns优化\n\
-uci set smartdns.global.expire="600"\n\
-uci set smartdns.global.cache_size="2048"\n\
-uci set smartdns.global.dns_per_server="3"\n\
-uci set smartdns.global.query_cache_size="512"\n\
-uci set smartdns.global.domain_cache_size="256"\n\
-uci commit smartdns\n\
-# 重新启动相关服务\n\
-/etc/init.d/network restart\n\
-/etc/init.d/dnsmasq restart\n\
-/etc/init.d/smartdns restart\n\
-/etc/init.d/odhcpd restart\n\
 ' package/lean/default-settings/files/zzz-default-settings
