@@ -179,5 +179,4 @@ uci commit smartdns\n\
 /etc/init.d/dnsmasq restart\n\
 /etc/init.d/smartdns restart\n\
 /etc/init.d/odhcpd restart\n\
-exit 0
 ' package/lean/default-settings/files/zzz-default-settings
