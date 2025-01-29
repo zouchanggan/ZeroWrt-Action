@@ -11,9 +11,6 @@ sed -i '3 a\\t\t"order": 50,' feeds/luci/applications/luci-app-ttyd/root/usr/sha
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 
-# alist
-sed -i 's/services/nas/g' feeds/luci/applications/luci-app-alist/htdocs/luci-static/resources/view/alist/config.js
-
 # aria2
 sed -i 's/services/nas/g' feeds/luci/applications/luci-app-aria2/htdocs/luci-static/resources/view/aria2/config.js
 
@@ -56,12 +53,14 @@ sed -i 's,frp 客户端,FRP 客户端,g' feeds/luci/applications/luci-app-frpc/p
 ##WiFi
 sed -i "s/LEDE/ZeroWrt/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
+# 需要替换的包
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-argon-config
 rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf feeds/luci/applications/luci-app-ssr-plus
 rm -rf feeds/luci/applications/luci-app-openclash
 rm -rf feeds/luci/applications/luci-app-lucky
+rm -rf feeds/luci/applications/luci-app-alist
 rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/luci/applications/luci-app-passwall2
 rm -rf feeds/packages/net/alist
@@ -89,6 +88,7 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 
 # Alist
 git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
+sed -i 's/services/nas/g' package/luci-app-alist/htdocs/luci-static/resources/view/alist/config.js
 
 # Mosdns
 git clone https://git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
