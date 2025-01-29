@@ -80,6 +80,22 @@ uci set luci.diag.ping='www.qq.com'
 uci set luci.diag.route='www.qq.com'
 uci commit luci
 
+# 配置流量卸载
+uci set firewall.@defaults[0].flow_offloading=1
+uci commit firewall
+/etc/init.d/firewall restart
+
+# 禁用IPV6
+uci set dhcp.lan.ra='disabled'
+uci set dhcp.lan.dhcpv6='disabled'
+uci set dhcp.lan.ndp='disabled'
+uci set dhcp.@dnsmasq[0].filter_aaaa='1'
+uci set dhcp.@dnsmasq[0].min_cache_ttl='0'
+uci set dhcp.@dnsmasq[0].max_cache_ttl='0'
+uci commit dhcp
+/etc/init.d/dnsmasq restart
+
+
 # Docker换源
 uci add_list dockerd.globals.registry_mirrors="https://docker.m.daocloud.io"
 uci commit dockerd
