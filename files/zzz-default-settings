@@ -20,7 +20,6 @@ rm -f /usr/lib/lua/luci/view/admin_status/index/minidlna.htm
 rm -f /www/luci-static/resources/view/status/include/70_ddns.js
 rm -f /www/luci-static/resources/view/status/include/80_upnp.js
 
-sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/aria2.lua
 sed -i 's/services/nas/g' /usr/lib/lua/luci/view/aria2/overview_status.htm
 sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/hd_idle.lua
 sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/samba.lua
@@ -34,7 +33,8 @@ sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/xunlei.lua
 sed -i 's/services/nas/g'  /usr/lib/lua/luci/view/minidlna_status.htm
 
 sed -i 's/\"services\"/\"nas\"/g' /usr/share/luci/menu.d/luci-app-samba4.json
-
+sed -i 's/\"services\"/\"nas\"/g' /usr/share/luci/menu.d/luci-app-aria2.json
+sed -i 's/\"services\"/\"nas\"/g' /usr/share/luci/menu.d/luci-app-alist.json
 sed -i 's#downloads.openwrt.org#mirrors.tencent.com/lede#g' /etc/opkg/distfeeds.conf
 sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
 sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
@@ -51,9 +51,9 @@ sed -i '/option disabled/d' /etc/config/wireless
 sed -i '/set wireless.radio${devidx}.disabled/d' /lib/wifi/mac80211.sh
 
 sed -i '/DISTRIB_REVISION/d' /etc/openwrt_release
-echo "DISTRIB_REVISION='R25.1.1'" >> /etc/openwrt_release
+echo "DISTRIB_REVISION=' By OPPEN321'" >> /etc/openwrt_release
 sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release
-echo "DISTRIB_DESCRIPTION='LEDE '" >> /etc/openwrt_release
+echo "DISTRIB_DESCRIPTION='ZeroWrt-$(date +%Y%m%d)'" >> /etc/openwrt_release
 
 sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
