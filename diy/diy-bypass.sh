@@ -83,6 +83,9 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 # Alist
 git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
 
+# 5G-Modem-Support
+git clone https://github.com/oppen321/5G-Modem-Support package/5G-Modem-Support
+
 # Mosdns
 git clone https://git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
 git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geodata
