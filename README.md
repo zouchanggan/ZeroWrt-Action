@@ -44,11 +44,15 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
    curl -sS -O https://git.kejizero.online/zhao/files/raw/branch/main/IPQ807x.sh && chmod +x IPQ807x.sh && ./IPQ807x.sh
    ```
 
+---
+
 ## ZeroWrt选项菜单
  ![脚本菜单](images/01.png)
 - ZeroWrt选项菜单是一个方便用户配置OpenWrt
 - 默认连接SSH连接或者终端输入ZeroWrt弹出ZeroWrt选项菜单
 - 目前脚本支持一键更换LAN口ip、一键设置默认主题、一键修改密码、恢复出厂设置、一键部署 、IPv6 开关 (仅适用于主路由)、iStoreOS风格化和检测更新
+
+---
 
 ## Mediatek_filogic-Uboot设置（请使用本仓库Mediatek_filogic_hanwckf固件）
 1. 根据 hanwckf 的源码编译：| [bl-mt798x](https://github.com/hanwckf/bl-mt798x) |编译的mt798x-uboot，并对其进行了汉化
@@ -63,6 +67,8 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
    mtd verify mt7981_cetron_ct3003-fip-fixed-parts.bin FIP
    ```
 ![Uboot示例](images/02.png)
+
+---
 
 ## Arm Docker项目
 默认地址：10.0.0.1 默认用户：root 默认密码：password
@@ -98,6 +104,8 @@ docker exec openwrt sed -e 's/192.168.1.1/192.168.xx.zz/' -i /etc/config/network
 docker restart openwrt
 ```
 好了部署完成，接下来登录更改后的 IP 地址进行其他设置吧
+
+---
 
 ## 定制固件 [![](https://img.shields.io/badge/-项目基本编译教程-FFFFFF.svg)](#定制固件-)
 1. 首先要登录 Gihub 账号，然后 Fork 此项目到你自己的 Github 仓库
@@ -150,12 +158,15 @@ docker restart openwrt
    **如果看不懂编译界面可以参考 YouTube 视频：[软路由固件 OpenWrt 编译界面设置](https://www.youtube.com/watch?v=jEE_J6-4E3Y&list=WL&index=7)**
 </details>
 
+---
 
 ## 问题反馈
 
 如果在使用过程中遇到任何问题，欢迎：
 1. [提交 Issue](https://github.com/oppen321/ZeroWrt/issues)
 2. [加入讨论](https://github.com/oppen321/ZeroWrt/discussions)
+
+---
 
 ## 特别感谢
 
@@ -176,3 +187,5 @@ docker restart openwrt
 <td width="200"><a href="https://github.com/fw876" target="_blank">fw876</a></td>
 </tr>
 </table>
+
+---
