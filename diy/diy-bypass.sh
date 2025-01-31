@@ -19,8 +19,8 @@ curl -so files/root/.bash_profile https://git.kejizero.online/zhao/files/raw/bra
 curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/main/root/.bashrc
 
 # 切换kernel 6.12
-sed -i 's/6.6/6.12/g'  ./target/linux/x86/Makefile
-sed -i 's/6.6/6.12/g'  ./target/linux/rockchip/Makefile
+# sed -i 's/6.6/6.12/g'  ./target/linux/x86/Makefile
+# sed -i 's/6.6/6.12/g'  ./target/linux/rockchip/Makefile
 
 ##配置ip等
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
