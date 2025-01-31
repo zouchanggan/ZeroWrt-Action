@@ -48,7 +48,7 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
 
 ## ZeroWrt选项菜单
  ![脚本菜单](images/01.png)
- ![页面显示](images/02.png)
+ ![页面显示](images/03.png)
 - ZeroWrt选项菜单是一个方便用户配置OpenWrt
 - 默认连接SSH连接或者终端输入ZeroWrt弹出ZeroWrt选项菜单
 - 目前脚本支持一键更换LAN口ip、一键设置默认主题、一键修改密码、恢复出厂设置、一键部署 、IPv6 开关 (仅适用于主路由)、iStoreOS风格化和检测更新
