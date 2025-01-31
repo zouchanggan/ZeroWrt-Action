@@ -43,7 +43,7 @@ Build OpenWrt 24.10 latest ZeroWrt
 
 ## ZeroWrt options menu
  ![Script menu](images/01.png)
- ![Page display](images/02.png)
+ ![Page display](images/03.png)
 - The ZeroWrt options menu is a convenient way for users to configure OpenWrt
 - The default connection is SSH connection or the terminal enters ZeroWrt to pop up the ZeroWrt option menu
 - Currently, the script supports one-click replacement of LAN port IP, one-click setting of default theme, one-click password modification, one-click restoration of factory settings, one-click deployment, IPv6 switch (only applicable to main router), iStoreOS stylization and detection of updates
