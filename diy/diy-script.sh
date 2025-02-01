@@ -23,9 +23,9 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
 
-# 切换kernel 6.12
-# sed -i 's/6.6/6.12/g'  ./target/linux/x86/Makefile
-# sed -i 's/6.6/6.12/g'  ./target/linux/rockchip/Makefile
+# 切换kernel 6.6
+sed -i 's/6.12/6.6/g'  ./target/linux/x86/Makefile
+sed -i 's/6.12/6.6/g'  ./target/linux/rockchip/Makefile
 
 ##配置ip等
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
