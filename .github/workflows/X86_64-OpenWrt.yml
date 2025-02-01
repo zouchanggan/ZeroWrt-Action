@@ -100,6 +100,8 @@ jobs:
     - name: Install Feeds
       run: |
         cd $OPENWRT_PATH
+        sed -i 's/^#src-git luci https:\/\/github.com\/coolsnowwolf\/luci/src-git luci https:\/\/github.com\/coolsnowwolf\/luci/' ./feeds.conf.default
+        sed -i 's/^src-git luci https:\/\/github.com\/coolsnowwolf\/luci\.git;openwrt-23\.05/#src-git luci https:\/\/github.com\/coolsnowwolf\/luci.git;openwrt-23.05/' ./feeds.conf.default
         echo 'src-git nas https://github.com/linkease/nas-packages.git;master' >> feeds.conf.default
         echo 'src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' >> feeds.conf.default
         ./scripts/feeds update -a
