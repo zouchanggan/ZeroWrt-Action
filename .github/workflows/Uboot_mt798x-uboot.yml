@@ -68,3 +68,12 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: |
           bl-mt798x/output/*
+        body: |
+          **This is OpenWrt uboot
+          ### 根据 hanwckf 的源码编译：| bl-mt798x |编译的mt798x-uboot，并对其进行了汉化
+          ### winscp进入路由器tmp文件夹，上传uboot：mt7981_cetron_ct3003-fip-fixed-parts.bin（这里替换成你设备相对应的 uboot）
+          ### 运行以下命令刷入大分区uboot
+          - cd /tmp
+          - md5sum mt7981_cetron_ct3003-fip-fixed-parts.bin
+          - mtd write mt7981_cetron_ct3003-fip-fixed-parts.bin FIP
+          - mtd verify mt7981_cetron_ct3003-fip-fixed-parts.bin FIP
