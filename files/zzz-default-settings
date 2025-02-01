@@ -101,18 +101,6 @@ uci commit dhcp
 uci add_list dockerd.globals.registry_mirrors="https://docker.m.daocloud.io"
 uci commit dockerd
 
-设置 LAN LED
-uci set system.led_LAN=led
-uci set system.led_LAN.name="LAN"
-uci set system.led_LAN.sysfs="green:lan"
-uci set system.led_LAN.trigger="default-on"
-
-设置 WAN LED
-uci set system.led_WAN=led
-uci set system.led_WAN.name="WAN"
-uci set system.led_WAN.sysfs="green:wan"
-uci set system.led_WAN.trigger="default-on"
-
 # Smartdns相关设置
 uci add smartdns server
 uci set smartdns.@server[0].enabled='1'
