@@ -61,6 +61,10 @@ echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 rm -rf /tmp/luci-modulecache/
 rm -f /tmp/luci-indexcache
 
+# 设置默认主题为kucat
+uci set luci.main.mediaurlbase='/luci-static/design'
+uci commit luci
+
 # 设置主机名映射，解决安卓原生TV首次连不上网的问题
 uci add dhcp domain
 uci set "dhcp.@domain[-1].name=time.android.com"
