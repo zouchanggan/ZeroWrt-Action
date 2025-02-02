@@ -104,6 +104,10 @@ uci commit dhcp
 uci add_list dockerd.globals.registry_mirrors="https://docker.m.daocloud.io"
 uci commit dockerd
 
+# adguardhome
+uci set AdGuardHome.configpath='/etc/config/AdGuardHome.yaml'
+uci commit AdGuardHome
+
 # Smartdns相关设置
 uci add smartdns server
 uci set smartdns.@server[0].enabled='1'
