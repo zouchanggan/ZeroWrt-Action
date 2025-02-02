@@ -2,8 +2,8 @@ name: X86_64-iStoreOS
 
 on:
   workflow_dispatch:
-#  schedule:
-#    - cron: 0 22 * * *
+  schedule:
+    - cron: 0 22 * * *
 
 env:
   REPO_URL: https://github.com/istoreos/istoreos
@@ -117,8 +117,8 @@ jobs:
         chmod +x $DIY_SCRIPT
         cd $OPENWRT_PATH
         $GITHUB_WORKSPACE/$DIY_SCRIPT
-        $GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
-
+#        $GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
+        
     - name: Download DL Package
       run: |
         cd $OPENWRT_PATH
