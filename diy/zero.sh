@@ -10,7 +10,7 @@ chmod +x files/root/version.txt
 
 # Adguardhome设置
 mkdir -p files/etc
-curl -L -o files/etc/AdGuardHome.yaml 
+curl -L -o files/etc/AdGuardHome.yaml https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/AdGuardHome.yaml
 mkdir -p files/etc
 curl -L -o files/etc/AdGuardHome-dnslist.yaml https://git.kejizero.online/zhao/files/raw/branch/main/etc/AdGuardHome-dnslist.yaml
 chmod +x files/etc/AdGuardHome-dnslist.yaml
