@@ -21,28 +21,6 @@ mkdir -p files/root
 curl -so files/root/.bash_profile https://git.kejizero.online/zhao/files/raw/branch/main/root/.bash_profile
 curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/main/root/.bashrc
 
-# Nginx
-sed -i "s/large_client_header_buffers 2 1k/large_client_header_buffers 4 32k/g" feeds/packages/net/nginx-util/files/uci.conf.template
-sed -i "s/client_max_body_size 128M/client_max_body_size 2048M/g" feeds/packages/net/nginx-util/files/uci.conf.template
-sed -i '/client_max_body_size/a\\tclient_body_buffer_size 8192M;' feeds/packages/net/nginx-util/files/uci.conf.template
-sed -i '/client_max_body_size/a\\tserver_names_hash_bucket_size 128;' feeds/packages/net/nginx-util/files/uci.conf.template
-sed -i '/ubus_parallel_req/a\        ubus_script_timeout 600;' feeds/packages/net/nginx/files-luci-support/60_nginx-luci-support
-sed -ri "/luci-webui.socket/i\ \t\tuwsgi_send_timeout 600\;\n\t\tuwsgi_connect_timeout 600\;\n\t\tuwsgi_read_timeout 600\;" feeds/packages/net/nginx/files-luci-support/luci.locations
-sed -ri "/luci-cgi_io.socket/i\ \t\tuwsgi_send_timeout 600\;\n\t\tuwsgi_connect_timeout 600\;\n\t\tuwsgi_read_timeout 600\;" feeds/packages/net/nginx/files-luci-support/luci.locations
-
-# uwsgi
-sed -i 's,procd_set_param stderr 1,procd_set_param stderr 0,g' feeds/packages/net/uwsgi/files/uwsgi.init
-sed -i 's,buffer-size = 10000,buffer-size = 131072,g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
-sed -i 's,logger = luci,#logger = luci,g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
-sed -i '$a cgi-timeout = 600' feeds/packages/net/uwsgi/files-luci-support/luci-*.ini
-sed -i 's/threads = 1/threads = 2/g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
-sed -i 's/processes = 3/processes = 4/g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
-sed -i 's/cheaper = 1/cheaper = 2/g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
-
-# rpcd
-sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
-sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
-
 # mwan3
 sed -i 's/MultiWAN 管理器/负载均衡/g' feeds/luci/applications/luci-app-mwan3/po/zh_Hans/mwan3.po
 
@@ -92,11 +70,6 @@ git clone https://github.com/sbwml/feeds_packages_net_nginx -b openwrt-24.10 fee
 
 # IPv6 NAT
 git clone https://github.com/sbwml/packages_new_nat6 package/nat6
-
-# luci-mod extra
-pushd feeds/luci
-    curl -s https://git.kejizero.online/zhao/files/raw/branch/main/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-popd
 
 # Alist
 git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
@@ -160,9 +133,10 @@ sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 # git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/luci-theme-argon
 # git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
 # curl -L -o package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp https://git.kejizero.online/zhao/files/raw/branch/main/%20background/bg.webp
-git clone --depth 1 https://github.com/oppen321/luci-theme-argon package/luci-theme-argon
+git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
-git clone --depth 1 https://git.kejizero.online/zhao/luci-app-argon-config package/luci-app-argon-config
+git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
+sed -i "s/option online_wallpaper 'bing'/option online_wallpaper 'none'/g" package/luci-app-argon-config/root/etc/config/argon
 
 # default-settings
 git clone --depth=1 -b dev https://github.com/oppen321/default-settings package/default-settings
@@ -190,45 +164,6 @@ sed -i 's/0.openwrt.pool.ntp.org/ntp1.aliyun.com/g' package/base-files/files/bin
 sed -i 's/1.openwrt.pool.ntp.org/ntp2.aliyun.com/g' package/base-files/files/bin/config_generate
 sed -i 's/2.openwrt.pool.ntp.org/time1.cloud.tencent.com/g' package/base-files/files/bin/config_generate
 sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/files/bin/config_generate
-
-# ZeroWrt选项菜单
-mkdir -p files/bin
-curl -L -o files/bin/ZeroWrt https://git.kejizero.online/zhao/files/raw/branch/main/bin/ZeroWrt
-chmod +x files/bin/ZeroWrt
-mkdir -p files/root
-curl -L -o files/root/version.txt https://git.kejizero.online/zhao/files/raw/branch/main/bin/version.txt
-chmod +x files/root/version.txt
-
-# Adguardhome设置
-mkdir -p files/etc
-curl -L -o files/etc/AdGuardHome-dnslist.yaml https://git.kejizero.online/zhao/files/raw/branch/main/etc/AdGuardHome-dnslist.yaml
-chmod +x files/etc/AdGuardHome-dnslist.yaml
-curl -L -o files/etc/AdGuardHome-mosdns.yaml https://git.kejizero.online/zhao/files/raw/branch/main/etc/AdGuardHome-mosdns.yaml
-chmod +x files/etc/AdGuardHome-mosdns.yaml
-curl -L -o files/etc/AdGuardHome-dns.yaml https://git.kejizero.online/zhao/files/raw/branch/main/etc/AdGuardHome-dns.yaml
-chmod +x files/etc/AdGuardHome-dns.yaml
-
-# swapp
-mkdir -p files/etc/sysctl.d
-curl -L -o files/etc/sysctl.d/15-vm-swappiness.conf https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/15-vm-swappiness.conf
-curl -L -o files/etc/sysctl.d/16-udp-buffer-size.conf https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/16-udp-buffer-size.conf
-chmod +x files/etc/sysctl.d/15-vm-swappiness.conf
-chmod +x files/etc/sysctl.d/16-udp-buffer-size.conf
-
-# default_set
-mkdir -p files/etc/config
-curl -L -o files/etc/config/default_dhcp.conf https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/default_dhcp.conf
-curl -L -o files/etc/config/default_mosdns https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/default_mosdns
-curl -L -o files/etc/config/default_smartdns https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/default_smartdns
-curl -L -o files/etc/config/default_AdGuardHome https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/default_AdGuardHome
-curl -L -o files/etc/config/default_passwall https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/default_passwall
-curl -L -o files/etc/config/default_openclash https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/default_openclash
-chmod +x files/etc/config/default_dhcp.conf
-chmod +x files/etc/config/default_mosdns
-chmod +x files/etc/config/default_smartdns
-chmod +x files/etc/config/default_AdGuardHome
-chmod +x files/etc/config/default_passwall
-chmod +x files/etc/config/default_openclash
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
