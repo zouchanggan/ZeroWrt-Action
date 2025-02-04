@@ -122,7 +122,7 @@ git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/l
 sed -i "s/option online_wallpaper 'bing'/option online_wallpaper 'none'/g" package/luci-app-argon-config/root/etc/config/argon
 
 # default-settings
-git clone --depth=1 -b dev https://github.com/oppen321/default-settings package/default-settings
+git clone --depth=1 -b openwrt-24.10 https://github.com/oppen321/default-settings package/default-settings
 
 # Lucky
 git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
