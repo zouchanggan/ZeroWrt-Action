@@ -77,6 +77,9 @@ git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geoda
 # 锐捷认证
 git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
 
+# 5G-Modem-Support
+git clone https://github.com/oppen321/5G-Modem-Support package/5G-Modem-Support
+
 # istoreos-files
 git clone https://github.com/oppen321/istoreos-files package/istoreos-files
 
