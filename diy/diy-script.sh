@@ -62,14 +62,6 @@ git clone https://github.com/sbwml/packages_new_nat6 package/nat6
 # Alist
 git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
 
-# luci-app-modemband
-git clone https://github.com/4IceG/luci-app-modemband package/luci-app-modemband
-sed -i 's/"modem"/"services"/g' package/luci-app-modemband/luci-app-modemband/root/usr/share/luci/menu.d/luci-app-modemband.json
-
-# sms-tool-js
-git clone https://github.com/4IceG/luci-app-sms-tool-js package/luci-app-sms-tool-js
-sed -i 's/"modem"/"services"/g' package/luci-app-sms-tool-js/luci-app-sms-tool-js/root/usr/share/luci/menu.d/luci-app-sms-tool-js.json
-
 # Mosdns
 git clone https://git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
 git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geodata
