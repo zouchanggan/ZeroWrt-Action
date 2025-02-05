@@ -67,7 +67,7 @@ git clone https://github.com/4IceG/luci-app-modemband package/luci-app-modemband
 sed -i 's/"modem"/"services"/g' package/luci-app-modemband/luci-app-modemband/root/usr/share/luci/menu.d/luci-app-modemband.json
 
 # sms-tool-js
-git clone https://github.com/4IceG/luci-app-sms-tool-js package/sms-tool-js
+git clone https://github.com/4IceG/luci-app-sms-tool-js package/luci-app-sms-tool-js
 sed -i 's/"modem"/"services"/g' package/luci-app-sms-tool-js/luci-app-sms-tool-js/root/usr/share/luci/menu.d/luci-app-sms-tool-js.json
 
 # Mosdns
