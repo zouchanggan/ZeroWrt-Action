@@ -111,10 +111,8 @@ sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 # git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/luci-theme-argon
 # git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
 # curl -L -o package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp https://git.kejizero.online/zhao/files/raw/branch/main/%20background/bg.webp
-git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
-cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
-git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
-sed -i "s/option online_wallpaper 'bing'/option online_wallpaper 'none'/g" package/luci-app-argon-config/root/etc/config/argon
+git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/luci-theme-argon
+cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
 # default-settings
 git clone --depth=1 -b openwrt-24.10 https://github.com/oppen321/default-settings package/default-settings
