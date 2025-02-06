@@ -52,13 +52,6 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 # SSRP & Passwall
 git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
 
-# nginx
-rm -rf feeds/packages/net/nginx
-git clone https://github.com/sbwml/feeds_packages_net_nginx -b openwrt-24.10 feeds/packages/net/nginx
-
-# IPv6 NAT
-git clone https://github.com/sbwml/packages_new_nat6 package/nat6
-
 # Alist
 git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
 
@@ -68,9 +61,6 @@ git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geoda
 
 # 锐捷认证
 git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
-
-# istoreos-files
-git clone https://github.com/oppen321/istoreos-files package/istoreos-files
 
 # Realtek 网卡 - R8168 & R8125 & R8126 & R8152 & R8101
 rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
