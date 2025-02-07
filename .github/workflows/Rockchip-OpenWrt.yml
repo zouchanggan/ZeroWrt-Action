@@ -6,8 +6,8 @@ on:
     - cron: 0 17 * * *
 
 env:
-  REPO_URL: https://git.openwrt.org/openwrt/openwrt.git
-  REPO_BRANCH: v24.10.0
+  REPO_URL: https://github.com/openwrt/openwrt
+  REPO_BRANCH: openwrt-24.10
   CONFIG_FILE: configs/rockchip.config
   DIY_SCRIPT: diy/diy-script.sh
   CLASH_KERNEL: arm64
