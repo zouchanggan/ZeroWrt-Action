@@ -124,7 +124,7 @@ git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
 git clone https://git.kejizero.online/zhao/OpenAppFilter --depth=1 package/OpenAppFilter
 
 # luci-app-webdav
-git clone https://git.kejizero.online/zhao/luci-app-webdav package/new/luci-app-webdav
+git clone https://git.kejizero.online/zhao/luci-app-webdav package/luci-app-webdav
 
 # unzip
 rm -rf feeds/packages/utils/unzip
