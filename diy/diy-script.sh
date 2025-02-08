@@ -167,5 +167,9 @@ sed -i 's/services/vpn/g' package/helloworld/luci-app-openclash/luasrc/view/open
 
 sed -i 's/services/vpn/g' package/helloworld/luci-app-mihomo/root/usr/share/luci/menu.d/luci-app-mihomo.json
 
+sed -i 's/services/nas/g' feeds/luci/applications/luci-app-samba4/root/usr/share/luci/menu.d/luci-app-samba4.json
+
+sed -i 's/services/nas/g' luci/applications/luci-app-aria2/root/usr/share/luci/menu.d/luci-app-aria2.json
+
 ./scripts/feeds update -a
 ./scripts/feeds install -a
