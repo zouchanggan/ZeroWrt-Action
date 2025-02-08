@@ -110,10 +110,6 @@ git clone --depth=1 https://github.com/oppen321/Zero-package package/Zero-packag
 # qBittorrent
 git clone https://github.com/sbwml/luci-app-qbittorrent package/luci-app-qbittorrent
 
-# dae
-git clone https://github.com/QiuSimons/luci-app-daed package/dae
-mkdir -p Package/libcron && wget -O Package/libcron/Makefile https://raw.githubusercontent.com/immortalwrt/packages/refs/heads/master/libs/libcron/Makefile
-
 # 修改名称
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
