@@ -81,8 +81,8 @@ rm -rf feeds/{packages/netsmartdns,luci/applications/luci-app-smartdns}
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages smartdns luci-app-smartdns
 
 # iStore
-git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
-git_sparse_clone main https://github.com/linkease/istore luci
+# git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
+# git_sparse_clone main https://github.com/linkease/istore luci
 
 # Docker
 rm -rf feeds/luci/applications/luci-app-dockerman
@@ -106,6 +106,9 @@ git clone https://git.kejizero.online/zhao/luci-app-upnp feeds/luci/applications
 
 # Zero-package
 git clone --depth=1 https://github.com/oppen321/Zero-package package/Zero-package
+
+# qBittorrent
+git clone https://github.com/sbwml/luci-app-qbittorrent package/luci-app-qbittorrent
 
 # 修改名称
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
