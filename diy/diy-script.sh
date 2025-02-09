@@ -80,6 +80,11 @@ git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
 git clone https://git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
 git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geodata
 
+# 晶晨宝盒
+git_sparse_clone main https://github.com/ophub/luci-app-amlogic luci-app-amlogic
+sed -i "s|firmware_repo.*|firmware_repo 'https://github.com/oppen321/ZeroWrt'|g" package/luci-app-amlogic/root/etc/config/amlogic
+# sed -i "s|kernel_path.*|kernel_path 'https://github.com/ophub/kernel'|g" package/luci-app-amlogic/root/etc/config/amlogic
+
 # 锐捷认证
 git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
 
