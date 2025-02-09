@@ -140,11 +140,13 @@ git clone https://github.com/sbwml/luci-app-qbittorrent package/luci-app-qbittor
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
 # Theme
-# git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/luci-theme-argon
+git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/luci-theme-argon
+git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 # git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
 # curl -L -o package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp https://git.kejizero.online/zhao/files/raw/branch/main/%20background/bg.webp
-git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/luci-theme-argon
-cp -f $GITHUB_WORKSPACE/images/bg.webp package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp
+# git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/luci-theme-argon
+cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+sed -i 's/bing/none/' package/luci-app-argon-config/root/etc/config/argon
 
 # default-settings
 git clone --depth=1 -b openwrt-24.10 https://github.com/oppen321/default-settings package/default-settings
