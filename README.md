@@ -15,16 +15,15 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
 
 ## 固件说明
 - 基于原生 OpenWrt 24.10 编译，默认管理地址 10.0.0.1   默认密码：password
-- 默认开启“师夷长技以制夷”/Open克拉斯-SmartDNS-AdguardHome无需任何设置即可体验完美国内外分流,可以登录终端输入ZeroWrt弹出ZeroWrt选项菜单输入 6 一键设置切换SmartDNS或者MosDNS
+- AdguardHmoe默认账号：admin 默认密码：admin
+- 默认关闭一键DNS，如需一键开启mosdns-adguardhome、smartdns-adguardhome请前往ZeroWrt选项菜单进行一键配置
 - 切换Uhttpd为Nignx
 - 内置ZeroWrt选项菜单方便用户设置OpenWrt
 - 默认打开了wan口防火墙
 - 默认所有网口可访问网页终端
 - 默认设置所有网口可连接 SSH
 - 默认已经切换了docker源，国内网络即可拉取镜像
-- Rockchip切换ImmortalWrt Uboot 以及 Target支持更多的设备
-- R2C/R2S 核心频率 1.6（交换了 LAN WAN），R4S 核心频率 2.2/1.8
-- 插件包含：师夷长技以制夷，Open克拉斯，Adguardhome，Homeproxy，Mosdns，Lucky，动态DNS，FRP客户端，Mihomo Tproxy，Samba4，SmartDNS，Dockerman，Alist，USB打印机服务，Webdav，应用过滤，Socat
+- 插件包含：师夷长技以制夷，Open克拉斯，Adguardhome，Homeproxy，Mosdns，Lucky，动态DNS，FRP客户端，Mihomo Tproxy，Samba4，SmartDNS，Dockerman，Alist，USB打印机服务，Webdav，应用过滤，Socat，netspeedtest，qbittorrent，airplay2，锐捷认证
 
 ---
 
@@ -68,43 +67,6 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
    mtd verify mt7981_cetron_ct3003-fip-fixed-parts.bin FIP
    ```
 ![Uboot示例](images/02.png)
-
----
-
-## Arm Docker项目
-默认地址：10.0.0.1 默认用户：root 默认密码：password
-
-## 使用方法
-1、创建 macvlan 网络
-```bash
-docker network create -d macvlan --subnet=192.168.xx.0/24 --gateway=192.168.xx.yy -o parent=eth0 macnet
-```
-
-如果正在使用的不是 eth0 接口，请将其更改为正在使用的接口，若网络是桥接模式请使用下方命令创建
-
-```bash
-docker network create -d macvlan --subnet=192.168.xx.0/24 --gateway=192.168.xx.yy -o parent=br-lan macnet
-```
-注意：macnet 为名称，macvlan 为模式，将 IP 更改为主路由网段与 IP 地址
-
-2、拉取镜像并创建容器
-```bash
-docker run -d --name=openwrt --network=macnet --privileged=true --restart=always --ulimit nofile=16384:65536 -v /lib/modules/$(uname -r):/lib/modules/$(uname -r) zhaoweiwen123/openwrt-aarch64:plus
-```
-
-如需使用 Mini稳定版 固件，将后面的 plus 更改为 mini 即可
-
-3、更改固件默认 IP 地址
-
-```bash
-docker exec openwrt sed -e 's/192.168.1.1/192.168.xx.zz/' -i /etc/config/network
-```
-
-容器创建成功后稍等几分钟执行命令，将 IP 更改为与主路由同一网段的 IP 地址，更改完成后重启容器生效
-```bash
-docker restart openwrt
-```
-好了部署完成，接下来登录更改后的 IP 地址进行其他设置吧
 
 ---
 
