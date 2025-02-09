@@ -145,7 +145,7 @@ cp -f $GITHUB_WORKSPACE/images/bg.webp package/luci-theme-argon/luci-theme-argon
 git clone --depth=1 -b openwrt-24.10 https://github.com/oppen321/default-settings package/default-settings
 
 # Lucky
-git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
+git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky
 
 # OpenAppFilter
 git clone https://git.kejizero.online/zhao/OpenAppFilter --depth=1 package/OpenAppFilter
