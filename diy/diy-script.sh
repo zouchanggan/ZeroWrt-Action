@@ -142,8 +142,8 @@ git clone https://github.com/sbwml/luci-app-qbittorrent package/luci-app-qbittor
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
 # Theme
-git clone --depth 1 git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
-git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
+git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+git clone https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 # git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
 # curl -L -o package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp https://git.kejizero.online/zhao/files/raw/branch/main/%20background/bg.webp
 # git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/luci-theme-argon
