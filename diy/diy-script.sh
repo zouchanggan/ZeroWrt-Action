@@ -198,7 +198,7 @@ sed -i 's/services/vpn/g' package/helloworld/luci-app-openclash/luasrc/*.lua
 sed -i 's/services/vpn/g' package/helloworld/luci-app-openclash/luasrc/model/cbi/openclash/*.lua
 sed -i 's/services/vpn/g' package/helloworld/luci-app-openclash/luasrc/view/openclash/*.htm
 
-sed -i 's/services/vpn/g' package/helloworld/luci-app-mihomo/root/usr/share/luci/menu.d/luci-app-mihomo.json
+sed -i 's/services/vpn/g' package/helloworld/luci-app-nikki/root/usr/share/luci/menu.d/luci-app-nikki.json
 
 sed -i 's/services/nas/g' feeds/luci/applications/luci-app-samba4/root/usr/share/luci/menu.d/luci-app-samba4.json
 
