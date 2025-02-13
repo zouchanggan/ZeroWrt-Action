@@ -47,6 +47,9 @@ sed -i 's/threads = 1/threads = 2/g' feeds/packages/net/uwsgi/files-luci-support
 sed -i 's/processes = 3/processes = 4/g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
 sed -i 's/cheaper = 1/cheaper = 2/g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
 
+# banner
+cp -f $GITHUB_WORKSPACE/diy/banner  package/base-files/files/etc/banner
+
 # luci
 pushd feeds/luci
     curl -s https://git.kejizero.online/zhao/files/raw/branch/main/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
