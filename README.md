@@ -23,7 +23,7 @@ I18N: [English](README_EN.md) | [简体中文](README.md) |
 - 默认所有网口可访问网页终端
 - 默认设置所有网口可连接 SSH
 - 默认已经切换了docker源，国内网络即可拉取镜像
-- 插件包含：师夷长技以制夷，Open克拉斯，Adguardhome，Homeproxy，Mosdns，Lucky，动态DNS，FRP客户端，nikki，Samba4，SmartDNS，Dockerman，Alist，USB打印机服务，Webdav，应用过滤，Socat，netspeedtest，qbittorrent，airplay2，锐捷认证
+- 插件包含：师夷长技以制夷，Open克拉斯，Adguardhome，Homeproxy，Mosdns，Lucky，动态DNS，FRP客户端，Nikki，Samba4，SmartDNS，Dockerman，Alist，USB打印机服务，Webdav，应用过滤，Socat，netspeedtest，qbittorrent，airplay2，锐捷认证
 
 ---
 
