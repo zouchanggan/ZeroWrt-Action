@@ -206,5 +206,7 @@ sed -i 's/services/nas/g' feeds/luci/applications/luci-app-aria2/root/usr/share/
 
 sed -i 's/services/nas/g' package/luci-app-qbittorrent/luci-app-qbittorrent/root/usr/share/luci/menu.d/luci-app-qbittorrent.json
 
+sed -i 's/services/network/g' feeds/luci/applications/luci-app-natmap/root/usr/share/luci/menu.d/luci-app-natmap.json
+
 ./scripts/feeds update -a
 ./scripts/feeds install -a
