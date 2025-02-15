@@ -52,6 +52,9 @@ sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By OPPEN321'/g" package/lean
 sed -i "2iuci set istore.istore.channel='ZeroWrt_OPPEN321'" package/lean/default-settings/files/zzz-default-settings
 sed -i "3iuci commit istore" package/lean/default-settings/files/zzz-default-settings
 
+# banner
+cp -f $GITHUB_WORKSPACE/diy/banner  package/base-files/files/etc/banner
+
 ##WiFi
 sed -i "s/LEDE/ZeroWrt/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
