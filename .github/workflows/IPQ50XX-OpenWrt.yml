@@ -6,8 +6,8 @@ on:
 #    - cron: 36 21 * * 4
 
 env:
-  REPO_URL: https://github.com/LiBwrt/openwrt-6.x
-  REPO_BRANCH: ipq50xx
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
   CONFIG_FILE: configs/ipq50xx.config
   DIY_SCRIPT: diy/diy-ipq.sh
   CACHE_TOOLCHAIN: true
