@@ -16,6 +16,7 @@ jobs:
       COMMIT_HASH: ${{ needs.Build.outputs.COMMIT_HASH }}
       DEVICE_TARGET: ${{ needs.Build.outputs.DEVICE_TARGET }}
       DEVICE_SUBTARGET: ${{ needs.Build.outputs.DEVICE_SUBTARGET }}
+      TZ: America/New_York
 
     steps:
     - name: Checkout
