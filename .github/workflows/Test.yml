@@ -52,7 +52,6 @@ jobs:
         wget https://github.com/oppen321/ZeroWrt/releases/download/ROOTFS_PLUS/openwrt-armvirt-64-generic-rootfs.tar.gz
 
     - name: Package OpenWrt Firmware
-      if: steps.download.outputs.status == 'success'
       uses: ophub/flippy-openwrt-actions@main
       env:
         OPENWRT_ARMVIRT: output/openwrt-armvirt-64-generic-rootfs.tar.gz
@@ -63,13 +62,11 @@ jobs:
         DISTRIB_REVISION: R${{ env.DATE1 }} by OPPEN321
 
     - name: Upload OpenWrt To Artifact
-      if: env.PACKAGED_STATUS == 'success' && env.OPENWRT_RELEASE != 'true'
       uses: kittaakos/upload-artifact-as-is@master
       with:
         path: ${{ env.PACKAGED_OUTPUTPATH }}
 
     - name: Upload OpenWrt To Release
-      if: env.PACKAGED_STATUS == 'success' && env.OPENWRT_RELEASE == 'true'
       uses: ncipollo/release-action@v1
       with:
         name: R${{ env.DATE }} for ${{ env.OPENWRT_TAG }}
