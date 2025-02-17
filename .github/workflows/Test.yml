@@ -1,4 +1,4 @@
-name: ARMv8-OpenWrt
+name: Test
 
 on:
   workflow_dispatch:
