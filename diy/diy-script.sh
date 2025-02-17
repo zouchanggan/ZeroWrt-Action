@@ -137,6 +137,7 @@ git clone https://git.kejizero.online/zhao/luci-app-upnp feeds/luci/applications
 
 # Zero-package
 git clone --depth=1 https://github.com/oppen321/Zero-package package/Zero-package
+sed -i 's/iStoreOS/ZeroWrt/' package/Zero-package/istoreos-files/files/etc/board.d/10_system
 
 # qBittorrent
 git clone https://github.com/sbwml/luci-app-qbittorrent package/luci-app-qbittorrent
