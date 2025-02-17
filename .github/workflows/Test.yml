@@ -49,7 +49,7 @@ jobs:
       run: |
         mkdir output
         cd output
-        curl https://github.com/oppen321/ZeroWrt/releases/download/ROOTFS_PLUS/openwrt-armvirt-64-generic-rootfs.tar.gz
+        wget https://github.com/oppen321/ZeroWrt/releases/download/ROOTFS_PLUS/openwrt-armvirt-64-generic-rootfs.tar.gz
 
     - name: Package OpenWrt Firmware
       if: steps.download.outputs.status == 'success'
