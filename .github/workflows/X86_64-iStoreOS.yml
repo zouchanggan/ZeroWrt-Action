@@ -2,8 +2,9 @@ name: X86_64-iStoreOS
 
 on:
   workflow_dispatch:
+# 定时触发编译
   schedule:
-    - cron: 0 22 * * *
+    - cron: 1 18 * * 4
 
 env:
   REPO_URL: https://github.com/istoreos/istoreos
