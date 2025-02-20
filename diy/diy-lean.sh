@@ -95,3 +95,5 @@ git clone https://git.kejizero.online/zhao/luci-app-webdav package/luci-app-webd
 
 # 替换default-settings
 rm -rf package/lean/default-settings/files/zzz-default-settings
+curl -L -o package/lean/default-settings/files/zzz-default-settings https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/lean/files/zzz-default-settings
+chmod +x package/lean/default-settings/files/zzz-default-settings
