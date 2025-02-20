@@ -92,3 +92,6 @@ git clone https://git.kejizero.online/zhao/OpenAppFilter --depth=1 package/OpenA
 
 # luci-app-webdav
 git clone https://git.kejizero.online/zhao/luci-app-webdav package/luci-app-webdav
+
+# 替换default-settings
+rm -rf package/lean/default-settings/files/zzz-default-settings
