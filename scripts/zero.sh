@@ -33,6 +33,6 @@ chmod +x files/etc/config/default_passwall
 chmod +x files/etc/config/default_openclash
 
 # sysctl.d
-mkdir -p files/etc/sysctl.d
-curl -L -o files/etc/sysctl.d/10-default.conf https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/openwrt-24.10/files/10-default.conf
-chmod +x files/etc/sysctl.d/10-default.conf
+# mkdir -p files/etc/sysctl.d
+# curl -L -o files/etc/sysctl.d/10-default.conf https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/openwrt-24.10/files/10-default.conf
+# chmod +x files/etc/sysctl.d/10-default.conf
