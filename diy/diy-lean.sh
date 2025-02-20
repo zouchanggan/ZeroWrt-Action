@@ -71,32 +71,3 @@ git clone https://git.kejizero.online/zhao/luci-app-webdav package/luci-app-webd
 rm -rf package/lean/default-settings/files/zzz-default-settings
 curl -L -o package/lean/default-settings/files/zzz-default-settings https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/lean/files/zzz-default-settings
 chmod +x package/lean/default-settings/files/zzz-default-settings
-
-## golang 为 1.23.x
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
-
-# Zero-package
-git clone --depth=1 https://github.com/oppen321/Zero-package package/Zero-package
-sed -i 's/iStoreOS/ZeroWrt/' package/Zero-package/istoreos-files/files/etc/board.d/10_system
-
-# Lucky
-rm -rf feeds/luci/applications/luci-app-lucky
-rm -rf feeds/packages/net/lucky
-git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
-
-# theme
-rm -rf feeds/luci/themes/luci-theme-argon
-git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
-git clone https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
-
-# OpenAppFilter
-git clone https://git.kejizero.online/zhao/OpenAppFilter --depth=1 package/OpenAppFilter
-
-# luci-app-webdav
-git clone https://git.kejizero.online/zhao/luci-app-webdav package/luci-app-webdav
-
-# 替换default-settings
-rm -rf package/lean/default-settings/files/zzz-default-settings
-curl -L -o package/lean/default-settings/files/zzz-default-settings https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/lean/files/zzz-default-settings
-chmod +x package/lean/default-settings/files/zzz-default-settings
