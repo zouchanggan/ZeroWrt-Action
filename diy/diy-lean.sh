@@ -60,10 +60,6 @@ git clone https://github.com/jerrykuku/luci-app-argon-config package/luci-app-ar
 # OpenAppFilter
 git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 
-# smartdns
-git clone --depth=1 -b master https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
-git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/smartdns
-
 # alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
 
