@@ -44,8 +44,8 @@ function git_sparse_clone() {
 # 移除要替换的包
 rm -rf feeds/packages/lang/golang
 rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf feeds/luci/applications/{luci-app-lucky,luci-app-mosdns,luci-app-openclash,luci-app-passwall,luci-app-passwall2,luci-app-smartdns,luci-app-alist}
-rm -rf feeds/packages/net/{lucky,chinadns-ng,mosdns,sing-box,smartdns,v2ray-geodata,xray-core,trojan,alist}
+rm -rf feeds/luci/applications/{luci-app-lucky,luci-app-mosdns,luci-app-openclash,luci-app-passwall,luci-app-passwall2,luci-app-smartdns,luci-app-alist,luci-app-daed}
+rm -rf feeds/packages/net/{lucky,chinadns-ng,mosdns,sing-box,smartdns,v2ray-geodata,xray-core,trojan,alist,daed}
 
 # golang 为 1.23.x
 git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
@@ -71,6 +71,7 @@ git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 # 科学上网插件
+git clone --depth=1 -b master https://github.com/QiuSimons/luci-app-daed
 git clone --depth=1 -b main https://github.com/siropboy/luci-app-bypass package/luci-app-bypass
 git clone --depth=1 -b master https://github.com/fw876/helloworld package/luci-app-ssr-plus
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
