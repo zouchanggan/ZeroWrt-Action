@@ -57,7 +57,7 @@ git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 
 # OpenAppFilter
-git clone https://git.kejizero.online/zhao/OpenAppFilter --depth=1 package/OpenAppFilter
+git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 
 # 替换default-settings
 rm -rf package/lean/default-settings/files/zzz-default-settings
