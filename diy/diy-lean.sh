@@ -12,7 +12,7 @@ sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/luci2/bin/confi
 cp -f $GITHUB_WORKSPACE/diy/banner  package/base-files/files/etc/banner
 
 # 更换内核
-sed -i 's/6.6/6.12/g' target/linux/x86/Makefile
+# sed -i 's/6.6/6.12/g' target/linux/x86/Makefile
 
 # 补充汉化
 echo -e "\nmsgid \"VPN\"" >> feeds/luci/modules/luci-base/po/zh_Hans/base.po
