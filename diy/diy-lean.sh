@@ -43,6 +43,7 @@ function git_sparse_clone() {
 
 # 移除要替换的包
 rm -rf feeds/packages/lang/golang
+rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/{luci-app-lucky,luci-app-mosdns,luci-app-openclash,luci-app-passwall,luci-app-passwall2,luci-app-smartdns,luci-app-alist}
 rm -rf feeds/packages/net/{lucky,chinadns-ng,mosdns,sing-box,smartdns,v2ray-geodata,xray-core,trojan,alist}
 
@@ -53,7 +54,6 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 # theme
-rm -rf feeds/luci/themes/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 
