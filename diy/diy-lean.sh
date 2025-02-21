@@ -12,7 +12,7 @@ sed -i "s/hostname='.*'/hostname='AE86Wrt'/g" package/base-files/luci2/bin/confi
 cp -f $GITHUB_WORKSPACE/diy/banner  package/base-files/files/etc/banner
 
 # 更换内核
-sed -i 's/6.6/6.12/g' target/linux/x86/Makefile
+# sed -i 's/6.6/6.12/g' target/linux/x86/Makefile
 
 # profile
 sed -i 's#\\u@\\h:\\w\\\$#\\[\\e[32;1m\\][\\u@\\h\\[\\e[0m\\] \\[\\033[01;34m\\]\\W\\[\\033[00m\\]\\[\\e[32;1m\\]]\\[\\e[0m\\]\\\$#g' package/base-files/files/etc/profile
