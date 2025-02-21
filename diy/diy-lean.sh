@@ -12,7 +12,7 @@ sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/luci2/bin/confi
 cp -f $GITHUB_WORKSPACE/diy/banner  package/base-files/files/etc/banner
 
 # 更换内核
-# sed -i 's/6.6/6.12/g' target/linux/x86/Makefile
+sed -i 's/6.6/6.12/g' target/linux/x86/Makefile
 
 # 补充汉化
 echo -e "\nmsgid \"VPN\"" >> feeds/luci/modules/luci-base/po/zh_Hans/base.po
@@ -20,17 +20,36 @@ echo -e "msgstr \"魔法网络\"" >> feeds/luci/modules/luci-base/po/zh_Hans/bas
 echo -e "\nmsgid \"VPN\"" >> feeds/luci/modules/luci-base/po/zh_Hans/base.po
 echo -e "msgstr \"魔法网络\"" >> feeds/luci/modules/luci-base/po/zh_Hans/base.po
 
-## golang 为 1.23.x
+# x86 型号只显示 CPU 型号
+sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/files/x86/autocore
+
+# 修改本地时间格式
+sed -i 's/os.date()/os.date("%a %Y-%m-%d %H:%M:%S")/g' package/lean/autocore/files/*/index.htm
+
+# 修改版本为编译日期
+date_version=$(date +"%y.%m.%d")
+orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
+sed -i "s/${orig_version}/R${date_version} by OPPPEN321/g" package/lean/default-settings/files/zzz-default-settings
+
+# Git稀疏克隆，只克隆指定目录到本地
+function git_sparse_clone() {
+  branch="$1" repourl="$2" && shift 2
+  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
+  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
+  cd $repodir && git sparse-checkout set $@
+  mv -f $@ ../package
+  cd .. && rm -rf $repodir
+}
+
+# 移除要替换的包
 rm -rf feeds/packages/lang/golang
+rm -rf feeds/luci/applications/{luci-app-lucky,luci-app-mosdns,luci-app-openclash,luci-app-passwall,luci-app-passwall2,luci-app-smartdns,luci-app-alist}
+rm -rf feeds/packages/net/{lucky,chinadns-ng,mosdns,sing-box,smartdns,v2ray-geodata,xray-core,trojan,alist}
+
+# golang 为 1.23.x
 git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
-# Zero-package
-git clone --depth=1 https://github.com/oppen321/Zero-package package/Zero-package
-sed -i 's/iStoreOS/ZeroWrt/' package/Zero-package/istoreos-files/files/etc/board.d/10_system
-
 # Lucky
-rm -rf feeds/luci/applications/luci-app-lucky
-rm -rf feeds/packages/net/lucky
 git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 # theme
@@ -41,12 +60,24 @@ git clone https://github.com/jerrykuku/luci-app-argon-config package/luci-app-ar
 # OpenAppFilter
 git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 
-# 替换default-settings
-rm -rf package/lean/default-settings/files/zzz-default-settings
-curl -L -o package/lean/default-settings/files/zzz-default-settings https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/lean/files/zzz-default-settings
-chmod +x package/lean/default-settings/files/zzz-default-settings
+# smartdns
+git clone --depth=1 -b master https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
+git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/smartdns
 
-# 修改版本为编译日期
-date_version=$(date +"%y.%m.%d")
-orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
-sed -i "s/${orig_version}/R${date_version} by OPPPEN321/g" package/lean/default-settings/files/zzz-default-settings
+# alist
+git clone https://github.com/sbwml/luci-app-alist package/alist
+
+# istore
+git_sparse_clone main https://github.com/linkease/istore luci
+
+# mosdns
+git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+
+# 科学上网插件
+git clone --depth=1 -b main https://github.com/siropboy/luci-app-bypass package/luci-app-bypass
+git clone --depth=1 -b master https://github.com/fw876/helloworld package/luci-app-ssr-plus
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
+git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
