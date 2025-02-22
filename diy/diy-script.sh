@@ -75,6 +75,10 @@ function git_sparse_clone() {
 #git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
+# Docker
+rm -rf feeds/luci/applications/luci-app-dockerman
+git clone https://github.com/lisaac/luci-app-dockerman
+
 # SSRP & Passwall
 git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
 
