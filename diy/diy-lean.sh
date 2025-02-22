@@ -59,6 +59,8 @@ git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
 # theme
 git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
+cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+sed -i 's/bing/none/' package/luci-app-argon-config/root/etc/config/argon
 
 # OpenAppFilter
 git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
