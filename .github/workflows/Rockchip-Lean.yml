@@ -1,4 +1,4 @@
-name: Rockchip-OpenWrt
+name: Rockchip-Lean
 
 on:
   workflow_dispatch:
@@ -7,15 +7,15 @@ on:
     - cron: 31 21 * * 4
 
 env:
-  REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: openwrt-24.10
-  CONFIG_FILE: configs/rockchip.config
-  DIY_SCRIPT: diy/diy-script.sh
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
+  CONFIG_FILE: configs/rockchip_lean.config
+  DIY_SCRIPT: diy/diy-lean.sh
   CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: Rockchip
+  FIRMWARE_TAG: Rockchip-Lean
   TZ: Asia/Shanghai
 
 jobs:
