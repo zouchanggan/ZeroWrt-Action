@@ -77,7 +77,9 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 
 # Docker
 rm -rf feeds/luci/applications/luci-app-dockerman
-git clone https://github.com/lisaac/luci-app-dockerman
+rm -rf feeds/luci/collections/luci-lib-docker
+git clone https://github.com/lisaac/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+git clone https://github.com/lisaac/luci-lib-docker feeds/luci/collections/luci-lib-docker
 
 # SSRP & Passwall
 git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
