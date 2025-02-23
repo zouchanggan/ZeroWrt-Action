@@ -51,7 +51,12 @@ git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 # Alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
 
+# iStore
+git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
+git_sparse_clone main https://github.com/linkease/istore luci
+
 # Scientific Internet plug-in
+git clone --depth=1 https://github.com/QiuSimons/luci-app-daed package/dae
 git clone --depth=1 -b master https://github.com/fw876/helloworld package/luci-app-ssr-plus
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
