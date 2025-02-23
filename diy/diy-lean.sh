@@ -11,6 +11,9 @@ sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/luci2/bin/confi
 # Change Argon theme
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
+# Cancel theme default settings
+find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/set luci.main.mediaurlbase/d' {} \;
+
 # Remove and update plugins
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome,alist,chinadns-ng,daed,dns2socks,dns2tcp,pdnsd-alt,shadowsocks-libev,trojan,v2ray-geodata}
 rm -rf feeds/luci/applications/{luci-app-alist,luci-app-daed,luci-app-mosdns,luci-app-openclash,luci-app-passwall,luci-app-passwall2}
