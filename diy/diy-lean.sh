@@ -13,11 +13,15 @@ rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardho
 rm -rf feeds/luci/applications/{luci-app-alist,luci-app-daed,luci-app-mosdns,luci-app-openclash,luci-app-passwall,luci-app-passwall2}
 rm -rf feeds/packages/lang/golang
 
-# OpenAppFilter
-git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
-
 # The modified version is the compilation date
 date_version=$(date +"%y.%m.%d")
 orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
 sed -i "s/${orig_version}/R${date_version} by OPPEN321/g" package/lean/default-settings/files/zzz-default-settings
 sed -i 's/LEDE/ZeroWrt/' package/lean/default-settings/files/zzz-default-settings
+
+# Golang
+git clone -b 23.x https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+
+# OpenAppFilter
+git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
+
