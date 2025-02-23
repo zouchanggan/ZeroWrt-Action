@@ -43,6 +43,7 @@ git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 
 # Load iStoreOS
 git clone https://github.com/zhiern/istoreos-files package/istoreos-files
+sed -i 's/iStoreOS/ZeroWrt/' package/istoreos-files/files/etc/board.d/10_system
 
 # MosDNS
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
