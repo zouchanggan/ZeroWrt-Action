@@ -11,6 +11,9 @@ sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/luci2/bin/confi
 # Replace kernel
 sed -i 's/6.12/6.6/g' target/linux/x86/Makefile
 
+# mwan3
+sed -i 's/MultiWAN 管理器/负载均衡/g' feeds/luci/applications/luci-app-mwan3/po/zh_Hans/mwan3.po
+
 # Change Argon theme
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
