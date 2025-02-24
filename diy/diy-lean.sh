@@ -51,6 +51,7 @@ git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 # Argon config
 git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
+sed -i 's/bing/none/' package/luci-app-argon-config/root/etc/config/argon
 
 # Alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
