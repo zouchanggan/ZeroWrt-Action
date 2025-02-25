@@ -30,8 +30,7 @@ if [ -f /etc/config/dockerd ] && [ $(grep -c daocloud.io /etc/config/dockerd) -e
 fi
 
 # adguardhome
-uci set AdGuardHome.configpath='/etc/config/AdGuardHome.yaml'
-uci commit AdGuardHome
+chmod +x /usr/share/AdGuardHome/addhost.sh
 
 # Smartdns related settings
 uci add smartdns server
