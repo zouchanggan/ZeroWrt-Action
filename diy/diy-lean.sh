@@ -77,6 +77,9 @@ sed -i 's/bing/none/' package/luci-app-argon-config/root/etc/config/argon
 # Alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
 
+# lucky
+git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
+
 # iStore
 git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
 git_sparse_clone main https://github.com/linkease/istore luci
