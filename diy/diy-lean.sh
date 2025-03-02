@@ -41,8 +41,12 @@ git clone -b 23.x https://github.com/sbwml/packages_lang_golang feeds/packages/l
 # OpenAppFilter
 git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 
+# DDNS.to
+git_sparse_clone main https://github.com/linkease/nas-packages-luci luci/luci-app-ddnsto
+git_sparse_clone master https://github.com/linkease/nas-packages network/services/ddnsto
+
 # MosDNS
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone https://github.com/sbwml/luci-app-mosdns -b v5-lua package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 # Alist
