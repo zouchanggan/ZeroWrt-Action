@@ -15,8 +15,8 @@ cp -f $GITHUB_WORKSPACE/diy/banner  package/base-files/files/etc/banner
 sed -i 's/6.12/6.6/g' target/linux/x86/Makefile
 
 # Remove and update plugins
-rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome,mosdns,alist,chinadns-ng,daed,dns2socks,dns2tcp,pdnsd-alt,shadowsocks-libev,trojan,v2ray-geodata}
-rm -rf feeds/luci/applications/{luci-app-alist,luci-app-daed,luci-app-mosdns,luci-app-openclash,luci-app-passwall,luci-app-passwall2}
+rm -rf feeds/luci/applications/luci-app-mosdns
+rm -rf feeds/packages/net/mosdns
 rm -rf feeds/packages/lang/golang
 
 # The modified version is the compilation date
