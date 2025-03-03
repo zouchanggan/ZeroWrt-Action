@@ -56,7 +56,7 @@ git clone https://github.com/sbwml/luci-app-mosdns -b v5-lua package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 # Alist
-git clone https://github.com/sbwml/luci-app-alist package/alist
+git clone -b lua https://github.com/sbwml/luci-app-alist package/alist
 
 # iStore
 git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
