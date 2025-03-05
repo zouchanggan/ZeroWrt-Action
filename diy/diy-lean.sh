@@ -39,7 +39,7 @@ function git_sparse_clone() {
 }
 
 # Golang
-git clone -b 23.x https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+git clone -b 24.x https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
 # adguardhome
 git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
