@@ -23,7 +23,6 @@ popd
 # 移除要替换的包
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome,socat,zerotier}
 rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
-rm -rf feeds/{packages/netsmartdns,luci/applications/luci-app-smartdns}
 rm -rf feeds/packages/utils/v2dat
 rm -rf feeds/packages/lang/golang
 
