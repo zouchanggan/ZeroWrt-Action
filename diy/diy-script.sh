@@ -33,7 +33,9 @@ wget -qO - https://github.com/openwrt/openwrt/commit/c21a3570.patch | patch -p1
 git clone --depth=1 -b openwrt-24.10 https://github.com/immortalwrt/immortalwrt immortalwrt_24
 rm -rf ./target/linux/rockchip
 cp -rf immortalwrt_24/target/linux/rockchip ./target/linux/rockchip
-cp -rf ../PATCH/kernel/rockchip/* ./target/linux/rockchip/patches-6.6/
+wget -O ./target/linux/rockchip/patches-6.6/014-rockchip-add-pwm-fan-controller-for-nanopi-r2s-r4s.patch https://git.kejizero.online/zhao/files/raw/branch/main/patch/kernel/rockchip/014-rockchip-add-pwm-fan-controller-for-nanopi-r2s-r4s.patch
+wget -O ./target/linux/rockchip/patches-6.6/702-general-rk3328-dtsi-trb-ent-quirk.patch https://git.kejizero.online/zhao/files/raw/branch/main/patch/kernel/rockchip/702-general-rk3328-dtsi-trb-ent-quirk.patch
+wget -O ./target/linux/rockchip/patches-6.6/703-rk3399-enable-dwc3-xhci-usb-trb-quirk.patch https://git.kejizero.online/zhao/files/raw/branch/main/patch/kernel/rockchip/703-rk3399-enable-dwc3-xhci-usb-trb-quirk.patch
 #wget https://github.com/immortalwrt/immortalwrt/raw/refs/tags/v23.05.4/target/linux/rockchip/patches-5.15/991-arm64-dts-rockchip-add-more-cpu-operating-points-for.patch -O target/linux/rockchip/patches-6.6/991-arm64-dts-rockchip-add-more-cpu-operating-points-for.patch
 rm -rf package/boot/{rkbin,uboot-rockchip,arm-trusted-firmware-rockchip}
 cp -rf immortalwrt_24/package/boot/uboot-rockchip ./package/boot/uboot-rockchip
