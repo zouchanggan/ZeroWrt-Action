@@ -100,3 +100,7 @@ source $ZSH/oh-my-zsh.sh
 
 autoload -U compinit && compinit
 cat /etc/banner
+
+if [[ -n $SSH_CONNECTION ]]; then
+    /bin/ZeroWrt
+fi
