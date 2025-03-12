@@ -101,6 +101,6 @@ source $ZSH/oh-my-zsh.sh
 autoload -U compinit && compinit
 cat /etc/banner
 
-if [[ -n $SSH_CONNECTION ]]; then
+if [[ -n $SSH_CONNECTION || "$TTY" == /dev/pts/* ]]; then
     /bin/ZeroWrt
 fi
