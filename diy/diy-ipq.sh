@@ -62,9 +62,9 @@ sed -i "s/LEDE/ZeroWrt/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 #mkdir -p files/etc/config
 #curl -L -o files/etc/config/wireless https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/wireless
 
-## golang 为 1.23.x
+## golang 为 1.24.x
 rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 # 进阶设置
 git clone https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
