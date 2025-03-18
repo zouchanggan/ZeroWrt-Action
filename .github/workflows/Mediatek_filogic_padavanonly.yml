@@ -42,7 +42,7 @@ on:
 env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-24.10
   REPO_BRANCH: 2410
-  CONFIG_FILE: configs/Mediatek/${{ github.event.inputs.DEVICE }}.config
+  CONFIG_FILE: Mediatek/${{ github.event.inputs.DEVICE }}.config
   DIY_SCRIPT: diy/diy-Mediatek.sh
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
