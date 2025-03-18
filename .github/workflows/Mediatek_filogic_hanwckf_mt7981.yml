@@ -2,11 +2,17 @@ name: Mediatek_filogic_hanwckf_mt7981
 
 on:
   workflow_dispatch:
-  
+    inputs: 
+      lan_addr:
+        description: 'Setting default LAN address'
+        required: true
+        default: '10.0.0.1'
+        type: string
 env:
   REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
   REPO_BRANCH: openwrt-21.02
   FIRMWARE_TAG: Mediatek_filogic_hanwckf_mt7981
+
   
 jobs:
   Build:
