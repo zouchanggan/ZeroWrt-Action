@@ -15,7 +15,7 @@ on:
         description: 'Set LAN IP Address'
         required: true
         default: '10.0.0.1'   
-      DEVICE:
+      device:
         description: 'Select the build device'
         required: true
         default: 'cetron_ct3003'
@@ -49,7 +49,7 @@ on:
           
 env:
   FEEDS_CONF: Mediatek/${{ inputs.source_branch }}/feeds.conf.default
-  CONFIG_FILE: Mediatek/${{ inputs.source_branch }}/config
+  CONFIG_FILE: Mediatek/${{ inputs.source_branch }}/${{ inputs.device }}.config
   DIY_P1_SH: Mediatek/${{ inputs.source_branch }}/diy-part1.sh
   DIY_P2_SH: Mediatek/${{ inputs.source_branch }}/diy-part2.sh
   TZ: America/New_York
