@@ -105,7 +105,8 @@ jobs:
       - name: Clone source code [ ${{ inputs.source_branch }} ]
         id: codes
         working-directory: /builder
-        if: ${{ steps.init.outputs.status }} == 'success' && !cancelled()        
+        if: ${{ steps.init.outputs.status }} == 'success' && !cancelled() 
+        run: |
           if [[ "${{ inputs.source_branch }}" == *"hanwckf_mt798x_v21.02"* ]]; then
               REPO_URL="https://github.com/hanwckf/immortalwrt-mt798x"
               REPO_BRANCH="openwrt-21.02"
