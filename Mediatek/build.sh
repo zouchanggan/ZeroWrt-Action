@@ -16,6 +16,10 @@ fi
 # Enter source code
 cd openwrt
 
+# Init feeds
+./scripts/feeds update -a
+./scripts/feeds install -a
+
 # lan
 [ -n "$LAN" ] && export LAN=$LAN || export LAN=10.0.0.1
 
