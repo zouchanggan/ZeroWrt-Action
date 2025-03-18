@@ -122,6 +122,11 @@ jobs:
         COMMIT_HASH=$(git show -s --date=short --format="hash: %H")
         echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
 
+    - name: Debug 文件路径
+      run: |
+        echo "CONFIG_FILE: $CONFIG_FILE"
+        ls -lah $CONFIG_FILE
+    
     - name: Generate Variables
       run: |
         cp $CONFIG_FILE $OPENWRT_PATH/.config
