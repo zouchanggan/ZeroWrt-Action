@@ -110,9 +110,9 @@ jobs:
       id: compile
       continue-on-error: true
       run: |
-        LAN=${{ github.event.inputs.lan_addr }}
-        device=${{ github.event.inputs.device }}
-        source_branch=${{ github.event.inputs.source_branch }} 
+        export LAN=${{ github.event.inputs.lan_addr }}
+        export device=${{ github.event.inputs.device }}
+        export source_branch=${{ github.event.inputs.source_branch }} 
         bash <(curl -sS http://127.0.0.1:8080/build.sh) "$LAN" "$device" "$source_branch"
 
     - name: Extensive logs after a failed compilation
