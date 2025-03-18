@@ -39,7 +39,7 @@ bash 01-prepare_package.sh
 if [ "$device" = "abt_asr3000" ]; then
     curl -s $mirror/Mediatek/$source_branch/abt_asr3000.config > .config
 elif [ "$device" = "cetron_ct3003" ]; then
-    curl -s $mirror/Mediatek/$source_branch/abt_asr3000.config > .config
+    curl -s $mirror/Mediatek/$source_branch/cetron_ct3003.config > .config
 elif [ "$device" = "cmcc_a10" ]; then
     curl -s $mirror/Mediatek/$source_branch//cmcc_a10.config > .config
 fi
