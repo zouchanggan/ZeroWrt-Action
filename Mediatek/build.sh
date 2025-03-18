@@ -30,9 +30,10 @@ cd openwrt
 # scripts
 curl -sO $mirror/Mediatek/$source_branch/00-prepare_base.sh
 curl -sO $mirror/Mediatek/$source_branch/01-prepare_package.sh
+chmod 0755 00-prepare_base.sh
+chmod 0755 01-prepare_package.sh
 bash 00-prepare_base.sh
-bash 02-prepare_package.sh
-chmod 0755 *sh
+bash 01-prepare_package.sh
 
 # Load devices Config
 case "$device" in
