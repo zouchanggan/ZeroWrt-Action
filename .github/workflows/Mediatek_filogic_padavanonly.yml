@@ -107,7 +107,8 @@ jobs:
 
     - name: Generate Variables
       run: |
-        cp $CONFIG_FILE $OPENWRT_PATH/.config
+        CONFIG_URL="https://git.kejizero.online/zhao/files/raw/branch/main/Mediatek/${{ inputs.DEVICE }}.config"
+        curl -s -o $OPENWRT_PATH/.config $CONFIG_URL
         cd $OPENWRT_PATH
         make defconfig > /dev/null 2>&1
         SOURCE_REPO="$(echo $REPO_URL | awk -F '/' '{print $(NF)}')"
