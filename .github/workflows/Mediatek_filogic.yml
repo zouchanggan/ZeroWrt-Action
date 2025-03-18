@@ -102,9 +102,10 @@ jobs:
           sudo chown -R runner.runner /builder
           df -Th
 
-      - name: Clone Source Code
-        run: |
-          df -hT $GITHUB_WORKSPACE
+      - name: Clone source code [ ${{ inputs.source_branch }} ]
+        id: codes
+        working-directory: /builder
+        if: ${{ steps.init.outputs.status }} == 'success' && !cancelled()        
           if [[ "${{ inputs.source_branch }}" == *"hanwckf_mt798x_v21.02"* ]]; then
               REPO_URL="https://github.com/hanwckf/immortalwrt-mt798x"
               REPO_BRANCH="openwrt-21.02"
