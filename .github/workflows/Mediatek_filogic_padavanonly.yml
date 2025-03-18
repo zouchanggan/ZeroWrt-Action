@@ -7,14 +7,14 @@ on:
         description: 'Set LAN IP Address'
         required: true
         default: '10.0.0.1'   
-      DEVICE:
+      device:
         description: 'Select the build device'
         required: true
         default: 'CETRON_CT3003'
         type: choice
         options:
           - 'ABT_ASR3000'
-          - 'CETRON_CT3003'
+          - 'cetron_ct3003'
           - 'CMCC_A10'
           - 'CMCC_RAX3000M_eMMC'
           - 'CMCC_RAX3000M_NAND'
@@ -42,7 +42,8 @@ on:
 env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-24.10
   REPO_BRANCH: 2410
-  DIY_SCRIPT: diy/diy-Mediatek.sh
+  CONFIG_FILE: Mediatek/${{ github.event.inputs.device }}.config
+  DIY_SCRIPT: Mediatek/diy-Mediatek.sh
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
@@ -107,8 +108,7 @@ jobs:
 
     - name: Generate Variables
       run: |
-        CONFIG_URL="https://git.kejizero.online/zhao/files/raw/branch/main/Mediatek/${{ inputs.DEVICE }}.config"
-        curl -s -o $OPENWRT_PATH/.config $CONFIG_URL
+        cp $CONFIG_FILE $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
         make defconfig > /dev/null 2>&1
         SOURCE_REPO="$(echo $REPO_URL | awk -F '/' '{print $(NF)}')"
