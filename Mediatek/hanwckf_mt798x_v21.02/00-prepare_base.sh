@@ -7,3 +7,5 @@
 #========================================================================================================================
 
 sed -i "1isrc-git extraipk https://github.com/xiangfeidexiaohuo/extra-ipk\n" feeds.conf.default
+./scripts/feeds update -a
+./scripts/feeds install -a
