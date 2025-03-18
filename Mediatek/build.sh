@@ -55,17 +55,5 @@ case "$device" in
         ;;
 esac
 
-# ccache
-if [ "$ENABLE_CCACHE" = "y" ]; then
-    echo "CONFIG_CCACHE=y" >> .config
-    echo "CONFIG_CCACHE_DIR=\"/builder/.ccache\"" >> .config
-    tools_suffix="_ccache"
-fi    
-
-# Toolchain Cache
-
 # Compile
-if [ "$BUILD_TOOLCHAIN" = "y" ]; then
-    make -j$cores toolchain/compile || make -j$cores toolchain/compile V=s || exit 1
-    mkdir -p toolchain-cache
-else
+make -j$(nproc)
