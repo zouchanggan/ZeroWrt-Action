@@ -28,22 +28,22 @@ chmod 0755 *sh
 
 case "$device" in
     "abt_asr3000")
-        curl -L -o .config $mirror/Mediatek/abt_asr3000.config
+        curl -L -o .config $mirror/Mediatek/$source_branch/abt_asr3000.config
         ;;
     "cetron_ct3003")
-        curl -L -o .config $mirror/Mediatek/cetron_ct3003.config
+        curl -L -o .config $mirror/Mediatek/$source_branch/cetron_ct3003.config
         ;;
     "cmcc_a10")
-        curl -L -o .config $mirror/Mediatek/cmcc_a10.config
+        curl -L -o .config $mirror/Mediatek/$source_branch/cmcc_a10.config
         ;;
     "cmcc_rax3000m_emmc")
-        curl -L -o .config $mirror/Mediatek/cmcc_rax3000m_emmc.config
+        curl -L -o .config $mirror/Mediatek/$source_branch/cmcc_rax3000m_emmc.config
         ;;
     "cmcc_rax3000m_nand")
-        curl -L -o .config $mirror/Mediatek/cmcc_rax3000m_nand.config
+        curl -L -o .config $mirror/Mediatek/$source_branch/cmcc_rax3000m_nand.config
         ;;
     "gl_inet_gl_mt3000")
-        curl -L -o .config $mirror/Mediatek/gl_inet_gl_mt3000.config
+        curl -L -o .config $mirror/Mediatek/$source_branch/gl_inet_gl_mt3000.config
         ;;        
     *)
         echo "Unknown device: $device"
