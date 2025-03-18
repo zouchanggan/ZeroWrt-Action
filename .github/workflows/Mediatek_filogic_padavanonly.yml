@@ -9,8 +9,8 @@ on:
         default: "openwrt-main"
         type: choice
         options:
-          - hanwckf-mt798x-v21.02
-          - padavanonly-mt798x-v24.10 
+          - hanwckf_mt798x_v21.02
+          - padavanonly_mt798x_v24.10 
       LAN_IP:
         description: 'Set LAN IP Address'
         required: true
@@ -100,10 +100,10 @@ jobs:
     - name: Clone Source Code
       run: |
         df -hT $GITHUB_WORKSPACE
-        if [[ "${{ inputs.source_branch }}" == *"hanwckf-mt798x-v21.02"* ]]; then
+        if [[ "${{ inputs.source_branch }}" == *"hanwckf_mt798x_v21.02"* ]]; then
             REPO_URL="https://github.com/hanwckf/immortalwrt-mt798x"
             REPO_BRANCH="openwrt-21.02"
-        elif [[ "${{ inputs.source_branch }}" == *"padavanonly-mt798x-v24.10"* ]]; then
+        elif [[ "${{ inputs.source_branch }}" == *"padavanonly_mt798x_v24.10"* ]]; then
             REPO_URL="https://github.com/padavanonly/immortalwrt-mt798x-24.10"
             REPO_BRANCH="2410" 
         else
