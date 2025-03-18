@@ -31,7 +31,7 @@ on:
           - 'Xiaomi_Mi_Router_AX3000T'
           - 'Xiaomi_Mi_Router_AX3000T_stock_layout'
           - 'Xiaomi_Mi_Router_WR30U_stock_layout'
-          - 'Xiaomi_Mi_Router_WR30U_112M UBI layout'
+          - 'Xiaomi_Mi_Router_WR30U_112M_UBI_layout'
           - 'Xiaomi_Mi_Router_WR30U_stock_layout'
           - 'GL_iNet_GL_MT6000'
           - 'TP_Link_TL_XDR6086'
