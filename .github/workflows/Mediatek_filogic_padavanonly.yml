@@ -38,24 +38,6 @@ on:
           - 'TP-Link TL-XDR6088'
           - 'Xiaomi Redmi Router AX6000'
           - 'Xiaomi Redmi Router AX6000'
-      WIFI_DRIVER:
-        description: 'Choose WiFi Driver'
-        required: true
-        default: 'v7.6.7.2-fw-20240823(recommend)'
-        type: choice
-        options:
-        - v7.6.7.2-fw-20240823(recommend)
-        - v7.6.6.1-fw-20230808(recommend)
-        - v7.6.7.2-fw-default
-        - v7.6.7.2-fw-20221208
-        - v7.6.7.2-fw-20230421
-        - v7.6.7.2-fw-20230808
-        - v7.6.7.2-fw-20231024
-        - v7.6.6.1-fw-default
-        - v7.6.6.1-fw-20221208
-        - v7.6.6.1-fw-20230421
-        - v7.6.6.1-fw-20231024
-        - v7.6.6.1-fw-20240823
 
 env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-24.10
@@ -170,22 +152,7 @@ jobs:
             echo "Set LAN IP Address: $SET_IP"
         else
             echo "Invalid IP address, use default."
-        fi
-
-    - name: Set WiFi driver version
-      run: |
-        cd openwrt
-        wifi_driver=$(echo "${{ github.event.inputs.WIFI_DRIVER }}" | sed -E 's/^(v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+).*/\1/')
-        firmware=$(echo "${{ github.event.inputs.WIFI_DRIVER }}" | sed -E 's/.*fw-([0-9]{8}|default).*/\1/g')
-        if [ "$wifi_driver" == "v7.6.6.1" ]; then
-                sed -i 's/CONFIG_MTK_MT_WIFI_DRIVER_VERSION_7672=y/CONFIG_MTK_MT_WIFI_DRIVER_VERSION_7661=y/g' .config
-        fi
-        if [ "$firmware" == "default" ]; then
-                sed -i 's/CONFIG_MTK_MT_WIFI_MT7986_20240823=y/CONFIG_MTK_MT_WIFI_MT7986_DEFAULT_FIRMWARE=y/g' .config
-        else
-        	sed -i 's/CONFIG_MTK_MT_WIFI_MT7986_20240823=y/CONFIG_MTK_MT_WIFI_MT7986_${firmware}=y/g' .config
-        fi
-        echo "Use WiFi Driver: $wifi_driver-fw-$firmware"  
+        fi  
 
     - name: Download DL Package
       run: |
