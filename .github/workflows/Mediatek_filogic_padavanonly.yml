@@ -1,18 +1,44 @@
-name: Mediatek_filogic_hanwckf_mt7981
+name: Mediatek_filogic_padavanonly
 
 on:
   workflow_dispatch:
-    inputs: 
+    inputs:   
+      device:
+        description: 'Select the build device'
+        required: true
+        default: 'CETRON CT3003'
+        type: choice
+        options:
+          - 'ABT ASR3000'
+          - 'CETRON CT3003'
+          - 'CMCC A10'
+          - 'CMCC RAX3000M eMMC'
+          - 'CMCC RAX3000M NAND'
+          - 'GL.iNet GL-MT3000'
+          - 'H3C NX30PRO'
+          - 'Imou LC-HX3001'
+          - 'JCG Q30'
+          - 'KONKA KOMI A31'
+          - 'Livinet ZR-3020'
+          - 'MediaTek 360 T7'
+          - 'MediaTek 360 T7 (with 108M ubi)'
+          - 'MediaTek CLT R30B1'
+          - 'MediaTek CLT R30B1 (with 112M ubi)'
+          - 'Xiaomi Mi Router AX3000T'
+          - 'Xiaomi Mi Router AX3000T (stock layout)'
+          - 'Xiaomi Mi Router WR30U (stock layout)'
+          - 'Xiaomi Mi Router WR30U (112M UBI layout)'
+          - 'Xiaomi Mi Router WR30U (stock layout)'
+          - 'GL.iNet GL-MT6000 '
+          - 'TP-Link TL-XDR6086'
+          - 'TP-Link TL-XDR6088'
+          - 'Xiaomi Redmi Router AX6000'
+          - 'Xiaomi Redmi Router AX6000'
       lan_addr:
         description: 'Setting default LAN address'
         required: true
         default: '10.0.0.1'
         type: string
-env:
-  REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
-  REPO_BRANCH: openwrt-21.02
-  FIRMWARE_TAG: Mediatek_filogic_hanwckf_mt7981
-
   
 jobs:
   Build:
