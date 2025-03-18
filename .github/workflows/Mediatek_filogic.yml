@@ -53,7 +53,7 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: Mediatek_filogic
+  FIRMWARE_TAG: ${{ inputs.source_branch }}
   TZ: Asia/Shanghai
   
 jobs:
@@ -235,7 +235,7 @@ jobs:
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
           - 🚀 内核版本: ${{ env.KERNEL }}
-          - 🌐 默认地址: ${{ github.event.inputs.LAN_IP }}
+          - 🌐 默认地址: ${{ inputs.LAN_IP }}
           - 🔑 默认密码: password
           ### 🧊 固件版本
           - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
