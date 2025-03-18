@@ -3,6 +3,10 @@
 # github actions - caddy server
 export mirror=http://127.0.0.1:8080
 
+echo "LAN: $LAN"
+echo "Device: $device"
+echo "Source branch: $source_branch"
+
 # Clone source code
 if [ "$source_branch" = "hanwckf_mt798x_v21.02" ]; then
     git clone --depth=1 https://github.com/hanwckf/immortalwrt-mt798x openwrt
