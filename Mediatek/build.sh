@@ -36,30 +36,16 @@ bash 00-prepare_base.sh
 bash 01-prepare_package.sh
 
 # Load devices Config
-case "$device" in
-    "abt_asr3000")
-        curl -L -o .config $mirror/Mediatek/$source_branch/abt_asr3000.config
-        ;;
-    "cetron_ct3003")
-        curl -L -o .config $mirror/Mediatek/$source_branch/cetron_ct3003.config
-        ;;
-    "cmcc_a10")
-        curl -L -o .config $mirror/Mediatek/$source_branch/cmcc_a10.config
-        ;;
-    "cmcc_rax3000m_emmc")
-        curl -L -o .config $mirror/Mediatek/$source_branch/cmcc_rax3000m_emmc.config
-        ;;
-    "cmcc_rax3000m_nand")
-        curl -L -o .config $mirror/Mediatek/$source_branch/cmcc_rax3000m_nand.config
-        ;;
-    "gl_inet_gl_mt3000")
-        curl -L -o .config $mirror/Mediatek/$source_branch/gl_inet_gl_mt3000.config
-        ;;        
-    *)
-        echo "Unknown device: $device"
-        exit 1
-        ;;
-esac
+if [ "$device" = "abt_asr3000" ]; then
+    curl -s $mirror/Mediatek/$source_branch/abt_asr3000.config > .config
+elif [ "$device" = "cetron_ct3003" ]; then
+    curl -s $mirror/Mediatek/$source_branch/abt_asr3000.config > .config
+elif [ "$device" = "cmcc_a10" ]; then
+    curl -s $mirror/Mediatek/$source_branch//cmcc_a10.config > .config
+fi
+
+# init openwrt config
+make defconfig
 
 # Compile
 make -j$(nproc)
