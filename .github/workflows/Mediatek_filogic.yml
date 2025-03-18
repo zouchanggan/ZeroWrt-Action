@@ -5,7 +5,7 @@ on:
     inputs:
       source_branch:
         description: "Select the source branch"
-        required: false
+        required: true
         default: "hanwckf_mt798x_v21.02"
         type: choice
         options:
