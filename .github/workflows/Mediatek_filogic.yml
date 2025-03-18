@@ -119,7 +119,7 @@ jobs:
           fi           
           git clone -q --single-branch --depth=1 --branch=${REPO_BRANCH} ${REPO_URL} openwrt
           ln -sf /builder/openwrt ${GITHUB_WORKSPACE}/openwrt
-          ln -sf /builder/openwrt /home/runner/work/oppen321/ZeroWrt-Action/openwrt
+          ln -sf /builder/openwrt /home/runner/work/_actions/oppen321/ZeroWrt-Action/master/openwrt
           
       - name: Load custom feeds
         run: |
