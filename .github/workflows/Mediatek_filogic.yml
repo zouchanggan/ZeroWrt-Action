@@ -1,4 +1,4 @@
-name: Mediatek_filogic_padavanonly
+name: Mediatek_filogic
 
 on:
   workflow_dispatch:
