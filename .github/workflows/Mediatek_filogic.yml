@@ -118,10 +118,9 @@ jobs:
               exit 1
           fi           
           git clone -q --single-branch --depth=1 --branch=${REPO_BRANCH} ${REPO_URL} openwrt
-          ln -sf /builder/openwrt ${GITHUB_WORKSPACE}/openwrt
-          ln -sf /builder/openwrt /home/runner/work/_actions/oppen321/ZeroWrt-Action/master/openwrt
           
       - name: Load custom feeds
+        working-directory: /builder
         run: |
           [[ -f "${FEEDS_CONF}" ]] && cp -f ${FEEDS_CONF} openwrt/feeds.conf.default
           chmod +x ${DIY_P1_SH}
@@ -129,12 +128,15 @@ jobs:
           ${GITHUB_WORKSPACE}/${DIY_P1_SH}
     
       - name: Update feeds
+        working-directory: /builder
         run: cd openwrt/ && ./scripts/feeds update -a
 
       - name: Install feeds
+        working-directory: /builder
         run: cd openwrt/ && ./scripts/feeds install -a
 
       - name: Load custom configuration
+        working-directory: /builder
         run: |
           [[ -d "files" ]] && mv -f files openwrt/files
           [[ -e "${CONFIG_FILE}" ]] && cp -f ${CONFIG_FILE} openwrt/.config
@@ -143,6 +145,7 @@ jobs:
           ${GITHUB_WORKSPACE}/${DIY_P2_SH}
 
       - name: Set the LAN IP address (router login address)
+        working-directory: /builder
         run: |
           cd openwrt
           SET_IP=${{ github.event.inputs.LAN_IP }}
@@ -157,6 +160,7 @@ jobs:
           fi
           
       - name: Download package
+        working-directory: /builder
         id: package
         run: |
           cd openwrt/
@@ -166,6 +170,7 @@ jobs:
           find dl -size -1024c -exec rm -f {} \;
 
       - name: Compile the OpenWrt
+        working-directory: /builder
         id: compile
         run: |
           cd openwrt/
@@ -174,6 +179,7 @@ jobs:
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Prepare Firmware Files
+        working-directory: /builder
         id: Files
         run: |
           cd openwrt/
