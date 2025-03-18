@@ -6,8 +6,3 @@
 # Source code repository: https://github.com/padavanonly/immortalwrt-mt798x-24.10 / Branch: 2410
 #========================================================================================================================
 
-# Add a feed source
-# sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
-
-# other
-# rm -rf package/lean/{samba4,luci-app-samba4,luci-app-ttyd}
