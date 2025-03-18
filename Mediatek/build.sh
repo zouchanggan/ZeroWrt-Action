@@ -4,6 +4,7 @@
 export mirror=http://127.0.0.1:8080
 
 # Clone source code
+source_branch=${{ github.event.inputs.source_branch }}
 if [ "$source_branch" = "hanwckf_mt798x_v21.02" ]; then
     git clone --depth=1 https://github.com/hanwckf/immortalwrt-mt798x openwrt
 elif [ "$source_branch" = "padavanonly_mt798x_v24.10" ]; then
