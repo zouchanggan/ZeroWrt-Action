@@ -2,7 +2,12 @@ name: Mediatek_filogic_padavanonly
 
 on:
   workflow_dispatch:
-    inputs:   
+    inputs: 
+      lan_addr:
+        description: 'Setting default LAN address'
+        required: true
+        default: '10.0.0.1'
+        type: string    
       device:
         description: 'Select the build device'
         required: true
@@ -34,12 +39,33 @@ on:
           - 'TP-Link TL-XDR6088'
           - 'Xiaomi Redmi Router AX6000'
           - 'Xiaomi Redmi Router AX6000'
-      lan_addr:
-        description: 'Setting default LAN address'
+      WIFI_DRIVER:
+        description: 'Choose WiFi Driver'
         required: true
-        default: '10.0.0.1'
-        type: string
-  
+        default: 'v7.6.7.2-fw-20240823(recommend)'
+        type: choice
+        options:
+        - v7.6.7.2-fw-20240823(recommend)
+        - v7.6.6.1-fw-20230808(recommend)
+        - v7.6.7.2-fw-default
+        - v7.6.7.2-fw-20221208
+        - v7.6.7.2-fw-20230421
+        - v7.6.7.2-fw-20230808
+        - v7.6.7.2-fw-20231024
+        - v7.6.6.1-fw-default
+        - v7.6.6.1-fw-20221208
+        - v7.6.6.1-fw-20230421
+        - v7.6.6.1-fw-20231024
+        - v7.6.6.1-fw-20240823
+      SW_DRIVER:
+        description: 'Choose Switch Driver'
+        required: true
+        default: 'GSW'
+        type: choice
+        options:
+        - GSW
+        - DSA
+
 jobs:
   Build:
     runs-on: ubuntu-24.04
