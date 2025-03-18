@@ -120,15 +120,6 @@ jobs:
           git clone $REPO_URL -b $REPO_BRANCH openwrt
           ln -sf /builder/openwrt ${GITHUB_WORKSPACE}/openwrt
           ln -sf /builder/openwrt /home/runner/work/_actions/oppen321/ZeroWrt-Action/master/openwrt
-
-
-          # Set output information
-          echo "build_tag=OpenWrt_${TAGS_NAME}_${{ inputs.openwrt_storage }}_$(date +"%Y.%m")" >> ${GITHUB_OUTPUT}
-          echo -e "REPO_URL: [ ${REPO_URL} ]\nREPO_BRANCH: [ ${REPO_BRANCH} ]\nTAGS_NAME: [ ${TAGS_NAME} ]"
-          df -hT ${PWD}
-          echo "REPO_URL=${REPO_URL}" >> ${GITHUB_OUTPUT}
-          echo "TAGS_NAME=${TAGS_NAME}" >> ${GITHUB_OUTPUT}
-          echo "status=success" >> ${GITHUB_OUTPUT}
           
       - name: Load custom feeds
         run: |
