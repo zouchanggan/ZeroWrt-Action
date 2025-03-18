@@ -1,0 +1,125 @@
+name: Rockchip
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_branch:
+        description: "Select the source branch"
+        required: true
+        default: "openwrt-main"
+        type: choice
+        options:
+          - openwrt-main
+          - immortalwrt-master
+          - lede-master
+      lan_addr:
+        description: 'Setting default LAN address'
+        required: true
+        default: '10.0.0.1'
+        type: string  
+      device:
+        description: 'Select the build device'
+        required: true
+        default: 'cetron_ct3003'
+        type: choice
+        options:
+          - 'friendlyarm_nanopi-r2c'
+          - 'friendlyarm_nanopi-r2s'
+          - 'friendlyarm_nanopi-r3s'
+          - 'friendlyarm_nanopi-r4s'
+          - 'friendlyarm_nanopi-r5c'
+          - 'friendlyarm_nanopi-r5s'
+          - 'friendlyarm_nanopi-r6c'
+          - 'friendlyarm_nanopi-r6s'
+  
+jobs:
+  build:
+    name: Build ${{ github.event.inputs.device }}
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout
+      continue-on-error: true
+      uses: actions/checkout@main
+      with:
+        path: ZeroWrt-Action
+
+    - name: Setup variables
+      run: |
+        sudo timedatectl set-timezone 'Asia/Shanghai'
+        git config --global user.name 'actions'
+        git config --global user.email 'action@github.com'
+        echo build_dir="/builder" >> "$GITHUB_ENV"
+
+    - name: Show system
+      run: |
+        echo -e "\n\e[1;32mCPU:\e[0m"
+        echo "$(grep 'model name' /proc/cpuinfo | head -1 | awk -F ': ' '{print $2}') ($(grep 'cpu MHz' /proc/cpuinfo | head -1 | awk -F ': ' '{print $2}')MHz) x $(grep processor /proc/cpuinfo  | wc -l)"
+        echo -e "\n\e[1;32mMemory:\e[0m"
+        free -h
+        echo -e "\n\e[1;32mStorage:\e[0m"
+        df -Th / /mnt
+        echo -e "\n\e[1;32mSystem:\e[0m"
+        lsb_release -a
+        echo -e "\n\e[1;32mKernel:\e[0m"
+        uname -a
+        echo
+
+    - name: Install Caddy Server
+      run: |
+        sudo curl -sL -o /usr/bin/caddy https://github.com/oppen321/ZeroWrt-Action/releases/download/caddy/caddy
+        sudo chmod 755 /usr/bin/caddy
+        echo ":8080 {" > caddyfile
+        echo "    root * $(pwd)/ZeroWrt-Action" >> caddyfile
+        echo "    file_server browse" >> caddyfile
+        echo "}" >> caddyfile
+        sudo /usr/bin/caddy start --config caddyfile --adapter caddyfile
+
+    - name: Free disk space
+      uses: sbwml/actions@free-disk
+      with:
+        build-mount-path: /builder
+
+    - name: Build System Setup
+      uses: sbwml/actions@openwrt-build-setup
+
+    - name: Install LLVM
+      uses: sbwml/actions@install-llvm   
+
+    - name: Compile OpenWrt
+      working-directory: /builder
+      id: compile
+      continue-on-error: true
+      run: |
+        export LAN=${{ github.event.inputs.lan_addr }}
+        export device=${{ github.event.inputs.device }}
+        export source_branch=${{ github.event.inputs.source_branch }} 
+        bash <(curl -sS http://127.0.0.1:8080/build.sh) "$LAN" "$device" "$source_branch"
+
+    - name: Extensive logs after a failed compilation
+      working-directory: /builder
+      if: steps.compile.outcome == 'failure'
+      run: |
+        cd openwrt
+        make V=s 
+
+    - name: Prepare Firmware Files
+      working-directory: /builder
+      run: |
+        mkdir -p rom
+
+        
+    - name: Create release
+      continue-on-error: true
+      uses: ncipollo/release-action@v1
+      with:
+        name: ${{ github.event.inputs.source_branch }}
+        allowUpdates: true
+        tag: ${{ github.event.inputs.source_branch }}
+        commit: master
+        replacesArtifacts: true
+        token: ${{ secrets.GITHUB_TOKEN }}
+        artifacts: ${{ env.build_dir }}/rom/*        
