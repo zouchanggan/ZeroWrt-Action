@@ -10,7 +10,7 @@ on:
       DEVICE:
         description: 'Select the build device'
         required: true
-        default: 'CETRON CT3003'
+        default: 'CETRON_CT3003'
         type: choice
         options:
           - 'ABT_ASR3000'
