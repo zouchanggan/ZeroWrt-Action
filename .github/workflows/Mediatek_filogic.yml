@@ -119,7 +119,6 @@ jobs:
           ln -sf /builder/openwrt ${GITHUB_WORKSPACE}/openwrt
           ln -sf /builder/openwrt /home/runner/work/_actions/oppen321/ZeroWrt-Action/master/openwrt
 
-
       - name: Load custom feeds
         run: |
           [[ -f "${FEEDS_CONF}" ]] && cp -f ${FEEDS_CONF} openwrt/feeds.conf.default
@@ -195,4 +194,4 @@ jobs:
           commit: master
           replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: ${{ env.build_dir }}/rom/*
+          artifacts: /builder/openwrt/rom/*
