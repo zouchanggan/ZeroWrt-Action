@@ -69,8 +69,6 @@ jobs:
         git config --global user.name 'actions'
         git config --global user.email 'action@github.com'
         echo build_dir="/builder" >> "$GITHUB_ENV"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: /builder/openwrt/rom/*
 
     - name: Show system
       run: |
