@@ -21,7 +21,7 @@ cd openwrt
 
 # scripts
 curl -sO $mirror/Mediatek/00-prepare_base.sh
-curl -sO $mirror/Mediatek/02-prepare_package.sh
+curl -sO $mirror/Mediatek/01-prepare_package.sh
 bash 00-prepare_base.sh
 bash 02-prepare_package.sh
 chmod 0755 *sh
