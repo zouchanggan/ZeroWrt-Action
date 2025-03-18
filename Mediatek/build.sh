@@ -20,8 +20,8 @@ cd openwrt
 [ -n "$LAN" ] && export LAN=$LAN || export LAN=10.0.0.1
 
 # scripts
-curl -sO $mirror/Mediatek/00-prepare_base.sh
-curl -sO $mirror/Mediatek/01-prepare_package.sh
+curl -sO $mirror/Mediatek/$source_branch/00-prepare_base.sh
+curl -sO $mirror/Mediatek/$source_branch/01-prepare_package.sh
 bash 00-prepare_base.sh
 bash 02-prepare_package.sh
 chmod 0755 *sh
