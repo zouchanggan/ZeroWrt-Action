@@ -158,7 +158,7 @@ jobs:
         cd $OPENWRT_PATH
         $GITHUB_WORKSPACE/$DIY_SCRIPT
 
-    - name: 设置LAN IP地址（路由器登录地址）
+    - name: Set the LAN IP address (router login address)
       run: |
         cd openwrt
         SET_IP=${{ github.event.inputs.LAN_IP }}
@@ -172,7 +172,7 @@ jobs:
             echo "Invalid IP address, use default."
         fi
 
-    - name: 设置WiFi驱动版本
+    - name: Set WiFi driver version
       run: |
         cd openwrt
         wifi_driver=$(echo "${{ github.event.inputs.WIFI_DRIVER }}" | sed -E 's/^(v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+).*/\1/')
