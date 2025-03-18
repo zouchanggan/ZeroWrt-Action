@@ -2,12 +2,20 @@ name: Mediatek_filogic_padavanonly
 
 on:
   workflow_dispatch:
-    inputs: 
+    inputs:
+      source_branch:
+        description: "Select the source branch"
+        required: false
+        default: "openwrt-main"
+        type: choice
+        options:
+          - hanwckf-mt798x-v21.02
+          - padavanonly-mt798x-v24.10 
       LAN_IP:
         description: 'Set LAN IP Address'
         required: true
         default: '10.0.0.1'   
-      device:
+      DEVICE:
         description: 'Select the build device'
         required: true
         default: 'cetron_ct3003'
@@ -40,10 +48,8 @@ on:
           - 'xiaomi_redmi_router_ax6000_stock_layout'
 
 env:
-  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-24.10
-  REPO_BRANCH: 2410
-  CONFIG_FILE: Mediatek/${{ github.event.inputs.device }}.config
-  DIY_SCRIPT: Mediatek/diy-Mediatek.sh
+  CONFIG_FILE: Mediatek/${{ inputs.source_branch }}/${{ inputs.DEVICE }}.config
+  DIY_SCRIPT: Mediatek/${{ inputs.source_branch }}/diy-Mediatek.sh
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
@@ -94,6 +100,16 @@ jobs:
     - name: Clone Source Code
       run: |
         df -hT $GITHUB_WORKSPACE
+        if [[ "${{ inputs.source_branch }}" == *"hanwckf-mt798x-v21.02"* ]]; then
+            REPO_URL="https://github.com/hanwckf/immortalwrt-mt798x"
+            REPO_BRANCH="openwrt-21.02"
+        elif [[ "${{ inputs.source_branch }}" == *"padavanonly-mt798x-v24.10"* ]]; then
+            REPO_URL="https://github.com/padavanonly/immortalwrt-mt798x-24.10"
+            REPO_BRANCH="2410" 
+        else
+            echo "Unknown source code repository."
+            exit 1
+        fi           
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
