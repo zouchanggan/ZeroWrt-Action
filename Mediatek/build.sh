@@ -32,7 +32,7 @@ bash 02-prepare_package.sh
 chmod 0755 *sh
 
 # Load devices Config
-device
+device=${{ github.event.inputs.device }}
 case "$device" in
     "abt_asr3000")
         curl -L -o .config $mirror/Mediatek/$source_branch/abt_asr3000.config
