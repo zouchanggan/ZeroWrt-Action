@@ -42,7 +42,6 @@ on:
 env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-24.10
   REPO_BRANCH: 2410
-  CONFIG_FILE: Mediatek/CETRON_CT3003.config
   DIY_SCRIPT: diy/diy-Mediatek.sh
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
