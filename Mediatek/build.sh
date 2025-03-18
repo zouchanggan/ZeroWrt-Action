@@ -31,6 +31,8 @@ bash 00-prepare_base.sh
 bash 02-prepare_package.sh
 chmod 0755 *sh
 
+# Load devices Config
+device
 case "$device" in
     "abt_asr3000")
         curl -L -o .config $mirror/Mediatek/$source_branch/abt_asr3000.config
