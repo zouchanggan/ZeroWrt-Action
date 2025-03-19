@@ -153,7 +153,7 @@ jobs:
       uses: actions/cache/save@v4
       with:
         path: /builder/.ccache
-        key: ${{ github.event.inputs.source_branch }}-ccache
+        key: ${{ github.event.inputs.source_branch }}-ccache--${{ github.run_id }}
 
     - name: Create ccache tar files
       if: ${{ github.event.inputs.ccache }} 
