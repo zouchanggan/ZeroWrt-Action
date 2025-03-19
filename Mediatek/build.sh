@@ -41,7 +41,51 @@ if [ "$device" = "abt_asr3000" ]; then
 elif [ "$device" = "cetron_ct3003" ]; then
     curl -s $mirror/Mediatek/$source_branch/cetron_ct3003.config > .config
 elif [ "$device" = "cmcc_a10" ]; then
-    curl -s $mirror/Mediatek/$source_branch//cmcc_a10.config > .config
+    curl -s $mirror/Mediatek/$source_branch/cmcc_a10.config > .config
+elif [ "$device" = "cmcc_rax3000m_emmc" ]; then
+    curl -s $mirror/Mediatek/$source_branch/cmcc_rax3000m_emmc.config > .config
+elif [ "$device" = "cmcc_rax3000m_nand" ]; then
+    curl -s $mirror/Mediatek/$source_branch/cmcc_rax3000m_nand.config > .config
+elif [ "$device" = "gl_inet_gl_mt3000" ]; then    
+    curl -s $mirror/Mediatek/$source_branch/gl_inet_gl_mt3000.config > .config
+elif [ "$device" = "h3c_nx30pro" ]; then
+    curl -s $mirror/Mediatek/$source_branch/h3c_nx30pro.config > .config
+elif [ "$device" = "imou_lc_hx3001" ]; then
+    curl -s $mirror/Mediatek/$source_branch/imou_lc_hx3001.config > .config
+elif [ "$device" = "jcg_q30" ]; then   
+    curl -s $mirror/Mediatek/$source_branch/jcg_q30.config > .config
+elif [ "$device" = "konka_komi_a31" ]; then
+    curl -s $mirror/Mediatek/$source_branch/konka_komi_a31.config > .config
+elif [ "$device" = "livinet_zr_3020" ]; then 
+    curl -s $mirror/Mediatek/$source_branch/livinet_zr_3020.config > .config
+elif [ "$device" = "mediatek_360_t7" ]; then  
+    curl -s $mirror/Mediatek/$source_branch/mediatek_360_t7.config > .config
+elif [ "$device" = "mediatek_360_t7_108m_ubi" ]; then
+    curl -s $mirror/Mediatek/$source_branch/mediatek_360_t7_108m_ubi.config > .config
+elif [ "$device" = "mediatek_clt_r30b1" ]; then
+    curl -s $mirror/Mediatek/$source_branch/mediatek_clt_r30b1.config > .config
+elif [ "$device" = "mediatek_clt_r30b1_112m_ubi" ]; then
+    curl -s $mirror/Mediatek/$source_branch/mediatek_clt_r30b1_112m_ubi.config > .config
+elif [ "$device" = "xiaomi_mi_router_ax3000t" ]; then
+    curl -s $mirror/Mediatek/$source_branch/xiaomi_mi_router_ax3000t.config > .config
+elif [ "$device" = "xiaomi_mi_router_ax3000t_stock_layout" ]; then
+    curl -s $mirror/Mediatek/$source_branch/xiaomi_mi_router_ax3000t_stock_layout.config > .config
+elif [ "$device" = "xiaomi_mi_router_wr30u_stock_layout" ]; then
+    curl -s $mirror/Mediatek/$source_branch/xiaomi_mi_router_wr30u_stock_layout.config > .config
+elif [ "$device" = "xiaomi_mi_router_wr30u_112m_ubi_layout" ]; then
+    curl -s $mirror/Mediatek/$source_branch/xiaomi_mi_router_wr30u_112m_ubi_layout.config > .config
+elif [ "$device" = "xiaomi_mi_router_wr30u_stock_layout" ]; then
+    curl -s $mirror/Mediatek/$source_branch/xiaomi_mi_router_wr30u_stock_layout.config > .config
+elif [ "$device" = "gl_inet_gl_mt6000" ]; then
+    curl -s $mirror/Mediatek/$source_branch/gl_inet_gl_mt6000.config > .config
+elif [ "$device" = "tp_link_tl_xdr6086" ]; then
+    curl -s $mirror/Mediatek/$source_branch/tp_link_tl_xdr6086.config > .config
+elif [ "$device" = "tp_link_tl_xdr6088" ]; then
+    curl -s $mirror/Mediatek/$source_branch/tp_link_tl_xdr6088.config > .config
+elif [ "$device" = "xiaomi_redmi_router_ax6000" ]; then 
+    curl -s $mirror/Mediatek/$source_branch/xiaomi_redmi_router_ax6000.config > .config
+elif [ "$device" = "xiaomi_redmi_router_ax6000_stock_layout" ]; then
+    curl -s $mirror/Mediatek/$source_branch/xiaomi_redmi_router_ax6000_stock_layout.config > .config
 fi
 
 # init openwrt config
