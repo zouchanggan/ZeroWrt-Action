@@ -199,6 +199,37 @@ jobs:
             cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_rax3000m-emmc-squashfs-sysupgrade.bin rom/
             cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-factory.bin rom/
             ;;
+          cmcc_rax3000m_nand)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-factory.bin rom/
+            ;;
+          gl_inet_gl_mt3000)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-glinet_gl-mt3000-squashfs-sysupgrade.tar rom/
+            ;;
+          h3c_nx30pro)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-h3c_nx30pro-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-h3c_nx30pro-squashfs-factory.bin rom/
+            ;;
+          imou_lc_hx3001)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-imou_lc-hx3001-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-imou_lc-hx3001-squashfs-factory.bin rom/
+            ;;
+          jcg_q30)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-jcg_q30-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-jcg_q30-squashfs-factory.bin rom/
+            ;;
+          konka_komi_a31)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-konka_komi-a31-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-konka_komi-a31-squashfs-factory.bin rom/
+            ;;
+          livinet_zr_3020)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-livinet_zr-3020-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-livinet_zr-3020-squashfs-factory.bin rom/
+            ;;
+          mediatek_360_t7)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-factory.bin rom/
+            ;;             
           *)
             echo "Device not recognized, skipping firmware copy."
             ;;
