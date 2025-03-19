@@ -31,7 +31,6 @@ on:
         type: choice
         options:
           - 'friendlyarm_nanopi-r2c'
-          - 'friendlyarm_nanopi-r2c-plus'
           - 'friendlyarm_nanopi-r2s'
           - 'friendlyarm_nanopi-r3s'
           - 'friendlyarm_nanopi-r4s'
@@ -40,8 +39,16 @@ on:
           - 'friendlyarm_nanopi-r5s'
           - 'friendlyarm_nanopi-r6c'
           - 'friendlyarm_nanopi-r6s'
+          - 'friendlyarm_nanopi-neo3'
+          - 'firefly_station-p2'
           - 'lunzn_fastrhino-r66s'
           - 'lunzn_fastrhino-r68s'
+          - 'ezpro_mrkaio-m68s'
+          - 'ezpro_mrkaio-m68s-plus'
+          - 'hinlink_opc-h66k'
+          - 'hinlink_opc-h68k'
+          - 'hinlink_opc-h69k'
+          - 'lyt_t68m'
   
 jobs:
   build:
@@ -200,6 +207,12 @@ jobs:
             ;;
           friendlyarm_nanopi-r6s)
             cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-friendlyarm_nanopi-r6s-squashfs-sysupgrade.img.gz rom/
+            ;;
+          firefly_station-p2)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-firefly_station-p2-squashfs-sysupgrade.img.gz rom/
+            ;;
+          friendlyarm_nanopi-neo3)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-friendlyarm_nanopi-neo3-squashfs-sysupgrade.img.gz rom/
             ;;
           lunzn_fastrhino-r66s)
             cp -a openwrt/bin/targets/rockchip/*/immortalwrt-mediatek-mt7981-livinet_zr-3020-squashfs-sysupgrade.bin rom/
