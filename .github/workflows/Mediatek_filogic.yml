@@ -157,7 +157,7 @@ jobs:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_REPO: ${{ github.repository }}
       run: |
-        gh cache delete immortalwrt-${{ github.event.inputs.source_branch }}-ccache || true
+        gh cache delete ${{ github.event.inputs.source_branch }}-ccache || true
         
     - name: Save Cached
       if: ${{ github.event.inputs.ccache }}
@@ -165,7 +165,7 @@ jobs:
       uses: actions/cache/save@v4
       with:
         path: /builder/.ccache
-        key: immortalwrt-${{ github.event.inputs.source_branch }}-ccache
+        key: ${{ github.event.inputs.source_branch }}-ccache
 
     - name: Create ccache tar files
       if: ${{ github.event.inputs.ccache }} 
