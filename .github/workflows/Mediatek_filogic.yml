@@ -51,6 +51,7 @@ on:
           - 'tp_link_tl_xdr6088'
           - 'xiaomi_redmi_router_ax6000'
           - 'xiaomi_redmi_router_ax6000_stock_layout'
+          - 'jdcloud_re_cp_03'
   
 jobs:
   build:
