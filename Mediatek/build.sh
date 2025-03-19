@@ -74,8 +74,6 @@ elif [ "$device" = "xiaomi_mi_router_wr30u_stock_layout" ]; then
     curl -s $mirror/Mediatek/$source_branch/xiaomi_mi_router_wr30u_stock_layout.config > .config
 elif [ "$device" = "xiaomi_mi_router_wr30u_112m_ubi_layout" ]; then
     curl -s $mirror/Mediatek/$source_branch/xiaomi_mi_router_wr30u_112m_ubi_layout.config > .config
-elif [ "$device" = "xiaomi_mi_router_wr30u_stock_layout" ]; then
-    curl -s $mirror/Mediatek/$source_branch/xiaomi_mi_router_wr30u_stock_layout.config > .config
 elif [ "$device" = "gl_inet_gl_mt6000" ]; then
     curl -s $mirror/Mediatek/$source_branch/gl_inet_gl_mt6000.config > .config
 elif [ "$device" = "tp_link_tl_xdr6086" ]; then
