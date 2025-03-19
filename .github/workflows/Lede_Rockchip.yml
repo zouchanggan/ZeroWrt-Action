@@ -174,53 +174,57 @@ jobs:
       run: |
         mkdir -p rom
         case "${{ github.event.inputs.device }}" in
-          abt_asr3000)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-abt_asr3000-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-abt_asr3000-squashfs-factory.bin rom/
+          friendlyarm_nanopi-r2c)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-friendlyarm_nanopi-r2c-squashfs-sysupgrade.img.gz rom/
             ;;
-          cetron_ct3003)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cetron_ct3003-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cetron_ct3003-squashfs-factory.bin rom/
+          friendlyarm_nanopi-r2s)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz rom/
             ;;
-          cmcc_a10)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_a10-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_a10-squashfs-factory.bin rom/
+          friendlyarm_nanopi-r3s)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-friendlyarm_nanopi-r3s-squashfs-sysupgrade.img.gz rom/
             ;;
-          cmcc_rax3000m_emmc)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_rax3000m-emmc-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-factory.bin rom/
+          friendlyarm_nanopi-r4s)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-friendlyarm_nanopi-r4s-squashfs-sysupgrade.img.gz rom/
             ;;
-          cmcc_rax3000m_nand)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-factory.bin rom/
+          friendlyarm_nanopi-r4se)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-friendlyarm_nanopi-r4se-squashfs-sysupgrade.img.gz rom/
             ;;
-          gl_inet_gl_mt3000)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-glinet_gl-mt3000-squashfs-sysupgrade.tar rom/
+          friendlyarm_nanopi-r5c)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-friendlyarm_nanopi-r5c-squashfs-sysupgrade.img.gz rom/
             ;;
-          h3c_nx30pro)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-h3c_nx30pro-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-h3c_nx30pro-squashfs-factory.bin rom/
+          friendlyarm_nanopi-r5s)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-friendlyarm_nanopi-r5s-squashfs-sysupgrade.img.gz rom/
             ;;
-          imou_lc_hx3001)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-imou_lc-hx3001-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-imou_lc-hx3001-squashfs-factory.bin rom/
+          friendlyarm_nanopi-r6c)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-friendlyarm_nanopi-r6c-squashfs-sysupgrade.img.gz rom/
             ;;
-          jcg_q30)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-jcg_q30-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-jcg_q30-squashfs-factory.bin rom/
+          friendlyarm_nanopi-r6s)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-friendlyarm_nanopi-r6s-squashfs-sysupgrade.img.gz rom/
             ;;
-          konka_komi_a31)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-konka_komi-a31-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-konka_komi-a31-squashfs-factory.bin rom/
+          lunzn_fastrhino-r66s)
+            cp -a openwrt/bin/targets/rockchip/*/immortalwrt-mediatek-mt7981-livinet_zr-3020-squashfs-sysupgrade.bin rom/
             ;;
-          livinet_zr_3020)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-livinet_zr-3020-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-livinet_zr-3020-squashfs-factory.bin rom/
+          lunzn_fastrhino-r68s)
+            cp -a openwrt/bin/targets/rockchip/*/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-sysupgrade.bin rom/
             ;;
-          mediatek_360_t7)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-factory.bin rom/
-            ;;             
+          ezpro_mrkaio-m68s-plus)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-ezpro_mrkaio-m68s-plus-squashfs-sysupgrade.img.gz rom/
+            ;;
+          ezpro_mrkaio-m68s)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-ezpro_mrkaio-m68s-squashfs-sysupgrade.img.gz rom/
+            ;;
+          hinlink_opc-h66k)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-hinlink_opc-h66k-squashfs-sysupgrade.img.gz rom/
+            ;; 
+          inlink_opc-h68k)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-hinlink_opc-h68k-squashfs-sysupgrade.img.gz rom/
+            ;;
+          hinlink_opc-h69k)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-hinlink_opc-h69k-squashfs-sysupgrade.img.gz rom/
+            ;;
+          lyt_t68m)
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-lyt_t68m-squashfs-sysupgrade.img.gz rom/
+            ;; 
           *)
             echo "Device not recognized, skipping firmware copy."
             ;;
