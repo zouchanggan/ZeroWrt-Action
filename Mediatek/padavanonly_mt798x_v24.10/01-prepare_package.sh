@@ -8,6 +8,28 @@ sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/ut
 
 # 移除要替换的包
 rm -rf feeds/packages/lang/golang
+rm -rf ./feeds/extraipk/theme/luci-theme-argon-18.06
+rm -rf ./feeds/extraipk/theme/luci-app-argon-config-18.06
+rm -rf ./feeds/extraipk/theme/luci-theme-design
+rm -rf ./feeds/extraipk/theme/luci-theme-edge
+rm -rf ./feeds/extraipk/theme/luci-theme-ifit
+rm -rf ./feeds/extraipk/theme/luci-theme-opentopd
+rm -rf ./feeds/extraipk/theme/luci-theme-neobird
+
+rm -rf ./feeds/extraipk/patch/luci-app-turboacc
+rm -rf ./feeds/extraipk/patch/autocore
+
+
+rm -rf ./package/feeds/extraipk/luci-theme-argon-18.06
+rm -rf ./package/feeds/extraipk/luci-app-argon-config-18.06
+rm -rf ./package/feeds/extraipk/theme/luci-theme-design
+rm -rf ./package/feeds/extraipk/theme/luci-theme-edge
+rm -rf ./package/feeds/extraipk/theme/luci-theme-ifit
+rm -rf ./package/feeds/extraipk/theme/luci-theme-opentopd
+rm -rf ./package/feeds/extraipk/theme/luci-theme-neobird
+
+rm -rf ./package/feeds/extraipk/luci-app-turboacc
+rm -rf ./package/feeds/extraipk/autocore
 
 # golong1.24依赖
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
