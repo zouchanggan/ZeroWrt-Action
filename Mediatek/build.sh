@@ -100,10 +100,6 @@ mkdir bin
 find ./staging_dir/ -name '*' -exec touch {} \; >/dev/null 2>&1
 find ./tmp/ -name '*' -exec touch {} \; >/dev/null 2>&1
 
-# ccache
-echo "CONFIG_CCACHE=y" >> .config
-echo "CONFIG_CCACHE_DIR=\"/builder/.ccache\"" >> .config
-
 # init openwrt config
 make defconfig
 
