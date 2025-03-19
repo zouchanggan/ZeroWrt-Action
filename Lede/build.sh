@@ -21,12 +21,25 @@ cd openwrt
 sed -i 's/192.168.1.1/$LAN/g' package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/$LAN/g' package/base-files/luci2/bin/config_generate
 
+##加入作者信息
+sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='ZeroWrt-$(date +%Y%m%d)'/g" package/lean/default-settings/files/zzz-default-settings   
+sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By DaoDao'/g" package/lean/default-settings/files/zzz-default-settings
+
+sed -i "2iuci set istore.istore.channel='ZeroWrt_OPPEN321'" package/lean/default-settings/files/zzz-default-settings
+sed -i "3iuci commit istore" package/lean/default-settings/files/zzz-default-settings
+
+
+##更改主机名
+sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/files/bin/config_generate
+sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/luci2/bin/config_generate
+
 # Replace kernel
-sed -i 's/6.12/6.6/g' target/linux/x86/Makefile
+sed -i "s/^KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=$openwrt_kernel/" target/linux/rockchip/Makefile
+sed -i "s/^KERNEL_TESTING_PATCHVER:=.*/KERNEL_TESTING_PATCHVER:=$openwrt_kernel/" target/linux/rockchip/Makefile
 
 # scripts
-curl -sO $mirror/Mediatek/$source_branch/00-prepare_base.sh
-curl -sO $mirror/Mediatek/$source_branch/01-prepare_package.sh
+curl -sO $mirror/Lede/Scripts/00-prepare_base.sh
+curl -sO $mirror/Lede/Scripts/01-prepare_package.sh
 chmod 0755 00-prepare_base.sh
 chmod 0755 01-prepare_package.sh
 bash 00-prepare_base.sh
