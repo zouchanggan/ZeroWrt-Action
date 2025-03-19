@@ -88,6 +88,18 @@ elif [ "$device" = "jdcloud_re_cp_03" ]; then
     curl -s $mirror/Mediatek/$source_branch/jdcloud_re_cp_03.config > .config
 fi
 
+# Toolchain Cache
+if [ "$source_branch" = "hanwckf_mt798x_v21.02" ]; then
+    https://github.com/oppen321/openwrt_caches/releases/download/Hanwckf_MT798X_v21.02/toolchain_mediatek.tar.zst
+elif [ "$source_branch" = "padavanonly_mt798x_v24.10" ]; then
+    https://github.com/oppen321/openwrt_caches/releases/download/Padavanonly_MT798X_v24.10/toolchain_mediatek.tar.zst
+fi    
+tar -I "zstd" -xf toolchain_mediatek.tar.zst
+rm -f toolchain_mediatek.tar.zst
+mkdir bin
+find ./staging_dir/ -name '*' -exec touch {} \; >/dev/null 2>&1
+find ./tmp/ -name '*' -exec touch {} \; >/dev/null 2>&1
+
 # ccache
 echo "CONFIG_CCACHE=y" >> .config
 echo "CONFIG_CCACHE_DIR=\"/builder/.ccache\"" >> .config
