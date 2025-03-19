@@ -42,6 +42,7 @@ on:
           - 'friendlyarm_nanopi-r6s'
           - 'lunzn_fastrhino-r66s'
           - 'lunzn_fastrhino-r68s'
+          - 'x86_64'
   
 jobs:
   build:
