@@ -52,7 +52,9 @@ on:
           - 'xiaomi_redmi_router_ax6000'
           - 'xiaomi_redmi_router_ax6000_stock_layout'
           - 'jdcloud_re_cp_03'
-  
+          - 'netcore_n60_pro'
+          - 'netcore_n60'
+          
 jobs:
   build:
     name: Build ${{ github.event.inputs.device }}
@@ -156,7 +158,7 @@ jobs:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_REPO: ${{ github.repository }}
       run: |
-        gh cache delete ${{ github.event.inputs.source_branch }}-ccache || true
+        gh cache delete immortalwrt-${{ github.event.inputs.source_branch }}-ccache || true
         
     - name: Save Cached
       if: ${{ github.event.inputs.ccache }}
@@ -164,7 +166,7 @@ jobs:
       uses: actions/cache/save@v4
       with:
         path: /builder/.ccache
-        key: ${{ github.event.inputs.source_branch }}-ccache
+        key: immortalwrt-${{ github.event.inputs.source_branch }}-ccache
 
     - name: Create ccache tar files
       if: ${{ github.event.inputs.ccache }} 
@@ -240,7 +242,41 @@ jobs:
           mediatek_360_t7)
             cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-sysupgrade.bin rom/
             cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-factory.bin rom/
-            ;;             
+            ;;
+          livinet_zr_3020)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-livinet_zr-3020-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-livinet_zr-3020-squashfs-factory.bin rom/
+            ;;
+          mediatek_360_t7)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-factory.bin rom/
+            ;;
+          gl_inet_gl_mt6000)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-glinet_gl-mt6000-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-glinet_gl-mt6000-squashfs-factory.bin rom/
+            ;;
+          tp_link_tl_xdr6086)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-tplink_tl-xdr6086-squashfs-sysupgrade.bin rom/
+            ;;
+          tp_link_tl_xdr6088)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-tplink_tl-xdr6088-squashfs-sysupgrade.bin rom/
+            ;;
+          xiaomi_redmi_router_ax6000)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-xiaomi_redmi-router-ax6000-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-xiaomi_redmi-router-ax6000-squashfs-factory.bin rom/
+            ;;
+          xiaomi_redmi_router_ax6000_stock_layout)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-xiaomi_redmi-router-ax6000-stock-squashfs-sysupgrade.bin rom/
+            ;;
+          jdcloud_re_cp_03)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-jdcloud_re-cp-03-squashfs-sysupgrade.bin rom/
+            ;;
+          netcore_n60_pro)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-netcore_n60-pro-squashfs-sysupgrade.bin rom/
+            ;;
+          netcore_n60)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-netcore_n60-squashfs-sysupgrade.bin rom/
+            ;;
           *)
             echo "Device not recognized, skipping firmware copy."
             ;;
