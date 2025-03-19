@@ -122,13 +122,13 @@ jobs:
       working-directory: /builder
       run: |
         curl -s https://api.github.com/repos/${{ github.repository }}/releases | grep 'browser_download_url' | grep ccache | grep ${{ github.event.inputs.device }} | awk -F '"' '{print $4}' | grep -v '^$' | xargs -n 1 wget -q
-        cat ${{ github.event.inputs.device }}.tar.* | tar -xf - || true
-        rm -rf ${{ github.event.inputs.device }}.tar.* || true
+        cat ${{ github.event.inputs.source_branch }}.tar.* | tar -xf - || true
+        rm -rf ${{ github.event.inputs.source_branch }}.tar.* || true
         [ -d .ccache ] && cache_size=$(du -sb .ccache | awk '{print $1}') || cache_size=0
         cache_size_mb=$(echo "scale=0; ${cache_size} / (1024 * 1024)" | bc)
         echo "Cache Size: ~${cache_size_mb} MB (${cache_size} B)"
         echo "Cache restored successfully"
-        echo "Cache restored from key: ${{ github.event.inputs.device }}"
+        echo "Cache restored from key: ${{ github.event.inputs.source_branch }}"
         
     - name: Compile OpenWrt
       working-directory: /builder
@@ -162,7 +162,22 @@ jobs:
       run: |
         mkdir -p ccache
         tar cf - .ccache | split -d -b 1800m - ccache/${{ github.event.inputs.source_branch }}.tar.
-        
+
+    - name: Upload Cached (releases - ccache)
+      if: ${{ github.event.inputs.ccache == 'true'
+      continue-on-error: true
+      uses: ncipollo/release-action@v1.14.0
+      with:
+        name: ccache
+        allowUpdates: true
+        tag: ccache
+        commit: master
+        replacesArtifacts: true
+        prerelease: true
+        token: ${{ secrets.GITHUB_TOKEN }}
+        artifacts: |
+          ${{ env.build_dir }}/ccache/*
+          
     - name: Prepare Firmware Files
       working-directory: /builder
       run: |
