@@ -121,7 +121,7 @@ jobs:
       continue-on-error: true
       working-directory: /builder
       run: |
-        curl -s https://api.github.com/repos/${{ github.repository }}/releases | grep 'browser_download_url' | grep ccache | grep ${{ github.event.inputs.device }} | awk -F '"' '{print $4}' | grep -v '^$' | xargs -n 1 wget -q
+        curl -s -O https://github.com/oppen321/ZeroWrt-Action/releases/download/ccache/${{ github.event.inputs.source_branch }}.tar.00
         cat ${{ github.event.inputs.source_branch }}.tar.* | tar -xf - || true
         rm -rf ${{ github.event.inputs.source_branch }}.tar.* || true
         [ -d .ccache ] && cache_size=$(du -sb .ccache | awk '{print $1}') || cache_size=0
