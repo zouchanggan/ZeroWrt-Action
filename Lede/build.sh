@@ -5,17 +5,10 @@ export mirror=http://127.0.0.1:8080
 
 echo "LAN: $LAN"
 echo "Device: $device"
-echo "Source branch: $source_branch"
+echo "openwrt_kernel: $openwrt_kernel"
 
 # Clone source code
-if [ "$source_branch" = "hanwckf_mt798x_v21.02" ]; then
-    git clone --depth=1 https://github.com/hanwckf/immortalwrt-mt798x openwrt
-elif [ "$source_branch" = "padavanonly_mt798x_v24.10" ]; then
-    git clone -b 2410 --single-branch --filter=blob:none https://github.com/padavanonly/immortalwrt-mt798x-24.10 openwrt
-else
-    echo "Unknown source branch: $source_branch"
-    exit 1
-fi
+git clone https://github.com/coolsnowwolf/lede openwrt
 
 # Enter source code
 cd openwrt
@@ -25,7 +18,11 @@ cd openwrt
 ./scripts/feeds install -a
 
 # lan
-[ -n "$LAN" ] && export LAN=$LAN || export LAN=10.0.0.1
+sed -i 's/192.168.1.1/$LAN/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/$LAN/g' package/base-files/luci2/bin/config_generate
+
+# Replace kernel
+sed -i 's/6.12/6.6/g' target/linux/x86/Makefile
 
 # scripts
 curl -sO $mirror/Mediatek/$source_branch/00-prepare_base.sh
@@ -36,56 +33,44 @@ bash 00-prepare_base.sh
 bash 01-prepare_package.sh
 
 # Load devices Config
-if [ "$device" = "abt_asr3000" ]; then
-    curl -s $mirror/Mediatek/$source_branch/abt_asr3000.config > .config
-elif [ "$device" = "cetron_ct3003" ]; then
-    curl -s $mirror/Mediatek/$source_branch/cetron_ct3003.config > .config
-elif [ "$device" = "cmcc_a10" ]; then
-    curl -s $mirror/Mediatek/$source_branch/cmcc_a10.config > .config
-elif [ "$device" = "cmcc_rax3000m_emmc" ]; then
-    curl -s $mirror/Mediatek/$source_branch/cmcc_rax3000m_emmc.config > .config
-elif [ "$device" = "cmcc_rax3000m_nand" ]; then
-    curl -s $mirror/Mediatek/$source_branch/cmcc_rax3000m_nand.config > .config
-elif [ "$device" = "gl_inet_gl_mt3000" ]; then    
-    curl -s $mirror/Mediatek/$source_branch/gl_inet_gl_mt3000.config > .config
-elif [ "$device" = "h3c_nx30pro" ]; then
-    curl -s $mirror/Mediatek/$source_branch/h3c_nx30pro.config > .config
-elif [ "$device" = "imou_lc_hx3001" ]; then
-    curl -s $mirror/Mediatek/$source_branch/imou_lc_hx3001.config > .config
-elif [ "$device" = "jcg_q30" ]; then   
-    curl -s $mirror/Mediatek/$source_branch/jcg_q30.config > .config
-elif [ "$device" = "konka_komi_a31" ]; then
-    curl -s $mirror/Mediatek/$source_branch/konka_komi_a31.config > .config
-elif [ "$device" = "livinet_zr_3020" ]; then 
-    curl -s $mirror/Mediatek/$source_branch/livinet_zr_3020.config > .config
-elif [ "$device" = "mediatek_360_t7" ]; then  
-    curl -s $mirror/Mediatek/$source_branch/mediatek_360_t7.config > .config
-elif [ "$device" = "mediatek_360_t7_108m_ubi" ]; then
-    curl -s $mirror/Mediatek/$source_branch/mediatek_360_t7_108m_ubi.config > .config
-elif [ "$device" = "mediatek_clt_r30b1" ]; then
-    curl -s $mirror/Mediatek/$source_branch/mediatek_clt_r30b1.config > .config
-elif [ "$device" = "mediatek_clt_r30b1_112m_ubi" ]; then
-    curl -s $mirror/Mediatek/$source_branch/mediatek_clt_r30b1_112m_ubi.config > .config
-elif [ "$device" = "xiaomi_mi_router_ax3000t" ]; then
-    curl -s $mirror/Mediatek/$source_branch/xiaomi_mi_router_ax3000t.config > .config
-elif [ "$device" = "xiaomi_mi_router_ax3000t_stock_layout" ]; then
-    curl -s $mirror/Mediatek/$source_branch/xiaomi_mi_router_ax3000t_stock_layout.config > .config
-elif [ "$device" = "xiaomi_mi_router_wr30u_stock_layout" ]; then
-    curl -s $mirror/Mediatek/$source_branch/xiaomi_mi_router_wr30u_stock_layout.config > .config
-elif [ "$device" = "xiaomi_mi_router_wr30u_112m_ubi_layout" ]; then
-    curl -s $mirror/Mediatek/$source_branch/xiaomi_mi_router_wr30u_112m_ubi_layout.config > .config
-elif [ "$device" = "xiaomi_mi_router_wr30u_stock_layout" ]; then
-    curl -s $mirror/Mediatek/$source_branch/xiaomi_mi_router_wr30u_stock_layout.config > .config
-elif [ "$device" = "gl_inet_gl_mt6000" ]; then
-    curl -s $mirror/Mediatek/$source_branch/gl_inet_gl_mt6000.config > .config
-elif [ "$device" = "tp_link_tl_xdr6086" ]; then
-    curl -s $mirror/Mediatek/$source_branch/tp_link_tl_xdr6086.config > .config
-elif [ "$device" = "tp_link_tl_xdr6088" ]; then
-    curl -s $mirror/Mediatek/$source_branch/tp_link_tl_xdr6088.config > .config
-elif [ "$device" = "xiaomi_redmi_router_ax6000" ]; then 
-    curl -s $mirror/Mediatek/$source_branch/xiaomi_redmi_router_ax6000.config > .config
-elif [ "$device" = "xiaomi_redmi_router_ax6000_stock_layout" ]; then
-    curl -s $mirror/Mediatek/$source_branch/xiaomi_redmi_router_ax6000_stock_layout.config > .config
+if [ "$device" = "friendlyarm_nanopi-r2c" ]; then
+    curl -s $mirror/Lede/Configs/friendlyarm_nanopi-r2c.config > .config
+elif [ "$device" = "friendlyarm_nanopi-r2s" ]; then
+    curl -s $mirror/Lede/Configs/friendlyarm_nanopi-r2s.config > .config
+elif [ "$device" = "friendlyarm_nanopi-r3s" ]; then
+    curl -s $mirror/Lede/Configs/friendlyarm_nanopi-r3s.config > .config
+elif [ "$device" = "friendlyarm_nanopi-r4s" ]; then
+    curl -s $mirror/Lede/Configs/friendlyarm_nanopi-r4s.config > .config
+elif [ "$device" = "friendlyarm_nanopi-r4se" ]; then
+    curl -s $mirror/Lede/Configs/friendlyarm_nanopi-r4se.config > .config
+elif [ "$device" = "friendlyarm_nanopi-r5c" ]; then    
+    curl -s $mirror/Lede/Configs/friendlyarm_nanopi-r5c.config > .config
+elif [ "$device" = "friendlyarm_nanopi-r5s" ]; then
+    curl -s $mirror/Lede/Configs/friendlyarm_nanopi-r5s.config > .config
+elif [ "$device" = "friendlyarm_nanopi-r6c" ]; then
+    curl -s $mirror/Lede/Configs/friendlyarm_nanopi-r6c.config > .config
+elif [ "$device" = "friendlyarm_nanopi-r6s" ]; then   
+    curl -s $mirror/Lede/Configs/friendlyarm_nanopi-r6s.config > .config
+elif [ "$device" = "firefly_station-p2" ]; then
+    curl -s $mirror/Lede/Configs/firefly_station-p2.config > .config
+elif [ "$device" = "friendlyarm_nanopi-neo3" ]; then 
+    curl -s $mirror/Lede/Configs/friendlyarm_nanopi-neo3.config > .config
+elif [ "$device" = "fastrhino_r66s" ]; then  
+    curl -s $mirror/Lede/Configs/fastrhino_r66s.config > .config
+elif [ "$device" = "fastrhino_r68s" ]; then
+    curl -s $mirror/Lede/Configs/fastrhino_r68s.config > .config
+elif [ "$device" = "ezpro_mrkaio-m68s" ]; then
+    curl -s $mirror/Lede/Configs/ezpro_mrkaio-m68s.config > .config
+elif [ "$device" = "ezpro_mrkaio-m68s-plus" ]; then
+    curl -s $mirror/Lede/Configs/ezpro_mrkaio-m68s-plus.config > .config
+elif [ "$device" = "hinlink_opc-h66k" ]; then
+    curl -s $mirror/Lede/Configs/hinlink_opc-h66k.config > .config
+elif [ "$device" = "hinlink_opc-h68k" ]; then
+    curl -s $mirror/Lede/Configs/hinlink_opc-h68k.config > .config
+elif [ "$device" = "hinlink_opc-h69k" ]; then
+    curl -s $mirror/Lede/Configs/hinlink_opc-h69k.config > .config
+elif [ "$device" = "lyt_t68m" ]; then
+    curl -s $mirror/Lede/Configs/lyt_t68m.config > .config
 fi
 
 # ccache
