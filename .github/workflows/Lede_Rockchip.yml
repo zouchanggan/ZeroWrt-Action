@@ -1,4 +1,4 @@
-name: Lede_OpenWrt
+name: Lede_Rockchip
 
 on:
   workflow_dispatch:
@@ -42,7 +42,6 @@ on:
           - 'friendlyarm_nanopi-r6s'
           - 'lunzn_fastrhino-r66s'
           - 'lunzn_fastrhino-r68s'
-          - 'x86_64'
   
 jobs:
   build:
@@ -106,21 +105,21 @@ jobs:
       uses: actions/cache/restore@v4
       with:
         path: /builder/.ccache
-        key: ${{ github.event.inputs.source_branch }}-ccache
+        key: Lede-Rockchip-ccache
 
     - name: Restore Cached (releases)
       if: ${{ github.event.inputs.ccache }}
       continue-on-error: true
       working-directory: /builder
       run: |
-        curl -s -O https://github.com/oppen321/ZeroWrt-Action/releases/download/ccache/${{ github.event.inputs.source_branch }}.tar.00
-        cat ${{ github.event.inputs.source_branch }}.tar.* | tar -xf - || true
-        rm -rf ${{ github.event.inputs.source_branch }}.tar.* || true
+        curl -s -O https://github.com/oppen321/ZeroWrt-Action/releases/download/ccache/Lede-Rockchip.tar.00
+        cat Lede-Rockchip.tar.* | tar -xf - || true
+        rm -rf Lede-Rockchip.tar.* || true
         [ -d .ccache ] && cache_size=$(du -sb .ccache | awk '{print $1}') || cache_size=0
         cache_size_mb=$(echo "scale=0; ${cache_size} / (1024 * 1024)" | bc)
         echo "Cache Size: ~${cache_size_mb} MB (${cache_size} B)"
         echo "Cache restored successfully"
-        echo "Cache restored from key: ${{ github.event.inputs.source_branch }}"
+        echo "Cache restored from key: Lede-Rockchip"
         
     - name: Compile OpenWrt
       working-directory: /builder
@@ -129,8 +128,8 @@ jobs:
       run: |
         export LAN=${{ github.event.inputs.lan_addr }}
         export device=${{ github.event.inputs.device }}
-        export source_branch=${{ github.event.inputs.source_branch }} 
-        bash <(curl -sS http://127.0.0.1:8080/build.sh) "$LAN" "$device" "$source_branch"
+        export openwrt_kernel=${{ github.event.inputs.openwrt_kernel }} 
+        bash <(curl -sS http://127.0.0.1:8080/build.sh) "$LAN" "$device" "$openwrt_kernel"
 
     - name: Extensive logs after a failed compilation
       working-directory: /builder
@@ -145,7 +144,7 @@ jobs:
       uses: actions/cache/save@v4
       with:
         path: /builder/.ccache
-        key: ${{ github.event.inputs.source_branch }}-ccache
+        key: Lede-Rockchip-ccache
 
     - name: Create ccache tar files
       if: ${{ github.event.inputs.ccache }} 
@@ -153,7 +152,7 @@ jobs:
       working-directory: /builder
       run: |
         mkdir -p ccache
-        tar cf - .ccache | split -d -b 1800m - ccache/${{ github.event.inputs.source_branch }}.tar.
+        tar cf - .ccache | split -d -b 1800m - ccache/Lede-Rockchip.tar.
 
     - name: Upload Cached (releases - ccache)
       if: ${{ github.event.inputs.ccache }}
