@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # TTYD
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
