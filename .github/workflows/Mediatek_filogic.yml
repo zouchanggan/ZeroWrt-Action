@@ -145,15 +145,25 @@ jobs:
       if: steps.compile.outcome == 'failure'
       run: |
         cd openwrt
-        make V=s 
-
+        make V=s
+        
+    - name: Delete Cached
+      if: ${{ github.event.inputs.ccache }}
+      continue-on-error: true
+      working-directory: /builder
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_REPO: ${{ github.repository }}
+      run: |
+        gh cache delete ${{ github.event.inputs.source_branch }}-ccache || true
+        
     - name: Save Cached
       if: ${{ github.event.inputs.ccache }}
       continue-on-error: true
       uses: actions/cache/save@v4
       with:
         path: /builder/.ccache
-        key: immortalwrt-${{ github.event.inputs.source_branch }}-ccache
+        key: ${{ github.event.inputs.source_branch }}-ccache
 
     - name: Create ccache tar files
       if: ${{ github.event.inputs.ccache }} 
