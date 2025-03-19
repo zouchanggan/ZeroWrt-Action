@@ -215,10 +215,10 @@ jobs:
             cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-friendlyarm_nanopi-neo3-squashfs-sysupgrade.img.gz rom/
             ;;
           lunzn_fastrhino-r66s)
-            cp -a openwrt/bin/targets/rockchip/*/immortalwrt-mediatek-mt7981-livinet_zr-3020-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-fastrhino_r66s-squashfs-sysupgrade.img.gz rom/
             ;;
           lunzn_fastrhino-r68s)
-            cp -a openwrt/bin/targets/rockchip/*/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-fastrhino_r68s-squashfs-sysupgrade.img.gz rom/
             ;;
           ezpro_mrkaio-m68s-plus)
             cp -a openwrt/bin/targets/rockchip/*/openwrt-rockchip-armv8-ezpro_mrkaio-m68s-plus-squashfs-sysupgrade.img.gz rom/
