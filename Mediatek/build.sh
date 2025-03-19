@@ -88,6 +88,10 @@ elif [ "$device" = "xiaomi_redmi_router_ax6000_stock_layout" ]; then
     curl -s $mirror/Mediatek/$source_branch/xiaomi_redmi_router_ax6000_stock_layout.config > .config
 fi
 
+# ccache
+echo "CONFIG_CCACHE=y" >> .config
+echo "CONFIG_CCACHE_DIR=\"/builder/.ccache\"" >> .config
+
 # init openwrt config
 make defconfig
 
