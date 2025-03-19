@@ -11,6 +11,10 @@ on:
         options:
           - hanwckf_mt798x_v21.02
           - padavanonly_mt798x_v24.10
+      ccache:
+        description: 'Enable ccache (Use Cache to speed up next build)'
+        type: boolean
+        default: false          
       lan_addr:
         description: 'Setting default LAN address'
         required: true
