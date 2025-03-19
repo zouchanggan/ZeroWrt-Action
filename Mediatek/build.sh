@@ -25,7 +25,7 @@ cd openwrt
 ./scripts/feeds install -a
 
 # lan
-sed -i 's/192.168.6.1/$LAN/g' package/base-files/files/bin/config_generate
+[ -n "$LAN" ] && export LAN=$LAN || export LAN=10.0.0.1
 
 # scripts
 curl -sO $mirror/Mediatek/$source_branch/00-prepare_base.sh
