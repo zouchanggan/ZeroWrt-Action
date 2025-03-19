@@ -117,7 +117,7 @@ jobs:
         key: ${{ github.event.inputs.source_branch }}-ccache
 
     - name: Restore Cached (releases)
-      if: ${{ github.event.inputs.ccache == 'true'
+      if: ${{ github.event.inputs.ccache }}
       continue-on-error: true
       working-directory: /builder
       run: |
@@ -148,7 +148,7 @@ jobs:
         make V=s 
 
     - name: Save Cached
-      if: ${{ github.event.inputs.ccache == 'true'
+      if: ${{ github.event.inputs.ccache }}
       continue-on-error: true
       uses: actions/cache/save@v4
       with:
@@ -156,7 +156,7 @@ jobs:
         key: ${{ github.event.inputs.source_branch }}-ccache
 
     - name: Create ccache tar files
-      if: ${{ github.event.inputs.ccache == 'true' 
+      if: ${{ github.event.inputs.ccache }} 
       continue-on-error: true
       working-directory: /builder
       run: |
@@ -164,7 +164,7 @@ jobs:
         tar cf - .ccache | split -d -b 1800m - ccache/${{ github.event.inputs.source_branch }}.tar.
 
     - name: Upload Cached (releases - ccache)
-      if: ${{ github.event.inputs.ccache == 'true'
+      if: ${{ github.event.inputs.ccache }}
       continue-on-error: true
       uses: ncipollo/release-action@v1.14.0
       with:
