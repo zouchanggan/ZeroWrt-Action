@@ -27,7 +27,7 @@ on:
       device:
         description: 'Select the build device'
         required: true
-        default: 'x86_64'
+        default: 'friendlyarm_nanopi-r2s'
         type: choice
         options:
           - 'friendlyarm_nanopi-r2c'
@@ -129,7 +129,7 @@ jobs:
         export LAN=${{ github.event.inputs.lan_addr }}
         export device=${{ github.event.inputs.device }}
         export openwrt_kernel=${{ github.event.inputs.openwrt_kernel }} 
-        bash <(curl -sS http://127.0.0.1:8080/build.sh) "$LAN" "$device" "$openwrt_kernel"
+        bash <(curl -sS http://127.0.0.1:8080/Lede/build.sh) "$LAN" "$device" "$openwrt_kernel"
 
     - name: Extensive logs after a failed compilation
       working-directory: /builder
