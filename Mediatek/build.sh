@@ -84,6 +84,8 @@ elif [ "$device" = "xiaomi_redmi_router_ax6000" ]; then
     curl -s $mirror/Mediatek/$source_branch/xiaomi_redmi_router_ax6000.config > .config
 elif [ "$device" = "xiaomi_redmi_router_ax6000_stock_layout" ]; then
     curl -s $mirror/Mediatek/$source_branch/xiaomi_redmi_router_ax6000_stock_layout.config > .config
+elif [ "$device" = "jdcloud_re_cp_03" ]; then
+    curl -s $mirror/Mediatek/$source_branch/jdcloud_re_cp_03.config > .config
 fi
 
 # ccache
