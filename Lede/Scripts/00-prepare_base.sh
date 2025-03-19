@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 #========================================================================================================================
 # https://github.com/oppen321/ZeroWrt-Action
 # Description: Automatically Build OpenWrt for Rockchip
