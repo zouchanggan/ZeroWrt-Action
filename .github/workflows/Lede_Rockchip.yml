@@ -151,7 +151,7 @@ jobs:
       uses: actions/cache/save@v4
       with:
         path: /builder/.ccache
-        key: Lede-Rockchip-ccache
+        key: OpenWrt-Lede-Rockchip-ccache
 
     - name: Create ccache tar files
       if: ${{ github.event.inputs.ccache }} 
