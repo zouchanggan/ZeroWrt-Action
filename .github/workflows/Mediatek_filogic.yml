@@ -243,28 +243,30 @@ jobs:
             cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-factory.bin rom/
             ;;
           mediatek_360_t7_108m_ubi)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-livinet_zr-3020-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-livinet_zr-3020-squashfs-factory.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-factory.bin rom/
             ;;
           mediatek_clt_r30b1)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-factory.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-clt-r30b1-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-clt-r30b1-squashfs-factory.bin rom/
             ;;
           mediatek_clt_r30b1_112m_ubi)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-factory.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-clt-r30b1-112M-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-clt-r30b1-112M-squashfs-factory.bin rom/
             ;;
           xiaomi_mi_router_ax3000t)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-livinet_zr-3020-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-livinet_zr-3020-squashfs-factory.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-xiaomi_mi-router-ax3000t-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-xiaomi_mi-router-ax3000t-squashfs-factory.bin rom/
             ;;
+          xiaomi_mi_router_ax3000t_stock_layout)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-xiaomi_mi-router-ax3000t-stock-squashfs-sysupgrade.bin rom/
+            ;; 
           xiaomi_mi_router_wr30u_stock_layout)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-factory.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-xiaomi_mi-router-wr30u-stock-squashfs-sysupgrade.bin rom/
             ;;
           xiaomi_mi_router_wr30u_112m_ubi_layout)
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-sysupgrade.bin rom/
-            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-factory.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-xiaomi_mi-router-wr30u-112m-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-xiaomi_mi-router-wr30u-112m-squashfs-factory.ubi rom/
             ;;
           gl_inet_gl_mt6000)
             cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-glinet_gl-mt6000-squashfs-sysupgrade.bin rom/
