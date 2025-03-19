@@ -110,7 +110,7 @@ jobs:
       uses: sbwml/actions@install-llvm   
 
     - name: Restore Cached
-      if: ${{ github.event.inputs.ccache == 'true'
+      if: ${{ github.event.inputs.ccache }}
       uses: actions/cache/restore@v4
       with:
         path: /builder/.ccache
