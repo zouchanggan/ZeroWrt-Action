@@ -7,7 +7,7 @@
 #========================================================================================================================
 
 # default LAN IP
-sed -i "s/192.168.6.1/$LAN/g" package/base-files/files/bin/config_generate
+sed -i "s/192.168.1.1/$LAN/g" package/base-files/files/bin/config_generate
 
 # init-settings.sh
 mkdir -p files/etc/uci-defaults
