@@ -15,6 +15,7 @@ rm -rf ./feeds/extraipk/theme/luci-theme-ifit
 rm -rf ./feeds/extraipk/theme/luci-theme-argon
 rm -rf ./feeds/extraipk/theme/luci-theme-opentopd
 rm -rf ./feeds/extraipk/theme/luci-theme-neobird
+rm -rf ./feeds/extraipk/theme/luci-app-argon-config
 
 rm -rf ./feeds/extraipk/patch/luci-app-turboacc
 rm -rf ./feeds/extraipk/patch/autocore
