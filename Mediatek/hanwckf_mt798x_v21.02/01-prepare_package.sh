@@ -4,7 +4,7 @@
 rm -rf ./feeds/packages/net/{dns2socks,v2ray-core,xray-core,pdnsd-alt,dns2tcp,ipt2socks,microsocks,chinadns-ng,redsocks2,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,trojan,tuic-client,v2ray-geodata,v2ray-plugin,xray-plugin}
 rm -rf ./feeds/luci/applications/{luci-app-passwall,luci-app-openclash,luci-app-ssr-plus}
 rm -rf ./package/feeds/packages/{dns2socks,v2ray-core,xray-core,pdnsd-alt,dns2tcp,ipt2socks,microsocks,chinadns-ng,redsocks2,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,trojan,tuic-client,v2ray-geodata,v2ray-plugin,xray-plugin}
-rm -rf ./package/feeds/luci/applications/{luci-app-passwall,luci-app-openclash,luci-app-ssr-plus}
+rm -rf ./package/feeds/luci/{luci-app-passwall,luci-app-openclash,luci-app-ssr-plus}
 rm -rf feeds/packages/lang/golang
 
 # 加载软件源
