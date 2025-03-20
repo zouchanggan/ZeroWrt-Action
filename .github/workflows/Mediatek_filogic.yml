@@ -14,7 +14,11 @@ on:
       ccache:
         description: 'Enable ccache (Use Cache to speed up next build)'
         type: boolean
-        default: false          
+        default: false
+      options_menu:
+        description: 'Options menu (Loading the ZeroWrt options menu)'
+        type: boolean
+        default: false
       lan_addr:
         description: 'Setting default LAN address'
         required: true
