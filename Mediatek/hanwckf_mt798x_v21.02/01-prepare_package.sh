@@ -10,5 +10,8 @@ rm -rf feeds/packages/lang/golang
 # 加载软件源
 git clone -b helloworld https://github.com/oppen321/openwrt-package package/openwrt-package
 
+# 设置文件目录
+mv package/openwrt-package/dns2socks feeds/packages/net
+
 ## golang 为 1.24.x
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
