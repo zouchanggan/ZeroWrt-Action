@@ -31,3 +31,5 @@ cp -af package/golang/* feeds/packages/lang/golang/
 # luci-app-adguardhome
 git clone --depth=1 https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
 
+./scripts/feeds update -a
+./scripts/feeds install -a
