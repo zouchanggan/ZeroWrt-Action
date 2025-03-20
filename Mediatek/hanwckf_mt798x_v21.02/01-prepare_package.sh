@@ -18,7 +18,7 @@ rm -rf ./feeds/extraipk/theme/luci-theme-neobird
 rm -rf ./feeds/extraipk/patch/luci-app-turboacc
 rm -rf ./feeds/extraipk/patch/autocore
 
-rm -rf ./feeds/packages/dns2socks
+rm -rf ./feeds/packages/net/dns2socks
 
 rm -rf ./package/feeds/extraipk/luci-theme-argon-18.06
 rm -rf ./package/feeds/extraipk/luci-app-argon-config-18.06
