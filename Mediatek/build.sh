@@ -86,6 +86,10 @@ elif [ "$device" = "xiaomi_redmi_router_ax6000_stock_layout" ]; then
     curl -s $mirror/Mediatek/$source_branch/xiaomi_redmi_router_ax6000_stock_layout.config > .config
 elif [ "$device" = "jdcloud_re_cp_03" ]; then
     curl -s $mirror/Mediatek/$source_branch/jdcloud_re_cp_03.config > .config
+elif [ "$device" = "netcore_n60_pro" ]; then 
+    curl -s $mirror/Mediatek/$source_branch/netcore_n60_pro.config > .config
+elif [ "$device" = "netcore_n60" ]; then
+    curl -s $mirror/Mediatek/$source_branch/netcore_n60.config > .config
 fi
 
 # Toolchain Cache
