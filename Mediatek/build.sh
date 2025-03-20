@@ -93,16 +93,18 @@ elif [ "$device" = "netcore_n60" ]; then
 fi
 
 # Toolchain Cache
-if [ "$source_branch" = "hanwckf_mt798x_v21.02" ]; then
-    curl -O -L --progress-bar https://github.com/oppen321/openwrt_caches/releases/download/Hanwckf_MT798X_v21.02/toolchain_mediatek.tar.zst
-elif [ "$source_branch" = "padavanonly_mt798x_v24.10" ]; then
-    curl -O -L --progress-bar https://github.com/oppen321/openwrt_caches/releases/download/Padavanonly_MT798X_v24.10/toolchain_mediatek.tar.zst
-fi    
-tar -I "zstd" -xf toolchain_mediatek.tar.zst
-rm -f toolchain_mediatek.tar.zst
-mkdir bin
-find ./staging_dir/ -name '*' -exec touch {} \; >/dev/null 2>&1
-find ./tmp/ -name '*' -exec touch {} \; >/dev/null 2>&1
+if [ "$CCACHE_ENABLED" = "true" ]; then
+    if [ "$source_branch" = "hanwckf_mt798x_v21.02" ]; then
+        curl -O -L --progress-bar https://github.com/oppen321/openwrt_caches/releases/download/Hanwckf_MT798X_v21.02/toolchain_mediatek.tar.zst
+    elif [ "$source_branch" = "padavanonly_mt798x_v24.10" ]; then
+        curl -O -L --progress-bar https://github.com/oppen321/openwrt_caches/releases/download/Padavanonly_MT798X_v24.10/toolchain_mediatek.tar.zst
+    fi
+    tar -I "zstd" -xf toolchain_mediatek.tar.zst
+    rm -f toolchain_mediatek.tar.zst
+    mkdir bin
+    find ./staging_dir/ -name '*' -exec touch {} \; >/dev/null 2>&1
+    find ./tmp/ -name '*' -exec touch {} \; >/dev/null 2>&1
+fi
 
 # init openwrt config
 make defconfig
