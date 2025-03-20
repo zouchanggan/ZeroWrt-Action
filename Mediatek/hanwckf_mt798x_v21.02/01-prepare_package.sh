@@ -33,6 +33,7 @@ git clone --depth=1 https://github.com/rufengsuixing/luci-app-adguardhome packag
 
 # luci-app-mosdns
 rm -rf feeds/packages/net/v2ray-geodata
+rm -rf feeds/package/net/mosdns
 git clone --depth=1 https://github.com/sbwml/luci-app-mosdns -b v5-lua package/mosdns
 git clone --depth=1 https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
