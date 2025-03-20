@@ -31,5 +31,10 @@ cp -af package/golang/* feeds/packages/lang/golang/
 # luci-app-adguardhome
 git clone --depth=1 https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
 
+# luci-app-mosdns
+rm -rf feeds/packages/net/v2ray-geodata
+git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+
 ./scripts/feeds update -a
 ./scripts/feeds install -a
