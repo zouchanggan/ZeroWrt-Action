@@ -17,8 +17,8 @@ cp -af package/luci-app-openclash/*  feeds/luci/applications/luci-app-openclash/
 
 ## golang 为 1.24.x
 rm -rf feeds/packages/lang/golang/*
-git clone https://github.com/sbwml/packages_lang_golang -b 24.x packages/golang
-cp -af packages/golang/* feeds/packages/lang/golang/
+git clone https://github.com/sbwml/packages_lang_golang -b 24.x package/golang
+cp -af package/golang/* feeds/packages/lang/golang/
 
 # luci-app-adguardhome
 git clone --depth=1 https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
