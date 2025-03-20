@@ -1,5 +1,4 @@
 #!/bin/bash
-rm -rf feeds/packages/lang/golang/*
 
 # luci-app-passwall
 rm -rf feeds/luci/applications/luci-app-passwall/*
