@@ -13,8 +13,3 @@ sed -i "s/192.168.1.1/$LAN/g" package/base-files/files/bin/config_generate
 mkdir -p files/etc/uci-defaults
 curl -s $mirror/Mediatek/files/etc/uci-defaults/99-init-settings > files/etc/uci-defaults/99-init-settings
 
-# Load source
-sed -i "1isrc-git extraipk https://github.com/xiangfeidexiaohuo/extra-ipk\n" feeds.conf.default
-
-./scripts/feeds update -a
-./scripts/feeds install -a
