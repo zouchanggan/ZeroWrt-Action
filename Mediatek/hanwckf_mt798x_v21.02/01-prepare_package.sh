@@ -12,6 +12,7 @@ rm -rf ./feeds/extraipk/theme/luci-app-argon-config-18.06
 rm -rf ./feeds/extraipk/theme/luci-theme-design
 rm -rf ./feeds/extraipk/theme/luci-theme-edge
 rm -rf ./feeds/extraipk/theme/luci-theme-ifit
+rm -rf ./feeds/extraipk/theme/luci-theme-argon
 rm -rf ./feeds/extraipk/theme/luci-theme-opentopd
 rm -rf ./feeds/extraipk/theme/luci-theme-neobird
 
