@@ -1,6 +1,5 @@
 #!/bin/bash
 
-##
 echo -e "\nmsgid \"Control\"" >> feeds/luci/modules/luci-base/po/zh_Hans/base.po
 echo -e "msgstr \"控制\"" >> feeds/luci/modules/luci-base/po/zh_Hans/base.po
 
@@ -19,6 +18,7 @@ rm -rf ./feeds/extraipk/theme/luci-theme-neobird
 rm -rf ./feeds/extraipk/patch/luci-app-turboacc
 rm -rf ./feeds/extraipk/patch/autocore
 
+rm -rf ./feeds/packages/dns2socks
 
 rm -rf ./package/feeds/extraipk/luci-theme-argon-18.06
 rm -rf ./package/feeds/extraipk/luci-app-argon-config-18.06
@@ -30,7 +30,6 @@ rm -rf ./package/feeds/extraipk/theme/luci-theme-neobird
 
 rm -rf ./package/feeds/extraipk/luci-app-turboacc
 rm -rf ./package/feeds/extraipk/autocore
-
 
 ##取消bootstrap为默认主题
 sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
