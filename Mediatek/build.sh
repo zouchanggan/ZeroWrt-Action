@@ -109,6 +109,19 @@ else
     echo "Cache is disabled. Skipping toolchain cache setup."
 fi
 
+# Options menu
+if [ "$OPTIONS_MENU" = "y" ]; then
+    echo "Options menu (Loading the ZeroWrt options menu)"
+    mkdir -p files/bin
+    mkdir -p files/root
+    curl -s $mirror/Mediatek/files/bin/ZeroWrt > files/bin/ZeroWrt
+    curl -s $mirror/Mediatek/files/root/version.txt > files/root/version.txt
+    chmod +x files/bin/ZeroWrt
+    chmod +x files/root/version.txt
+else
+    echo "Do not load ZeroWrt" 
+fi
+
 # init openwrt config
 make defconfig
 
