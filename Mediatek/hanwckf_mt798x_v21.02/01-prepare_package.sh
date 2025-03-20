@@ -20,6 +20,11 @@ rm -rf feeds/packages/net/xray-core/*
 git clone --depth=1 https://github.com/oppen321/xray-core package/xray-core
 cp -af package/xray-core/*  feeds/packages/net/xray-core/
 
+# v2ray-core
+rm -rf feeds/packages/net/v2ray-core/*
+git clone --depth=1 https://github.com/oppen321/v2ray-core package/v2ray-core
+cp -af package/v2ray-core/*  feeds/packages/net/v2ray-core/
+
 # shadow-tls
 git clone --depth=1 https://github.com/oppen321/shadow-tls feeds/packages/net/shadow-tls
 
