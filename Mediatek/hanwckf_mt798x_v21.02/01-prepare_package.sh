@@ -20,6 +20,9 @@ rm -rf feeds/packages/net/xray-core/*
 git clone --depth=1 https://github.com/oppen321/xray-core package/xray-core
 cp -af package/xray-core/*  feeds/packages/net/xray-core/
 
+# shadow-tls
+git clone --depth=1 https://github.com/oppen321/shadow-tls feeds/packages/net/shadow-tls
+
 ## golang 为 1.24.x
 rm -rf feeds/packages/lang/golang/*
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x package/golang
