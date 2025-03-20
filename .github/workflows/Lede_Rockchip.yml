@@ -5,7 +5,7 @@ on:
     inputs:
       openwrt_kernel:
         description: "Select kernel version"
-        required: false
+        required: true
         default: '6.6'
         type: choice
         options:
@@ -18,7 +18,7 @@ on:
       ccache:
         description: 'Enable ccache (Use Cache to speed up next build)'
         type: boolean
-        default: false          
+        default: true          
       lan_addr:
         description: 'Setting default LAN address'
         required: true
