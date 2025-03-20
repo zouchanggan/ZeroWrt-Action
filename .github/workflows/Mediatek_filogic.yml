@@ -116,6 +116,7 @@ jobs:
       id: compile
       continue-on-error: true
       run: |
+        [ ${{ github.event.inputs.ccache }} = 'true' ] && export ENABLE_CCACHE=y
         export LAN=${{ github.event.inputs.lan_addr }}
         export device=${{ github.event.inputs.device }}
         export source_branch=${{ github.event.inputs.source_branch }} 
