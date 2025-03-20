@@ -6,34 +6,13 @@ echo -e "msgstr \"控制\"" >> feeds/luci/modules/luci-base/po/zh_Hans/base.po
 echo -e "\nmsgid \"NAS\"" >> feeds/luci/modules/luci-base/po/zh_Hans/base.po
 echo -e "msgstr \"网络存储\"" >> feeds/luci/modules/luci-base/po/zh_Hans/base.po
 
-##
-rm -rf ./feeds/extraipk/theme/luci-theme-argon-18.06
-rm -rf ./feeds/extraipk/theme/luci-app-argon-config-18.06
-rm -rf ./feeds/extraipk/theme/luci-theme-design
-rm -rf ./feeds/extraipk/theme/luci-theme-edge
-rm -rf ./feeds/extraipk/theme/luci-theme-ifit
-rm -rf ./feeds/extraipk/theme/luci-theme-argon
-rm -rf ./feeds/extraipk/theme/luci-theme-opentopd
-rm -rf ./feeds/extraipk/theme/luci-theme-neobird
-rm -rf ./feeds/extraipk/theme/luci-app-argon-config
+rm -rf ./feeds/packages/net/{dns2socks,v2ray-core,xray-core,pdnsd-alt,dns2tcp,ipt2socks,microsocks,chinadns-ng,redsocks2,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,trojan,tuic-client,v2ray-geodata,v2ray-plugin,xray-plugin}
+rm -rf ./feeds/luci/applications/luci-app-passwall
+rm -rf ./feeds/luci/applications/luci-app-openclash
+rm -rf ./feeds/luci/applications/luci-app-ssr-plus
 
-rm -rf ./feeds/extraipk/patch/luci-app-turboacc
-rm -rf ./feeds/extraipk/patch/autocore
-
-rm -rf ./feeds/packages/net/dns2socks
-rm -rf ./feeds/packages/net/v2ray-core
-rm -rf ./feeds/packages/net/xray-core
-
-rm -rf ./package/feeds/extraipk/luci-theme-argon-18.06
-rm -rf ./package/feeds/extraipk/luci-app-argon-config-18.06
-rm -rf ./package/feeds/extraipk/theme/luci-theme-design
-rm -rf ./package/feeds/extraipk/theme/luci-theme-edge
-rm -rf ./package/feeds/extraipk/theme/luci-theme-ifit
-rm -rf ./package/feeds/extraipk/theme/luci-theme-opentopd
-rm -rf ./package/feeds/extraipk/theme/luci-theme-neobird
-
-rm -rf ./package/feeds/extraipk/luci-app-turboacc
-rm -rf ./package/feeds/extraipk/autocore
+# 加载软件源
+git clone -b helloworld https://github.com/oppen321/openwrt-package package/openwrt-package
 
 ##取消bootstrap为默认主题
 sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
