@@ -11,7 +11,7 @@ rm -rf feeds/packages/lang/golang
 git clone --depth=1 -b helloworld https://github.com/oppen321/openwrt-package package/openwrt-package
 
 # luci-app-adguardhome
-git clone --depth=1 https://github.com/oppen321/luci-app-adguardhome
+git clone --depth=1 https://github.com/oppen321/luci-app-adguardhome package/luci-app-adguardhome
 
 # 设置文件目录
 mv package/openwrt-package/{dns2socks,v2ray-core,xray-core,pdnsd-alt,dns2tcp,ipt2socks,microsocks,chinadns-ng,redsocks2,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,trojan,tuic-client,v2ray-geodata,v2ray-plugin,xray-plugin} feeds/packages/net
