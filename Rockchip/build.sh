@@ -51,11 +51,8 @@ case "$Load_core" in
     "None")
         # 不执行任何操作
         ;;
-    *)
-        echo "无效的 Load_core 选项: $Load_core"
-        exit 1
-        ;;
 esac
+
 
 # lan
 [ -n "$LAN" ] && export LAN=$LAN || export LAN=10.0.0.1
