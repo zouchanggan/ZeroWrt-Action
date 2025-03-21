@@ -12,6 +12,16 @@ on:
           - GCC_13
           - GCC_14
           - GCC_15
+      Load_core:
+        description: "Load adguardhome and mate core"
+        required: true
+        default: "ALL"
+        type: choice
+        options:
+          - None
+          - AdGuardhome
+          - Meta
+          - ALL
       lan_addr:
         description: 'Setting default LAN address'
         required: true
@@ -25,15 +35,6 @@ on:
         description: 'Options menu (Loading the ZeroWrt options menu)'
         type: boolean
         default: true
-      Load_core:
-        description: "Load adguardhome and mate core"
-        required: true
-        default: "AdGuardhome"
-        type: choice
-        options:
-          - AdGuardhome
-          - Meta
-          - ALL
           
 jobs:
   build:
