@@ -133,9 +133,9 @@ jobs:
       continue-on-error: true
       uses: ncipollo/release-action@v1
       with:
-        name: ${{ github.event.inputs.source_branch }}
+        name: OpenWrt-Rockchip-24.10
         allowUpdates: true
-        tag: ${{ github.event.inputs.source_branch }}
+        tag: OpenWrt-Rockchip-24.10
         commit: master
         replacesArtifacts: true
         token: ${{ secrets.GITHUB_TOKEN }}
