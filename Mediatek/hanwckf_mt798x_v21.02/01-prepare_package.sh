@@ -8,6 +8,12 @@ cp -af package/golang/* feeds/packages/lang/golang/
 # luci-app-adguardhome
 git clone --depth=1 https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
 
+
+# xray-core
+rm -rf feeds/packages/net/xray-core/*
+git clone --depth=1 https://github.com/oppen321/xray-core package/xray-core
+cp -af package/xray-core/*  feeds/packages/net/xray-core/
+
 # luci-app-mosdns
 rm -rf feeds/package/net/mosdns/*
 git clone --depth=1 https://github.com/sbwml/luci-app-mosdns -b v5-lua package/mosdns
