@@ -1,0 +1,233 @@
+name: Rockchip_OpenWrt
+
+on:
+  workflow_dispatch:
+    inputs:
+      gcc_version:
+        description: "Select GCC Version"
+        required: true
+        default: "GCC_13"
+        type: choice
+        options:
+          - GCC_13
+          - GCC_14
+          - GCC_15
+      lan_addr:
+        description: 'Setting default LAN address'
+        required: true
+        default: '10.0.0.1'
+        type: string  
+      ccache:
+        description: 'Enable ccache (Use Cache to speed up next build)'
+        type: boolean
+        default: true
+      options_menu:
+        description: 'Options menu (Loading the ZeroWrt options menu)'
+        type: boolean
+        default: true
+      Load_core:
+        description: "Load adguardhome and mate core"
+        required: true
+        default: "AdGuardhome"
+        type: choice
+        options:
+          - AdGuardhome
+          - Meta
+          - ALL
+          
+jobs:
+  build:
+    name: Build ${{ github.event.inputs.device }}
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout
+      continue-on-error: true
+      uses: actions/checkout@main
+      with:
+        path: ZeroWrt-Action
+
+    - name: Setup variables
+      run: |
+        sudo timedatectl set-timezone 'Asia/Shanghai'
+        git config --global user.name 'actions'
+        git config --global user.email 'action@github.com'
+        echo build_dir="/builder" >> "$GITHUB_ENV"
+
+    - name: Show system
+      run: |
+        echo -e "\n\e[1;32mCPU:\e[0m"
+        echo "$(grep 'model name' /proc/cpuinfo | head -1 | awk -F ': ' '{print $2}') ($(grep 'cpu MHz' /proc/cpuinfo | head -1 | awk -F ': ' '{print $2}')MHz) x $(grep processor /proc/cpuinfo  | wc -l)"
+        echo -e "\n\e[1;32mMemory:\e[0m"
+        free -h
+        echo -e "\n\e[1;32mStorage:\e[0m"
+        df -Th / /mnt
+        echo -e "\n\e[1;32mSystem:\e[0m"
+        lsb_release -a
+        echo -e "\n\e[1;32mKernel:\e[0m"
+        uname -a
+        echo
+
+    - name: Install Caddy Server
+      run: |
+        sudo curl -sL -o /usr/bin/caddy https://github.com/oppen321/ZeroWrt-Action/releases/download/caddy/caddy
+        sudo chmod 755 /usr/bin/caddy
+        echo ":8080 {" > caddyfile
+        echo "    root * $(pwd)/ZeroWrt-Action" >> caddyfile
+        echo "    file_server browse" >> caddyfile
+        echo "}" >> caddyfile
+        sudo /usr/bin/caddy start --config caddyfile --adapter caddyfile
+
+    - name: Free disk space
+      uses: sbwml/actions@free-disk
+      with:
+        build-mount-path: /builder
+
+    - name: Build System Setup
+      uses: sbwml/actions@openwrt-build-setup
+
+    - name: Install LLVM
+      uses: sbwml/actions@install-llvm   
+        
+    - name: Compile OpenWrt
+      working-directory: /builder
+      id: compile
+      continue-on-error: true
+      run: |
+        [ ${{ github.event.inputs.options_menu }} = 'true' ] && export OPTIONS_MENU=y
+        [ ${{ github.event.inputs.ccache }} = 'true' ] && export ENABLE_CCACHE=y
+        export LAN=${{ github.event.inputs.lan_addr }}
+        export device=${{ github.event.inputs.device }}
+        export source_branch=${{ github.event.inputs.source_branch }} 
+        bash <(curl -sS http://127.0.0.1:8080/build.sh) "$LAN" "$device" "$source_branch"
+
+    - name: Extensive logs after a failed compilation
+      working-directory: /builder
+      if: steps.compile.outcome == 'failure'
+      run: |
+        cd openwrt
+        make V=s
+          
+    - name: Prepare Firmware Files
+      working-directory: /builder
+      run: |
+        mkdir -p rom
+        case "${{ github.event.inputs.device }}" in
+          abt_asr3000)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-abt_asr3000-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-abt_asr3000-squashfs-factory.bin rom/
+            ;;
+          cetron_ct3003)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cetron_ct3003-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cetron_ct3003-squashfs-factory.bin rom/
+            ;;
+          cmcc_a10)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_a10-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_a10-squashfs-factory.bin rom/
+            ;;
+          cmcc_rax3000m_emmc)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_rax3000m-emmc-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-factory.bin rom/
+            ;;
+          cmcc_rax3000m_nand)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-factory.bin rom/
+            ;;
+          gl_inet_gl_mt3000)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-glinet_gl-mt3000-squashfs-sysupgrade.tar rom/
+            ;;
+          h3c_nx30pro)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-h3c_nx30pro-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-h3c_nx30pro-squashfs-factory.bin rom/
+            ;;
+          imou_lc_hx3001)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-imou_lc-hx3001-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-imou_lc-hx3001-squashfs-factory.bin rom/
+            ;;
+          jcg_q30)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-jcg_q30-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-jcg_q30-squashfs-factory.bin rom/
+            ;;
+          konka_komi_a31)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-konka_komi-a31-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-konka_komi-a31-squashfs-factory.bin rom/
+            ;;
+          livinet_zr_3020)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-livinet_zr-3020-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-livinet_zr-3020-squashfs-factory.bin rom/
+            ;;
+          mediatek_360_t7)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-squashfs-factory.bin rom/
+            ;;
+          mediatek_360_t7_108m_ubi)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-factory.bin rom/
+            ;;
+          mediatek_clt_r30b1)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-clt-r30b1-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-clt-r30b1-squashfs-factory.bin rom/
+            ;;
+          mediatek_clt_r30b1_112m_ubi)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-clt-r30b1-112M-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-mt7981-clt-r30b1-112M-squashfs-factory.bin rom/
+            ;;
+          xiaomi_mi_router_ax3000t)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-xiaomi_mi-router-ax3000t-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-xiaomi_mi-router-ax3000t-squashfs-factory.bin rom/
+            ;;
+          xiaomi_mi_router_ax3000t_stock_layout)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-xiaomi_mi-router-ax3000t-stock-squashfs-sysupgrade.bin rom/
+            ;; 
+          xiaomi_mi_router_wr30u_stock_layout)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-xiaomi_mi-router-wr30u-stock-squashfs-sysupgrade.bin rom/
+            ;;
+          xiaomi_mi_router_wr30u_112m_ubi_layout)
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-xiaomi_mi-router-wr30u-112m-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7981/immortalwrt-mediatek-mt7981-xiaomi_mi-router-wr30u-112m-squashfs-factory.ubi rom/
+            ;;
+          gl_inet_gl_mt6000)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-glinet_gl-mt6000-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-glinet_gl-mt6000-squashfs-factory.bin rom/
+            ;;
+          tp_link_tl_xdr6086)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-tplink_tl-xdr6086-squashfs-sysupgrade.bin rom/
+            ;;
+          tp_link_tl_xdr6088)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-tplink_tl-xdr6088-squashfs-sysupgrade.bin rom/
+            ;;
+          xiaomi_redmi_router_ax6000)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-xiaomi_redmi-router-ax6000-squashfs-sysupgrade.bin rom/
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-xiaomi_redmi-router-ax6000-squashfs-factory.bin rom/
+            ;;
+          xiaomi_redmi_router_ax6000_stock_layout)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-xiaomi_redmi-router-ax6000-stock-squashfs-sysupgrade.bin rom/
+            ;;
+          jdcloud_re_cp_03)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-jdcloud_re-cp-03-squashfs-sysupgrade.bin rom/
+            ;;
+          netcore_n60_pro)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-netcore_n60-pro-squashfs-sysupgrade.bin rom/
+            ;;
+          netcore_n60)
+            cp -a openwrt/bin/targets/mediatek/mt7986/immortalwrt-mediatek-mt7986-netcore_n60-squashfs-sysupgrade.bin rom/
+            ;;
+          *)
+            echo "Device not recognized, skipping firmware copy."
+            ;;
+        esac
+        
+    - name: Create release
+      continue-on-error: true
+      uses: ncipollo/release-action@v1
+      with:
+        name: ${{ github.event.inputs.source_branch }}
+        allowUpdates: true
+        tag: ${{ github.event.inputs.source_branch }}
+        commit: master
+        replacesArtifacts: true
+        token: ${{ secrets.GITHUB_TOKEN }}
+        artifacts: ${{ env.build_dir }}/rom/*          
