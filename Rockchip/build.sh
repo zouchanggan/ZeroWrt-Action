@@ -13,6 +13,50 @@ cd openwrt
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
+# Load core
+case "$Load_core" in
+    "AdGuardhome")
+        mkdir -p files/usr/bin/AdGuardHome
+        AGH_CORE=$(curl -sL https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest | grep /AdGuardHome_linux_arm64 | awk -F '"' '{print $4}')
+        curl -sL "$AGH_CORE" | tar xOvz > files/usr/bin/AdGuardHome/AdGuardHome
+        chmod +x files/usr/bin/AdGuardHome/AdGuardHome
+        ;;
+    "Meta")
+        mkdir -p files/etc/openclash/core
+        CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-arm64.tar.gz"
+        GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
+        GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+        wget -qO- "$CLASH_META_URL" | tar xOvz > files/etc/openclash/core/clash_meta
+        wget -qO- "$GEOIP_URL" > files/etc/openclash/GeoIP.dat
+        wget -qO- "$GEOSITE_URL" > files/etc/openclash/GeoSite.dat
+        chmod +x files/etc/openclash/core/clash*
+        ;;
+    "All")
+        # AdGuardHome
+        mkdir -p files/usr/bin/AdGuardHome
+        AGH_CORE=$(curl -sL https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest | grep /AdGuardHome_linux_arm64 | awk -F '"' '{print $4}')
+        curl -sL "$AGH_CORE" | tar xOvz > files/usr/bin/AdGuardHome/AdGuardHome
+        chmod +x files/usr/bin/AdGuardHome/AdGuardHome
+
+        # Clash Meta
+        mkdir -p files/etc/openclash/core
+        CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-arm64.tar.gz"
+        GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
+        GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+        wget -qO- "$CLASH_META_URL" | tar xOvz > files/etc/openclash/core/clash_meta
+        wget -qO- "$GEOIP_URL" > files/etc/openclash/GeoIP.dat
+        wget -qO- "$GEOSITE_URL" > files/etc/openclash/GeoSite.dat
+        chmod +x files/etc/openclash/core/clash*
+        ;;
+    "None")
+        # 不执行任何操作
+        ;;
+    *)
+        echo "无效的 Load_core 选项: $Load_core"
+        exit 1
+        ;;
+esac
+
 # lan
 [ -n "$LAN" ] && export LAN=$LAN || export LAN=10.0.0.1
 
