@@ -37,6 +37,11 @@ sed -i 's/cheaper = 1/cheaper = 2/g' feeds/packages/net/uwsgi/files-luci-support
 sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
 sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
 
+# rockchip
+curl -o ./target/linux/rockchip/patches-6.6/014-rockchip-add-pwm-fan-controller-for-nanopi-r2s-r4s.patch $mirror/patch/rockchip/014-rockchip-add-pwm-fan-controller-for-nanopi-r2s-r4s.patch
+curl -o ./target/linux/rockchip/patches-6.6/702-general-rk3328-dtsi-trb-ent-quirk.patch $mirror/patch/rockchip/702-general-rk3328-dtsi-trb-ent-quirk.patch
+curl -o ./target/linux/rockchip/patches-6.6/703-rk3399-enable-dwc3-xhci-usb-trb-quirk.patch $mirror/patch/rockchip/703-rk3399-enable-dwc3-xhci-usb-trb-quirk.patch
+
 # luci
 pushd feeds/luci
     curl -s $mirror/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
