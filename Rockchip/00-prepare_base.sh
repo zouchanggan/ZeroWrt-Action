@@ -1,8 +1,10 @@
-# 修改默认IP
-sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
+#!/bin/bash
+#========================================================================================================================
+# https://github.com/oppen321/ZeroWrt-Action
+# Description: Automatically Build OpenWrt for Rockchip
+# Function: Diy script (Before Update feeds, Modify the default IP, hostname, theme, add/remove software packages, etc.)
+# Source code repository: https://github.com/immortalwrt/immortalwrt / Branch: openwrt-24.10
+#========================================================================================================================
 
-# TTYD
-sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
-sed -i '3 a\\t\t"order": 50,' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
-sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
-sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
+# default LAN IP
+sed -i "s/192.168.1.1/$LAN/g" package/base-files/files/bin/config_generate
