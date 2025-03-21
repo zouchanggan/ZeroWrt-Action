@@ -31,9 +31,6 @@ sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/files/bin/confi
 sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='ZeroWrt-$(date +%Y%m%d)'/g"  package/base-files/files/etc/openwrt_release
 sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By OPPEN321'/g" package/base-files/files/etc/openwrt_release
 
-sed -i "2iuci set istore.istore.channel='OPPEN321_ZeroWrt'" package/emortal/default-settings/files/99-default-settings
-sed -i "3iuci commit istore" package/emortal/default-settings/files/99-default-settings
-
 ##WiFi
 sed -i "s/MT7986_AX6000_2.4G/ZeroWrt-2.4G/g" package/mtk/drivers/wifi-profile/files/mt7986/mt7986-ax6000.dbdc.b0.dat
 sed -i "s/MT7986_AX6000_5G/ZeroWrt-5G/g" package/mtk/drivers/wifi-profile/files/mt7986/mt7986-ax6000.dbdc.b1.dat
