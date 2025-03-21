@@ -31,17 +31,17 @@ curl -s $mirror/Rockchip/rockchip.config > .config
 curl -s $mirror/patch/GCC/202-toolchain-gcc-add-support-for-GCC-15.patch | patch -p1
 
 # gcc config
-echo -e "\n# gcc ${gcc_version}" >> .config
+echo -e "\n# gcc $gcc_version" >> .config
 echo -e "CONFIG_DEVEL=y" >> .config
 echo -e "CONFIG_TOOLCHAINOPTS=y" >> .config
-echo -e "CONFIG_GCC_USE_VERSION_${gcc_version}=y\n" >> .config
+echo -e "CONFIG_GCC_USE_VERSION_$gcc_version=y\n" >> .config
 
 # gcc14 & 15
-if [ "$gcc_version" = "GCC_13" ] || [ "$OPTIONS_MENU" = "y" ]; then
+if [ "$gcc_version" = "GCC_13" ] || [ "$ENABLE_CCACHE" = "y" ]; then
     curl -O -L --progress-bar https://github.com/oppen321/openwrt_caches/releases/download/OpenWrt_Toolchain_Cache/toolchain_musl_immortalwrt_rockchip_gcc-13.tar.zst
-elif [ "$gcc_version" = "GCC_14" ] || [ "$OPTIONS_MENU" = "y" ]; then
+elif [ "$gcc_version" = "GCC_14" ] || [ "$ENABLE_CCACHE" = "y" ]; then
     curl -O -L --progress-bar https://github.com/oppen321/openwrt_caches/releases/download/OpenWrt_Toolchain_Cache/toolchain_musl_immortalwrt_rockchip_gcc-14.tar.zst
-elif [ "$gcc_version" = "GCC_15" ] || [ "$OPTIONS_MENU" = "y" ]; then
+elif [ "$gcc_version" = "GCC_15" ] || [ "$ENABLE_CCACHE" = "y" ]; then
     curl -O -L --progress-bar https://github.com/oppen321/openwrt_caches/releases/download/OpenWrt_Toolchain_Cache/toolchain_musl_immortalwrt_rockchip_gcc-15.tar.zst
 fi
 
