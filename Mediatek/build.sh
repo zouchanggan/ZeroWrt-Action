@@ -96,9 +96,9 @@ fi
 if [ "$ENABLE_CCACHE" = "y" ]; then
     echo "Cache is enabled. Downloading and setting up toolchain cache..."
     if [ "$source_branch" = "hanwckf_mt798x_v21.02" ]; then
-        curl -O -L --progress-bar https://github.com/oppen321/openwrt_caches/releases/download/Hanwckf_MT798X_v21.02/toolchain_mediatek.tar.zst
+        curl -O -L --progress-bar https://github.com/oppen321/openwrt_caches/releases/download/OpenWrt_Toolchain_Cache/toolchain_musl_hanwckf_mediatek_gcc-8.tar.zst
     elif [ "$source_branch" = "padavanonly_mt798x_v24.10" ]; then
-        curl -O -L --progress-bar https://github.com/oppen321/openwrt_caches/releases/download/Padavanonly_MT798X_v24.10/toolchain_mediatek.tar.zst
+        curl -O -L --progress-bar https://github.com/oppen321/openwrt_caches/releases/download/OpenWrt_Toolchain_Cache/toolchain_musl_padavanonly_mediatek_gcc-13.tar.zst
     fi
     tar -I "zstd" -xf toolchain_mediatek.tar.zst
     rm -f toolchain_mediatek.tar.zst
