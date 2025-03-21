@@ -15,13 +15,13 @@ on:
       Load_core:
         description: "Load adguardhome and mate core"
         required: true
-        default: "ALL"
+        default: "All"
         type: choice
         options:
           - None
           - AdGuardhome
           - Meta
-          - ALL
+          - All
       lan_addr:
         description: 'Setting default LAN address'
         required: true
