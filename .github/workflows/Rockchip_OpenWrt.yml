@@ -100,9 +100,10 @@ jobs:
       run: |
         [ ${{ github.event.inputs.options_menu }} = 'true' ] && export OPTIONS_MENU=y
         [ ${{ github.event.inputs.ccache }} = 'true' ] && export ENABLE_CCACHE=y
+        export Load_core=${{ github.event.inputs.Load_core }}
         export LAN=${{ github.event.inputs.lan_addr }}
         export gcc_version=${{ github.event.inputs.gcc_version }}
-        bash <(curl -sS http://127.0.0.1:8080/Rockchip/build.sh) "$LAN" "$gcc_version"
+        bash <(curl -sS http://127.0.0.1:8080/Rockchip/build.sh) "$LAN" "$gcc_version" "$Load_core"
 
     - name: Extensive logs after a failed compilation
       working-directory: /builder
