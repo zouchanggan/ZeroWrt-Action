@@ -32,3 +32,18 @@ git clone --depth=1 https://github.com/rufengsuixing/luci-app-adguardhome packag
 
 # netspeedtest
 git clone --depth=1 https://github.com/sirpdboy/netspeedtest package/netspeedtest
+
+# parentcontrol
+git clone --depth=1 https://github.com/sirpdboy/luci-app-parentcontrol package/luci-app-parentcontrol
+
+# autotimeset
+git clone --depth=1 https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
+
+# chatgpt-web
+git clone --depth=1 https://github.com/sirpdboy/luci-app-chatgpt-web package/luci-app-chatgpt-web
+
+# eqosplus
+git clone --depth=1 https://github.com/sirpdboy/luci-app-eqosplus package/luci-app-eqosplus
+
+# wolplus
+git clone --depth=1 https://github.com/oppen321/luci-app-wolplus package/luci-app-wolplus
