@@ -16,6 +16,9 @@ sed -i 's/ImmortalWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 mkdir -p files/etc/uci-defaults
 curl -s $mirror/Rockchip/files/etc/uci-defaults/99-init-settings > files/etc/uci-defaults/99-init-settings
 
+# Luci diagnostics.js
+sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
+
 # 更改 Argon 主题背景
 curl -s $mirror/images/bg1.jpg feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 sed -i 's/bing/none/' feeds/luci/applications/luci-app-argon-config/root/etc/config/argon
