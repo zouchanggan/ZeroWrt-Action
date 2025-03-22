@@ -8,7 +8,7 @@
 
 # 替换软件包
 rm -rf feeds/packages/lang/golang
-rm -rf feeds/packages/net/{v2ray-geodata,alist,mentohust,dns2socks,dns2tcp,geoview,sing-box,tcping,trojan,tuic-client,v2ray-core,v2ray-plugin,xray-core.xray-plugin.simple-obfs,shadowsocks-rust,redsocks2,naiveproxy,microsocks,hysteria,lua-neturl}
+rm -rf feeds/packages/net/{v2ray-geodata,alist,mentohust,dns2socks,dns2tcp,geoview,sing-box,tcping,trojan,tuic-client,v2ray-core,v2ray-plugin,xray-core.xray-plugin.simple-obfs,shadowsocks-rust,redsocks2,naiveproxy,microsocks,hysteria,lua-neturl,mosdns}
 rm -rf feeds/luci/applications/{luci-app-alist,luci-app-mentohust,luci-app-passwall,luci-app-openclash}
 
 # golong1.24依赖
