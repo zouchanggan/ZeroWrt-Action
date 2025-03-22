@@ -4,7 +4,7 @@
 export mirror=http://127.0.0.1:8080
 
 # Clone source code
-git clone -b openwrt-24.10 --single-branch --filter=blob:none https://github.com/immortalwrt/immortalwrt openwrt
+git clone -b openwrt-24.10 --single-branch --filter=blob:none https://github.com/openwrt/openwrt
 
 # Enter source code
 cd openwrt
