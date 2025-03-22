@@ -17,9 +17,34 @@ git clone --depth=1 -b 24.x https://github.com/sbwml/packages_lang_golang feeds/
 # helloworld
 git clone --depth=1 -b helloworld https://github.com/oppen321/openwrt-package package/openwrt-package
 
-# 加载软件源
-git clone --depth=1 https://github.com/oppen321/openwrt-package package/openwrt-package
+# mosdns
+git clone --depth=1 https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone --depth=1 https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+
+# alist
+git clone --depth=1 https://github.com/sbwml/luci-app-alist package/alist
+
+# mentohust
+git clone --depth=1 https://github.com/sbwml/luci-app-mentohust package/luci-app-mentohust
+
+# adguardhome
+git clone --depth=1 https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
+
+# netspeedtest
+git clone --depth=1 https://github.com/sirpdboy/netspeedtest package/netspeedtest
+
+# parentcontrol
+git clone --depth=1 https://github.com/sirpdboy/luci-app-parentcontrol package/luci-app-parentcontrol
+
+# autotimeset
+git clone --depth=1 https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 
 # chatgpt-web
 git clone --depth=1 https://github.com/sirpdboy/luci-app-chatgpt-web package/luci-app-chatgpt-web
+
+# eqosplus
+git clone --depth=1 https://github.com/sirpdboy/luci-app-eqosplus package/luci-app-eqosplus
+
+# wolplus
+git clone --depth=1 https://github.com/oppen321/luci-app-wolplus package/luci-app-wolplus
 
