@@ -17,6 +17,9 @@ git clone --depth=1 -b 24.x https://github.com/sbwml/packages_lang_golang feeds/
 # helloworld
 git clone --depth=1 -b helloworld https://github.com/oppen321/openwrt-package package/openwrt-package
 
+# 加载软件源
+git clone --depth=1 https://github.com/oppen321/openwrt-package package/openwrt-package
+
 # mosdns
 git clone --depth=1 https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone --depth=1 https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
