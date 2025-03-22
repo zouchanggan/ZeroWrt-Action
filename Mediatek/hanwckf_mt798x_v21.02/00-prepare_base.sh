@@ -13,6 +13,9 @@ sed -i "s/192.168.1.1/$LAN/g" package/base-files/files/bin/config_generate
 mkdir -p files/etc/uci-defaults
 curl -s $mirror/Mediatek/files/etc/uci-defaults/99-init-settings > files/etc/uci-defaults/99-init-settings
 
+# 更改 Argon 主题背景
+curl -s $mirror/images/bg1.jpg feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+
 echo -e "\nmsgid \"Control\"" >> feeds/luci/modules/luci-base/po/zh_Hans/base.po
 echo -e "msgstr \"控制\"" >> feeds/luci/modules/luci-base/po/zh_Hans/base.po
 
