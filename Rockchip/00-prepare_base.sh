@@ -18,6 +18,7 @@ curl -s $mirror/Rockchip/files/etc/uci-defaults/99-init-settings > files/etc/uci
 
 # 更改 Argon 主题背景
 curl -s $mirror/images/bg1.jpg feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+sed -i 's/bing/none/' feeds/luci/applications/luci-app-argon-config/root/etc/config/argon
 
 # TTYD
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
