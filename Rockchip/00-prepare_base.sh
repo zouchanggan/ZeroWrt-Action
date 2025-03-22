@@ -10,7 +10,7 @@
 sed -i "s/192.168.1.1/$LAN/g" package/base-files/files/bin/config_generate
 
 # 修改名称
-sed -i 's/ImmortalWrt/ZeroWrt/' package/base-files/files/bin/config_generate
+sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
 # init-settings.sh
 mkdir -p files/etc/uci-defaults
@@ -21,11 +21,6 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 sed -i '3 a\\t\t"order": 50,' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
-
-# rockchip
-curl -o ./target/linux/rockchip/patches-6.6/014-rockchip-add-pwm-fan-controller-for-nanopi-r2s-r4s.patch $mirror/patch/rockchip/014-rockchip-add-pwm-fan-controller-for-nanopi-r2s-r4s.patch
-curl -o ./target/linux/rockchip/patches-6.6/702-general-rk3328-dtsi-trb-ent-quirk.patch $mirror/patch/rockchip/702-general-rk3328-dtsi-trb-ent-quirk.patch
-curl -o ./target/linux/rockchip/patches-6.6/703-rk3399-enable-dwc3-xhci-usb-trb-quirk.patch $mirror/patch/rockchip/703-rk3399-enable-dwc3-xhci-usb-trb-quirk.patch
 
 # luci
 pushd feeds/luci
