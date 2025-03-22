@@ -83,9 +83,9 @@ if [ "$ENABLE_CCACHE" = "y" ]; then
 
     # 选择对应的 GCC 版本工具链
     case "$gcc_version" in
-        "GCC_13") file="toolchain_musl_immortalwrt_rockchip_gcc-13.tar.zst" ;;
-        "GCC_14") file="toolchain_musl_immortalwrt_rockchip_gcc-14.tar.zst" ;;
-        "GCC_15") file="toolchain_musl_immortalwrt_rockchip_gcc-15.tar.zst" ;;
+        "GCC_13") file="toolchain_musl_openwrt_rockchip_gcc-13.tar.zst" ;;
+        "GCC_14") file="toolchain_musl_openwrt_rockchip_gcc-14.tar.zst" ;;
+        "GCC_15") file="toolchain_musl_openwrt_rockchip_gcc-15.tar.zst" ;;
         *)
             echo "Unknown GCC version: $gcc_version"
             exit 1
