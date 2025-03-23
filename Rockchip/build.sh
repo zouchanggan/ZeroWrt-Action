@@ -60,13 +60,10 @@ esac
 # scripts
 curl -sO $mirror/Rockchip/00-prepare_base.sh
 curl -sO $mirror/Rockchip/01-prepare_package.sh
-curl -sO $mirror/Rockchip/02-convert_translation.sh
 chmod 0755 00-prepare_base.sh
 chmod 0755 01-prepare_package.sh
-chmod 0755 02-convert_translation.sh
 bash 00-prepare_base.sh
 bash 01-prepare_package.sh
-bash 02-convert_translation.sh
 
 # Load devices Config
 curl -s $mirror/Rockchip/rockchip.config > .config
