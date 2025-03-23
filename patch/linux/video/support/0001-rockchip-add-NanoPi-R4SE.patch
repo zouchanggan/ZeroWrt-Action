@@ -1,16 +1,22 @@
-From b79619c3f3a4a822f77764c37dc2e23ab28f1550 Mon Sep 17 00:00:00 2001
+From 4497616a1047787dadb28a80511f87acb5e00066 Mon Sep 17 00:00:00 2001
 From: OPPEN321 <zj18139624826@gmail.com>
 Date: Sun, 23 Mar 2025 15:07:45 +0800
 Subject: [PATCH] rockchip: add NanoPi R4SE
+
+Signed-off-by: OPPEN321 <zj18139624826@gmail.com>
+
+rockchip: add NanoPi R4SE
 
 Signed-off-by: OPPEN321 <zj18139624826@gmail.com>
 ---
  .../arm/dts/rk3399-nanopi-r4se-u-boot.dtsi    | 17 +++++
  .../src/arch/arm/dts/rk3399-nanopi-r4se.dts   | 17 +++++
  .../src/configs/nanopi-r4se-rk3399_defconfig  | 76 +++++++++++++++++++
+ .../armv8/base-files/etc/board.d/01_leds      |  1 +
+ .../armv8/base-files/etc/board.d/02_network   |  5 ++
  .../boot/dts/rockchip/rk3399-nanopi-r4se.dts  | 17 +++++
  target/linux/rockchip/image/armv8.mk          |  9 +++
- 5 files changed, 136 insertions(+)
+ 7 files changed, 142 insertions(+)
  create mode 100644 package/boot/uboot-rockchip/src/arch/arm/dts/rk3399-nanopi-r4se-u-boot.dtsi
  create mode 100644 package/boot/uboot-rockchip/src/arch/arm/dts/rk3399-nanopi-r4se.dts
  create mode 100644 package/boot/uboot-rockchip/src/configs/nanopi-r4se-rk3399_defconfig
@@ -144,6 +150,41 @@ index 0000000000..10f5cac8cf
 +CONFIG_VIDEO_ROCKCHIP=y
 +CONFIG_DISPLAY_ROCKCHIP_HDMI=y
 +CONFIG_ERRNO_STR=y
+diff --git a/target/linux/rockchip/armv8/base-files/etc/board.d/01_leds b/target/linux/rockchip/armv8/base-files/etc/board.d/01_leds
+index 6e2c95ada7..529be7c82a 100644
+--- a/target/linux/rockchip/armv8/base-files/etc/board.d/01_leds
++++ b/target/linux/rockchip/armv8/base-files/etc/board.d/01_leds
+@@ -14,6 +14,7 @@ friendlyarm,nanopi-r2s|\
+ friendlyarm,nanopi-r3s|\
+ friendlyarm,nanopi-r4s|\
+ friendlyarm,nanopi-r4s-enterprise|\
++friendlyarm,nanopi-r4se|\
+ friendlyarm,nanopi-r6c|\
+ xunlong,orangepi-r1-plus|\
+ xunlong,orangepi-r1-plus-lts)
+diff --git a/target/linux/rockchip/armv8/base-files/etc/board.d/02_network b/target/linux/rockchip/armv8/base-files/etc/board.d/02_network
+index 9a6e479323..eb739ce72a 100644
+--- a/target/linux/rockchip/armv8/base-files/etc/board.d/02_network
++++ b/target/linux/rockchip/armv8/base-files/etc/board.d/02_network
+@@ -14,6 +14,7 @@ rockchip_setup_interfaces()
+ 	friendlyarm,nanopi-r3s|\
+ 	friendlyarm,nanopi-r4s|\
+ 	friendlyarm,nanopi-r4s-enterprise|\
++	friendlyarm,nanopi-r4se|\
+ 	friendlyarm,nanopi-r6c|\
+ 	radxa,rockpi-e|\
+ 	xunlong,orangepi-r1-plus|\
+@@ -70,6 +71,10 @@ rockchip_setup_macs()
+ 		wan_mac=$(macaddr_generate_from_mmc_cid mmcblk*)
+ 		lan_mac=$(macaddr_add "$wan_mac" 1)
+ 		;;
++	friendlyarm,nanopi-r4se)
++		wan_mac=$(macaddr_generate_from_mmc_cid mmcblk2)
++		lan_mac=$(macaddr_add "$wan_mac" 1)
++		;;
+ 	friendlyarm,nanopi-r4s-enterprise)
+ 		wan_mac=$(get_mac_binary "/sys/bus/i2c/devices/2-0051/eeprom" 0xfa)
+ 		lan_mac=$(macaddr_setbit_la "$wan_mac")
 diff --git a/target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4se.dts b/target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4se.dts
 new file mode 100644
 index 0000000000..d540985166
