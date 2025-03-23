@@ -23,6 +23,14 @@ sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/l
 curl -s $mirror/images/bg1.jpg package/openwrt-package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 sed -i 's/bing/none/' package/openwrt-package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
+# Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
+rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
+git clone https://github.com/sbwml/package_kernel_r8168 package/kernel/r8168
+git clone https://github.com/sbwml/package_kernel_r8152 package/kernel/r8152
+git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
+git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
+git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
+
 # TTYD
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
 sed -i '3 a\\t\t"order": 50,' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
