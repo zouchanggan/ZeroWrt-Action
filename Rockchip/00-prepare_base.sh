@@ -36,7 +36,7 @@ popd
 
 # support
 curl -s $mirror/patch/linux/support/0001-rockchip-add-NanoPi-R4SE.patch
-git apply 0001-rockchip-driver.patch
+git apply 0001-rockchip-add-NanoPi-R4SE.patch
 
 # video
 curl -s $mirror/patch/linux/video/0001-rockchip-drm-panfrost.patch
