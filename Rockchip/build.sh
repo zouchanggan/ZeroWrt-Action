@@ -60,10 +60,19 @@ esac
 # scripts
 curl -sO $mirror/Rockchip/00-prepare_base.sh
 curl -sO $mirror/Rockchip/01-prepare_package.sh
+curl -sO $mirror/Rockchip/02-convert_translation.sh
+curl -sO $mirror/Rockchip/03-remove_upx.sh
+curl -sO $mirror/Rockchip/04-create_acl_for_luci.sh
 chmod 0755 00-prepare_base.sh
 chmod 0755 01-prepare_package.sh
+chmod 0755 02-convert_translation.sh
+chmod 0755 03-remove_upx.sh
+chmod 0755 04-create_acl_for_luci.sh
 bash 00-prepare_base.sh
 bash 01-prepare_package.sh
+bash 02-convert_translation.sh
+bash 03-remove_upx.sh
+bash 04-create_acl_for_luci.sh
 
 # Load devices Config
 curl -s $mirror/Rockchip/rockchip.config > .config
