@@ -1,97 +1,22 @@
-From 2bc7f07e0bdb574861af3377d367df56a13201ab Mon Sep 17 00:00:00 2001
+From 7b8cff03cd06b8eec2189ba1d0aede9b2177fa72 Mon Sep 17 00:00:00 2001
 From: OPPEN321 <zj18139624826@gmail.com>
-Date: Mon, 24 Mar 2025 00:46:39 +0800
-Subject: [PATCH] 0001-linux-module-video.patch
-
-Signed-off-by: OPPEN321 <zj18139624826@gmail.com>
----
- package/kernel/linux/modules/video.mk | 47 +++++++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
-
-diff --git a/package/kernel/linux/modules/video.mk b/package/kernel/linux/modules/video.mk
-index 9bb030bf57..a05fcb2c52 100644
---- a/package/kernel/linux/modules/video.mk
-+++ b/package/kernel/linux/modules/video.mk
-@@ -581,6 +581,38 @@ endef
- 
- $(eval $(call KernelPackage,drm-imx-ldb))
- 
-+
-+define KernelPackage/drm-lima
-+  SUBMENU:=$(VIDEO_MENU)
-+  TITLE:=DRM support for ARM Mali 400/450 GPU
-+  DEPENDS:=@(TARGET_rockchip||TARGET_sunxi) +kmod-drm-sched
-+  KCONFIG:=CONFIG_DRM_LIMA
-+  FILES:=$(LINUX_DIR)/drivers/gpu/drm/lima/lima.ko
-+  AUTOLOAD:=$(call AutoProbe,lima)
-+endef
-+
-+define KernelPackage/drm-lima/description
-+  DRM driver for ARM Mali 400/450 GPUs
-+endef
-+
-+$(eval $(call KernelPackage,drm-lima))
-+
-+define KernelPackage/drm-panfrost
-+  SUBMENU:=$(VIDEO_MENU)
-+  TITLE:=DRM support for ARM Mali Midgard/Bifrost GPUs
-+  DEPENDS:=@(TARGET_rockchip||TARGET_sunxi) +kmod-drm-sched
-+  KCONFIG:=CONFIG_DRM_PANFROST
-+  FILES:=$(LINUX_DIR)/drivers/gpu/drm/panfrost/panfrost.ko
-+  AUTOLOAD:=$(call AutoProbe,panfrost)
-+endef
-+
-+define KernelPackage/drm-panfrost/description
-+  DRM driver for ARM Mali Midgard (T6xx, T7xx, T8xx) and
-+  Bifrost (G3x, G5x, G7x) GPUs
-+endef
-+
-+$(eval $(call KernelPackage,drm-panfrost))
-+
- define KernelPackage/drm-panel-mipi-dbi
-   SUBMENU:=$(VIDEO_MENU)
-   TITLE:=Generic MIPI DBI LCD panel
-@@ -616,6 +648,21 @@ endef
- 
- $(eval $(call KernelPackage,drm-radeon))
- 
-+
-+define KernelPackage/drm-sched
-+  SUBMENU:=$(VIDEO_MENU)
-+  TITLE:=DRM helper for ARM GPUs
-+  DEPENDS:=+kmod-drm
-+  HIDDEN:=1
-+  KCONFIG:=CONFIG_DRM_SCHED
-+  FILES:= \
-+	$(LINUX_DIR)/drivers/gpu/drm/drm_shmem_helper.ko@gt5.17 \
-+	$(LINUX_DIR)/drivers/gpu/drm/scheduler/gpu-sched.ko
-+  AUTOLOAD:=$(call AutoProbe,gpu-sched)
-+endef
-+
-+$(eval $(call KernelPackage,drm-sched))
-+
- #
- # Video Capture
- #
--- 
-2.43.0
-From 5eb386c502584d5469d0a23ef0961aa51155f994 Mon Sep 17 00:00:00 2001
-From: OPPEN321 <zj18139624826@gmail.com>
-Date: Mon, 24 Mar 2025 01:21:50 +0800
+Date: Mon, 24 Mar 2025 01:38:26 +0800
 Subject: [PATCH] video.mk: add custom modifications
 
 Signed-off-by: OPPEN321 <zj18139624826@gmail.com>
 ---
- package/kernel/linux/modules/video.mk | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ package/kernel/linux/modules/video.mk | 72 +++++++++++++++++++++++++++
+ target/linux/rockchip/modules.mk      | 71 ++++++++++++++++++++++++++
+ 2 files changed, 143 insertions(+)
+ create mode 100644 target/linux/rockchip/modules.mk
 
 diff --git a/package/kernel/linux/modules/video.mk b/package/kernel/linux/modules/video.mk
-index a05fcb2c52..2ff8e5893b 100644
+index 9bb030bf57..c56395f46a 100644
 --- a/package/kernel/linux/modules/video.mk
 +++ b/package/kernel/linux/modules/video.mk
-@@ -267,6 +267,23 @@ endef
+@@ -287,6 +287,24 @@ endef
  
- $(eval $(call KernelPackage,fb-tft-ili9486))
+ $(eval $(call KernelPackage,drm))
  
 +define KernelPackage/multimedia-input
 +  SUBMENU:=$(VIDEO_MENU)
@@ -110,8 +35,161 @@ index a05fcb2c52..2ff8e5893b 100644
 +endef
 +
 +$(eval $(call KernelPackage,multimedia-input))
- 
- define KernelPackage/drm
++
+ define KernelPackage/drm-buddy
    SUBMENU:=$(VIDEO_MENU)
+   TITLE:=A page based buddy allocator
+@@ -581,6 +599,45 @@ endef
+ 
+ $(eval $(call KernelPackage,drm-imx-ldb))
+ 
++define KernelPackage/drm-lima
++  SUBMENU:=$(VIDEO_MENU)
++  TITLE:=Mali-4xx GPU support
++  DEPENDS:=@(TARGET_rockchip||TARGET_sunxi) +kmod-drm +kmod-drm-gem-shmem-helper
++  KCONFIG:= \
++	CONFIG_DRM_VGEM \
++	CONFIG_DRM_GEM_CMA_HELPER=y \
++	CONFIG_DRM_LIMA
++  FILES:= \
++	$(LINUX_DIR)/drivers/gpu/drm/vgem/vgem.ko \
++	$(LINUX_DIR)/drivers/gpu/drm/scheduler/gpu-sched.ko \
++	$(LINUX_DIR)/drivers/gpu/drm/lima/lima.ko
++  AUTOLOAD:=$(call AutoProbe,lima vgem)
++endef
++
++define KernelPackage/drm-lima/description
++  Open-source reverse-engineered driver for Mali-4xx GPUs
++endef
++
++$(eval $(call KernelPackage,drm-lima))
++
++define KernelPackage/drm-panfrost
++  SUBMENU:=$(VIDEO_MENU)
++  TITLE:=DRM support for ARM Mali Midgard/Bifrost GPUs
++  DEPENDS:=@(TARGET_rockchip||TARGET_sunxi) +kmod-drm +kmod-drm-gem-shmem-helper
++  KCONFIG:=CONFIG_DRM_PANFROST
++  FILES:= \
++	$(LINUX_DIR)/drivers/gpu/drm/panfrost/panfrost.ko \
++	$(LINUX_DIR)/drivers/gpu/drm/scheduler/gpu-sched.ko
++  AUTOLOAD:=$(call AutoProbe,panfrost)
++endef
++
++define KernelPackage/drm-panfrost/description
++  DRM driver for ARM Mali Midgard (T6xx, T7xx, T8xx) and
++  Bifrost (G3x, G5x, G7x) GPUs
++endef
++
++$(eval $(call KernelPackage,drm-panfrost))
++
+ define KernelPackage/drm-panel-mipi-dbi
+   SUBMENU:=$(VIDEO_MENU)
+   TITLE:=Generic MIPI DBI LCD panel
+@@ -599,6 +656,7 @@ endef
+ 
+ $(eval $(call KernelPackage,drm-panel-mipi-dbi))
+ 
++
+ define KernelPackage/drm-radeon
+   SUBMENU:=$(VIDEO_MENU)
+   TITLE:=Radeon DRM support
+@@ -616,6 +674,20 @@ endef
+ 
+ $(eval $(call KernelPackage,drm-radeon))
+ 
++define KernelPackage/drm-sched
++  SUBMENU:=$(VIDEO_MENU)
++  TITLE:=DRM helper for ARM GPUs
++  DEPENDS:=+kmod-drm +kmod-drm-kms-helper
++  HIDDEN:=1
++  KCONFIG:=CONFIG_DRM_SCHED
++  FILES:= \
++	$(LINUX_DIR)/drivers/gpu/drm/drm_shmem_helper.ko@gt5.17 \
++	$(LINUX_DIR)/drivers/gpu/drm/scheduler/gpu-sched.ko
++  AUTOLOAD:=$(call AutoProbe,gpu-sched)
++endef
++
++$(eval $(call KernelPackage,drm-sched))
++
+ #
+ # Video Capture
+ #
+diff --git a/target/linux/rockchip/modules.mk b/target/linux/rockchip/modules.mk
+new file mode 100644
+index 0000000000..d69241f8f8
+--- /dev/null
++++ b/target/linux/rockchip/modules.mk
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: GPL-2.0-only
++#
++# Copyright (C) 2020 OpenWrt.org
++
++define KernelPackage/drm-rockchip
++  SUBMENU:=$(VIDEO_MENU)
++  TITLE:=Rockchip DRM support
++  DEPENDS:=@TARGET_rockchip +kmod-backlight +kmod-drm-kms-helper \
++	+kmod-multimedia-input +kmod-drm-display-helper
++  KCONFIG:= \
++	CONFIG_DRM_ROCKCHIP \
++	CONFIG_DRM_LOAD_EDID_FIRMWARE=y \
++	CONFIG_DRM_FBDEV_EMULATION=y \
++	CONFIG_DRM_FBDEV_OVERALLOC=100 \
++	CONFIG_DRM_BRIDGE=y \
++	CONFIG_HDMI=y \
++	CONFIG_PHY_ROCKCHIP_INNO_HDMI \
++	CONFIG_PHY_ROCKCHIP_SAMSUNG_HDPTX \
++	CONFIG_DRM_DW_HDMI \
++	CONFIG_DRM_DW_HDMI_CEC \
++	CONFIG_ROCKCHIP_ANALOGIX_DP=n \
++	CONFIG_ROCKCHIP_CDN_DP=n \
++	CONFIG_ROCKCHIP_DW_HDMI=y \
++	CONFIG_ROCKCHIP_DW_MIPI_DSI=y \
++	CONFIG_ROCKCHIP_INNO_HDMI=y \
++	CONFIG_ROCKCHIP_LVDS=y \
++	CONFIG_ROCKCHIP_RGB=n \
++	CONFIG_ROCKCHIP_RK3066_HDMI=n \
++	CONFIG_ROCKCHIP_VOP=y \
++	CONFIG_ROCKCHIP_VOP2=y \
++	CONFIG_DRM_DP_AUX_BUS \
++	CONFIG_DRM_GEM_DMA_HELPER \
++	CONFIG_DRM_PANEL=y \
++	CONFIG_DRM_PANEL_BRIDGE=y \
++	CONFIG_DRM_PANEL_SIMPLE
++  FILES:= \
++	$(LINUX_DIR)/drivers/gpu/drm/bridge/synopsys/dw-hdmi.ko \
++	$(LINUX_DIR)/drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.ko \
++	$(LINUX_DIR)/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.ko \
++	$(LINUX_DIR)/drivers/phy/rockchip/phy-rockchip-inno-hdmi.ko \
++	$(LINUX_DIR)/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.ko \
++	$(LINUX_DIR)/drivers/gpu/drm/drm_dma_helper.ko \
++	$(LINUX_DIR)/drivers/gpu/drm/panel/panel-simple.ko \
++	$(LINUX_DIR)/drivers/gpu/drm/rockchip/rockchipdrm.ko \
++	$(LINUX_DIR)/drivers/media/cec/core/cec.ko
++  AUTOLOAD:=$(call AutoProbe,rockchipdrm phy-rockchip-inno-hdmi phy-rockchip-samsung-hdptx dw-hdmi-cec)
++endef
++
++define KernelPackage/drm-rockchip/description
++  Direct Rendering Manager (DRM) support for Rockchip
++endef
++
++$(eval $(call KernelPackage,drm-rockchip))
++
++define KernelPackage/saradc-rockchip
++  SUBMENU:=$(IIO_MENU)
++  TITLE:=Rockchip SARADC support
++  DEPENDS:=@TARGET_rockchip +kmod-industrialio-triggered-buffer
++  KCONFIG:= \
++	CONFIG_RESET_CONTROLLER=y \
++	CONFIG_ROCKCHIP_SARADC
++  FILES:= \
++	$(LINUX_DIR)/drivers/iio/adc/rockchip_saradc.ko
++  AUTOLOAD:=$(call AutoProbe,rockchip_saradc)
++endef
++
++define KernelPackage/saradc-rockchip/description
++  Support for the SARADC found in SoCs from Rockchip
++endef
++
++$(eval $(call KernelPackage,saradc-rockchip))
 -- 
 2.43.0
