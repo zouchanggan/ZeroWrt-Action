@@ -36,9 +36,6 @@ git clone --depth=1 https://github.com/sirpdboy/netspeedtest package/netspeedtes
 # parentcontrol
 git clone --depth=1 https://github.com/sirpdboy/luci-app-parentcontrol package/luci-app-parentcontrol
 
-# autotimeset
-git clone --depth=1 https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
-
 # chatgpt-web
 git clone --depth=1 https://github.com/sirpdboy/luci-app-chatgpt-web package/luci-app-chatgpt-web
 
@@ -48,3 +45,8 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-eqosplus package/luci-a
 # wolplus
 git clone --depth=1 https://github.com/oppen321/luci-app-wolplus package/luci-app-wolplus
 
+# taskplan
+git clone --depth=1 https://github.com/sirpdboy/luci-app-taskplan package/luci-app-taskplan
+
+# lucky
+git clone --depth=1 https://github.com/gdy666/luci-app-lucky.git package/lucky
