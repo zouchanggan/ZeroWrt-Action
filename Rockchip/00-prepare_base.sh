@@ -25,11 +25,11 @@ sed -i 's/bing/none/' package/openwrt-package/luci-theme-argon/htdocs/luci-stati
 
 # Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
 rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
-git clone https://github.com/sbwml/package_kernel_r8168 package/kernel/r8168
-git clone https://github.com/sbwml/package_kernel_r8152 package/kernel/r8152
-git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
-git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
-git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
+git clone $gitea/package_kernel_r8126 package/kernel/r8168
+git clone $gitea/package_kernel_r8152 package/kernel/r8152
+git clone $gitea/package_kernel_r8101 package/kernel/r8101
+git clone $gitea/package_kernel_r8125 package/kernel/r8125
+git clone $gitea/package_kernel_r8126 package/kernel/r8126
 
 # TTYD
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
