@@ -14,7 +14,7 @@ rm -rf feeds/packages/net/{zerotier,xray-core,v2ray-core,v2ray-geodata,sing-box}
 git clone --depth=1 -b 24.x https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
 # helloworld
-git clone --depth=1 -b helloworld https://github.com/oppen321/openwrt-package package/openwrt-package
+git clone --depth=1 -b helloworld https://github.com/oppen321/openwrt-package package/helloworld
 
 # 加载软件源
-git clone https://github.com/oppen321/openwrt-package package/openwrt-package
+git clone --depth=1 https://github.com/oppen321/openwrt-package package/openwrt-package
