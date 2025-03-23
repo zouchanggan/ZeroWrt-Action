@@ -4,7 +4,7 @@
 export mirror=http://127.0.0.1:8080
 
 # Clone source code
-git clone -b openwrt-24.10 --single-branch --filter=blob:none https://github.com/openwrt/openwrt
+git clone -b openwrt-24.10 --single-branch --filter=blob:none https://github.com/immortalwrt/immortalwrt openwrt
 
 # Enter source code
 cd openwrt
@@ -77,24 +77,11 @@ bash 04-create_acl_for_luci.sh
 # Load devices Config
 curl -s $mirror/Rockchip/rockchip.config > .config
 
-# bpf
-[ "$ENABLE_BPF" = "y" ] && curl -s $mirror/generic/config-bpf >> .config
-
-# gcc15 patches
-curl -s $mirror/patch/GCC/202-toolchain-gcc-add-support-for-GCC-15.patch | patch -p1
-
 # gcc config
 echo -e "\n# gcc $gcc_version" >> .config
 echo -e "CONFIG_DEVEL=y" >> .config
 echo -e "CONFIG_TOOLCHAINOPTS=y" >> .config
 echo -e "CONFIG_GCC_USE_VERSION_$gcc_version=y\n" >> .config
-
-# ccache
-if [ "$USE_GCC15" = "y" ] && [ "$ENABLE_CCACHE" = "y" ]; then
-    echo "CONFIG_CCACHE=y" >> .config
-    "CONFIG_CCACHE_DIR=\"/builder/.ccache\"" >> .config
-    tools_suffix="_ccache"
-fi
 
 # Toolchain Cache
 if [ "$ENABLE_CCACHE" = "y" ]; then
@@ -104,7 +91,6 @@ if [ "$ENABLE_CCACHE" = "y" ]; then
     case "$gcc_version" in
         "GCC_13") file="toolchain_musl_openwrt_rockchip_gcc-13.tar.zst" ;;
         "GCC_14") file="toolchain_musl_openwrt_rockchip_gcc-14.tar.zst" ;;
-        "GCC_15") file="toolchain_musl_openwrt_rockchip_gcc-15.tar.zst" ;;
         *)
             echo "Unknown GCC version: $gcc_version"
             exit 1
