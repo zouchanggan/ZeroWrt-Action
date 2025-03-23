@@ -1,0 +1,75 @@
+From d0245d211cb3704c519e8b9ceb06e4090ac67665 Mon Sep 17 00:00:00 2001
+From: OPPEN321 <zj18139624826@gmail.com>
+Date: Sun, 23 Mar 2025 14:10:17 +0800
+Subject: [PATCH] video.mk: add custom modifications
+
+Signed-off-by: OPPEN321 <zj18139624826@gmail.com>
+---
+ package/kernel/linux/modules/video.mk | 45 +++++++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+
+diff --git a/package/kernel/linux/modules/video.mk b/package/kernel/linux/modules/video.mk
+index 9bb030bf57..a7095f48bb 100644
+--- a/package/kernel/linux/modules/video.mk
++++ b/package/kernel/linux/modules/video.mk
+@@ -581,6 +581,37 @@ endef
+ 
+ $(eval $(call KernelPackage,drm-imx-ldb))
+ 
++define KernelPackage/drm-lima
++  SUBMENU:=$(VIDEO_MENU)
++  TITLE:=DRM support for ARM Mali 400/450 GPU
++  DEPENDS:=@(TARGET_rockchip||TARGET_sunxi) +kmod-drm-sched
++  KCONFIG:=CONFIG_DRM_LIMA
++  FILES:=$(LINUX_DIR)/drivers/gpu/drm/lima/lima.ko
++  AUTOLOAD:=$(call AutoProbe,lima)
++endef
++
++define KernelPackage/drm-lima/description
++  DRM driver for ARM Mali 400/450 GPUs
++endef
++
++$(eval $(call KernelPackage,drm-lima))
++
++define KernelPackage/drm-panfrost
++  SUBMENU:=$(VIDEO_MENU)
++  TITLE:=DRM support for ARM Mali Midgard/Bifrost GPUs
++  DEPENDS:=@(TARGET_rockchip||TARGET_sunxi) +kmod-drm-sched
++  KCONFIG:=CONFIG_DRM_PANFROST
++  FILES:=$(LINUX_DIR)/drivers/gpu/drm/panfrost/panfrost.ko
++  AUTOLOAD:=$(call AutoProbe,panfrost)
++endef
++
++define KernelPackage/drm-panfrost/description
++  DRM driver for ARM Mali Midgard (T6xx, T7xx, T8xx) and
++  Bifrost (G3x, G5x, G7x) GPUs
++endef
++
++$(eval $(call KernelPackage,drm-panfrost))
++
+ define KernelPackage/drm-panel-mipi-dbi
+   SUBMENU:=$(VIDEO_MENU)
+   TITLE:=Generic MIPI DBI LCD panel
+@@ -616,6 +647,20 @@ endef
+ 
+ $(eval $(call KernelPackage,drm-radeon))
+ 
++define KernelPackage/drm-sched
++  SUBMENU:=$(VIDEO_MENU)
++  TITLE:=DRM helper for ARM GPUs
++  DEPENDS:=+kmod-drm +LINUX_6_12:kmod-drm-kms-helper
++  HIDDEN:=1
++  KCONFIG:=CONFIG_DRM_SCHED
++  FILES:= \
++	$(LINUX_DIR)/drivers/gpu/drm/drm_shmem_helper.ko@gt5.17 \
++	$(LINUX_DIR)/drivers/gpu/drm/scheduler/gpu-sched.ko
++  AUTOLOAD:=$(call AutoProbe,gpu-sched)
++endef
++
++$(eval $(call KernelPackage,drm-sched))
++
+ #
+ # Video Capture
+ #
+-- 
+2.43.0
