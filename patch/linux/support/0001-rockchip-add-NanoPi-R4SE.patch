@@ -1,14 +1,11 @@
-From 4497616a1047787dadb28a80511f87acb5e00066 Mon Sep 17 00:00:00 2001
+From c03f6f21690a76ba30ce95cfc3dac96e28d2fcc1 Mon Sep 17 00:00:00 2001
 From: OPPEN321 <zj18139624826@gmail.com>
-Date: Sun, 23 Mar 2025 15:07:45 +0800
-Subject: [PATCH] rockchip: add NanoPi R4SE
-
-Signed-off-by: OPPEN321 <zj18139624826@gmail.com>
-
-rockchip: add NanoPi R4SE
+Date: Sun, 23 Mar 2025 18:00:38 +0800
+Subject: [PATCH] video.mk: add custom modifications
 
 Signed-off-by: OPPEN321 <zj18139624826@gmail.com>
 ---
+ package/boot/uboot-rockchip/Makefile          |  7 ++
  .../arm/dts/rk3399-nanopi-r4se-u-boot.dtsi    | 17 +++++
  .../src/arch/arm/dts/rk3399-nanopi-r4se.dts   | 17 +++++
  .../src/configs/nanopi-r4se-rk3399_defconfig  | 76 +++++++++++++++++++
@@ -16,12 +13,30 @@ Signed-off-by: OPPEN321 <zj18139624826@gmail.com>
  .../armv8/base-files/etc/board.d/02_network   |  5 ++
  .../boot/dts/rockchip/rk3399-nanopi-r4se.dts  | 17 +++++
  target/linux/rockchip/image/armv8.mk          |  9 +++
- 7 files changed, 142 insertions(+)
+ 8 files changed, 149 insertions(+)
  create mode 100644 package/boot/uboot-rockchip/src/arch/arm/dts/rk3399-nanopi-r4se-u-boot.dtsi
  create mode 100644 package/boot/uboot-rockchip/src/arch/arm/dts/rk3399-nanopi-r4se.dts
  create mode 100644 package/boot/uboot-rockchip/src/configs/nanopi-r4se-rk3399_defconfig
  create mode 100644 target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4se.dts
 
+diff --git a/package/boot/uboot-rockchip/Makefile b/package/boot/uboot-rockchip/Makefile
+index 7070ca973d..d0694ce54e 100644
+--- a/package/boot/uboot-rockchip/Makefile
++++ b/package/boot/uboot-rockchip/Makefile
+@@ -136,6 +136,13 @@ define U-Boot/nanopi-r4s-rk3399
+     friendlyarm_nanopi-r4s-enterprise
+ endef
+ 
++define U-Boot/nanopi-r4se-rk3399
++  $(U-Boot/rk3399/Default)
++  NAME:=NanoPi R4SE
++  BUILD_DEVICES:= \
++    friendlyarm_nanopi-r4se
++endef
++
+ define U-Boot/rock-pi-4-rk3399
+   $(U-Boot/rk3399/Default)
+   NAME:=Rock Pi 4
 diff --git a/package/boot/uboot-rockchip/src/arch/arm/dts/rk3399-nanopi-r4se-u-boot.dtsi b/package/boot/uboot-rockchip/src/arch/arm/dts/rk3399-nanopi-r4se-u-boot.dtsi
 new file mode 100644
 index 0000000000..8484c73f74
