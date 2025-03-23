@@ -4,7 +4,7 @@
 export mirror=http://127.0.0.1:8080
 
 # Clone source code
-git clone -b openwrt-24.10 --single-branch --filter=blob:none https://github.com/immortalwrt/immortalwrt openwrt
+git clone -b openwrt-24.10 --single-branch --filter=blob:none https://github.com/openwrt/openwrt
 
 # Enter source code
 cd openwrt
@@ -67,6 +67,13 @@ bash 01-prepare_package.sh
 
 # Load devices Config
 curl -s $mirror/Rockchip/rockchip.config > .config
+
+# ccache
+if [ "$USE_GCC15" = "y" ] && [ "$ENABLE_CCACHE" = "y" ]; then
+    echo "CONFIG_CCACHE=y" >> .config
+    "CONFIG_CCACHE_DIR=\"/builder/.ccache\"" >> .config
+    tools_suffix="_ccache"
+fi
 
 # gcc15 patches
 curl -s $mirror/patch/GCC/202-toolchain-gcc-add-support-for-GCC-15.patch | patch -p1
