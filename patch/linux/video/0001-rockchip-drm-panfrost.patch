@@ -81,7 +81,7 @@ index 9bb030bf57..59e4d68248 100644
 +define KernelPackage/drm-sched
 +  SUBMENU:=$(VIDEO_MENU)
 +  TITLE:=DRM helper for ARM GPUs
-+  DEPENDS:=+kmod-drm +LINUX_6_12:kmod-drm-kms-helper
++  DEPENDS:=+kmod-drm +kmod-drm-kms-helper
 +  HIDDEN:=1
 +  KCONFIG:=CONFIG_DRM_SCHED
 +  FILES:= \
