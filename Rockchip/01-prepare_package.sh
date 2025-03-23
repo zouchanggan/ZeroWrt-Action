@@ -18,3 +18,7 @@ git clone --depth=1 -b helloworld https://github.com/oppen321/openwrt-package pa
 
 # 加载软件源
 git clone --depth=1 https://github.com/oppen321/openwrt-package package/openwrt-package
+
+# update feeds
+./scripts/feeds update -a
+./scripts/feeds install -a
