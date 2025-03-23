@@ -49,3 +49,37 @@ sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 sed -i '/CONFIG_BUILDBOT/d' include/feeds.mk
 sed -i 's/;)\s*\\/; \\/' include/feeds.mk
+
+# kernel modules
+rm -rf package/kernel/linux
+git checkout package/kernel/linux
+pushd package/kernel/linux/modules
+    rm -f [a-z]*.mk
+    curl -Os $mirror/patch/modules/block.mk
+    curl -Os $mirror/patch/modules/can.mk
+    curl -Os $mirror/patch/modules/crypto.mk
+    curl -Os $mirror/patch/modules/firewire.mk
+    curl -Os $mirror/patch/modules/fs.mk
+    curl -Os $mirror/patch/modules/gpio.mk
+    curl -Os $mirror/patch/modules/hwmon.mk
+    curl -Os $mirror/patch/modules/i2c.mk
+    curl -Os $mirror/patch/modules/iio.mk
+    curl -Os $mirror/patch/modules/input.mk
+    curl -Os $mirror/patch/modules/leds.mk
+    curl -Os $mirror/patch/modules/lib.mk
+    curl -Os $mirror/patch/modules/multiplexer.mk
+    curl -Os $mirror/patch/modules/netdevices.mk
+    curl -Os $mirror/patch/modules/netfilter.mk
+    curl -Os $mirror/patch/modules/netsupport.mk
+    curl -Os $mirror/patch/modules/nls.mk
+    curl -Os $mirror/patch/modules/other.mk
+    curl -Os $mirror/patch/modules/pcmcia.mk
+    curl -Os $mirror/patch/modules/rtc.mk
+    curl -Os $mirror/patch/modules/sound.mk
+    curl -Os $mirror/patch/modules/spi.mk
+    curl -Os $mirror/patch/modules/usb.mk
+    curl -Os $mirror/patch/modules/video.mk
+    curl -Os $mirror/patch/modules/virt.mk
+    curl -Os $mirror/patch/modules/w1.mk
+    curl -Os $mirror/patch/modules/wpan.mk
+popd
