@@ -34,16 +34,6 @@ pushd feeds/luci
     curl -s $mirror/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
 popd
 
-# support
-curl -s $mirror/patch/linux/support/0001-rockchip-add-NanoPi-R4SE.patch
-git apply 0001-rockchip-add-NanoPi-R4SE.patch
-
-# video
-curl -s $mirror/patch/linux/video/0001-rockchip-drm-panfrost.patch
-curl -s $mirror/patch/linux/video/0002-drm-rockchip-support.patch
-git apply 0001-rockchip-drm-panfrost.patch
-git apply 0002-drm-rockchip-support.patch
-
 # 移除 SNAPSHOT 标签
 sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
