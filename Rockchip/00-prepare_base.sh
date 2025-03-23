@@ -19,10 +19,6 @@ curl -s $mirror/Rockchip/files/etc/uci-defaults/99-init-settings > files/etc/uci
 # Luci diagnostics.js
 sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
 
-# 更改 Argon 主题背景
-curl -s $mirror/images/bg1.jpg package/openwrt-package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
-sed -i 's/bing/none/' package/openwrt-package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
-
 # Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
 rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
 git clone $gitea/package_kernel_r8126 package/kernel/r8168
