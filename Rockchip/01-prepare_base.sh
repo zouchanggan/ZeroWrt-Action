@@ -73,7 +73,7 @@ pushd feeds/luci
 popd
 
 # module
-git apply $mirror/patch/linux/0001-rockchip-driver.patch
+git apply $mirror/patch/linux/0001-linux-module-video.patch
 
 # 移除 SNAPSHOT 标签
 sed -i 's,-SNAPSHOT,,g' include/version.mk
