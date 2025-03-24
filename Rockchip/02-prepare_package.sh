@@ -8,6 +8,7 @@
 
 # 替换软件包
 rm -rf feeds/packages/lang/golang
+rm -rf feeds/packages/utils/coremark
 rm -rf feeds/packages/net/{zerotier,xray-core,v2ray-core,v2ray-geodata,sing-box}
 
 # golong1.24依赖
