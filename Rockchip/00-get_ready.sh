@@ -20,22 +20,3 @@ clone_repo $openwrt_repo openwrt-24.10 openwrt &
 # 等待所有后台任务完成
 wait
 
-# make olddefconfig
-wget -qO - https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/linux/0003-include-kernel-defaults.mk.patch | patch -p1
-
-# 进行一些处理
-rm -rf openwrt/target/linux/rockchip
-rm -rf package/boot/{rkbin,uboot-rockchip,arm-trusted-firmware-rockchip}
-cp -rf immortalwrt/target/linux/rockchip openwrt/target/linux/rockchip
-cp -rf patch/kernel/rockchip/* openwrt/target/linux/rockchip/patches-6.6/
-cp -rf immortalwrt/package/boot/uboot-rockchip openwrt/package/boot/uboot-rockchip
-cp -rf immortalwrt/package/boot/arm-trusted-firmware-rockchip openwrt/package/boot/arm-trusted-firmware-rockchip
-sed -i '/REQUIRE_IMAGE_METADATA/d' openwrt/target/linux/rockchip/armv8/base-files/lib/upgrade/platform.sh
-
-curl -o openwrt/include/kernel-6.6 https://raw.githubusercontent.com/immortalwrt/immortalwrt/refs/heads/openwrt-24.10/include/kernel-6.6
-
-sed -i '/REQUIRE_IMAGE_METADATA/d' target/linux/rockchip/armv8/base-files/lib/upgrade/platform.sh
-sed -i -e 's,kmod-r8168,kmod-r8169,g' openwrt/target/linux/rockchip/image/armv8.mk
-
-
-
