@@ -21,7 +21,7 @@ clone_repo $openwrt_repo openwrt-24.10 openwrt &
 wait
 
 # make olddefconfig
-wget -qO - https://github.com/openwrt/openwrt/commit/c21a3570.patch | patch -p1
+wget -qO - https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/linux/0003-include-kernel-defaults.mk.patch | patch -p1
 
 # 进行一些处理
 rm -rf openwrt/target/linux/rockchip
