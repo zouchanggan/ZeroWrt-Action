@@ -11,24 +11,30 @@ clone_repo() {
 }
 
 # 定义一些变量，存储仓库地址和分支名
-lede_repo="https://github.com/coolsnowwolf/lede.git"
+immortalwrt_repo="https://github.com/coolsnowwolf/lede.git"
 openwrt_repo="https://github.com/openwrt/openwrt.git"
 
 # 开始克隆仓库，并行执行
-clone_repo $lede_repo master lean &
+clone_repo $immortalwrt_repo openwrt-24.10 immortalwrt &
 clone_repo $openwrt_repo openwrt-24.10 openwrt &
 # 等待所有后台任务完成
 wait
 
-# 进行一些处理
-rm -rf openwrt/package/boot openwrt/target/linux/rockchip openwrt/target/linux/generic
-cp -rf lean/target/linux/rockchip openwrt/target/linux/rockchip
-cp -rf lean/target/linux/generic openwrt/target/linux/generic
-cp -rf lean/package/boot openwrt/package/boot
-curl -o openwrt/target/linux/rockchip/Makefile https://github.com/openwrt/openwrt/raw/refs/heads/openwrt-24.10/target/linux/rockchip/Makefile
-curl -o openwrt/include/kernel-6.6 https://github.com/coolsnowwolf/lede/raw/master/include/kernel-6.6
-curl -o openwrt/include/trusted-firmware-a.mk https://github.com/coolsnowwolf/lede/raw/refs/heads/master/include/trusted-firmware-a.mk
+# make olddefconfig
+wget -qO - https://github.com/openwrt/openwrt/commit/c21a3570.patch | patch -p1
 
+# 进行一些处理
+rm -rf openwrt/target/linux/rockchip
+rm -rf package/boot/{rkbin,uboot-rockchip,arm-trusted-firmware-rockchip}
+cp -rf immortalwrt/target/linux/rockchip openwrt/target/linux/rockchip
+cp -rf patch/kernel/rockchip/* openwrt/target/linux/rockchip/patches-6.6/
+cp -rf immortalwrt/package/boot/uboot-rockchip openwrt/package/boot/uboot-rockchip
+cp -rf immortalwrt/package/boot/arm-trusted-firmware-rockchip openwrt/package/boot/arm-trusted-firmware-rockchip
+sed -i '/REQUIRE_IMAGE_METADATA/d' openwrt/target/linux/rockchip/armv8/base-files/lib/upgrade/platform.sh
+
+curl -o openwrt/include/kernel-6.6 https://raw.githubusercontent.com/immortalwrt/immortalwrt/refs/heads/openwrt-24.10/include/kernel-6.6
+
+sed -i '/REQUIRE_IMAGE_METADATA/d' target/linux/rockchip/armv8/base-files/lib/upgrade/platform.sh
 sed -i -e 's,kmod-r8168,kmod-r8169,g' openwrt/target/linux/rockchip/image/armv8.mk
 
 
