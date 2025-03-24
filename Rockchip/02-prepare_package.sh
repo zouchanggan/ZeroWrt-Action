@@ -22,7 +22,7 @@ git clone --depth=1 https://github.com/oppen321/openwrt-package package/openwrt-
 
 # 更改 Argon 主题背景
 curl -s $mirror/images/bg1.jpg package/openwrt-package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
-sed -i 's/bing/none/' package/openwrt-package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+sed -i 's/bing/none/' package/openwrt-package/luci-app-argon-config/root/etc/config/argon
 
 # update feeds
 ./scripts/feeds update -a
