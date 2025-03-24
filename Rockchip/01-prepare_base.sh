@@ -24,6 +24,9 @@ git clone $gitea/package_kernel_r8101 package/kernel/r8101
 git clone $gitea/package_kernel_r8125 package/kernel/r8125
 git clone $gitea/package_kernel_r8126 package/kernel/r8126
 
+# Luci diagnostics.js
+sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
+
 # TTYD
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
 sed -i '3 a\\t\t"order": 50,' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
