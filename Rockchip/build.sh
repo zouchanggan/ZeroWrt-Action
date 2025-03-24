@@ -17,7 +17,7 @@ clone_repo() {
 }
 
 # 定义一些变量，存储仓库地址和分支名
-immortalwrt_repo="https://github.com/coolsnowwolf/lede.git"
+immortalwrt_repo="https://github.com/immortalwrt/immortalwrt"
 openwrt_repo="https://github.com/openwrt/openwrt.git"
 
 # 开始克隆仓库，并行执行
