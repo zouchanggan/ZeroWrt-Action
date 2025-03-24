@@ -97,7 +97,7 @@ bash 05-create_acl_for_luci.sh
 # Load devices Config
 curl -s $mirror/Rockchip/rockchip.config > .config
 
-# gcc14 & 15
+# gcc13 & 14
 if [ "$USE_GCC13" = y ]; then
     export USE_GCC13=y gcc_version=13
 elif [ "$USE_GCC14" = y ]; then
