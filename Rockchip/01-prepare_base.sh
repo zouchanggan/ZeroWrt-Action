@@ -7,7 +7,7 @@
 #========================================================================================================================
 
 # make olddefconfig
-wget -qO - https://github.com/openwrt/openwrt/commit/c21a3570.patch | patch -p1
+wget -qO - https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/linux/0003-include-kernel-defaults.mk.patch | patch -p1
 
 # 更换为 ImmortalWrt Uboot 以及 Target
 rm -rf ./target/linux/rockchip
