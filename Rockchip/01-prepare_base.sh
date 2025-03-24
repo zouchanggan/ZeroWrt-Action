@@ -48,7 +48,7 @@ sed -i "s/192.168.1.1/$LAN/g" package/base-files/files/bin/config_generate
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
 # default-settings
-git --depth=1 -b openwrt-24.10 clone https://github.com/oppen321/default-settings package/default-settings
+git clone --depth=1 -b openwrt-24.10 https://github.com/oppen321/default-settings package/default-settings
 
 # Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
 rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
