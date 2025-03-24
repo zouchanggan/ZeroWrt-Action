@@ -1,21 +1,45 @@
-From 026bb7e23a51c925f51082b9800a88b8d519944b Mon Sep 17 00:00:00 2001
+From d9d6811c8a137ab028f4cdb0b3bd579aa561dc69 Mon Sep 17 00:00:00 2001
 From: OPPEN321 <zj18139624826@gmail.com>
-Date: Tue, 25 Mar 2025 00:23:12 +0800
+Date: Tue, 25 Mar 2025 01:00:44 +0800
 Subject: [PATCH] video.mk: add custom modifications
 
 Signed-off-by: OPPEN321 <zj18139624826@gmail.com>
 ---
- package/kernel/linux/modules/video.mk | 45 +++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+ package/kernel/linux/modules/video.mk | 61 +++++++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
 diff --git a/package/kernel/linux/modules/video.mk b/package/kernel/linux/modules/video.mk
-index 9bb030b..4e60eb3 100644
+index 9bb030b..de80220 100644
 --- a/package/kernel/linux/modules/video.mk
 +++ b/package/kernel/linux/modules/video.mk
-@@ -599,6 +599,37 @@ endef
+@@ -267,6 +267,23 @@ endef
+ 
+ $(eval $(call KernelPackage,fb-tft-ili9486))
+ 
++define KernelPackage/multimedia-input
++  SUBMENU:=$(VIDEO_MENU)
++  TITLE:=Multimedia input support
++  DEPENDS:=+kmod-input-core
++  KCONFIG:=CONFIG_RC_CORE \
++	CONFIG_LIRC=y \
++	CONFIG_RC_DECODERS=y \
++	CONFIG_RC_DEVICES=y
++  FILES:=$(LINUX_DIR)/drivers/media/rc/rc-core.ko
++  AUTOLOAD:=$(call AutoProbe,rc-core)
++endef
++
++define KernelPackage/multimedia-input/description
++  Enable multimedia input.
++endef
++
++$(eval $(call KernelPackage,multimedia-input))
+ 
+ define KernelPackage/drm
+   SUBMENU:=$(VIDEO_MENU)
+@@ -598,6 +615,36 @@ define KernelPackage/drm-panel-mipi-dbi/description
+ endef
  
  $(eval $(call KernelPackage,drm-panel-mipi-dbi))
- 
 +define KernelPackage/drm-lima
 +  SUBMENU:=$(VIDEO_MENU)
 +  TITLE:=DRM support for ARM Mali 400/450 GPU
@@ -46,11 +70,10 @@ index 9bb030b..4e60eb3 100644
 +endef
 +
 +$(eval $(call KernelPackage,drm-panfrost))
-+
+ 
  define KernelPackage/drm-radeon
    SUBMENU:=$(VIDEO_MENU)
-   TITLE:=Radeon DRM support
-@@ -616,6 +647,20 @@ endef
+@@ -616,6 +663,20 @@ endef
  
  $(eval $(call KernelPackage,drm-radeon))
  
