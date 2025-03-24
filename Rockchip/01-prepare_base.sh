@@ -6,6 +6,17 @@
 # Source code repository: https://github.com/immortalwrt/immortalwrt / Branch: openwrt-24.10
 #========================================================================================================================
 
+# 更换为 ImmortalWrt Uboot 以及 Target
+rm -rf ./target/linux/rockchip
+cp -rf ../immortalwrt/target/linux/rockchip ./target/linux/rockchip
+cp -rf ../patch/kernel/rockchip/* ./target/linux/rockchip/patches-6.6/
+rm -rf package/boot/{rkbin,uboot-rockchip,arm-trusted-firmware-rockchip}
+cp -rf ../immortalwrt/package/boot/uboot-rockchip ./package/boot/uboot-rockchip
+cp -rf ../immortalwrt/package/boot/arm-trusted-firmware-rockchip ./package/boot/arm-trusted-firmware-rockchip
+sed -i '/REQUIRE_IMAGE_METADATA/d' target/linux/rockchip/armv8/base-files/lib/upgrade/platform.sh
+
+curl -L -o include/kernel-6.6 https://raw.githubusercontent.com/immortalwrt/immortalwrt/refs/heads/openwrt-24.10/include/kernel-6.6
+
 # default LAN IP
 sed -i "s/192.168.1.1/$LAN/g" package/base-files/files/bin/config_generate
 
