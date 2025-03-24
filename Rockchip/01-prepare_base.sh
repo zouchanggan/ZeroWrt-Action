@@ -50,14 +50,6 @@ sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 # default-settings
 git clone --depth=1 -b openwrt-24.10 https://github.com/oppen321/default-settings package/default-settings
 
-# Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
-rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
-git clone $gitea/package_kernel_r8126 package/kernel/r8168
-git clone $gitea/package_kernel_r8152 package/kernel/r8152
-git clone $gitea/package_kernel_r8101 package/kernel/r8101
-git clone $gitea/package_kernel_r8125 package/kernel/r8125
-git clone $gitea/package_kernel_r8126 package/kernel/r8126
-
 # Luci diagnostics.js
 sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
 
@@ -73,6 +65,7 @@ pushd feeds/luci
 popd
 
 # module
+curl -O https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/linux/0001-linux-module-video.patch
 git apply $mirror/patch/linux/0001-linux-module-video.patch
 
 # 移除 SNAPSHOT 标签
