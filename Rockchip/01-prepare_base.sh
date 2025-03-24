@@ -26,9 +26,8 @@ sed -i "s/192.168.1.1/$LAN/g" package/base-files/files/bin/config_generate
 # 修改名称
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
-# init-settings.sh
-mkdir -p files/etc/uci-defaults
-curl -s $mirror/Rockchip/files/etc/uci-defaults/99-init-settings > files/etc/uci-defaults/99-init-settings
+# default-settings
+git clone https://github.com/oppen321/default-settings package/default-settings
 
 # Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
 rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
