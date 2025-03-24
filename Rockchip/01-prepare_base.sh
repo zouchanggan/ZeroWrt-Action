@@ -6,6 +6,9 @@
 # Source code repository: https://github.com/immortalwrt/immortalwrt / Branch: openwrt-24.10
 #========================================================================================================================
 
+# make olddefconfig
+wget -qO - https://github.com/openwrt/openwrt/commit/c21a3570.patch | patch -p1
+
 # 更换为 ImmortalWrt Uboot 以及 Target
 rm -rf ./target/linux/rockchip
 cp -rf ../immortalwrt/target/linux/rockchip ./target/linux/rockchip
