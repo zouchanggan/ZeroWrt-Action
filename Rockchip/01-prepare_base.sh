@@ -66,7 +66,7 @@ popd
 
 # module
 curl -O https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/linux/0001-linux-module-video.patch
-git apply $mirror/patch/linux/0001-linux-module-video.patch
+git apply 0001-linux-module-video.patch
 
 # 移除 SNAPSHOT 标签
 sed -i 's,-SNAPSHOT,,g' include/version.mk
