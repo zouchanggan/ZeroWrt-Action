@@ -110,9 +110,6 @@ echo -e "CONFIG_DEVEL=y" >> .config
 echo -e "CONFIG_TOOLCHAINOPTS=y" >> .config
 echo -e "CONFIG_GCC_USE_VERSION_$gcc_version=y\n" >> .config
 
-# bpf
-curl -s $mirror/generic/config-bpf >> .config
-
 # Toolchain Cache
 if [ "$ENABLE_CCACHE" = "y" ]; then
     echo "Cache is enabled. Downloading and setting up toolchain cache..."    
