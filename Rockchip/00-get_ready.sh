@@ -22,9 +22,9 @@ wait
 
 # 进行一些处理
 rm -rf openwrt/package/boot openwrt/target/linux/rockchip openwrt/target/linux/generic
-cp -rf ../lean/target/linux/rockchip openwrt/target/linux/rockchip
-cp -rf ../lean/target/linux/generic openwrt/target/linux/generic
-cp -rf ../lean/package/boot openwrt/package/boot
+cp -rf lean/target/linux/rockchip openwrt/target/linux/rockchip
+cp -rf lean/target/linux/generic openwrt/target/linux/generic
+cp -rf lean/package/boot openwrt/package/boot
 curl -o openwrt/target/linux/rockchip/Makefile https://github.com/openwrt/openwrt/raw/refs/heads/openwrt-24.10/target/linux/rockchip/Makefile
 curl -o openwrt/include/kernel-6.6 https://github.com/coolsnowwolf/lede/raw/master/include/kernel-6.6
 curl -o openwrt/include/trusted-firmware-a.mk https://github.com/coolsnowwolf/lede/raw/refs/heads/master/include/trusted-firmware-a.mk
