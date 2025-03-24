@@ -34,7 +34,6 @@ wget -qO - https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/
 # 更换为 ImmortalWrt Uboot 以及 Target
 rm -rf ./target/linux/rockchip
 cp -rf ../immortalwrt/target/linux/rockchip ./target/linux/rockchip
-cp -rf ../patch/kernel/rockchip/* ./target/linux/rockchip/patches-6.6/
 rm -rf package/boot/{rkbin,uboot-rockchip,arm-trusted-firmware-rockchip}
 cp -rf ../immortalwrt/package/boot/uboot-rockchip ./package/boot/uboot-rockchip
 cp -rf ../immortalwrt/package/boot/arm-trusted-firmware-rockchip ./package/boot/arm-trusted-firmware-rockchip
