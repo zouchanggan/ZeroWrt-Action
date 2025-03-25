@@ -24,6 +24,11 @@ git clone --depth=1 https://github.com/oppen321/openwrt-package package/openwrt-
 # Docker
 rm -rf feeds/luci/applications/luci-app-dockerman
 git clone https://git.kejizero.online/zhao/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+git clone $gitea/packages_utils_docker feeds/packages/utils/docker
+git clone $gitea/packages_utils_dockerd feeds/packages/utils/dockerd
+git clone $gitea/packages_utils_containerd feeds/packages/utils/containerd
+git clone $gitea/packages_utils_runc feeds/packages/utils/runc
 sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 pushd feeds/packages
     curl -s $mirror/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
