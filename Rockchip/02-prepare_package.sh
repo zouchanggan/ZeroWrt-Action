@@ -35,8 +35,6 @@ sed -i 's/services/network/' openwrt-package/OpenAppFilter/luci-app-oaf/luasrc/v
 sed -i 's/bing/none/' package/openwrt-package/luci-app-argon-config/root/etc/config/argon
 curl -s $mirror/images/bg1.jpg package/openwrt-package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
-
-
 # update feeds
 ./scripts/feeds update -a
 ./scripts/feeds install -a
