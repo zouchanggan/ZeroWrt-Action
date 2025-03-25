@@ -167,4 +167,6 @@ make -j$(nproc)
 export date=$(date +%Y%m%d)
 export kernel=$(grep -oP '(?<=LINUX_KERNEL_HASH-)[0-9]+\.[0-9]+\.[0-9]+' include/kernel-6.6)
 
-
+for file in bin/targets/rockchip/armv8/openwrt-rockchip-armv8*; do
+    mv "$file" "bin/targets/rockchip/armv8/ZeroWrt-Super-${date}-${kernel}${file#bin/targets/rockchip/armv8/openwrt-rockchip-armv8}"
+done
