@@ -39,7 +39,7 @@ popd
 # UPnP
 rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
 git clone $gitea/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
-git clone $gitea/luci-app-upnp -b master
+git clone $gitea/luci-app-upnp feeds/luci/applications/luci-app-upnp -b master
 
 # opkg
 mkdir -p package/system/opkg/patches
