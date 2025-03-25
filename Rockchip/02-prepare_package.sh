@@ -20,6 +20,7 @@ git clone --depth=1 -b helloworld https://github.com/oppen321/openwrt-package pa
 
 # 加载软件源
 git clone --depth=1 https://github.com/oppen321/openwrt-package package/openwrt-package
+sed -i 's/services/network/' package/openwrt-package/OpenAppFilter/luci-app-oaf/luasrc/controller/appfilter.lua
 
 # 更改 Argon 主题背景
 curl -s $mirror/images/bg1.jpg package/openwrt-package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
