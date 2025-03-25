@@ -29,7 +29,7 @@ sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By OPPEN321'/g" package/base
 sed -i 's/services/network/' package/openwrt-package/OpenAppFilter/luci-app-oaf/luasrc/controller/appfilter.lua
 sed -i 's/services/network/' package/openwrt-package/OpenAppFilter/luci-app-oaf/luasrc/model/cbi/appfilter/*.lua
 sed -i 's/services/network/' package/openwrt-package/OpenAppFilter/luci-app-oaf/luasrc/view/admin_network/*.htm
-sed -i 's/services/network/' openwrt-package/OpenAppFilter/luci-app-oaf/luasrc/view/cbi/*.htm
+sed -i 's/services/network/' package/openwrt-package/OpenAppFilter/luci-app-oaf/luasrc/view/cbi/*.htm
 
 # 主题设置
 sed -i 's/bing/none/' package/openwrt-package/luci-app-argon-config/root/etc/config/argon
