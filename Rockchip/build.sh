@@ -162,3 +162,9 @@ make defconfig
 
 # Compile
 make -j$(nproc)
+
+# rename
+export date=$(date +%Y%m%d)
+export kernel=$(grep -oP '(?<=LINUX_KERNEL_HASH-)[0-9]+\.[0-9]+\.[0-9]+' include/kernel-6.6)
+
+
