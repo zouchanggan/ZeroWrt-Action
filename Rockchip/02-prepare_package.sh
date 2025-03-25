@@ -20,11 +20,14 @@ git clone --depth=1 -b helloworld https://github.com/oppen321/openwrt-package pa
 
 # 加载软件源
 git clone --depth=1 https://github.com/oppen321/openwrt-package package/openwrt-package
-sed -i 's/services/network/' package/openwrt-package/OpenAppFilter/luci-app-oaf/luasrc/controller/appfilter.lua
 
-# 更改 Argon 主题背景
+# 自定义设置
+sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='ZeroWrt-$date'/g"  package/base-files/files/etc/openwrt_release
+sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By OPPEN321'/g" package/base-files/files/etc/openwrt_release
+sed -i 's/services/network/' package/openwrt-package/OpenAppFilter/luci-app-oaf/luasrc/controller/appfilter.lua
 curl -s $mirror/images/bg1.jpg package/openwrt-package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 sed -i 's/bing/none/' package/openwrt-package/luci-app-argon-config/root/etc/config/argon
+
 
 # update feeds
 ./scripts/feeds update -a
