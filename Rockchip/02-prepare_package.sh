@@ -31,9 +31,9 @@ git clone $gitea/packages_utils_containerd feeds/packages/utils/containerd
 git clone $gitea/packages_utils_runc feeds/packages/utils/runc
 sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 pushd feeds/packages
-    curl -s $mirror/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
-    curl -s $mirror/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
-    curl -s $mirror/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
+    curl -s $mirror/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+    curl -s $mirror/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
+    curl -s $mirror/patch/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
 popd
 
 # UPnP
