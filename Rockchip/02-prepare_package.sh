@@ -25,19 +25,14 @@ git clone --depth=1 https://github.com/oppen321/openwrt-package package/openwrt-
 sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='ZeroWrt-$(date +%Y%m%d)'/g"  package/base-files/files/etc/openwrt_release
 sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By OPPEN321'/g" package/base-files/files/etc/openwrt_release
 
-# appfilter
-sed -i 's/services/network/' package/openwrt-package/OpenAppFilter/luci-app-oaf/luasrc/controller/appfilter.lua
-sed -i 's/services/network/' package/openwrt-package/OpenAppFilter/luci-app-oaf/luasrc/model/cbi/appfilter/*.lua
-sed -i 's/services/network/' package/openwrt-package/OpenAppFilter/luci-app-oaf/luasrc/view/admin_network/*.htm
-sed -i 's/services/network/' package/openwrt-package/OpenAppFilter/luci-app-oaf/luasrc/view/cbi/*.htm
-
 # 主题设置
 sed -i 's/bing/none/' package/openwrt-package/luci-app-argon-config/root/etc/config/argon
 curl -s $mirror/images/bg1.jpg package/openwrt-package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 sed -i 's#<a class="luci-link" href="https://github.com/openwrt/luci" target="_blank">Powered by <%= ver.luciname %> (<%= ver.luciversion %>)</a> /#<a class="luci-link" href="https://www.kejizero.online" target="_blank">探索无限</a> /#' package/openwrt-package/luci-theme-argon/luasrc/view/themes/argon/footer.htm
-sed -i 's#<a href="https://github.com/jerrykuku/luci-theme-argon" target="_blank">ArgonTheme <%# vPKG_VERSION %></a> /#<a href="https://github.com/oppen321/ZeroWrt-Action" target="_blank">GitHub: ZeroWrt-Action</a> /#' package/openwrt-package/luci-theme-argon/luasrc/view/themes/argon/footer.htm
+sed -i 's|<a href="https://github.com/jerrykuku/luci-theme-argon" target="_blank">ArgonTheme |<a href="https://github.com/oppen321/ZeroWrt-Action" target="_blank">ZeroWrt-Action |g' package/openwrt-package/luci-theme-argon/luasrc/view/themes/argon/footer.htm
 sed -i 's#<a class="luci-link" href="https://github.com/openwrt/luci" target="_blank">Powered by <%= ver.luciname %> (<%= ver.luciversion %>)</a> /#<a class="luci-link" href="https://www.kejizero.online" target="_blank">探索无限</a> /#' package/openwrt-package/luci-theme-argon/luasrc/view/themes/argon/footer_login.htm
-sed -i 's#<a href="https://github.com/jerrykuku/luci-theme-argon" target="_blank">ArgonTheme <%# vPKG_VERSION %></a> /#<a href="https://github.com/oppen321/ZeroWrt-Action" target="_blank">GitHub: ZeroWrt-Action</a> /#' package/openwrt-package/luci-theme-argon/luasrc/view/themes/argon/footer_login.htm
+sed -i 's|<a href="https://github.com/jerrykuku/luci-theme-argon" target="_blank">ArgonTheme |<a href="https://github.com/oppen321/ZeroWrt-Action" target="_blank">ZeroWrt-Action |g' package/openwrt-package/luci-theme-argon/luasrc/view/themes/argon/footer_login.htm
+
 
 # update feeds
 ./scripts/feeds update -a
