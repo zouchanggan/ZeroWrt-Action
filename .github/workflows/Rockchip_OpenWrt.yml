@@ -129,19 +129,20 @@ jobs:
         echo "Date: $date"
         echo "Kernel version: $kernel"
         mkdir -p rom
-        cp -a openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-$date-$kernel-friendlyarm_nanopi-r2c-squashfs-sysupgrade.img.gz rom/
-        cp -a openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-$date-$kernel-friendlyarm_nanopi-r2c-plus-squashfs-sysupgrade.img.gz rom/
-        cp -a openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-$date-$kernel-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz rom/
-        cp -a openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-$date-$kernel-friendlyarm_nanopi-r3s-squashfs-sysupgrade.img.gz rom/
-        cp -a openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-$date-$kernel-friendlyarm_nanopi-r4s-squashfs-sysupgrade.img.gz rom/
-        cp -a openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-$date-$kernel-friendlyarm_nanopi-r4se-squashfs-sysupgrade.img.gz rom/
-        cp -a openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-$date-$kernel-friendlyarm_nanopi-r5c-squashfs-sysupgrade.img.gz rom/
-        cp -a openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-$date-$kernel-friendlyarm_nanopi-r5s-squashfs-sysupgrade.img.gz rom/
-        cp -a openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-$date-$kernel-friendlyarm_nanopi-r6c-squashfs-sysupgrade.img.gz rom/
-        cp -a openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-$date-$kernel-friendlyarm_nanopi-r6s-squashfs-sysupgrade.img.gz rom/
-        cp -a openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-$date-$kernel-lunzn_fastrhino-r66s-squashfs-sysupgrade.img.gz rom/
-        cp -a openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-$date-$kernel-lunzn_fastrhino-r68s-squashfs-sysupgrade.img.gz rom/
-        
+        for model in friendlyarm_nanopi-r2c \
+                    friendlyarm_nanopi-r2c-plus \
+                    friendlyarm_nanopi-r2s \
+                    friendlyarm_nanopi-r3s \
+                    friendlyarm_nanopi-r4s \
+                    friendlyarm_nanopi-r4se \
+                    friendlyarm_nanopi-r5c \
+                    friendlyarm_nanopi-r5s \
+                    friendlyarm_nanopi-r6c \
+                    friendlyarm_nanopi-r6s \
+                    lunzn_fastrhino-r66s \
+                    lunzn_fastrhino-r68s; do
+            cp -a "openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-$date-$kernel-$model-squashfs-sysupgrade.img.gz" rom/
+        done
         
     - name: Create release
       continue-on-error: true
