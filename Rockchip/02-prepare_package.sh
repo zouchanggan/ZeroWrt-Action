@@ -41,6 +41,11 @@ rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
 git clone $gitea/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
 git clone $gitea/luci-app-upnp -b master
 
+# opkg
+mkdir -p package/system/opkg/patches
+curl -s $mirror/patch/opkg/900-opkg-download-disable-hsts.patch > package/system/opkg/patches/900-opkg-download-disable-hsts.patch
+curl -s $mirror/patch/opkg/901-libopkg-opkg_install-copy-conffiles-to-the-system-co.patch > package/system/opkg/patches/901-libopkg-opkg_install-copy-conffiles-to-the-system-co.patch
+
 # 加入作者信息
 sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='ZeroWrt-$(date +%Y%m%d)'/g"  package/base-files/files/etc/openwrt_release
 sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By OPPEN321'/g" package/base-files/files/etc/openwrt_release
