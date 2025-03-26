@@ -119,6 +119,7 @@ jobs:
         make V=s
           
     - name: Prepare Firmware Files
+      id: prepare
       working-directory: /builder
       run: |
         export date=$(date +%Y%m%d)
@@ -145,7 +146,7 @@ jobs:
         done
 
     - name: Delete existing release
-      continue-on-error: true
+      if: steps.prepare.outcome == 'success'
       run: |
         gh release delete OpenWrt-Rockchip-24.10 --yes
         gh tag delete OpenWrt-Rockchip-24.10
@@ -153,7 +154,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Create release
-      continue-on-error: true
+      if: steps.prepare.outcome == 'success'
       uses: ncipollo/release-action@v1
       with:
         name: OpenWrt-Rockchip-24.10
