@@ -60,17 +60,19 @@ curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/ma
 wget -qO - https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/linux/0003-include-kernel-defaults.mk.patch | patch -p1
 
 # 更换为 ImmortalWrt Uboot 以及 Target
-rm -rf ./target/linux/rockchip
-cp -rf ../immortalwrt/target/linux/rockchip ./target/linux/rockchip
+git clone -b openwrt-24.10 --single-branch --filter=blob:none https://github.com/immortalwrt/immortalwrt
+rm -rf target/linux/rockchip
+cp -rf immortalwrt/target/linux/rockchip target/linux/rockchip
 rm -rf package/boot/{rkbin,uboot-rockchip,arm-trusted-firmware-rockchip}
-cp -rf ../immortalwrt/package/boot/uboot-rockchip ./package/boot/uboot-rockchip
-cp -rf ../immortalwrt/package/boot/arm-trusted-firmware-rockchip ./package/boot/arm-trusted-firmware-rockchip
+cp -rf immortalwrt/package/boot/uboot-rockchip package/boot/uboot-rockchip
+cp -rf immortalwrt/package/boot/arm-trusted-firmware-rockchip package/boot/arm-trusted-firmware-rockchip
 sed -i '/REQUIRE_IMAGE_METADATA/d' target/linux/rockchip/armv8/base-files/lib/upgrade/platform.sh
+rm -rf immortalwrt
 
 curl -L -o include/kernel-6.6 https://raw.githubusercontent.com/immortalwrt/immortalwrt/refs/heads/openwrt-24.10/include/kernel-6.6
 
 # default LAN IP
-sed -i "s/192.168.1.1/$LAN/g" package/base-files/files/bin/config_generate
+sed -i "s/192.168.1.1/10.0.0.1/g" package/base-files/files/bin/config_generate
 
 # 修改名称
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
@@ -89,12 +91,12 @@ sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/ut
 
 # luci
 pushd feeds/luci
-    curl -s $mirror/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-    curl -s $mirror/patch/luci/0002-luci-mod-status-displays-actual-process-memory-usage.patch | patch -p1
-    curl -s $mirror/patch/luci/0003-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1
-    curl -s $mirror/patch/luci/0004-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1
-    curl -s $mirror/patch/luci/0005-luci-mod-system-add-refresh-interval-setting.patch | patch -p1
-    curl -s $mirror/patch/luci/0006-luci-mod-system-mounts-add-docker-directory-mount-po.patch | patch -p1  
+    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/luci/0002-luci-mod-status-displays-actual-process-memory-usage.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/luci/0003-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/luci/0004-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/luci/0005-luci-mod-system-add-refresh-interval-setting.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/luci/0006-luci-mod-system-mounts-add-docker-directory-mount-po.patch | patch -p1  
 popd
 
 # module
@@ -106,7 +108,6 @@ sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 sed -i '/CONFIG_BUILDBOT/d' include/feeds.mk
 sed -i 's/;)\s*\\/; \\/' include/feeds.mk
-
 
 # 替换软件包
 rm -rf feeds/packages/lang/golang
@@ -127,26 +128,26 @@ git clone --depth=1 https://github.com/oppen321/openwrt-package package/openwrt-
 rm -rf feeds/luci/applications/luci-app-dockerman
 git clone https://git.kejizero.online/zhao/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
-git clone $gitea/packages_utils_docker feeds/packages/utils/docker
-git clone $gitea/packages_utils_dockerd feeds/packages/utils/dockerd
-git clone $gitea/packages_utils_containerd feeds/packages/utils/containerd
-git clone $gitea/packages_utils_runc feeds/packages/utils/runc
+git clone https://git.kejizero.online/zhao/packages_utils_docker feeds/packages/utils/docker
+git clone https://git.kejizero.online/zhao/packages_utils_dockerd feeds/packages/utils/dockerd
+git clone https://git.kejizero.online/zhao/packages_utils_containerd feeds/packages/utils/containerd
+git clone https://git.kejizero.online/zhao/packages_utils_runc feeds/packages/utils/runc
 sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 pushd feeds/packages
-    curl -s $mirror/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
-    curl -s $mirror/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
-    curl -s $mirror/patch/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
 popd
 
 # UPnP
 rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
-git clone $gitea/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
-git clone $gitea/luci-app-upnp feeds/luci/applications/luci-app-upnp -b master
+git clone https://git.kejizero.online/zhao/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
+git clone https://git.kejizero.online/zhao/luci-app-upnp feeds/luci/applications/luci-app-upnp -b master
 
 # opkg
 mkdir -p package/system/opkg/patches
-curl -s $mirror/patch/opkg/0001-opkg-download-disable-hsts.patch > package/system/opkg/patches/0001-opkg-download-disable-hsts.patch
-curl -s $mirror/patch/opkg/0002-libopkg-opkg_install-copy-conffiles-to-the-system-co.patch > package/system/opkg/patches/0002-libopkg-opkg_install-copy-conffiles-to-the-system-co.patch
+curl -s https://git.kejizero.online/zhao/patch/opkg/0001-opkg-download-disable-hsts.patch > package/system/opkg/patches/0001-opkg-download-disable-hsts.patch
+curl -s https://git.kejizero.online/zhao/patch/opkg/0002-libopkg-opkg_install-copy-conffiles-to-the-system-co.patch > package/system/opkg/patches/0002-libopkg-opkg_install-copy-conffiles-to-the-system-co.patch
 
 # 加入作者信息
 sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='ZeroWrt-$(date +%Y%m%d)'/g"  package/base-files/files/etc/openwrt_release
