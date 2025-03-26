@@ -122,28 +122,19 @@ jobs:
       id: prepare
       working-directory: /builder
       run: |
-        export date=$(date +%Y%m%d)
-        export kernel=$(grep -oP '(?<=LINUX_KERNEL_HASH-)[0-9]+\.[0-9]+\.[0-9]+' openwrt/include/kernel-6.6)
-        for file in openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8*; do
-            mv "$file" "openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-${date}-${kernel}${file#openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8}"
-        done
-        echo "Date: $date"
-        echo "Kernel version: $kernel"
         mkdir -p rom
-        for model in friendlyarm_nanopi-r2c \
-                    friendlyarm_nanopi-r2c-plus \
-                    friendlyarm_nanopi-r2s \
-                    friendlyarm_nanopi-r3s \
-                    friendlyarm_nanopi-r4s \
-                    friendlyarm_nanopi-r4se \
-                    friendlyarm_nanopi-r5c \
-                    friendlyarm_nanopi-r5s \
-                    friendlyarm_nanopi-r6c \
-                    friendlyarm_nanopi-r6s \
-                    lunzn_fastrhino-r66s \
-                    lunzn_fastrhino-r68s; do
-            cp -a "openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-$date-$kernel-$model-squashfs-sysupgrade.img.gz" rom/
-        done
+        cp -a openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r2c-squashfs-sysupgrade.img.gz rom/
+        cp -a openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r2c-plus-squashfs-sysupgrade.img.gz rom/
+        cp -a openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz rom/
+        cp -a openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r3s-squashfs-sysupgrade.img.gz rom/
+        cp -a openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r4s-squashfs-sysupgrade.img.gz rom/
+        cp -a openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r4se-squashfs-sysupgrade.img.gz rom/
+        cp -a openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r5c-squashfs-sysupgrade.img.gz rom/
+        cp -a openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r5s-squashfs-sysupgrade.img.gz rom/
+        cp -a openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r6c-squashfs-sysupgrade.img.gz rom/
+        cp -a openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r6s-squashfs-sysupgrade.img.gz rom/
+        cp -a openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8-lunzn_fastrhino-r66s-squashfs-sysupgrade.img.gz rom/
+        cp -a openwrt/bin/targets/rockchip/armv8/openwrt-rockchip-armv8-lunzn_fastrhino-r68s-squashfs-sysupgrade.img.gz rom/
        
     - name: Create release
       if: steps.prepare.outcome == 'success'
