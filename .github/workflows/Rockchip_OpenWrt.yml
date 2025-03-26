@@ -148,11 +148,16 @@ jobs:
     - name: Delete existing release
       if: steps.prepare.outcome == 'success'
       run: |
-        gh release delete OpenWrt-Rockchip-24.10 --yes
-        gh tag delete OpenWrt-Rockchip-24.10
+        curl -X DELETE \
+          -H "Authorization: token ${{ secrets.PUSH_PLUS_TOKEN }}" \
+          https://api.github.com/repos/${{ github.repository }}/releases/tags/OpenWrt-Rockchip-24.10
+
+        curl -X DELETE \
+          -H "Authorization: token ${{ secrets.PUSH_PLUS_TOKEN }}" \
+          https://api.github.com/repos/${{ github.repository }}/git/refs/tags/OpenWrt-Rockchip-24.10
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
+        PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
+       
     - name: Create release
       if: steps.prepare.outcome == 'success'
       uses: ncipollo/release-action@v1
