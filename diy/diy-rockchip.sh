@@ -145,9 +145,9 @@ git clone https://git.kejizero.online/zhao/miniupnpd feeds/packages/net/miniupnp
 git clone https://git.kejizero.online/zhao/luci-app-upnp feeds/luci/applications/luci-app-upnp -b master
 
 # opkg
-mkdir -p package/system/opkg/patches
-curl -s https://git.kejizero.online/zhao/patch/opkg/0001-opkg-download-disable-hsts.patch > package/system/opkg/patches/0001-opkg-download-disable-hsts.patch
-curl -s https://git.kejizero.online/zhao/patch/opkg/0002-libopkg-opkg_install-copy-conffiles-to-the-system-co.patch > package/system/opkg/patches/0002-libopkg-opkg_install-copy-conffiles-to-the-system-co.patch
+#mkdir -p package/system/opkg/patches
+#curl -s https://git.kejizero.online/zhao/patch/opkg/0001-opkg-download-disable-hsts.patch > package/system/opkg/patches/0001-opkg-download-disable-hsts.patch
+#curl -s https://git.kejizero.online/zhao/patch/opkg/0002-libopkg-opkg_install-copy-conffiles-to-the-system-co.patch > package/system/opkg/patches/0002-libopkg-opkg_install-copy-conffiles-to-the-system-co.patch
 
 # 加入作者信息
 sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='ZeroWrt-$(date +%Y%m%d)'/g"  package/base-files/files/etc/openwrt_release
