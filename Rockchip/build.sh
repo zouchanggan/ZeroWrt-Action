@@ -97,6 +97,18 @@ bash 05-create_acl_for_luci.sh
 # Load devices Config
 curl -s $mirror/Rockchip/rockchip.config > .config
 
+# LTO
+curl -s $mirror/generic/config-lto >> .config
+
+# DPDK
+[ "$ENABLE_DPDK" = "y" ] && {
+    echo 'CONFIG_PACKAGE_dpdk-tools=y' >> .config
+    echo 'CONFIG_PACKAGE_numactl=y' >> .config
+}
+
+# mold
+[ "$ENABLE_MOLD" = "y" ] && echo 'CONFIG_USE_MOLD=y' >> .config
+
 # gcc13 & 14
 if [ "$USE_GCC13" = y ]; then
     export USE_GCC13=y gcc_version=13
