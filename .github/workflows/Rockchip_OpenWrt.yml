@@ -143,6 +143,14 @@ jobs:
                     lunzn_fastrhino-r68s; do
             cp -a "openwrt/bin/targets/rockchip/armv8/ZeroWrt-Super-$date-$kernel-$model-squashfs-sysupgrade.img.gz" rom/
         done
+
+    - name: Delete existing release
+      continue-on-error: true
+      run: |
+        gh release delete OpenWrt-Rockchip-24.10 --yes
+        gh tag delete OpenWrt-Rockchip-24.10
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Create release
       continue-on-error: true
