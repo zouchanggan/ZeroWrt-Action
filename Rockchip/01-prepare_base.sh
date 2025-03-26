@@ -38,6 +38,17 @@ src/gz openwrt_routing https://mirrors.aliyun.com/openwrt/releases/24.10.0/packa
 src/gz openwrt_telephony https://mirrors.aliyun.com/openwrt/releases/24.10.0/packages/aarch64_generic/telephony
 EOF
 
+# samba4
+sed -i 's/#aio read size = 0/aio read size = 0/g' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/#aio write size = 0/aio write size = 0/g' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/invalid users = root/#invalid users = root/g' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/bind interfaces only = yes/bind interfaces only = no/g' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/#create mask/create mask/g' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/#directory mask/directory mask/g' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/0666/0644/g;s/0744/0755/g;s/0777/0755/g' feeds/luci/applications/luci-app-samba4/htdocs/luci-static/resources/view/samba4.js
+sed -i 's/0666/0644/g;s/0777/0755/g' feeds/packages/net/samba4/files/samba.config
+sed -i 's/0666/0644/g;s/0777/0755/g' feeds/packages/net/samba4/files/smb.conf.template
+
 # bash
 sed -i 's#ash#bash#g' package/base-files/files/etc/passwd
 sed -i '\#export ENV=/etc/shinit#a export HISTCONTROL=ignoredups' package/base-files/files/etc/profile
