@@ -150,11 +150,12 @@ jobs:
       run: |
         curl -X DELETE \
           -H "Authorization: token ${{ secrets.PUSH_PLUS_TOKEN }}" \
-          https://api.github.com/repos/${{ github.repository }}/releases/tags/OpenWrt-Rockchip-24.10
+          https://api.github.com/repos/oppen321/ZeroWrt-Action/git/refs/tags/OpenWrt-Rockchip-24.10
 
         curl -X DELETE \
           -H "Authorization: token ${{ secrets.PUSH_PLUS_TOKEN }}" \
-          https://api.github.com/repos/${{ github.repository }}/git/refs/tags/OpenWrt-Rockchip-24.10
+          https://api.github.com/repos/oppen321/ZeroWrt-Action/releases/tags/OpenWrt-Rockchip-24.10
+          
       env:
         PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
        
