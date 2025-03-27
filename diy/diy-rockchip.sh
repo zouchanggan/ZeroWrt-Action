@@ -128,7 +128,7 @@ cp -rf OpenWrt-Patch/sfe/* ./target/linux/generic/hack-6.6/
 # NAT6
 patch -p1 < OpenWrt-Patch/firewall/100-openwrt-firewall4-add-custom-nft-command-support.patch
 
-# luci (Shortcut-FE,bcm-fullcone,ipv6-nat,nft-rule,natflow,fullcone6)
+# (Shortcut-FE,bcm-fullcone,ipv6-nat,nft-rule,natflow,fullcone6)
 pushd feeds/luci
     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/firewall/luci/0001-luci-app-firewall-add-nft-fullcone-and-bcm-fullcone-.patch | patch -p1
     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/firewall/luci/0002-luci-app-firewall-add-shortcut-fe-option.patch | patch -p1
@@ -137,6 +137,15 @@ pushd feeds/luci
     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/firewall/luci/0005-luci-app-firewall-add-natflow-offload-support.patch | patch -p1
     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/firewall/luci/0006-luci-app-firewall-enable-hardware-offload-only-on-de.patch | patch -p1
     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/firewall/luci/0007-luci-app-firewall-add-fullcone6-option-for-nftables-.patch | patch -p1
+popd
+
+pushd feeds/luci
+    curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/luci/0001-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/luci/0002-luci-mod-status-displays-actual-process-memory-usage.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/luci/0004-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/luci/0005-luci-mod-system-add-refresh-interval-setting.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/luci/0006-luci-mod-system-mounts-add-docker-directory-mount-po.patch | patch -p1
 popd
 
 # module
