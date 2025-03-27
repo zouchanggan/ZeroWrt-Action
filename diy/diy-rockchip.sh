@@ -56,6 +56,9 @@ mkdir -p files/root
 curl -so files/root/.bash_profile https://git.kejizero.online/zhao/files/raw/branch/main/root/.bash_profile
 curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/main/root/.bashrc
 
+# banner
+cp -f $GITHUB_WORKSPACE/diy/banner  package/base-files/files/etc/banner
+
 # make olddefconfig
 wget -qO - https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/linux/0003-include-kernel-defaults.mk.patch | patch -p1
 
