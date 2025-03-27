@@ -86,6 +86,8 @@ git clone --depth=1 -b openwrt-24.10 https://github.com/oppen321/default-setting
 # openwrt patch
 git clone --depth=1 -b kernel-6.6 https://github.com/oppen321/OpenWrt-Patch
 
+#
+
 # FullCone module
 git clone https://git.cooluc.com/sbwml/nft-fullcone package/new/nft-fullcone
 
