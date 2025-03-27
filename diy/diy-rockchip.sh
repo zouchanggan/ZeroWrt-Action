@@ -83,6 +83,18 @@ sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 # default-settings
 git clone --depth=1 -b openwrt-24.10 https://github.com/oppen321/default-settings package/default-settings
 
+# openwrt patch
+git clone --depth=1 -b kernel-6.6 https://github.com/oppen321/OpenWrt-Patch
+
+# FullCone module
+git clone https://git.cooluc.com/sbwml/nft-fullcone package/new/nft-fullcone
+
+# IPv6 NAT
+git clone https://github.com/sbwml/packages_new_nat6 package/new/nat6
+
+# natflow
+git clone https://github.com/sbwml/package_new_natflow package/new/natflow
+
 # Luci diagnostics.js
 sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
 
@@ -92,14 +104,35 @@ sed -i '3 a\\t\t"order": 50,' feeds/luci/applications/luci-app-ttyd/root/usr/sha
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 
-# luci
+# bcmfullcone
+cp -rf OpenWrt-Patch/bcmfullcone/* ./target/linux/generic/hack-6.6/
+
+# FW4
+mkdir -p package/network/config/firewall4/patches
+cp -f OpenWrt-Patch/firewall/firewall4_patches/*.patch package/network/config/firewall4/patches/
+
+# libnftnl
+mkdir -p package/libs/libnftnl/patches
+cp -f OpenWrt-Patch/firewall/libnftnl/*.patch package/libs/libnftnl/patches/
+
+# nftables
+mkdir -p package/network/utils/nftables/patches
+cp -f OpenWrt-Patch/firewall/nftables/*.patch package/network/utils/nftables/patches/
+
+# Shortcut-FE支持
+cp -rf OpenWrt-Patch/sfe/* ./target/linux/generic/hack-6.6/
+
+# NAT6
+patch -p1 < OpenWrt-Patch/firewall/100-openwrt-firewall4-add-custom-nft-command-support.patch
+
+# luci (Shortcut-FE,bcm-fullcone,ipv6-nat,nft-rule,natflow,fullcone6)
 pushd feeds/luci
-    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/luci/0002-luci-mod-status-displays-actual-process-memory-usage.patch | patch -p1
-    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/luci/0003-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1
-    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/luci/0004-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1
-    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/luci/0005-luci-mod-system-add-refresh-interval-setting.patch | patch -p1
-    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/luci/0006-luci-mod-system-mounts-add-docker-directory-mount-po.patch | patch -p1  
+patch -p1 <OpenWrt-Patch/firewall/luci/0001-luci-app-firewall-add-nft-fullcone-and-bcm-fullcone-.patch
+patch -p1 <OpenWrt-Patch/firewall/luci/0002-luci-app-firewall-add-shortcut-fe-option.patch
+patch -p1 <OpenWrt-Patch/firewall/luci/0003-luci-app-firewall-add-ipv6-nat-option.patch
+patch -p1 <OpenWrt-Patch/firewall/luci/0004-luci-add-firewall-add-custom-nft-rule-support.patch
+patch -p1 <OpenWrt-Patch/firewall/luci/0005-luci-app-firewall-add-natflow-offload-support.patch
+patch -p1 <OpenWrt-Patch/firewall/luci/0007-luci-app-firewall-add-fullcone6-option-for-nftables-.patch
 popd
 
 # module
