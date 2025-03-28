@@ -1,4 +1,4 @@
-name: X86_64_OpenWrt
+name: X86_64_OpenWrt_V24.10
 
 on:
   workflow_dispatch:
