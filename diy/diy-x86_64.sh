@@ -57,7 +57,7 @@ curl -so files/root/.bash_profile https://git.kejizero.online/zhao/files/raw/bra
 curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/main/root/.bashrc
 
 # banner
-cp -f $GITHUB_WORKSPACE/diy/banner  package/base-files/files/etc/banner
+cp -f package/openwrt-package/banner  package/base-files/files/etc/banner
 
 # default LAN IP
 sed -i "s/192.168.1.1/10.0.0.1/g" package/base-files/files/bin/config_generate
