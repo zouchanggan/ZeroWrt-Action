@@ -122,7 +122,7 @@ pushd feeds/luci
 popd
 
 # module
-curl -O https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/linux/0001-linux-module-video.patch
+curl -O https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/kernel/0001-linux-module-video.patch
 git apply 0001-linux-module-video.patch
 
 # 移除 SNAPSHOT 标签
