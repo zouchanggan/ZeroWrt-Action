@@ -60,7 +60,7 @@ curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/ma
 cp -f package/openwrt-package/banner  package/base-files/files/etc/banner
 
 # make olddefconfig
-wget -qO - https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/linux/0003-include-kernel-defaults.mk.patch | patch -p1
+wget -qO - https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/kernel/0003-include-kernel-defaults.mk.patch | patch -p1
 
 # 更换为 ImmortalWrt Uboot 以及 Target
 git clone -b openwrt-24.10 --single-branch --filter=blob:none https://github.com/immortalwrt/immortalwrt
