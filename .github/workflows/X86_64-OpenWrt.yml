@@ -1,4 +1,4 @@
-name: X86_64 OpenWrt
+name: Rockchip_OpenWrt
 
 on:
   workflow_dispatch:
@@ -10,12 +10,12 @@ env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-24.10
   CONFIG_FILE: configs/x86_64.config
-  DIY_SCRIPT: diy/diy-script.sh
+  DIY_SCRIPT: diy/diy-x86_64.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: X86_64
+  FIRMWARE_TAG: OpenWrt-X86_64-24.10
   TZ: Asia/Shanghai
 
 jobs:
@@ -113,7 +113,7 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_SCRIPT
         $GITHUB_WORKSPACE/scripts/zero.sh
         $GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
-        $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
+        $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
 
     - name: Download DL Package
       run: |
@@ -167,13 +167,13 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.FIRMWARE_RELEASE == 'true'
       uses: ncipollo/release-action@v1
       with:
-        name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
+        name: OpenWrt-X86_64-24.10
         allowUpdates: true
-        tag: ${{ env.FIRMWARE_TAG }}
+        tag: OpenWrt-X86_64-24.10
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
-          **This is OpenWrt Firmware for ${{ env.FIRMWARE_TAG }}**
+          **This is OpenWrt Firmware for X86
           ### 📒 固件信息
           - 💻 平台架构: ${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
           - ⚽ 固件源码: ${{ env.REPO_URL }}
