@@ -31,11 +31,11 @@ sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-st
 # distfeeds.conf
 mkdir -p files/etc/opkg
 cat > files/etc/opkg/distfeeds.conf <<EOF
-src/gz openwrt_base https://mirrors.aliyun.com/openwrt/releases/24.10.0/packages/aarch64_generic/base
-src/gz openwrt_luci https://mirrors.aliyun.com/openwrt/releases/24.10.0/packages/aarch64_generic/luci
-src/gz openwrt_packages https://mirrors.aliyun.com/openwrt/releases/24.10.0/packages/aarch64_generic/packages
-src/gz openwrt_routing https://mirrors.aliyun.com/openwrt/releases/24.10.0/packages/aarch64_generic/routing
-src/gz openwrt_telephony https://mirrors.aliyun.com/openwrt/releases/24.10.0/packages/aarch64_generic/telephony
+src/gz openwrt_base https://mirrors.aliyun.com/openwrt/releases/24.10.0/packages/x86_64/base
+src/gz openwrt_luci https://mirrors.aliyun.com/openwrt/releases/24.10.0/packages/x86_64/luci
+src/gz openwrt_packages https://mirrors.aliyun.com/openwrt/releases/24.10.0/packages/x86_64/packages
+src/gz openwrt_routing https://mirrors.aliyun.com/openwrt/releases/24.10.0/packages/x86_64/routing
+src/gz openwrt_telephony https://mirrors.aliyun.com/openwrt/releases/24.10.0/packages/x86_64/telephony
 EOF
 
 # samba4
@@ -58,21 +58,6 @@ curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/ma
 
 # banner
 cp -f $GITHUB_WORKSPACE/diy/banner  package/base-files/files/etc/banner
-
-# make olddefconfig
-wget -qO - https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/linux/0003-include-kernel-defaults.mk.patch | patch -p1
-
-# 更换为 ImmortalWrt Uboot 以及 Target
-git clone -b openwrt-24.10 --single-branch --filter=blob:none https://github.com/immortalwrt/immortalwrt
-rm -rf target/linux/rockchip
-cp -rf immortalwrt/target/linux/rockchip target/linux/rockchip
-rm -rf package/boot/{rkbin,uboot-rockchip,arm-trusted-firmware-rockchip}
-cp -rf immortalwrt/package/boot/uboot-rockchip package/boot/uboot-rockchip
-cp -rf immortalwrt/package/boot/arm-trusted-firmware-rockchip package/boot/arm-trusted-firmware-rockchip
-sed -i '/REQUIRE_IMAGE_METADATA/d' target/linux/rockchip/armv8/base-files/lib/upgrade/platform.sh
-rm -rf immortalwrt
-
-curl -L -o include/kernel-6.6 https://raw.githubusercontent.com/immortalwrt/immortalwrt/refs/heads/openwrt-24.10/include/kernel-6.6
 
 # default LAN IP
 sed -i "s/192.168.1.1/10.0.0.1/g" package/base-files/files/bin/config_generate
