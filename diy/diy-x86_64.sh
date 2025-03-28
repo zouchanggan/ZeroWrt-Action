@@ -71,6 +71,10 @@ git clone --depth=1 -b openwrt-24.10 https://github.com/oppen321/default-setting
 # openwrt patch
 git clone --depth=1 -b kernel-6.6 https://github.com/oppen321/OpenWrt-Patch
 
+
+# make olddefconfig
+wget -qO - https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/kernel/0003-include-kernel-defaults.mk.patch | patch -p1
+
 # module
 curl -O https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/kernel/0001-linux-module-video.patch
 git apply 0001-linux-module-video.patch
