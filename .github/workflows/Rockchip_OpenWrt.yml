@@ -1,4 +1,4 @@
-name: test
+name: Rockchip_OpenWrt
 
 on:
   workflow_dispatch:
