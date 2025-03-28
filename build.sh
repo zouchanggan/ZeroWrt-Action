@@ -1,1 +1,0 @@
-Mediatek/build.sh
