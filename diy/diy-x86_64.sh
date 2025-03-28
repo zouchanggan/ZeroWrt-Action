@@ -121,10 +121,6 @@ pushd feeds/luci
     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/luci/0006-luci-mod-system-mounts-add-docker-directory-mount-po.patch | patch -p1
 popd
 
-# module
-curl -O https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/kernel/0001-linux-module-video.patch
-git apply 0001-linux-module-video.patch
-
 # 移除 SNAPSHOT 标签
 sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
