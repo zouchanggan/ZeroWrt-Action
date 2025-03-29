@@ -1,4 +1,4 @@
-name: Mediatek_filogic
+name: Mediatek_filogic_V24.10
 
 on:
   workflow_dispatch:
