@@ -77,6 +77,9 @@ sed -i '3 a\\t\t"order": 50,' feeds/luci/applications/luci-app-ttyd/root/usr/sha
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 
+# bbr
+cp -rf OpenWrt-Patch/bbr3/* ./target/linux/generic/backport-6.6/
+
 # bcmfullcone
 cp -rf OpenWrt-Patch/bcmfullcone/* ./target/linux/generic/hack-6.6/
 
