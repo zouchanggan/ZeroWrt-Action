@@ -99,9 +99,6 @@ cp -rf OpenWrt-Patch/arm/* ./target/linux/generic/hack-6.6/
 # btf
 cp -rf OpenWrt-Patch/btf/* ./target/linux/generic/hack-6.6/
 
-# OTHERS
-cp -rf OpenWrt-Patch/others/* ./target/linux/generic/pending-6.6/
-
 # bbr
 cp -rf OpenWrt-Patch/bbr3/* ./target/linux/generic/backport-6.6/
 
