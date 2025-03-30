@@ -56,6 +56,9 @@ mkdir -p files/root
 curl -so files/root/.bash_profile https://git.kejizero.online/zhao/files/raw/branch/main/root/.bash_profile
 curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/main/root/.bashrc
 
+# openwrt patch
+git clone --depth=1 -b kernel-6.6 https://github.com/oppen321/OpenWrt-Patch
+
 # make olddefconfig
 wget -qO - https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/kernel/0003-include-kernel-defaults.mk.patch | patch -p1
 
@@ -80,9 +83,6 @@ sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
 # default-settings
 git clone --depth=1 -b openwrt-24.10 https://github.com/oppen321/default-settings package/default-settings
-
-# openwrt patch
-git clone --depth=1 -b kernel-6.6 https://github.com/oppen321/OpenWrt-Patch
 
 # Luci diagnostics.js
 sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
