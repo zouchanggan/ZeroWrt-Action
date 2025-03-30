@@ -96,25 +96,8 @@ sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/ut
 # arm64 型号名称
 cp -rf OpenWrt-Patch/arm/* ./target/linux/generic/hack-6.6/
 
-# btf
-cp -rf OpenWrt-Patch/btf/* ./target/linux/generic/hack-6.6/
-
 # bbr
 cp -rf OpenWrt-Patch/bbr3/* ./target/linux/generic/backport-6.6/
-
-# lrng
-cp -rf OpenWrt-Patch/lrng/* ./target/linux/generic/hack-6.6/
-echo '
-# CONFIG_RANDOM_DEFAULT_IMPL is not set
-CONFIG_LRNG=y
-CONFIG_LRNG_DEV_IF=y
-# CONFIG_LRNG_IRQ is not set
-CONFIG_LRNG_JENT=y
-CONFIG_LRNG_CPU=y
-# CONFIG_LRNG_SCHED is not set
-CONFIG_LRNG_SELFTEST=y
-# CONFIG_LRNG_SELFTEST_PANIC is not set
-' >>./target/linux/generic/config-6.6
 
 # bcmfullcone
 cp -rf OpenWrt-Patch/bcmfullcone/* ./target/linux/generic/hack-6.6/
