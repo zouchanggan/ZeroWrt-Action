@@ -6,7 +6,7 @@
 # Source code repository: https://github.com/openwrt/openwrt / Branch: openwrt-24.10
 #========================================================================================================================
 
-# Nginx
+# nginx
 sed -i "s/large_client_header_buffers 2 1k/large_client_header_buffers 4 32k/g" feeds/packages/net/nginx-util/files/uci.conf.template
 sed -i "s/client_max_body_size 128M/client_max_body_size 2048M/g" feeds/packages/net/nginx-util/files/uci.conf.template
 sed -i '/client_max_body_size/a\\tclient_body_buffer_size 8192M;' feeds/packages/net/nginx-util/files/uci.conf.template
