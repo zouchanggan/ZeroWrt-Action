@@ -63,6 +63,7 @@ wget -qO - https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/k
 git clone -b openwrt-24.10 --single-branch --filter=blob:none https://github.com/immortalwrt/immortalwrt
 rm -rf target/linux/rockchip
 cp -rf immortalwrt/target/linux/rockchip target/linux/rockchip
+cp -rf OpenWrt-Patch/rockchip/* ./target/linux/rockchip/patches-6.6/
 rm -rf package/boot/{rkbin,uboot-rockchip,arm-trusted-firmware-rockchip}
 cp -rf immortalwrt/package/boot/uboot-rockchip package/boot/uboot-rockchip
 cp -rf immortalwrt/package/boot/arm-trusted-firmware-rockchip package/boot/arm-trusted-firmware-rockchip
@@ -91,6 +92,31 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 sed -i '3 a\\t\t"order": 50,' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
+
+# arm64 型号名称
+cp -rf OpenWrt-Patch/arm/* ./target/linux/generic/hack-6.6/
+
+# btf
+cp -rf OpenWrt-Patch/btf/* ./target/linux/generic/hack-6.6/
+
+# OTHERS
+cp -rf OpenWrt-Patch/others/* ./target/linux/generic/pending-6.6/
+
+# bbr
+cp -rf OpenWrt-Patch/bbr3/* ./target/linux/generic/backport-6.6/
+
+# lrng
+cp -rf OpenWrt-Patch/lrng/* ./target/linux/generic/hack-6.6/
+# CONFIG_RANDOM_DEFAULT_IMPL is not set
+CONFIG_LRNG=y
+CONFIG_LRNG_DEV_IF=y
+# CONFIG_LRNG_IRQ is not set
+CONFIG_LRNG_JENT=y
+CONFIG_LRNG_CPU=y
+# CONFIG_LRNG_SCHED is not set
+CONFIG_LRNG_SELFTEST=y
+# CONFIG_LRNG_SELFTEST_PANIC is not set
+' >>./target/linux/generic/config-6.6
 
 # bcmfullcone
 cp -rf OpenWrt-Patch/bcmfullcone/* ./target/linux/generic/hack-6.6/
