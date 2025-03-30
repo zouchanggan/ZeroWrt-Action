@@ -107,6 +107,7 @@ cp -rf OpenWrt-Patch/bbr3/* ./target/linux/generic/backport-6.6/
 
 # lrng
 cp -rf OpenWrt-Patch/lrng/* ./target/linux/generic/hack-6.6/
+echo '
 # CONFIG_RANDOM_DEFAULT_IMPL is not set
 CONFIG_LRNG=y
 CONFIG_LRNG_DEV_IF=y
