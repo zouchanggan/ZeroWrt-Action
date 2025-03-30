@@ -56,9 +56,6 @@ mkdir -p files/root
 curl -so files/root/.bash_profile https://git.kejizero.online/zhao/files/raw/branch/main/root/.bash_profile
 curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/main/root/.bashrc
 
-# banner
-cp -f package/openwrt-package/banner  package/base-files/files/etc/banner
-
 # make olddefconfig
 wget -qO - https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/kernel/0003-include-kernel-defaults.mk.patch | patch -p1
 
@@ -160,6 +157,9 @@ git clone --depth=1 -b helloworld https://github.com/oppen321/openwrt-package pa
 
 # 加载软件源
 git clone --depth=1 https://github.com/oppen321/openwrt-package package/openwrt-package
+
+# banner
+cp -f package/openwrt-package/banner  package/base-files/files/etc/banner
 
 # Docker
 rm -rf feeds/luci/applications/luci-app-dockerman
