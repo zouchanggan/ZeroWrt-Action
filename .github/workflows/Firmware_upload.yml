@@ -58,6 +58,7 @@ jobs:
           device_id=${{ secrets.device_id_rockchip }}
         elif [ "${{ matrix.model }}" = "x86_64" ]; then
           device_id=${{ secrets.device_id_x86_64 }}
+        fi
         sudo wget -q ${{ secrets.aliyunpan_go }} -O /bin/aliyunpan
         sudo chmod 0755 /bin/aliyunpan
         sudo sh -c 'echo "${{ secrets.aliyunpan_us_node }} api.alipan.com auth.alipan.com www.alipan.com" >> /etc/hosts'
