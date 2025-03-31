@@ -185,7 +185,7 @@ sed -i 's|<a href="https://github.com/jerrykuku/luci-theme-argon" target="_blank
 # 版本设置
 # sed -i "s/\(_('Firmware Version'), (L.isObject(boardinfo.release) ? boardinfo.release.description\) + ' \/ '/\1 + boardinfo.release.revision + ' \/ '/" feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 
-echo "
+cat << 'EOF' >> feeds/luci/modules/luci-mod-status/ucode/template/admin_status/index.ut
 <script>
 function addLinks() {
     var section = document.querySelector(".cbi-section");
@@ -200,7 +200,7 @@ function addLinks() {
 
 document.addEventListener("DOMContentLoaded", addLinks);
 </script>
-" >> feeds/luci/modules/luci-mod-status/ucode/template/admin_status/index.ut
+EOF
 
 # update feeds
 ./scripts/feeds update -a
