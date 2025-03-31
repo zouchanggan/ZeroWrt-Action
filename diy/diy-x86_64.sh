@@ -185,6 +185,17 @@ sed -i 's|<a href="https://github.com/jerrykuku/luci-theme-argon" target="_blank
 # 版本设置
 # sed -i "s/\(_('Firmware Version'), (L.isObject(boardinfo.release) ? boardinfo.release.description\) + ' \/ '/\1 + boardinfo.release.revision + ' \/ '/" feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 
+echo "
+<script>
+    setTimeout(function(){
+        var links = document.createElement('div');
+        links.innerHTML ='<div class=\"table\"><div class=\"tr\"><div class=\"td left\" width=\"33%\"><a href=\"https://qm.qq.com/q/JbBVnkjzKa\" target=\"_blank\">QQ交流群</a></div><div class=\"td left\" width=\"33%\"><a href=\"https://t.me/kejizero\" target=\"_blank\">TG群组</a></div><div class=\"td left\"><a href=\"https://github.com/oppen321/ZeroWrt-Action\" target=\"_blank\">项目地址</a></div></div></div>';
+        var telegram = document.querySelector('.includes');
+        telegram.appendChild(links);
+    }, 3000);
+</script>
+" >> feeds/luci/modules/luci-mod-status/ucode/template/admin_status/index.ut
+
 # update feeds
 ./scripts/feeds update -a
 ./scripts/feeds install -a
