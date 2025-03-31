@@ -207,7 +207,6 @@ sed -i 's|<a href="https://github.com/jerrykuku/luci-theme-argon" target="_blank
 
 # 版本设置
 # sed -i "s/\(_('Firmware Version'), (L.isObject(boardinfo.release) ? boardinfo.release.description\) + ' \/ '/\1 + boardinfo.release.revision + ' \/ '/" feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
-
 cat << 'EOF' >> feeds/luci/modules/luci-mod-status/ucode/template/admin_status/index.ut
 <script>
 function addLinks() {
@@ -224,6 +223,10 @@ function addLinks() {
 document.addEventListener("DOMContentLoaded", addLinks);
 </script>
 EOF
+
+# istoreos
+sed -i 's/iStoreOS/ZeroWrt/' package/openwrt-package/istoreos-files/files/etc/board.d/10_system
+sed -i 's/192.168.100.1/10.0.0.1/' package/openwrt-package/istoreos-files/Makefile
 
 # update feeds
 ./scripts/feeds update -a
