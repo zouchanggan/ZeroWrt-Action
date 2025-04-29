@@ -153,6 +153,11 @@ cp -rf ../OpenWrt-Patch/pkgs/cgroupfs-mount/900-mount-cgroup-v2-hierarchy-to-sys
 cp -rf ../OpenWrt-Patch/pkgs/cgroupfs-mount/901-fix-cgroupfs-umount.patch ./feeds/packages/utils/cgroupfs-mount/patches/
 cp -rf ../OpenWrt-Patch/pkgs/cgroupfs-mount/902-mount-sys-fs-cgroup-systemd-for-docker-systemd-suppo.patch ./feeds/packages/utils/cgroupfs-mount/patches/
 
+# vim - fix E1187: Failed to source defaults.vim
+pushd feeds/packages
+patch -p1 < ../../../OpenWrt-Patch/vim/0001-vim-fix-renamed-defaults-config-file.patch
+popd
+
 # procps-ng - top
 sed -i 's/enable-skill/enable-skill --disable-modern-top/g' feeds/packages/utils/procps-ng/Makefile
 
