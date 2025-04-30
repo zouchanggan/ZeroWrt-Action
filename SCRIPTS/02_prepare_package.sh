@@ -266,7 +266,7 @@ sed -i 's/0666/0644/g;s/0777/0755/g' feeds/packages/net/samba4/files/samba.confi
 sed -i 's/0666/0644/g;s/0777/0755/g' feeds/packages/net/samba4/files/smb.conf.template
 
 # rootfs files
-cp -rf ../OpenWrt-Patch/files ./files
+cp -rf ../OpenWrt-Patch/files/* ./files/
 
 # Docker
 rm -rf feeds/luci/applications/luci-app-dockerman
