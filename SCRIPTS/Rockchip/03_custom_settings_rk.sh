@@ -45,12 +45,4 @@ chmod +x files/etc/openclash/core/clash*
 # default-settings
 git clone --depth=1 -b aarch64 https://github.com/oppen321/default-settings package/default-settings
 
-# ZeroWrt选项菜单
-mkdir -p files/bin
-curl -L -o files/bin/ZeroWrt https://git.kejizero.online/zhao/files/raw/branch/main/bin/ZeroWrt
-chmod +x files/bin/ZeroWrt
-mkdir -p files/root
-curl -L -o files/root/version.txt https://git.kejizero.online/zhao/files/raw/branch/main/bin/version.txt
-chmod +x files/root/version.txt
-
 exit 0
