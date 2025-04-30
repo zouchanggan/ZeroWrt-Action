@@ -20,6 +20,7 @@ immortalwrt_repo="https://github.com/immortalwrt/immortalwrt.git"
 lean_repo="https://github.com/coolsnowwolf/lede"
 openwrt_patch="https://github.com/oppen321/OpenWrt-Patch"
 openwrt_add_repo="https://github.com/oppen321/openwrt-package"
+realtek_driver_repo="https://github.com/oppen321/Realtek_Driver"
 dockerman_repo="https://github.com/oppen321/luci-app-dockerman"
 golang_repo="https://github.com/sbwml/packages_lang_golang"
 node_repo="https://github.com/sbwml/feeds_packages_lang_node-prebuilt"
@@ -49,6 +50,7 @@ clone_repo $lean_repo master lede
 clone_repo $openwrt_patch kernel-6.6 OpenWrt-Patch
 clone_repo $openwrt_add_repo v24.10 openwrt-package
 clone_repo $openwrt_add_repo helloworld helloworld
+clone_repo $realtek_driver_repo main Realtek_Driver
 clone_repo $dockerman_repo main luci-app-dockerman
 clone_repo $golang_repo 24.x golang
 clone_repo $nginx_repo openwrt-24.10 nginx
