@@ -50,6 +50,12 @@ wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
 wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
 chmod +x files/etc/openclash/core/clash*
 
+# caddy
+mkdir -p files/usr/bin
+CADDY_URL="https://github.com/lmq8267/caddy/releases/download/v2.10.0/caddy-amd64-upx"
+wget -qO- $CADDY_URL > files/usr/bin/caddy
+chmod +x files/usr/bin/caddy
+
 # 默认设置
 git clone --depth=1 -b openwrt-24.10 https://github.com/oppen321/default-settings package/default-settings
 
