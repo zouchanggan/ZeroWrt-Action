@@ -268,6 +268,9 @@ sed -i 's/0666/0644/g;s/0777/0755/g' feeds/packages/net/samba4/files/smb.conf.te
 # rootfs files
 cp -rf ../OpenWrt-Patch/files/* ./files/
 
+# Realtek_Driver
+cp -rf ../Realtek_Driver ./package
+
 # Docker
 rm -rf feeds/luci/applications/luci-app-dockerman
 cp -rf ../luci-app-dockerman ./feeds/luci/applications/luci-app-dockerman
