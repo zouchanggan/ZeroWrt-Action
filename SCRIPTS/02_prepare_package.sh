@@ -186,6 +186,7 @@ cp -rf ../openwrt-package ./package
 cp -rf ../helloworld ./package
 rm -rf feeds/packages/utils/coremark
 rm -rf feeds/luci/applications/luci-app-alist
+rm -rf package/kernel/{r8168,r8101,r8125,r8126,r8127}
 rm -rf feeds/packages/net/{alist,zerotier,xray-core,v2ray-core,v2ray-geodata,sing-box,sms-tool}
 
 # 更换 golang 版本
@@ -269,7 +270,12 @@ sed -i 's/0666/0644/g;s/0777/0755/g' feeds/packages/net/samba4/files/smb.conf.te
 cp -rf ../OpenWrt-Patch/files/* ./files/
 
 # Realtek_Driver
-cp -rf ../Realtek_Driver ./package
+cp -rf ../Realtek_Driver/package_kernel_r8101 ./package/kernel/r8101
+cp -rf ../Realtek_Driver/package_kernel_r8125 ./package/kernel/r8125
+cp -rf ../Realtek_Driver/package_kernel_r8126 ./package/kernel/r8126
+cp -rf ../Realtek_Driver/package_kernel_r8127 ./package/kernel/r8127
+cp -rf ../Realtek_Driver/package_kernel_r8152 ./package/kernel/r8152
+cp -rf ../Realtek_Driver/package_kernel_r8168 ./package/kernel/r8168
 
 # Docker
 rm -rf feeds/luci/applications/luci-app-dockerman
