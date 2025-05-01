@@ -268,6 +268,8 @@ sed -i 's/0666/0644/g;s/0777/0755/g' feeds/packages/net/samba4/files/smb.conf.te
 
 # rootfs files
 cp -rf ../OpenWrt-Patch/files/* ./files/
+chmod +x files/bin/ZeroWrt
+chmod +x files/root/version.txt
 
 # Realtek_Driver
 cp -rf ../Realtek_Driver/package_kernel_r8101 ./package/kernel/r8101
