@@ -83,6 +83,8 @@ cp -rf ./openwrt_24/package/* ./openwrt/package/
 cp -rf ./openwrt_24/feeds.conf.default ./openwrt/feeds.conf.default
 rm -rf ./openwrt-package/luci-app-lucky && rm -rf ./lucky/previews
 mv ./lucky ./openwrt/package
+rm -rf ./helloworld/luci-app-daed
+rm -rf ./helloworld/daed
 
 # 退出脚本
 exit 0
