@@ -197,36 +197,12 @@ cp -rf ../golang ./feeds/packages/lang/golang
 rm -rf feeds/packages/lang/node
 cp -rf ../node feeds/packages/lang/node
 
-# fstools
-rm -rf package/system/fstools
-cp -rf ../fstools ./package/system/fstools
-
-# util-linux
-rm -rf package/utils/util-linux
-cp -rf ../util-linux ./package/utils/util-linux
-
-# nghttp3
-rm -rf feeds/packages/libs/nghttp3
-cp -rf ../nghttp3 ./feeds/packages/libs/nghttp3
-
-# ngtcp2
-rm -rf feeds/packages/libs/ngtcp2
-cp -rf ../ngtcp2 ./package/libs/ngtcp2
-
-# curl - fix passwall `time_pretransfer` check
-rm -rf feeds/packages/net/curl
-cp -rf ../curl ./feeds/packages/net/curl
-
 # odhcpd RFC-9096
 mkdir -p package/network/services/odhcpd/patches
 cp -rf ../OpenWrt-Patch/pkgs/odhcpd/001-odhcpd-RFC-9096-compliance-openwrt-24.10.patch ./package/network/services/odhcpd/patches/001-odhcpd-RFC-9096-compliance.patch
 pushd feeds/luci
 patch -p1 < ../../../OpenWrt-Patch/pkgs/odhcpd/luci-mod-network-add-option-for-ipv6-max-plt-vlt.patch
 popd
-
-# urngd - 2020-01-21
-rm -rf package/system/urngd
-cp -rf ../urngd ./package/system/urngd
 
 # zlib - 1.3
 ZLIB_VERSION=1.3.1
