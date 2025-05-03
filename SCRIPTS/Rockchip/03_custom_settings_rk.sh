@@ -33,20 +33,20 @@ wget -qO- $AGH_CORE | tar xOvz > files/usr/bin/AdGuardHome
 chmod +x files/usr/bin/AdGuardHome
 
 # openclash
-mkdir -p files/etc/openclash/core
-CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-arm64.tar.gz"
-GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
-GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
-wget -qO- $CLASH_META_URL | tar xOvz > files/etc/openclash/core/clash_meta
-wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
-wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
-chmod +x files/etc/openclash/core/clash*
+# mkdir -p files/etc/openclash/core
+# CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-arm64.tar.gz"
+# GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
+# GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+# wget -qO- $CLASH_META_URL | tar xOvz > files/etc/openclash/core/clash_meta
+# wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
+# wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
+# chmod +x files/etc/openclash/core/clash*
 
 # caddy
-# mkdir -p files/usr/bin
-# CADDY_URL="https://github.com/lmq8267/caddy/releases/download/v2.10.0/caddy-arm64-upx"
-# wget -qO- $CADDY_URL > files/usr/bin/caddy
-# chmod +x files/usr/bin/caddy
+mkdir -p files/usr/bin
+CADDY_URL="https://github.com/lmq8267/caddy/releases/download/v2.10.0/caddy-arm64-upx"
+wget -qO- $CADDY_URL > files/usr/bin/caddy
+chmod +x files/usr/bin/caddy
 
 # default-settings
 git clone --depth=1 -b aarch64 https://github.com/oppen321/default-settings package/default-settings
