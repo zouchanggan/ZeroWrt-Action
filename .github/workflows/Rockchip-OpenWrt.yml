@@ -65,10 +65,10 @@ jobs:
       run: |
         cp -rf ../SCRIPTS/Rockchip/config.seed .config
         
-#    - name: Convert Translation
-#      working-directory: ${{ github.workspace }}/openwrt
-#      run: |
-#        /bin/bash 05_convert_translation.sh
+    - name: Convert Translation
+      working-directory: ${{ github.workspace }}/openwrt
+      run: |
+        /bin/bash 05_convert_translation.sh
         
     - name: Add ACL
       working-directory: ${{ github.workspace }}/openwrt
