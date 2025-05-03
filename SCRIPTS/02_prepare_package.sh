@@ -140,7 +140,7 @@ cp -rf ../OpenWrt-Patch/btf/* ./target/linux/generic/hack-6.6/
 cp -rf ../OpenWrt-Patch/arm/* ./target/linux/generic/hack-6.6/
 
 # OTHERS
-cp -rf ../OpenWrt-Patch/others/* ./target/linux/generic/pending-6.6/
+cp -rf ../OpenWrt-Patch/other/* ./target/linux/generic/pending-6.6/
 
 # cgroupfs-mount
 # fix unmount hierarchical mount
