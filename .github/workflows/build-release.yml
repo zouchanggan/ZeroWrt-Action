@@ -1,8 +1,25 @@
+#
+# Copyright (c) 2019-2025 OPPEN321
+#
+# This is free software, licensed under the MIT License.
+# See /LICENSE for more information.
+#
+# https://github.com/zhiern/ZeroWrt
+# Description: Build OpenWrt using GitHub Actions
+
 name: 💻 固件编译
 
 on:
   workflow_dispatch:
     inputs:
+      device:
+        description: '选择构建项目'
+        required: true
+        default: 'x86_64'
+        type: choice
+        options:
+          - 'rockchip'
+          - 'x86_64'
       gcc_version:
         description: '选择 GCC 构建版本'
         required: true
@@ -39,20 +56,18 @@ on:
         required: false
         default: 'BUILD_FAST=y ENABLE_BPF=y ENABLE_LTO=y ENABLE_OTA=y'
         type: string
+      notification:
+        description: '启用 Telegram 通知'
+        type: boolean
+        default: false
           
 jobs:
   build:
-    name: Build ${{ matrix.model }}
+    name: Build ${{ github.event.inputs.device }}
     runs-on: ubuntu-24.04
     defaults:
       run:
         shell: bash
-    strategy:
-      fail-fast: false
-      matrix:
-        model:
-          - rockchip
-          - x86_64
 
     steps:
     - name: Checkout
@@ -60,13 +75,14 @@ jobs:
       uses: actions/checkout@main
       with:
         path: ZeroWrt
-
+       
     - name: Setup variables
       run: |
         sudo timedatectl set-timezone 'Asia/Shanghai'
         git config --global user.name 'actions'
         git config --global user.email 'action@github.com'
         echo build_dir="/builder" >> "$GITHUB_ENV"
+        echo build_version="v24" >> "$GITHUB_ENV"
         
     - name: Show system
       run: |
@@ -84,7 +100,7 @@ jobs:
 
     - name: Install Caddy Server
       run: |
-        sudo curl -sL -o /usr/bin/caddy https://github.com/zhiern/ZeroWrt/releases/download/Caddy/caddy
+        sudo curl -sL -o /usr/bin/caddy https://github.com/NeonPulse-Zero/ZeroWrt/releases/download/Caddy/caddy
         sudo chmod 755 /usr/bin/caddy
         echo ":8080 {" > caddyfile
         echo "    root * $(pwd)/ZeroWrt" >> caddyfile
@@ -92,6 +108,22 @@ jobs:
         echo "}" >> caddyfile
         sudo /usr/bin/caddy start --config caddyfile --adapter caddyfile
 
+    - name: Start notification
+      if: ${{ github.event.inputs.notification == 'true' }} 
+      run: |
+        bash <(curl -sS http://127.0.0.1:8080/openwrt/scripts/10-BuildBeacon-start.sh)
+      env:
+        RELEASE_TAG: ${{ env.build_version }}
+        COMPILE_TYPE: ${{ github.event.inputs.device }}
+        GCC_VERSION: ${{ github.event.inputs.gcc_version }}
+        WEB_SERVER: ${{ github.event.inputs.web_server }}
+        DOCKER: ${{ github.event.inputs.docker }}
+        LAN_ADDR: ${{ github.event.inputs.lan_addr }}
+        ROOT_PASSWORD: ${{ github.event.inputs.root_password }}
+        BUILD_OPTIONS: ${{ github.event.inputs.build_options }}
+        TGID: ${{ secrets.TGID }}
+        TG_TOKEN: ${{ secrets.TG_TOKEN }}
+        
     - name: Free disk space
       uses: sbwml/actions@free-disk
       with:
@@ -111,7 +143,7 @@ jobs:
         export ${{ github.event.inputs.build_options }} LAN=${{ github.event.inputs.lan_addr }} GCC_VERSION=${{ github.event.inputs.gcc_version }} web_server=${{ github.event.inputs.web_server }}
         [ ${{ github.event.inputs.docker }} = 'true' ] && export ENABLE_DOCKER=y
         [ -n ${{ github.event.inputs.root_password }} ] && export ROOT_PASSWORD="${{ github.event.inputs.root_password }}"
-        bash <(curl -sS http://127.0.0.1:8080/build.sh) v24 ${{ matrix.model }}
+        bash <(curl -sS http://127.0.0.1:8080/build.sh) ${{ env.build_version }} ${{ github.event.inputs.device }}
         cd openwrt
         tags=OpenWrt-$(git describe --abbrev=0 --tags)
         echo "latest_release=$tags" >>$GITHUB_ENV
@@ -127,10 +159,10 @@ jobs:
       working-directory: /builder
       run: |
         mkdir -p rom
-        if [ "${{ matrix.model }}" = "rockchip" ]; then
+        if [ "${{ github.event.inputs.device }}" = "rockchip" ]; then
           cp -a openwrt/bin/targets/rockchip/*/*.img.gz rom/
           cp -a openwrt/ota/rockchip.json rom/
-        elif [ "${{ matrix.model }}" = "x86_64" ]; then
+        elif [ "${{ github.event.inputs.device }}" = "x86_64" ]; then
           cp -a openwrt/bin/targets/x86/*/*-squashfs-combined-efi.img.gz rom/
           cp -a openwrt/bin/targets/x86/*/*-generic-rootfs.tar.gz rom/
           cp -a openwrt/ota/x86_64.json rom/
@@ -159,7 +191,7 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ matrix.model }}-openwrt-${{ env.latest_release }}
+        name: ${{ github.event.inputs.device }}-openwrt-${{ env.latest_release }}
         path: ${{ env.build_dir }}/rom/*
 
     - name: Create release
@@ -167,9 +199,21 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         name: ${{ env.latest_release }}
+        bodyFile: "${{ github.workspace }}/info.md"
         allowUpdates: true
         tag: ${{ env.latest_release }}
         commit: openwrt-24.10
         replacesArtifacts: true
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.build_dir }}/rom/*
+
+    - name: End notification
+      if: ${{ github.event.inputs.notification == 'true' }}
+      run: |
+        bash <(curl -sS http://127.0.0.1:8080/openwrt/scripts/10-BuildBeacon-end.sh)
+      env:
+        RELEASE_TAG: ${{ env.latest_release }}
+        KERNEL_VERSION: ${{ env.KERNEL_VERSION }}
+        TGID: ${{ secrets.TGID }}
+        TG_TOKEN: ${{ secrets.TG_TOKEN }}
+        RELEASE_LINK: "https://github.com/NeonPulse-Zero/ZeroWrt/releases/tag/${{ env.latest_release }}"

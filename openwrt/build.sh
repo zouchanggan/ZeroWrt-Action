@@ -21,22 +21,28 @@ endgroup() {
 }
 
 echo -e ""
-echo -e "${BLUE_COLOR}╔════════════════════════════════════════════════════════════╗${RES}"
-echo -e "${BLUE_COLOR}║${RES}                     OPENWRT BUILD SYSTEM                   ${BLUE_COLOR}║${RES}"
-echo -e "${BLUE_COLOR}╚════════════════════════════════════════════════════════════╝${RES}"
-echo -e "${BLUE_COLOR}┌────────────────────────────────────────────────────────────┐${RES}"
+echo -e "${BLUE_COLOR}╔═════════════════════════════════════════════════════════════╗${RES}"
+echo -e "${BLUE_COLOR}║${RES}                     OPENWRT BUILD SYSTEM                    ${BLUE_COLOR}║${RES}"
+echo -e "${BLUE_COLOR}╚═════════════════════════════════════════════════════════════╝${RES}"
+echo -e "${BLUE_COLOR}┌─────────────────────────────────────────────────────────────┐${RES}"
 echo -e "${BLUE_COLOR}│${RES}  🛠️  ${YELLOW_COLOR}Developer:${RES} OPPEN321                                   ${BLUE_COLOR}│${RES}"
 echo -e "${BLUE_COLOR}│${RES}  🌐  ${YELLOW_COLOR}Blog:${RES} www.kejizero.online                             ${BLUE_COLOR}│${RES}"
 echo -e "${BLUE_COLOR}│${RES}  💡  ${YELLOW_COLOR}Philosophy:${RES} Open Source · Customization · Performance ${BLUE_COLOR}│${RES}"
-echo -e "${BLUE_COLOR}└────────────────────────────────────────────────────────────┘${RES}"
+echo -e "${BLUE_COLOR}└─────────────────────────────────────────────────────────────┘${RES}"
 echo -e "${BLUE_COLOR}🔧 ${GREEN_COLOR}Building:${RES} $(date '+%Y-%m-%d %H:%M:%S')"
 echo -e "${BLUE_COLOR}══════════════════════════════════════════════════════════════${RES}"
 echo -e ""
 
 # 自定义链接地址
-export mirror=http://127.0.0.1:8080
 export gitea="git.kejizero.online"
 export github="github.com"
+
+REPO_URL="https://github.com/${GITHUB_REPOSITORY}"
+if [ "$REPO_URL" = "https://github.com/NeonPulse-Zero/ZeroWrt" ]; then
+    export mirror="http://127.0.0.1:8080"
+else
+    export mirror="https://init.kejizero.online"
+fi
 
 # 检测 Root
 if [ "$(id -u)" = "0" ]; then
@@ -157,8 +163,8 @@ rm -rf openwrt immortalwrt
 
 # openwrt - 克隆
 [ "$(whoami)" = "runner" ] && group "source code"
-git clone --depth=1 https://$github/openwrt/openwrt -b $branch
-git clone --depth=1 https://$github/immortalwrt/immortalwrt -b $branch
+git clone https://$github/openwrt/openwrt -b $branch
+git clone https://$github/immortalwrt/immortalwrt -b $branch
 
 if [ -d openwrt ]; then
     cd openwrt
@@ -197,7 +203,7 @@ scripts=(
   01-prepare_package.sh
   02-prepare_adguard_core.sh
   03-preset_mihimo_core.sh
-  04-convert_translation.sh
+  04-preset_homeproxy.sh
   06-fix-source.sh
   10-custom.sh
   99_clean_build_cache.sh
@@ -220,7 +226,7 @@ bash 00-prepare_base.sh
 bash 01-prepare_package.sh
 bash 02-prepare_adguard_core.sh
 bash 03-preset_mihimo_core.sh
-#bash 04-convert_translation.sh
+bash 04-preset_homeproxy.sh
 bash 06-fix-source.sh
 if [ "$platform" = "rockchip" ]; then
     bash 05-rockchip_target_only.sh
@@ -263,30 +269,14 @@ export ENABLE_LTO=$ENABLE_LTO
 # uhttpd
 [ "$web_server" = "uhttpd" ] && sed -i '/nginx/d' .config && echo 'CONFIG_PACKAGE_ariang=y' >> .config
 
+# version
+curl -s $mirror/openwrt/generic/config-version >> .config
+
 # local kmod
 if [ "$ENABLE_LOCAL_KMOD" = "y" ]; then
     echo -e "\n# local kmod" >> .config
     echo "CONFIG_VERSION_NUMBER="24.10.2" " >> .config
 fi
-
-# 设置版本号
-export tag=$(curl -s $mirror/tags/v24)
-cat << EOF >> .config
-CONFIG_VERSIONOPT=y
-CONFIG_VERSION_BUG_URL=""
-CONFIG_VERSION_CODE=""
-CONFIG_VERSION_CODE_FILENAMES=y
-CONFIG_VERSION_DIST="OpenWrt"
-CONFIG_VERSION_FILENAMES=y
-CONFIG_VERSION_HOME_URL=""
-CONFIG_VERSION_HWREV=""
-CONFIG_VERSION_MANUFACTURER=""
-CONFIG_VERSION_MANUFACTURER_URL=""
-CONFIG_VERSION_NUMBER="$tag"
-CONFIG_VERSION_PRODUCT=""
-CONFIG_VERSION_REPO="https://downloads.openwrt.org/releases/$tag"
-CONFIG_VERSION_SUPPORT_URL=""
-EOF
 
 # gcc15 patches
 [ "$(whoami)" = "runner" ] && group "patching toolchain"
@@ -303,7 +293,7 @@ echo -e "CONFIG_GCC_USE_VERSION_${gcc_version}=y\n" >> .config
 if [ "$BUILD_FAST" = "y" ]; then
     echo -e "\n${GREEN_COLOR}Download Toolchain ...${RES}"
     [ -f /etc/os-release ] && source /etc/os-release
-    TOOLCHAIN_URL=https://github.com/zhiern/openwrt_caches/releases/download/openwrt-24.10
+    TOOLCHAIN_URL=https://github.com/NeonPulse-Zero/openwrt_caches/releases/download/openwrt-24.10
     curl -L ${TOOLCHAIN_URL}/toolchain_musl_${toolchain_arch}_gcc-${gcc_version}.tar.zst -o toolchain.tar.zst $CURL_BAR
     echo -e "\n${GREEN_COLOR}Process Toolchain ...${RES}"
     tar -I "zstd" -xf toolchain.tar.zst
@@ -354,9 +344,8 @@ fi
 
 if [ "$platform" = "x86_64" ]; then
     if [ "$NO_KMOD" != "y" ]; then
-        mkdir kmodpkg
         cp -a bin/targets/x86/*/packages $kmodpkg_name/
-        rm -f kmodpkg/Packages*
+        rm -f $kmodpkg_name/Packages*
         cp -a bin/packages/x86_64/base/rtl88*a-firmware*.ipk $kmodpkg_name/
         cp -a bin/packages/x86_64/base/natflow*.ipk $kmodpkg_name/
         bash kmod-sign $kmodpkg_name
@@ -366,7 +355,7 @@ if [ "$platform" = "x86_64" ]; then
     # OTA json
     if [ "$1" = "v24" ]; then
         mkdir -p ota
-        OTA_URL="https://github.com/zhiern/ZeroWrt/releases/download"
+        OTA_URL="https://github.com/NeonPulse-Zero/ZeroWrt/releases/download"
         VERSION=$(sed 's/v//g' version.txt)
         SHA256=$(sha256sum bin/targets/x86/64*/*-generic-squashfs-combined-efi.img.gz | awk '{print $1}')
         cat > ota/x86_64.json <<EOF
@@ -383,9 +372,8 @@ EOF
     fi
 elif [ "$platform" = "rockchip" ]; then
     if [ "$NO_KMOD" != "y" ]; then
-        mkdir kmodpkg
         cp -a bin/targets/rockchip/armv8*/packages $kmodpkg_name
-        rm -f kmodpkg/Packages*
+        rm -f $kmodpkg_name/Packages*
         cp -a bin/packages/aarch64_generic/base/rtl88*-firmware*.ipk $kmodpkg_name/
         cp -a bin/packages/aarch64_generic/base/natflow*.ipk $kmodpkg_name/
         bash kmod-sign $kmodpkg_name
@@ -395,7 +383,7 @@ elif [ "$platform" = "rockchip" ]; then
     # OTA json
     if [ "$1" = "v24" ]; then
         mkdir -p ota
-        OTA_URL="https://github.com/zhiern/ZeroWrt/releases/download"
+        OTA_URL="https://github.com/NeonPulse-Zero/ZeroWrt/releases/download"
         VERSION=$(sed 's/v//g' version.txt)
         SHA256_armsom_sige3=$(sha256sum bin/targets/rockchip/armv8*/openwrt-24.10.2-rockchip-armv8-armsom_sige3-squashfs-sysupgrade.img.gz | awk '{print $1}')
         SHA256_armsom_sige7=$(sha256sum bin/targets/rockchip/armv8*/openwrt-24.10.2-rockchip-armv8-armsom_sige7-squashfs-sysupgrade.img.gz | awk '{print $1}')
