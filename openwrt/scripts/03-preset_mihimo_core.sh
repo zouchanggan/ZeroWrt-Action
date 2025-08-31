@@ -11,11 +11,19 @@ elif [ "$platform" = "x86_64" ]; then
 fi
 
 # 根据 mihomo_core 类型选择下载链接
-if [ "$mihomo_core" = "meta" ]; then
-    CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-$core.tar.gz"
-elif [ "$mihomo_core" = "smart" ]; then
-    CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/smart/clash-linux-$core.tar.gz"
-fi
+case "$mihomo_core" in
+    "meta")
+        CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-$core.tar.gz"
+        ;;
+    "smart")
+        CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/smart/clash-linux-$core.tar.gz"
+        ;;
+    *)
+        CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-$core.tar.gz"
+        ;;
+esac
+
+# 定义 geoip.dat、geosite.dat下载链接
 GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
 GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 
