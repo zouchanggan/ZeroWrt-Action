@@ -14,7 +14,7 @@ fi
 if [ "$mihomo_core" = "meta" ]; then
     CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-$core.tar.gz"
 elif [ "$mihomo_core" = "smart" ]; then
-    CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/smart/meta/clash-linux-$core.tar.gz"
+    CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/smart/clash-linux-$core.tar.gz"
 fi
 GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
 GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
