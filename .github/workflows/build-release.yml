@@ -37,6 +37,14 @@ on:
         options:
           - 'nginx'
           - 'uhttpd'
+      mihomo_core:
+        description: '选择 Mihomo 内核（meta 为推荐版本，smart 为 Smart 智能策略组，用于提升网络稳定性）'
+        required: true
+        default: 'meta'
+        type: choice
+        options:
+          - 'meta'
+          - 'smart'          
       docker:
         description: '启用 Docker 支持'
         type: boolean
@@ -137,7 +145,7 @@ jobs:
       id: compile
       continue-on-error: true
       run: |
-        export ${{ github.event.inputs.build_options }} LAN=${{ github.event.inputs.lan_addr }} GCC_VERSION=${{ github.event.inputs.gcc_version }} web_server=${{ github.event.inputs.web_server }}
+        export ${{ github.event.inputs.build_options }} LAN=${{ github.event.inputs.lan_addr }} GCC_VERSION=${{ github.event.inputs.gcc_version }} web_server=${{ github.event.inputs.web_server }} mihomo_core=${{ github.event.inputs.mihomo_core }}
         [ ${{ github.event.inputs.docker }} = 'true' ] && export ENABLE_DOCKER=y
         [ -n ${{ github.event.inputs.root_password }} ] && export ROOT_PASSWORD="${{ github.event.inputs.root_password }}"
         bash <(curl -sS http://127.0.0.1:8080/build.sh) ${{ env.build_version }} ${{ github.event.inputs.device }}
