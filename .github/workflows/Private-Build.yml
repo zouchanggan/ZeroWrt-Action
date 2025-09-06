@@ -128,17 +128,6 @@ jobs:
         TG_TOKEN: ${{ secrets.TG_TOKEN }}
         PUSHKEY: ${{ secrets.PUSHKEY }}
         PUSHSERVE: ${{ secrets.PUSHSERVE }}
-                
-    - name: Free disk space
-      uses: sbwml/actions@free-disk
-      with:
-        build-mount-path: /builder
-
-    - name: Build System Setup
-      uses: sbwml/actions@openwrt-build-setup
-
-    - name: Install LLVM
-      uses: sbwml/actions@install-llvm
 
     - name: Compile OpenWrt
       working-directory: /builder
