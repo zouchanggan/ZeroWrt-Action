@@ -30,9 +30,17 @@ curl -s $mirror/openwrt/patch/generic-24.10/0004-rootfs-Add-support-for-local-km
 # rockchip - target
 rm -rf package/boot/{rkbin,uboot-rockchip,arm-trusted-firmware-rockchip}
 rm -rf target/linux/rockchip
-cp -rf ../immortalwrt/target/linux/rockchip target/linux/rockchip
-cp -rf ../immortalwrt/package/boot/uboot-rockchip package/boot/uboot-rockchip
-cp -rf ../immortalwrt/package/boot/arm-trusted-firmware-rockchip package/boot/arm-trusted-firmware-rockchip
+#cp -rf ../immortalwrt/target/linux/rockchip target/linux/rockchip
+#cp -rf ../immortalwrt/package/boot/uboot-rockchip package/boot/uboot-rockchip
+#cp -rf ../immortalwrt/package/boot/arm-trusted-firmware-rockchip package/boot/arm-trusted-firmware-rockchip
+#sed -i '/REQUIRE_IMAGE_METADATA/d' target/linux/rockchip/armv8/base-files/lib/upgrade/platform.sh
+
+# rockchip - target
+git clone https://$github/NeonPulse-Zero/rkbin package/boot/rkbin
+git clone https://$github/NeonPulse-Zero/uboot-rk35xx package/boot/uboot-rk35xx
+git clone https://$github/NeonPulse-Zero/uboot-rockchip package/boot/uboot-rockchip
+git clone https://$github/NeonPulse-Zero/arm-trusted-firmware-rockchip package/boot/arm-trusted-firmware-rockchip
+git clone https://$github/NeonPulse-Zero/target_linux_rockchip target/linux/rockchip
 sed -i '/REQUIRE_IMAGE_METADATA/d' target/linux/rockchip/armv8/base-files/lib/upgrade/platform.sh
 
 ### FW4 ###
