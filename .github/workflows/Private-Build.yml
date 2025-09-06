@@ -49,4 +49,4 @@ jobs:
       id: compile
       run: |
         export BUILD_FAST=y ENABLE_BPF=y ENABLE_LTO=y ENABLE_OTA=y LAN=10.0.0.1 GCC_VERSION=GCC15 web_server=nginx mihomo_core=meta
-        bash <(curl -sS http://127.0.0.1:8080/build.sh) v24 rockchip
+        bash <(curl -sS http://127.0.0.1:8080/openwrt/build.sh) v24 rockchip
