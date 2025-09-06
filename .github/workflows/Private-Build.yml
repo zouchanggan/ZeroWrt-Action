@@ -11,75 +11,18 @@ name: 💻 自定义编译（请勿使用）
 
 on:
   workflow_dispatch:
-    inputs:
-      device:
-        description: '选择构建项目'
-        required: true
-        default: 'x86_64'
-        type: choice
-        options:
-          - 'rockchip'
-          - 'x86_64'
-      gcc_version:
-        description: '选择 GCC 构建版本'
-        required: true
-        default: 'GCC15'
-        type: choice
-        options:
-          - 'GCC13'
-          - 'GCC14'
-          - 'GCC15'
-      web_server:
-        description: '选择 Web 服务器'
-        required: true
-        default: 'nginx'
-        type: choice
-        options:
-          - 'nginx'
-          - 'uhttpd'
-      mihomo_core:
-        description: '选择 Mihomo 内核（meta 为推荐版本，smart 为 Smart 智能策略组，用于提升网络稳定性）'
-        required: true
-        default: 'meta'
-        type: choice
-        options:
-          - 'meta'
-          - 'smart'          
-      docker:
-        description: '启用 Docker 支持'
-        type: boolean
-        default: true
-      lan_addr:
-        description: '设置默认 LAN 地址'
-        required: true
-        default: '10.0.0.1'
-        type: string
-      root_password:
-        description: '设置默认 root 密码（可选，默认password）'
-        required: false
-        default: 'password'
-        type: string
-      build_options:
-        description: '构建选项（多个选项用空格分隔）'
-        required: false
-        default: 'BUILD_FAST=y ENABLE_BPF=y ENABLE_LTO=y ENABLE_OTA=y'
-        type: string
-          
+           
 jobs:
   build:
     name: Build ${{ github.event.inputs.device }}
     runs-on: self-hosted
-    defaults:
-      run:
-        shell: bash
 
     steps:
     - name: Checkout
-      continue-on-error: true
       uses: actions/checkout@main
       with:
         path: ZeroWrt
-       
+
     - name: Setup variables
       run: |
         sudo timedatectl set-timezone 'Asia/Shanghai'
@@ -87,7 +30,7 @@ jobs:
         git config --global user.email 'action@github.com'
         echo build_dir="/builder" >> "$GITHUB_ENV"
         echo build_version="v24" >> "$GITHUB_ENV"
-        
+
     - name: Show system
       run: |
         echo -e "\n\e[1;32mCPU:\e[0m"
@@ -102,103 +45,8 @@ jobs:
         uname -a
         echo
 
-    - name: Start notification
-      run: |
-        bash <(curl -sS http://127.0.0.1:8080/openwrt/scripts/10-BuildBeacon-start.sh)
-      env:
-        RELEASE_TAG: ${{ env.build_version }}
-        COMPILE_TYPE: ${{ github.event.inputs.device }}
-        GCC_VERSION: ${{ github.event.inputs.gcc_version }}
-        WEB_SERVER: ${{ github.event.inputs.web_server }}
-        DOCKER: ${{ github.event.inputs.docker }}
-        LAN_ADDR: ${{ github.event.inputs.lan_addr }}
-        ROOT_PASSWORD: ${{ github.event.inputs.root_password }}
-        BUILD_OPTIONS: ${{ github.event.inputs.build_options }}
-        TGID: ${{ secrets.TGID }}
-        TG_TOKEN: ${{ secrets.TG_TOKEN }}
-        PUSHKEY: ${{ secrets.PUSHKEY }}
-        PUSHSERVE: ${{ secrets.PUSHSERVE }}
-
     - name: Compile OpenWrt
-      working-directory: /builder
       id: compile
-      continue-on-error: true
       run: |
-        export ${{ github.event.inputs.build_options }} LAN=${{ github.event.inputs.lan_addr }} GCC_VERSION=${{ github.event.inputs.gcc_version }} web_server=${{ github.event.inputs.web_server }} mihomo_core=${{ github.event.inputs.mihomo_core }}
-        [ ${{ github.event.inputs.docker }} = 'true' ] && export ENABLE_DOCKER=y
-        [ -n ${{ github.event.inputs.root_password }} ] && export ROOT_PASSWORD="${{ github.event.inputs.root_password }}"
-        bash <(curl -sS http://127.0.0.1:8080/build.sh) ${{ env.build_version }} ${{ github.event.inputs.device }}
-        cd openwrt
-        tags=OpenWrt-$(git describe --abbrev=0 --tags)
-        echo "latest_release=$tags" >>$GITHUB_ENV
-
-    - name: Extensive logs after a failed compilation
-      working-directory: /builder
-      if: steps.compile.outcome == 'failure'
-      run: |
-        cd openwrt
-        make V=s
-        
-    - name: Prepare Firmware Files
-      working-directory: /builder
-      run: |
-        mkdir -p rom
-        if [ "${{ github.event.inputs.device }}" = "rockchip" ]; then
-          cp -a openwrt/bin/targets/rockchip/*/*.img.gz rom/
-          cp -a openwrt/ota/rockchip.json rom/
-        elif [ "${{ github.event.inputs.device }}" = "x86_64" ]; then
-          cp -a openwrt/bin/targets/x86/*/*-squashfs-combined-efi.img.gz rom/
-          cp -a openwrt/bin/targets/x86/*/*-generic-rootfs.tar.gz rom/
-          cp -a openwrt/ota/x86_64.json rom/
-        fi
-
-    - name: Prepare Kernel Files
-      working-directory: /builder
-      run: |
-        base_name=$(basename ${{ env.build_dir }}/openwrt/*-*.tar.gz)
-        kmod_name=$(echo $base_name | sed 's/~/-/g')
-        mv ${{ env.build_dir }}/openwrt/*-*.tar.gz ${{ env.build_dir }}/openwrt/$kmod_name
-
-    - name: Release kernel modules
-      uses: ncipollo/release-action@v1.14.0
-      with:
-        name: kmod-snapshot
-        allowUpdates: true
-        prerelease: true
-        tag: snapshot
-        commit: openwrt-24.10
-        replacesArtifacts: true
-        token: ${{ secrets.GITHUB_TOKEN  }}
-        artifacts: |
-          ${{ env.build_dir }}/openwrt/*-*.tar.gz
-        
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{ github.event.inputs.device }}-openwrt-${{ env.latest_release }}
-        path: ${{ env.build_dir }}/rom/*
-
-    - name: Create release
-      continue-on-error: true
-      uses: ncipollo/release-action@v1
-      with:
-        name: ${{ env.latest_release }}
-        bodyFile: "${{ env.build_dir }}/openwrt/info.md"
-        allowUpdates: true
-        tag: ${{ env.latest_release }}
-        commit: openwrt-24.10
-        replacesArtifacts: true
-        token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: ${{ env.build_dir }}/rom/*
-
-    - name: End notification
-      run: |
-        bash <(curl -sS http://127.0.0.1:8080/openwrt/scripts/10-BuildBeacon-end.sh)
-      env:
-        RELEASE_TAG: ${{ env.latest_release }}
-        KERNEL_VERSION: ${{ env.KERNEL_VERSION }}
-        TGID: ${{ secrets.TGID }}
-        TG_TOKEN: ${{ secrets.TG_TOKEN }}
-        PUSHKEY: ${{ secrets.PUSHKEY }}
-        PUSHSERVE: ${{ secrets.PUSHSERVE }}
-        RELEASE_LINK: "https://github.com/NeonPulse-Zero/ZeroWrt/releases/tag/${{ env.latest_release }}"
+        export BUILD_FAST=y ENABLE_BPF=y ENABLE_LTO=y ENABLE_OTA=y LAN=10.0.0.1 GCC_VERSION=GCC15 web_server=nginx mihomo_core=meta
+        bash <(curl -sS http://127.0.0.1:8080/build.sh) v24 rockchip
