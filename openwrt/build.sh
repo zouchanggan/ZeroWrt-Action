@@ -227,8 +227,10 @@ bash 04-preset_homeproxy.sh
 bash 06-fix-source.sh
 if [ "$platform" = "rockchip" ]; then
     bash 05-rockchip_target_only.sh
+    export core=arm64
 elif [ "$platform" = "x86_64" ]; then
     bash 05-x86_64_target_only.sh
+    export core=amd64
 fi
 [ -f "10-custom.sh" ] && bash 10-custom.sh
 find feeds -type f -name "*.orig" -exec rm -f {} \;
