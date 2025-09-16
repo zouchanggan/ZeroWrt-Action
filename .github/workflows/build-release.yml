@@ -199,18 +199,28 @@ jobs:
         name: ${{ github.event.inputs.device }}-openwrt-${{ env.latest_release }}
         path: ${{ env.build_dir }}/rom/*
 
+#    - name: Create release
+#      continue-on-error: true
+#      uses: ncipollo/release-action@v1
+#      with:
+#        name: ${{ env.latest_release }}
+#        bodyFile: "${{ env.build_dir }}/openwrt/info.md"
+#        allowUpdates: true
+#        tag: ${{ env.latest_release }}
+#        commit: openwrt-24.10
+#        replacesArtifacts: true
+#        token: ${{ secrets.GITHUB_TOKEN }}
+#        artifacts: ${{ env.build_dir }}/rom/*
+
     - name: Create release
       continue-on-error: true
-      uses: ncipollo/release-action@v1
+      uses: softprops/action-gh-release@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
       with:
-        name: ${{ env.latest_release }}
-        bodyFile: "${{ env.build_dir }}/openwrt/info.md"
-        allowUpdates: true
-        tag: ${{ env.latest_release }}
-        commit: openwrt-24.10
-        replacesArtifacts: true
-        token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: ${{ env.build_dir }}/rom/*
+        tag_name: ${{ env.latest_release }}
+        body_path: ${{ env.build_dir }}/openwrt/info.md
+        files: ${{ env.build_dir }}/rom/*
 
     - name: End notification
       run: |
